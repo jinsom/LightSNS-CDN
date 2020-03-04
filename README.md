@@ -1,0 +1,2 @@
+# LightSNS-CDN
+LightSNS
