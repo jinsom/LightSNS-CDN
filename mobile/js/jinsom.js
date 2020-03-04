@@ -40,7 +40,7 @@ if(jinsom.is_single){
 window.history.pushState(null,null,'/');
 if(jinsom.is_bbs_post){
 function a(){
-myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/post-bbs.php?post_id='+jinsom.post_id+'&bbs_id='+jinsom.bbs_id+'&url='+jinsom.post_url});
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/post-bbs.php?post_id='+jinsom.post_id+'&bbs_id='+jinsom.bbs_id+'&url='+jinsom.post_url+'&type=bbs'});
 }setTimeout(a,500);   
 }else if(jinsom.post_reprint){
 function b(){
@@ -135,89 +135,61 @@ jinsom_post_data(type,'pull',0,this);
 
 
 //首页加载更多内容
-var loading = false;
-var page = 2;
-var index_post_list=$('.jinsom-post-list');
+sns_loading = false;
+sns_page = 2;
+index_post_list=$('.jinsom-post-list');
 $('#jinsom-view-home .infinite-scroll').on('infinite',function(){
-if($('[data-page="jinsom-home-page"] .jinsom-loading').length==0){//判断是否切换tab菜单
-if (loading) return;
-loading = true;
-index_post_list.after('\
-<div class="infinite-scroll-preloader">\
-<div class="preloader"></div>\
-</div>\
-');
+if(sns_loading) return;
+sns_loading = true;
+index_post_list.after(jinsom.loading_post);
 type=$('.jinsom-home-menu li.on').attr('data');
 $.ajax({
 type: "POST",
 url:  jinsom.mobile_ajax_url+"/post/data.php",
-data: {page:page,type:type,load_type:'more'},
+data: {page:sns_page,type:type,load_type:'more'},
 success: function(msg){
+$('.jinsom-load-post').remove();
 if(msg==0){
-// index_post_list.append('<div class="jinsom-empty-page">没有更多内容</div>'); 
-loading = true; 
+sns_loading = true; 
 }else{
 index_post_list.append(msg);
 jinsom_lightbox()
-page++;
-loading = false;  
-}
-$('.infinite-scroll-preloader').remove(); 
+sns_page++;
+sns_loading = false;  
+} 
 }
 });
-}
 }); 
 
 
 
 //视频专题加载更多事情
-var bbs_loading = false; 
 var video_loading = false;
 var video_page = 2;
 if(mobile_page.video){//如果开启专题页面
 var video_list=$('.jinsom-video-special-list');
 $('.jinsom-video-page-content.infinite-scroll').on('infinite',function(){
-if($('.jinsom-video-page-content .jinsom-loading').length==0){//判断是否切换tab菜单
 if (video_loading) return;
 video_loading = true;
-video_list.after('\
-<div class="infinite-scroll-preloader">\
-<div class="preloader"></div>\
-</div>\
-');
+video_list.after(jinsom.loading_post);
 topic=$('.jinsom-video-special-menu li.on').attr('data');
 $.ajax({
 type: "POST",
 url:  jinsom.mobile_ajax_url+"/post/video-special.php",
 data: {topic:topic,page:video_page,type:'more'},
 success: function(msg){
-if(msg==0){
-video_list.append('<div class="jinsom-empty-page">没有更多内容</div>'); 
+if(msg==0){ 
 video_loading = true; 
 }else{
 video_list.append(msg);
 video_page++;
 video_loading = false;  
 }
-$('.infinite-scroll-preloader').remove(); 
+$('.jinsom-load-post').remove();
 }
 });
-}
+
 }); 
-
-//滚动事件
-// $('.jinsom-video-page-content').scroll(function(){
-// navbarH=$('.navbar').height();
-// viewH =Math.round($(this).height()),//可见高度
-// contentH =$(this).get(0).scrollHeight,//内容高度
-// scrollTop =$(this).scrollTop();//滚动高度
-// if(contentH - viewH - scrollTop-navbarH <navbarH){ //到达底部时,加载新内容
-// if($('.jinsom-video-page-content .jinsom-loading').length==0&&$('.jinsom-video-page-content .jinsom-empty-page').length==0){
-// jinsom_video_post_data('more',this);
-// }
-// }
-
-// });
 
 }
 
@@ -482,7 +454,3 @@ SetCookie('sort',name,expdate,"/",null,false);
 type=$('.jinsom-home-menu li.on').attr('data');
 jinsom_post_data(type,'pull',0,this);
 });	
-
-document.write("<script language='javascript' src='"+jinsom.theme_url+"/mobile/js/page.js?ver=1123'></script>");//页面相关
-
-document.write("<script language='javascript' src='"+jinsom.theme_url+"/mobile/js/base.js?ver=1123'></script>");//基本

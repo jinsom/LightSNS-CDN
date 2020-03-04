@@ -26,8 +26,4 @@ $('.jinsom-mobile-home-sns-top').hide();
 
 
 
-
-
-
-
 });

@@ -82,11 +82,11 @@ myApp.loginScreen();
 return false;
 }
 if($(obj).find('.badge').length>0){
-all_tips=parseInt($('.jinsom-xiaoxizhongxin .badge').html());
-this_tips=parseInt($(obj).find('.badge').html());
-now_tips=all_tips-this_tips;
-if(now_tips){//如果还有未读消息
-$('.jinsom-xiaoxizhongxin .badge').html(now_tips);	
+all_notice=parseInt($('.jinsom-footer-toolbar .tips').html());
+current_notice=parseInt($(obj).find('.badge').html());
+number=all_notice-current_notice;
+if(number){//如果还有未读消息
+$('.jinsom-xiaoxizhongxin .badge').html(number);	
 }else{
 $('.jinsom-xiaoxizhongxin .badge').remove();
 }
