@@ -3,7 +3,6 @@
 
 document.write("<script language='javascript' src='"+jinsom.jquery+"'></script>");//jquery
 document.write("<script language='javascript' src='//cdn.jsdelivr.net/npm/layui-src@2.5.5/dist/layui.js'></script>");//layui
-document.write("<script language='javascript' src='"+jinsom.theme_url+"/assets/js/player.js'></script>");//播放器
 document.write("<script language='javascript' src='"+jinsom.theme_url+"/assets/js/login.js'></script>");//登录相关
 document.write("<script language='javascript' src='"+jinsom.theme_url+"/assets/js/comment.js'></script>");//评论相关
 document.write("<script language='javascript' src='"+jinsom.theme_url+"/assets/js/delete.js'></script>");//删除相关
@@ -11,10 +10,6 @@ document.write("<script language='javascript' src='"+jinsom.theme_url+"/assets/j
 document.write("<script language='javascript' src='"+jinsom.theme_url+"/assets/js/publish.js'></script>");//发表相关
 document.write("<script language='javascript' src='"+jinsom.theme_url+"/assets/js/editor.js'></script>");//编辑相关
 document.write("<script language='javascript' src='"+jinsom.theme_url+"/assets/js/post.js'></script>");//内容相关
-document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/xgplayer.js'></script>");//西瓜视频
-document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/xgplayer-hls.js'></script>");//西瓜hls
-document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/xgplayer-flv.js'></script>");//西瓜flv
-document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/masonry.min.js'></script>");
 
 //置顶动态
 function jinsom_sticky_post(post_id,type,obj){

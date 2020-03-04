@@ -1,15 +1,10 @@
 document.write("<script language='javascript' src='"+jinsom.theme_url+"/mobile/js/post.js?ver=123'></script>");//文章相关
-document.write("<script language='javascript' src='https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js'></script>");//图片灯箱
 document.write("<script language='javascript' src='"+jinsom.theme_url+"/mobile/js/login.js'></script>");//登录相关
 document.write("<script language='javascript' src='"+jinsom.theme_url+"/mobile/js/chat.js'></script>");//聊天相关
 document.write("<script language='javascript' src='"+jinsom.theme_url+"/mobile/js/comment.js'></script>");//评论相关
 document.write("<script language='javascript' src='"+jinsom.theme_url+"/mobile/js/publish.js'></script>");//发布相关
 document.write("<script language='javascript' src='"+jinsom.theme_url+"/mobile/js/recharge.js'></script>");//发布相关
-document.write("<script language='javascript' src='//cdn.jsdelivr.net/npm/xgplayer@1.1.4/browser/index.js'></script>");//西瓜视频
-document.write("<script language='javascript' src='//cdn.jsdelivr.net/npm/xgplayer-hls.js/browser/index.js'></script>");//西瓜hls
-document.write("<script language='javascript' src='//cdn.jsdelivr.net/npm/xgplayer-flv.js/browser/index.js'></script>");//西瓜flv
-document.write("<script language='javascript' src='"+jinsom.theme_url+"/assets/js/masonry.min.js'></script>");
-document.write("<script language='javascript' src='//cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js'></script>");//幻灯片
+document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/jquery.fancybox.min.js'></script>");//图片灯箱
 
 
 //置顶动态
