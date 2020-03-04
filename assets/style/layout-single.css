@@ -1,0 +1,60 @@
+/*单栏*/
+.jinsom-content-right {
+    display: none;
+}
+.jinsom-main-content.bbs .jinsom-content-right,.jinsom-main-content.single-bbs .jinsom-content-right {
+    display: block;
+}
+.jinsom-content-left {
+    width: 100%;
+    margin-right: 0;
+}
+.jinsom-main-content.bbs .jinsom-content-left,.jinsom-main-content.single-bbs .jinsom-content-left {
+    width: calc(100% - 320px);
+}
+.jinsom-posts-list{
+    width: calc(100% - 95px);
+    margin: 0 auto 15px;
+}
+.jinsom-post-list.block .jinsom-posts-list{
+    width: 100%;
+}
+.jinsom-post-list.time .jinsom-pager{
+    width: calc(100% - 95px);
+}
+.jinsom-bbs-cat-list li {
+    width: 32%;
+    margin-right: 2%;
+}
+.jinsom-bbs-cat-list li:nth-child(3n) {
+    margin: 0;
+    margin-bottom: 10px;
+}
+.jinsom-bbs-cat-list li:nth-child(2n) {
+    margin-right: 2%;
+    margin-bottom: 10px;
+}
+
+.jinsom-bbs-single-box .right {
+    width: calc(100% - 128px);
+}
+.jinsom-main-content.single .jinsom-posts-list {
+    width: 100%;
+}
+.jinsom-post-images-list {
+    width: 100%;
+    box-sizing: border-box;
+}
+.jinsom-post-images-list a {
+    width: 20%;
+}
+
+.jinsom-post-list.block .jinsom-post-images-list a {
+    height: 206px;
+}
+.jinsom-post-list.time .jinsom-post-images-list a {
+    height: 187px;
+}
+.single .jinsom-posts-list .jinsom-post-images-list a {
+    height: 206px;
+}

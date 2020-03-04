@@ -1,0 +1,9 @@
+.jinsom-post-user-info.single{
+	display: none;
+}
+.jinsom-post-footer-bar {
+    display: none;
+}
+.jinsom-posts-list.single .jinsom-post-footer-bar,.jinsom-posts-list.bg-bbs .jinsom-post-footer-bar {
+    display: block;
+}

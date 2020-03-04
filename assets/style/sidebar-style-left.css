@@ -1,0 +1,10 @@
+.jinsom-content-left {
+    float: right;
+    margin: 0px 0px 0 0;
+}
+.jinsom-content-right {
+    float: left;
+}
+.jinsom-single-left-bar{
+	margin-left: 760px !important;
+}

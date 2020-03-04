@@ -1,0 +1,124 @@
+/*jinsom*/
+.jinsom-posts-list{
+    width: calc(100% - 90px);
+    float: right;
+    position: relative;
+    padding-bottom: 15px;
+}
+.jinsom-post-single-content {
+    padding-bottom: 0;
+}
+.jinsom-post-footer-bar {
+    margin-top: 0;
+}
+.jinsom-posts-list h1 {
+    margin: 0;
+    margin-top: 10px;
+}
+.jinsom-post-user-info {
+    position: absolute;
+    left: -95px;
+    width: 72px;
+    height: 72px;
+    margin-top: -20px;
+    padding: 4px 0 0 4px;
+}
+.jinsom-post-user-info .jinsom-vip-icon{
+    display: inline-block;
+}
+.jinsom-user-info-card {
+    left: 70px;
+}
+.jinsom-post-user-info-avatar img.avatar {
+    width: 64px;
+    height: 64px;
+    border: 2px #fff solid;
+    border-radius: 100%;
+}
+.jinsom-post-user-info-name span {
+    display: none;
+}
+.jinsom-post-user-info-name {
+    margin: 75px 0 0;
+}
+.jinsom-post-user-info-time {
+    display: none;
+}
+.jinsom-post-user-info-name a {
+    font-size: 12px;
+    margin-top: 80px;
+    line-height: 18px;
+    width: 65px;
+    color: #333;
+    display: block !important;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.jinsom-post-user-info-avatar i.jinsom-verify {
+    bottom: 0;
+    right: 0;
+}
+
+.jinsom-post-content {
+    margin-top: 5px;
+}
+.jinsom-post-user-info-name i {
+    display: none;
+}
+.jinsom-post-footer-bar span:first-child {
+    display: inline-block;
+}
+
+
+
+
+/*置顶图标*/
+.jinsom-post-top-time {
+    position: absolute;
+    left: -5px;
+    top: 0;
+    padding: 1px 3px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 0 1px 1px 0;
+    background-color: #1E9FFF;
+    color: #ffffff;
+    display: block;
+}
+.jinsom-post-top-time span:first-child {
+    margin-right: 8px;
+}
+.jinsom-post-top-time .commend:before {
+    content: "荐";
+}
+.jinsom-post-top-time .top:before {
+    content: "顶";
+}
+.jinsom-post-top-time:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid #204561;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid transparent;
+}
+.jinsom-post-single-bar.single .author {
+    display: none;
+}
+.jinsom-post-single-thum a {
+    height: 136px;
+}
+.jinsom-post-single-thum a:last-child span {
+    top: 114px;
+}
+.jinsom-post-user-info.bbs {
+    display: block;
+}
+.jinsom-post-images-list a.one>i {
+    right: 19px;
+}
