@@ -1,7 +1,7 @@
-document.write("<script language='javascript' src='https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js'></script>");//图片灯箱
-document.write("<script language='javascript' src='"+jinsom.theme_url+"/assets/js/ajaxSubmit.js'></script>");//上传模块
-document.write("<script language='javascript' src='https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js'></script>");//复制
-document.write("<script language='javascript' src='https://cdn.jsdelivr.net/npm/swiper@4.5.0/dist/js/swiper.min.js'></script>");//复制
+document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/jquery.fancybox.min.js'></script>");//图片灯箱
+document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/ajaxSubmit.js'></script>");//上传模块
+document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/clipboard.min.js'></script>");//复制
+document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/swiper.min.js'></script>");//复制
 
 
 

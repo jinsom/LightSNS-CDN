@@ -11,10 +11,10 @@ document.write("<script language='javascript' src='"+jinsom.theme_url+"/assets/j
 document.write("<script language='javascript' src='"+jinsom.theme_url+"/assets/js/publish.js'></script>");//发表相关
 document.write("<script language='javascript' src='"+jinsom.theme_url+"/assets/js/editor.js'></script>");//编辑相关
 document.write("<script language='javascript' src='"+jinsom.theme_url+"/assets/js/post.js'></script>");//内容相关
-document.write("<script language='javascript' src='//cdn.jsdelivr.net/npm/xgplayer@1.1.7/browser/index.js'></script>");//西瓜视频
-document.write("<script language='javascript' src='//cdn.jsdelivr.net/npm/xgplayer-hls.js/browser/index.js'></script>");//西瓜hls
-document.write("<script language='javascript' src='//cdn.jsdelivr.net/npm/xgplayer-flv.js/browser/index.js'></script>");//西瓜flv
-document.write("<script language='javascript' src='"+jinsom.theme_url+"/assets/js/masonry.min.js'></script>");
+document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/xgplayer.js'></script>");//西瓜视频
+document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/xgplayer-hls.js'></script>");//西瓜hls
+document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/xgplayer-flv.js'></script>");//西瓜flv
+document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/masonry.min.js'></script>");
 
 //置顶动态
 function jinsom_sticky_post(post_id,type,obj){
