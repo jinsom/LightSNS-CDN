@@ -1,7 +1,7 @@
 
 
 //---------------------------内容详情页面-----------------
-myApp.onPageAfterAnimation('post-single',function(page){
+myApp.onPageBeforeInit('post-single',function(page){
 jinsom_lightbox();
 post_id=page.query['post_id'];
 if(jinsom.permalink_structure){//固定连接
@@ -20,15 +20,16 @@ $('.jinsom-music-voice-'+post_id).html('<i class="jinsom-icon jinsom-yuyin1 tipi
 comment_loading = false;
 comment_page = 2;
 comment_list=$('.jinsom-single-comment-list-'+post_id);
-$('.page-on-center .jinsom-page-single-content.infinite-scroll').on('infinite',function(){
+$('.jinsom-page-single-content-'+post_id+'.infinite-scroll').on('infinite',function(){
 if(comment_loading) return;
 type=comment_list.attr('type');
+bbs_id=comment_list.attr('bbs_id');
 comment_loading = true;
 comment_list.after(jinsom.loading_post);
 $.ajax({
 type: "POST",
 url:  jinsom.mobile_ajax_url+"/post/comment.php",
-data: {page:comment_page,post_id:post_id,type:type},
+data: {page:comment_page,post_id:post_id,type:type,bbs_id:bbs_id},
 success: function(msg){
 $('.jinsom-load-post').remove();
 if(msg==0){
@@ -358,8 +359,8 @@ $(this).children('.tips').remove();
 myApp.onPageBeforeInit('video-special',function(page){
 window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 var video_list=$('.jinsom-video-special-list');
-// var video_loading = false;
-// var video_page = 2;
+var video_loading = false;
+var video_page = 2;
 $('.jinsom-video-page-content.infinite-scroll').on('infinite',function(){
 if (video_loading) return;
 video_loading = true;

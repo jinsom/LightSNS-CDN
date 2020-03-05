@@ -19,18 +19,17 @@ myApp.hideIndicator();
 // var $$=Jinsom;
 
 mobile_page=$.parseJSON(jinsom.mobile_page);//获取移动端开启的页面类型
-if($('#jinsom-view-home').length>0){var view1=myApp.addView('#jinsom-view-home',{dynamicNavbar:true,domCache:true});}
 if(mobile_page){
-if(mobile_page.find){var view3=myApp.addView('#jinsom-view-find',{dynamicNavbar:true,domCache:true});}
-if(mobile_page.video||$('#jinsom-view-video').length>0){var view5=myApp.addView('#jinsom-view-video',{dynamicNavbar:true,domCache:true});}
-if(mobile_page.single){var view6=myApp.addView('#jinsom-view-single',{dynamicNavbar:true,domCache:true});}
-if(mobile_page.custom_1){var view7=myApp.addView('#jinsom-view-custom-1',{dynamicNavbar:true,domCache:true});}
-if(mobile_page.custom_2){var view8=myApp.addView('#jinsom-view-custom-2',{dynamicNavbar:true,domCache:true});}
-if(mobile_page.custom_3){var view9=myApp.addView('#jinsom-view-custom-3',{dynamicNavbar:true,domCache:true});}
-if(jinsom.is_login){
-if(mobile_page.notice){var view2=myApp.addView('#jinsom-view-notice',{dynamicNavbar:true,domCache:true});}
-if(mobile_page.mine){var view4=myApp.addView('#jinsom-view-mine',{dynamicNavbar:true,domCache:true});}
-}
+if(mobile_page.sns){view_sns=myApp.addView('#jinsom-view-sns',{dynamicNavbar:true,domCache:true});}
+if(mobile_page.notice){view_notice=myApp.addView('#jinsom-view-notice',{dynamicNavbar:true,domCache:true});}
+if(mobile_page.find){view_find=myApp.addView('#jinsom-view-find',{dynamicNavbar:true,domCache:true});}
+if(mobile_page.mine){view_mine=myApp.addView('#jinsom-view-mine',{dynamicNavbar:true,domCache:true});}
+if(mobile_page.bbs){view_bbs=myApp.addView('#jinsom-view-bbs',{dynamicNavbar:true,domCache:true});}
+if(mobile_page.video){view_video=myApp.addView('#jinsom-view-video',{dynamicNavbar:true,domCache:true});}
+if(mobile_page.single){view_single=myApp.addView('#jinsom-view-single',{dynamicNavbar:true,domCache:true});}
+if(mobile_page.custom_1){view_custom_1=myApp.addView('#jinsom-view-custom-1',{dynamicNavbar:true,domCache:true});}
+if(mobile_page.custom_2){view_custom_2=myApp.addView('#jinsom-view-custom-2',{dynamicNavbar:true,domCache:true});}
+if(mobile_page.custom_3){view_custom_3=myApp.addView('#jinsom-view-custom-3',{dynamicNavbar:true,domCache:true});}
 }
 
 
@@ -108,24 +107,22 @@ myApp.loginScreen();
 
 
 
-//----------------------------首页------------------------
-
-//初次载入内容
-//jinsom_post_data($('.jinsom-home-menu li.on').attr('data'),'load',0,this);
+//sns首页
+if(mobile_page.sns){
 
 //首页下拉刷新
-var ptrContent = $('#jinsom-view-home .pull-to-refresh-content');
+var ptrContent = $('#jinsom-view-sns .pull-to-refresh-content');
 ptrContent.on('refresh', function (e) {
 setTimeout(function (){//显示刷新成功
-$('#jinsom-view-home .preloader').hide();
-$('#jinsom-view-home .jinsom-refresh-success').show();
+$('#jinsom-view-sns .preloader').hide();
+$('#jinsom-view-sns .jinsom-refresh-success').show();
 }, 800);
 
 //下拉刷新完成
 setTimeout(function (){
 myApp.pullToRefreshDone();
-$('#jinsom-view-home .preloader').show();
-$('#jinsom-view-home .jinsom-refresh-success').hide();
+$('#jinsom-view-sns .preloader').show();
+$('#jinsom-view-sns .jinsom-refresh-success').hide();
 type=$('.jinsom-home-menu li.on').attr('data');
 jinsom_post_data(type,'pull',0,this);
 }, 1600);
@@ -138,7 +135,7 @@ jinsom_post_data(type,'pull',0,this);
 sns_loading = false;
 sns_page = 2;
 index_post_list=$('.jinsom-post-list');
-$('#jinsom-view-home .infinite-scroll').on('infinite',function(){
+$('#jinsom-view-sns .infinite-scroll').on('infinite',function(){
 if(sns_loading) return;
 sns_loading = true;
 index_post_list.after(jinsom.loading_post);
@@ -161,12 +158,14 @@ sns_loading = false;
 });
 }); 
 
+}//sns首页
+
 
 
 //视频专题加载更多事情
+if(mobile_page.video){//如果开启专题页面
 var video_loading = false;
 var video_page = 2;
-if(mobile_page.video){//如果开启专题页面
 var video_list=$('.jinsom-video-special-list');
 $('.jinsom-video-page-content.infinite-scroll').on('infinite',function(){
 if (video_loading) return;
@@ -428,29 +427,4 @@ main && main.moveTaskToBack(false);  //后台
 
 });
 
-//侧栏浮动按钮浏览排序切换
-$('.jinsom-home-right-bar li.sort').click(function() {
-$('.jinsom-content-sort>li').removeClass('on');
-if($(this).children().hasClass('jinsom-suijibofang')){//如果是随机切换顺序
-$(this).attr('title','顺序查看').html('<i class="jinsom-icon jinsom-shunxu-"></i>');
-$('.jinsom-content-sort>li[data="normal"]').addClass('on');
-name='normal';
-layer.open({content:'已切换顺序查看',skin:'msg',time:2});
-}else if($(this).children().hasClass('jinsom-shunxu-')){//如果是顺序切换热门
-$(this).attr('title','热门排序').html('<i class="jinsom-icon jinsom-huo"></i>');
-$('.jinsom-content-sort>li[data="comment_count"]').addClass('on');
-name='comment_count';
-layer.open({content:'已切换热门排序',skin:'msg',time:2});
-}else{//如果是热门切换随机
-$(this).attr('title','随机排序').html('<i class="jinsom-icon jinsom-suijibofang"></i>');
-$('.jinsom-content-sort>li[data="rand"]').addClass('on');
-name='rand';	
-layer.open({content:'已切换随机排序',skin:'msg',time:2});
-}
-var expdate=new Date();
-expdate.setTime(expdate.getTime()+(24*60*60*1000*30*12*10));
-SetCookie('sort',name,expdate,"/",null,false);	
-// function c(){window.location.reload();}setTimeout(c,1500);
-type=$('.jinsom-home-menu li.on').attr('data');
-jinsom_post_data(type,'pull',0,this);
-});	
+
