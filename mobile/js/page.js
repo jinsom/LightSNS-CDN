@@ -1482,6 +1482,40 @@ $('.jinsom-chat-user-list li').click(function(){//消除红点
 $(this).find('.item-media').find('span').remove();
 });
 });
+//---------------------系统通知------
+myApp.onPageBeforeInit('system-notice',function(page){
+window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
+$('.jinsom-chat-user-list li').click(function(){//消除红点
+$(this).find('.item-media').find('span').remove();
+});
+
+
+system_notice_loading = false;
+system_notice_page=2;
+system_notice_list=$('.jinsom-site-notice-content');
+$('.jinsom-site-notice-content.infinite-scroll').on('infinite',function(){
+if (system_notice_loading) return;
+system_notice_loading = true;
+system_notice_list.append(jinsom.loading_post);
+$.ajax({
+type: "POST",
+url:  jinsom.mobile_ajax_url+"/post/system_notice.php",
+data: {page:system_notice_page},
+success: function(msg){
+if(msg!=0){
+system_notice_list.append(msg);
+system_notice_loading = false; 
+system_notice_page++;
+}else{
+system_notice_loading = true; 
+}
+$('.jinsom-load-post').remove();
+}
+});
+
+
+}); 
+});
 
 
 

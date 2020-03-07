@@ -775,6 +775,156 @@ layer.close(index);
 }
 
 
+//弹出全站通知表单
+function jinsom_admin_notice_form(){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/admin/stencil/notice.php",
+success: function(msg){
+layer.closeAll('loading');
+layer.open({
+title:'全站通知',
+type: 1,
+fixed: false,
+area: ['700px', '485px'], 
+content: msg
+});
+}
+});	
+}
+
+//弹出发表全站通知表单
+function jinsom_admin_notice_add_form(){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/admin/stencil/notice-add.php",
+success: function(msg){
+layer.closeAll('loading');
+layer.open({
+title:'全站通知',
+type: 1,
+fixed: false,
+area: ['500px'], 
+skin: 'jinsom-admin-notice-add-form',
+content: msg
+});
+}
+});	
+}
+
+
+//发表全站通知
+function jinsom_admin_notice_add(){
+content=$('#jinsom-admin-notice-add-val').val();
+if(content==''){
+layer.msg("通知内容不能为空！");
+return false;
+}
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/admin/action/notice-do.php",
+data:{content:content,type:'add'},
+success: function(msg){
+layer.closeAll('loading');
+layer.msg(msg.msg);
+if(msg.code==1){
+function c(){layer.closeAll();}setTimeout(c,2000);
+}
+}
+});
+}
+
+
+//弹出编辑全站通知表单
+function jinsom_admin_notice_edit_form(id){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/admin/stencil/notice-edit.php",
+data:{id:id},
+success: function(msg){
+layer.closeAll('loading');
+layer.open({
+title:'全站通知',
+type: 1,
+fixed: false,
+area: ['500px'], 
+skin: 'jinsom-admin-notice-add-form',
+content: msg
+});
+}
+});	
+}
+
+//编辑全站通知
+function jinsom_admin_notice_edit(id){
+content=$('#jinsom-admin-notice-add-val').val();
+if(content==''){
+layer.msg("通知内容不能为空！");
+return false;
+}
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/admin/action/notice-do.php",
+data:{content:content,type:'edit',id:id},
+success: function(msg){
+layer.closeAll('loading');
+layer.msg(msg.msg);
+if(msg.code==1){
+function c(){layer.closeAll();}setTimeout(c,2000);
+}
+}
+});
+}
+
+//查看全站通知
+function jinsom_admin_notice_read_form(id){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/admin/stencil/notice-read.php",
+data:{id:id},
+success: function(msg){
+layer.closeAll('loading');
+layer.open({
+title:'通知详情',
+type: 1,
+fixed: false,
+area: ['500px','350px'], 
+skin: 'jinsom-admin-notice-read-form',
+content: msg
+});
+}
+});	
+}
+
+//删除聊天记录
+function jinsom_admin_notice_del(id,obj){
+layer.confirm('你确定要删除这条通知？',{
+btn: ['确定','取消'],
+btnAlign: 'c',
+},
+function(){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/admin/action/notice-do.php",
+data:{type:'delete',id:id},
+success: function(msg){
+layer.closeAll('loading');
+layer.msg(msg.msg);
+if(msg.code==1){
+$(obj).parents('li').remove();	
+}
+}
+});
+});
+}
+
 
 
 function jinsom_no(){

@@ -14,3 +14,50 @@ body{background:#fff}a:focus{outline:0!important;box-shadow:0 0 0!important}.jin
     display: inline-block;
     width: 80%;
 }
+
+
+.jinsom-admin-key-top.admin_notice li {
+    height: 26px;
+    line-height: 26px;
+    margin-right: 0;
+}
+.jinsom-admin-notice-add-content .btn {
+    text-align: center;
+    background-color: #4CAF50;
+    padding: 10px;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+}
+.jinsom-admin-notice-add-content .tips {
+    margin: 6px 0 10px;
+    color: #999;
+}
+.jinsom-admin-notice-add-content textarea {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 4px;
+    height: 120px;
+}
+.jinsom-admin-notice-add-content {
+    padding: 20px;
+}
+.jinsom-admin-notice-add-form .layui-layer-content {
+    overflow: hidden !important;
+    height: inherit !important;
+}
+.jinsom-admin-key-bottom.admin_notice li span:first-child {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.jinsom-admin-notice-add-content.read img {
+    max-width: 100px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 2px;
+    cursor: pointer;
+    display: block;
+    margin-bottom: 10px;
+}
