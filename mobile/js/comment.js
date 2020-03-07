@@ -41,9 +41,9 @@ comment_list.prepend('\
 <div class="footer">\
 <span class="time">刚刚</span>\
 <span class="comment">\
-<a href="'+jinsom.theme_url+'/mobile/templates/page/comment.php?post_id='+post_id+'&name='+jinsom.nickname_base+'" class="link">回复</a>\
+<a href="'+jinsom.theme_url+'/mobile/templates/page/comment.php?post_id='+post_id+'&name='+jinsom.nickname_base+'" class="link"></a>\
 </span>\
-<span class="delete" onclick="jinsom_delete_post_comments('+msg.id+',this)">删除</span>\
+<span class="delete" onclick="jinsom_delete_post_comments('+msg.id+',this)"></span>\
 </div>\
 </div>\
 ');
@@ -103,7 +103,7 @@ comment_list.append('\
 <div class="footer">\
 <span class="time">刚刚</span>\
 <span class="comment">\
-<a href="'+jinsom.theme_url+'/mobile/templates/page/comment-child-page.php?post_id='+post_id+'&comment_id='+msg.id+'&bbs_id='+bbs_id+'" class="link"><m></m>回复</a>\
+<a href="'+jinsom.theme_url+'/mobile/templates/page/comment-child-page.php?post_id='+post_id+'&comment_id='+msg.id+'&bbs_id='+bbs_id+'" class="link"><m></m></a>\
 </span>\
 </div>\
 </div>\
@@ -185,7 +185,7 @@ comment_list.append('\
 <div class="footer">\
 <span class="time">刚刚</span>\
 <span class="comment">\
-<a href="'+jinsom.theme_url+'/mobile/templates/page/comment-bbs-floor.php?post_id='+post_id+'&comment_id='+comment_id+'&bbs_id='+bbs_id+'&name='+jinsom.nickname_base+'" class="link">回复</a>\
+<a href="'+jinsom.theme_url+'/mobile/templates/page/comment-bbs-floor.php?post_id='+post_id+'&comment_id='+comment_id+'&bbs_id='+bbs_id+'&name='+jinsom.nickname_base+'" class="link"></a>\
 </span>\
 </div>\
 </div>\
