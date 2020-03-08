@@ -1499,7 +1499,7 @@ system_notice_loading = true;
 system_notice_list.append(jinsom.loading_post);
 $.ajax({
 type: "POST",
-url:  jinsom.mobile_ajax_url+"/post/system_notice.php",
+url:  jinsom.mobile_ajax_url+"/post/system-notice.php",
 data: {page:system_notice_page},
 success: function(msg){
 if(msg!=0){

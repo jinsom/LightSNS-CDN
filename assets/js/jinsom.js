@@ -3452,7 +3452,7 @@ url:jinsom.jinsom_ajax_url+"/stencil/change-bbs.php",
 data:{post_id:post_id,bbs_id:bbs_id},
 success: function(msg){
 layer.closeAll('loading');
-mywallet_form=layer.open({
+layer.open({
 title:'转移板块',
 type: 1,
 fixed: false,
@@ -3482,6 +3482,55 @@ success: function(msg){
 layer.closeAll('loading');
 layer.msg(msg.msg);
 function c(){window.location.reload();}setTimeout(c,2000);
+}
+});
+}
+
+
+//弹出通知表单
+function jinsom_system_notice_form(obj){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/stencil/system-notice.php",
+success: function(msg){
+layer.closeAll('loading');
+layer.open({
+title:'通知消息',
+type: 1,
+fixed: false,
+skin:'jinsom-system-notice-form',
+// offset: '50px',
+area: ['400px','550px'],
+resize:false,
+content: msg
+});
+$(obj).children('.tips').remove();
+}
+});
+}
+
+//加载更多消息通知
+function jinsom_system_notice_more(obj){
+page=parseInt($(obj).attr('data'));
+$(obj).before(jinsom.loading_post);
+$(obj).hide();
+$.ajax({
+type: "POST",
+url:jinsom.mobile_ajax_url+"/post/system-notice.php",
+data:{page:page},
+success: function(msg){
+$('.jinsom-load-post').remove();
+
+if(msg!='0'){
+$(obj).before(msg);
+page=page+1;
+$(obj).attr('data',page);
+$(obj).show();	
+}else{
+layer.msg('没有更多通知！');
+$(obj).remove();
+}
 }
 });
 }

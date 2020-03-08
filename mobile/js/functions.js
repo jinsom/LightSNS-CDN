@@ -1610,6 +1610,33 @@ $(obj).addClass('had').text('已领取');
 }
 
 
+//访问密码论坛，输入密码
+function jinsom_bbs_visit_password(bbs_id){
+pass=$('#jinsom-bbs-visit-psssword').val();
+if(pass==''){
+layer.open({content:'请输入访问密码！',skin:'msg',time:2});
+return false;
+}
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+url:jinsom.module_url+"/action/bbs-visit-password.php",
+data: {bbs_id:bbs_id,pass:pass,visit:1},
+success: function(msg){
+myApp.hideIndicator();
+if(msg.code==1){
+layer.open({content:msg.msg,skin:'msg',time:2});
+function d(){window.location.reload();}setTimeout(d,2000);
+}else if(msg.code==3){
+myApp.loginScreen(); 
+}else{
+layer.open({content:msg.msg,skin:'msg',time:2});
+}
+}
+});
+}
+
+
 
 //瀑布流图片预加载
 function jinsom_loadImage(url) {
