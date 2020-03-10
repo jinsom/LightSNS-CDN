@@ -141,12 +141,6 @@ $(this).hide();
 
 
 
-//头部右侧下拉
-$('.jinsom-header-menu-avatar').click(function(event){
-event.stopPropagation();
-$(".jinsom-notice ul").hide();//隐藏通知栏
-$(this).children("ul").toggle(100);
-});
 //动态右上角下拉
 $('.jinsom-posts-list,.jinsom-post-list,.jinsom-search-content,.jinsom-topic-post-list').on('click','.jinsom-post-setting',function(event){
 event.stopPropagation();
@@ -274,7 +268,6 @@ e.stopPropagation();
 //委派事件
 $(document).on('click', function(event){
 $('.jinsom-post-setting-box').hide();
-$('.jinsom-header-menu-avatar ul').hide();
 $('.jinsom-smile-form').hide();//显示表情
 $('.jinsom-single-title-list-content').hide();//文章左侧栏自动目录
 $('.jinsom-notice ul').hide();

@@ -2279,8 +2279,8 @@ $(this_dom).parents('tr').remove();
 //偏好设置
 function jinsom_preference_setting(){
 this_dom=$(".jinsom-preference-setting");
-if(this_dom.css("bottom")=='-182px'){
-this_dom.show().animate({bottom:"-2px"});
+if(this_dom.css("display")=='none'){
+this_dom.show();
 if ($(".jinsom-preference-list li").length==0){
 $(".jinsom-preference-list").append('<div class="jinsom-load"><div class="jinsom-loading"><i></i><i></i><i></i></div></div>');
 $.ajax({
@@ -2325,7 +2325,7 @@ $('.bg_09').addClass('on');
 });
 }    
 }else{
-$(".jinsom-preference-setting").animate({bottom:"-182px"});
+this_dom.hide();
 }
 }
 
