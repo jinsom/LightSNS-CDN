@@ -1,6 +1,25 @@
 // 后台面板
 jQuery(document).ready(function($) {
 
+
+var patterns={validate:/^(?!_nonce)[a-zA-Z0-9_-]*(?:\[(?:\d*|(?!_nonce)[a-zA-Z0-9_-]+)\])*$/i,key:/[a-zA-Z0-9_-]+|(?=\[\])/g,named:/^[a-zA-Z0-9_-]+$/,push:/^$/,fixed:/^\d+$/};function FormSerializer(helper,$form){var data={},pushes={};function build(base,key,value){base[key]=value;return base;}
+function makeObject(root,value){var keys=root.match(patterns.key),k;while((k=keys.pop())!==undefined){if(patterns.push.test(k)){var idx=incrementPush(root.replace(/\[\]$/,''));value=build([],idx,value);}
+else if(patterns.fixed.test(k)){value=build([],k,value);}
+else if(patterns.named.test(k)){value=build({},k,value);}}
+return value;}
+function incrementPush(key){if(pushes[key]===undefined){pushes[key]=0;}
+return pushes[key]++;}
+function addPair(pair){if(!patterns.validate.test(pair.name))return this;var obj=makeObject(pair.name,pair.value);data=helper.extend(true,data,obj);return this;}
+function addPairs(pairs){if(!helper.isArray(pairs)){throw new Error("formSerializer.addPairs expects an Array");}
+for(var i=0,len=pairs.length;i<len;i++){this.addPair(pairs[i]);}
+return this;}
+function serialize(){return data;}
+function serializeJSON(){return JSON.stringify(serialize());}
+this.addPair=addPair;this.addPairs=addPairs;this.serialize=serialize;this.serializeJSON=serializeJSON;}
+FormSerializer.patterns=patterns;FormSerializer.serializeObject=function serializeObject(){return new FormSerializer($,this).addPairs(this.serializeArray()).serialize();};FormSerializer.serializeJSON=function serializeJSON(){return new FormSerializer($,this).addPairs(this.serializeArray()).serializeJSON();};if(typeof $.fn!=="undefined"){$.fn.serializeObjectLightSNS=FormSerializer.serializeObject;$.fn.serializeJSONLightSNS=FormSerializer.serializeJSON;}
+
+
+
 //切换WordPress面板
 $(".jinsom-panel-header-left").click(function() {
 if ($("#adminmenumain").css('display')=='block') {
@@ -103,6 +122,52 @@ data: {login_out:1},
 success: function(msg){}
 });
 function d(){window.location.href='/';}setTimeout(d,2500);
+});
+}
+
+
+//导入备份
+function jinsom_admin_backup_export(){
+backup=$('#jinsom-admin-backup-export-val').val();
+if(backup=='delete'){
+title='你要确定要清空所有的设置选项吗？清空之后将恢复默认设置！';
+}else{
+title='你确定要导入备份设置吗？你之前的设置选项会被覆盖！';
+}
+layer.confirm(title,{
+btnAlign: 'c',
+}, function(){
+layer.load(1);
+$.ajax({
+type:"POST",
+url: jinsom.jinsom_ajax_url+"/admin/action/admin-setting.php",
+data:{backup:backup},
+success: function(msg){
+layer.closeAll('loading');
+layer.msg(msg.msg);
+if(msg.code==1){
+function c(){window.location.reload();}setTimeout(c,2000);
+}
+}
+});
+});
+}
+
+//保存设置
+function jinsom_admin_save_setting(){
+data=$('#jinsom-panel-form').serializeJSONLightSNS();
+layer.load(1);
+$.ajax({
+type:"POST",
+url: jinsom.jinsom_ajax_url+"/admin/action/admin-save.php",
+data:{data:data},
+success: function(msg){
+layer.closeAll('loading');
+layer.msg(msg.msg);
+if(msg.code==1){
+
+}
+}
 });
 }
 

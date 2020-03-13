@@ -1636,6 +1636,13 @@ layer.open({content:msg.msg,skin:'msg',time:2});
 });
 }
 
+//更换语言
+function jinsom_change_language(obj,type){
+$(obj).addClass('on').siblings().removeClass('on');
+SetCookie('lang',type);
+window.location.reload();
+}
+
 
 
 //瀑布流图片预加载

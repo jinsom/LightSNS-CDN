@@ -322,6 +322,10 @@ window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(3
 myApp.onPageBeforeInit('majia', function (page) {
 window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 });
+//设置语言
+myApp.onPageBeforeInit('setting-language', function (page) {
+window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
+});
 
 
 

@@ -148,15 +148,15 @@ if(msg.code==0){//签到失败
 layer.msg(msg.msg);
 }else if(msg.code==1){//已经签到
 layer.msg(msg.msg);
-$('.jinsom-sidebar-user-info-sign-btn').addClass('had').html(msg.text);
+$('.jinsom-sidebar-user-info .sign').addClass('had').html(msg.text);
 }else if(msg.code==2){//签到成功
 layer.msg(msg.tip,{time:2000});
 if(msg.msg!=''){//如果有设置奖励
 function d(){layer.msg(msg.msg,{time:2200});}
 setTimeout(d,2000);
 }
-$('.jinsom-sidebar-user-info-sign-btn').addClass('had').html(msg.text).removeAttr('onclick');
-$('.jinsom-sidebar-sign').prepend('<i class="jinsom-icon jinsom-yiwen2" onclick="jinsom_sign_info()"></i>');
+$('.jinsom-sidebar-user-info .sign').addClass('had').html(msg.text).removeAttr('onclick');
+$('.jinsom-sidebar-user-info .sign').prepend('<i class="jinsom-icon jinsom-yiwen2" onclick="jinsom_sign_info()"></i>');
 }
 }
 });
@@ -2281,7 +2281,7 @@ function jinsom_preference_setting(){
 this_dom=$(".jinsom-preference-setting");
 if(this_dom.css("display")=='none'){
 this_dom.show();
-if ($(".jinsom-preference-list li").length==0){
+if ($(".jinsom-preference-list li").length==0&&$('.jinsom-preference-list .jinsom-empty-page').length==0){
 $(".jinsom-preference-list").append('<div class="jinsom-load"><div class="jinsom-loading"><i></i><i></i><i></i></div></div>');
 $.ajax({
 type: "POST",
@@ -3533,6 +3533,13 @@ $(obj).remove();
 }
 }
 });
+}
+
+//更换语言
+function jinsom_change_language(obj,type){
+$(obj).addClass('on').siblings().removeClass('on');
+SetCookie('lang',type);
+window.location.reload();
 }
 
 
