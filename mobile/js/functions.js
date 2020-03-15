@@ -762,7 +762,7 @@ myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page
 
 
 //关注论坛
-function jinsom_follow_bbs(bbs_id,obj){
+function jinsom_bbs_like(bbs_id,obj){
 if(!jinsom.is_login){
 myApp.loginScreen();  
 return false;

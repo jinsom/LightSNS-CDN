@@ -710,6 +710,8 @@ $('.jinsom-bbs-child-setting-avatar span').hide().html('点击上传头像');
 layui.use('form', function(){
 var form = layui.form;
 form.render();
+
+//发表
 form.on('select(power_form)', function(data){
 $select_value=parseInt($("#power_form").val());
 if($select_value==6){
@@ -729,6 +731,27 @@ $("#jinsom-publish-power-verify").hide();
 }
 });
 
+//回帖
+form.on('select(comment_power)', function(data){
+$select_value=parseInt($("#jinsom-bbs-comment-power").val());
+if($select_value==6){
+$("#jinsom-bbs-comment-power-lv").show();    
+}else{
+$("#jinsom-bbs-comment-power-lv").hide();     
+}
+if($select_value==7){
+$("#jinsom-bbs-comment-power-honor").show();    
+}else{
+$("#jinsom-bbs-comment-power-honor").hide();     
+}
+if($select_value==8){
+$("#jinsom-bbs-comment-power-verify").show();    
+}else{
+$("#jinsom-bbs-comment-power-verify").hide();     
+}
+});
+
+//布局
 form.on('select(layout)',function(data){
 if(data.value==0){
 $('#jinsom-layout-sidebar-setting').show();
@@ -737,6 +760,7 @@ $('#jinsom-layout-sidebar-setting').hide();
 }
 });
 
+//访问
 form.on('select(visit_power_form)',function(data){
 $select_value=parseInt($("#visit_power_form").val());
 if($select_value==5){
@@ -763,6 +787,11 @@ if($select_value==10){
 $("#jinsom-visit-power-verify").show();    
 }else{
 $("#jinsom-visit-power-verify").hide();     
+}
+if($select_value==11){
+$("#jinsom-visit-power-pay").show();    
+}else{
+$("#jinsom-visit-power-pay").hide();     
 }
 });
 
@@ -3540,6 +3569,94 @@ function jinsom_change_language(obj,type){
 $(obj).addClass('on').siblings().removeClass('on');
 SetCookie('lang',type);
 window.location.reload();
+}
+
+
+//申请版主表单
+function jinsom_apply_bbs_admin_form(bbs_id){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/stencil/apply-bbs-admin.php",
+data:{bbs_id:bbs_id},
+success: function(msg){
+layer.closeAll('loading');
+layer.open({
+title:'申请',
+type: 1,
+skin:'jinsom-apply-bbs-admin-form',
+area: ['300px','300px'],
+resize:false,
+content: msg
+});
+
+layui.use('form', function(){
+var form = layui.form;
+form.render();
+});
+
+}
+});
+}
+
+
+//申请版主
+function jinsom_apply_bbs_admin(bbs_id){
+type=$('#jinsom-apply-bbs-admin-type').val();
+reason=$('#jinsom-apply-bbs-admin-reason').val();
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/action/apply-bbs-admin.php",
+data:{bbs_id:bbs_id,type:type,reason:reason},
+success: function(msg){
+layer.closeAll('loading');
+layer.msg(msg.msg);
+if(msg.code==1){
+function c(){window.location.reload();}setTimeout(c,2000);
+}
+}
+});
+}
+
+
+//申请论坛表单
+function jinsom_apply_bbs_form(){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/stencil/apply-bbs.php",
+success: function(msg){
+layer.closeAll('loading');
+layer.open({
+title:'申请',
+type: 1,
+skin:'jinsom-apply-bbs-form',
+area: ['300px','300px'],
+resize:false,
+content: msg
+});
+}
+});
+}
+
+//申请论坛
+function jinsom_apply_bbs(){
+title=$('#jinsom-apply-bbs-title').val();
+reason=$('#jinsom-apply-bbs-reason').val();
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/action/apply-bbs.php",
+data:{title:title,reason:reason},
+success: function(msg){
+layer.closeAll('loading');
+layer.msg(msg.msg);
+if(msg.code==1){
+function c(){window.location.reload();}setTimeout(c,2000);
+}
+}
+});
 }
 
 

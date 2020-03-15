@@ -153,6 +153,42 @@ function c(){window.location.reload();}setTimeout(c,2000);
 });
 }
 
+//metabox导出备份
+function jinsom_amdin_backup_metabox(){
+post_id=jinsom_getUrlParam('post');
+window.open(jinsom.theme_url+"/module/admin/action/admin-setting-metabox-back.php?download&post_id="+post_id);
+}
+
+
+//metabox导入备份
+function jinsom_amdin_backup_metabox_import(){
+backup=$('#jinsom-admin-backup-metabox-val').val();
+if(backup=='delete'){
+title='你要确定要清空所有的设置选项吗？清空之后将恢复默认设置！';
+}else{
+title='你确定要导入备份设置吗？你之前的设置选项会被覆盖！';
+}
+post_id=jinsom_getUrlParam('post');
+layer.confirm(title,{
+btnAlign: 'c',
+}, function(){
+layer.load(1);
+$.ajax({
+type:"POST",
+url: jinsom.jinsom_ajax_url+"/admin/action/admin-setting-metabox-back.php",
+data:{backup:backup,post_id:post_id},
+success: function(msg){
+layer.closeAll('loading');
+layer.msg(msg.msg);
+if(msg.code==1){
+function c(){window.location.reload();}setTimeout(c,2000);
+}
+}
+});
+});
+}
+
+
 //保存设置
 function jinsom_admin_save_setting(){
 data=$('#jinsom-panel-form').serializeJSONLightSNS();
@@ -991,8 +1027,93 @@ $(obj).parents('li').remove();
 }
 
 
+//版主申请表单
+function jinsom_admin_apply_bbs_admin_form(){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/admin/stencil/apply-bbs-admin.php",
+success: function(msg){
+layer.closeAll('loading');
+layer.open({
+title:'版主申请',
+type: 1,
+fixed: false,
+area: ['700px','410px'], 
+content: msg
+});
+}
+});	
+}
+
+//查看版主申请
+function jinsom_admin_apply_bbs_admin_read_form(id){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/admin/stencil/apply-bbs-admin-do.php",
+data:{id:id},
+success: function(msg){
+layer.closeAll('loading');
+window.admin_apply_bbs_admin_read_form=layer.open({
+title:'详情信息',
+type: 1,
+fixed: false,
+area: ['500px','350px'], 
+content: msg
+});
+}
+});	
+}
+
+//版主申请操作
+function jinsom_admin_apply_bbs_admin_do(type,id,obj){
+if(type=='agree'){
+title="通过";
+}else if(type=='refuse'){
+title="拒绝";
+}else{
+title="删除";	
+}
+
+layer.confirm('你确定要'+title+'吗？',{
+btn: ['确定','取消'],
+btnAlign: 'c',
+},
+function(){
+
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/admin/action/apply-bbs-admin-do.php",
+data:{ID:id,type:type},
+success: function(msg){
+layer.closeAll('loading');
+layer.msg(msg.msg);
+if(msg.code==1){
+if(type=='del'){
+$('#jinsom-admin-apply-bbs-admin-'+id).remove();
+}else if(type=='agree'){
+$('#jinsom-admin-apply-bbs-admin-'+id+' span').last().html('已经通过');
+}else if(type=='refuse'){
+$('#jinsom-admin-apply-bbs-admin-'+id+' span').last().html('已经拒绝');
+}
+layer.close(admin_apply_bbs_admin_read_form);
+}
+}
+});	
+});	
+}
+
 
 function jinsom_no(){
 layer.msg("还没有写好啦！预留接口");	
 }
 
+
+
+function jinsom_getUrlParam(name){
+var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+var r = window.location.search.substr(1).match(reg);
+if(r!=null)return  unescape(r[2]); return null;
+}
