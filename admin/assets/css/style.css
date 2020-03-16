@@ -72,13 +72,23 @@ body{background:#fff}a:focus{outline:0!important;box-shadow:0 0 0!important}.jin
 }
 
 
-.bbs-admin .jinsom-mycredit-table .title span:nth-child(1),.jinsom-mycredit-table .content li span:nth-child(1) {
+.bbs-admin .jinsom-mycredit-table .title span:nth-child(1),.bbs-admin .jinsom-mycredit-table .content li span:nth-child(1) {
     flex: 4;
 }
-.bbs-admin .jinsom-mycredit-table .title span:nth-child(3),.jinsom-mycredit-table .content li span:nth-child(3) {
+.bbs-admin .jinsom-mycredit-table .title span:nth-child(3),.bbs-admin .jinsom-mycredit-table .content li span:nth-child(3) {
     flex: 3;
 }
-.bbs-admin .jinsom-mycredit-table .title span:nth-child(4), .bbs-admin .jinsom-mycredit-table .title span:nth-child(5),.jinsom-mycredit-table .content li span:nth-child(4),.jinsom-mycredit-table .content li span:nth-child(5) {
+.bbs-admin .jinsom-mycredit-table .title span:nth-child(4), .bbs-admin .jinsom-mycredit-table .title span:nth-child(5),.bbs-admin .jinsom-mycredit-table .content li span:nth-child(4),.bbs-admin .jinsom-mycredit-table .content li span:nth-child(5) {
+    flex: 2;
+}
+
+.bbs .jinsom-mycredit-table .title span:nth-child(1),.bbs .jinsom-mycredit-table .content li span:nth-child(1) {
+    flex: 3;
+}
+.bbs .jinsom-mycredit-table .title span:nth-child(2),.bbs .jinsom-mycredit-table .content li span:nth-child(2) {
+    flex: 3;
+}
+.bbs .jinsom-mycredit-table .title span:nth-child(3), .bbs .jinsom-mycredit-table .title span:nth-child(4),.bbs .jinsom-mycredit-table .content li span:nth-child(3),.bbs .jinsom-mycredit-table .content li span:nth-child(4) {
     flex: 2;
 }
 

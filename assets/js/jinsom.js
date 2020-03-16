@@ -1223,10 +1223,13 @@ btn: false,
 resize:false,
 area: ['300px', '330px'], 
 skin: 'jinsom-wechatpay-code-form',
-content: msg,
+content: '<div class="jinsom-wechatpay-code-content"><div id="jinsom-qrcode"></div><p style="color: #00a7ff;"><i class="jinsom-icon jinsom-zhifubaozhifu" style="color: #00a7ff;font-size: 24px;vertical-align: -3px;"></i> 支付宝扫码支付</p></div>',
 cancel: function(index,layero){ 
 $('#jinsom-credit-recharge-form input[name="WIDout_trade_no"]').val(new Date().getTime());
 jinsom_check_order_wechatpay_ajax.abort();
+},
+success:function(){
+jinsom_qrcode('jinsom-qrcode',200,200,msg);
 }
 });
 
@@ -1281,10 +1284,13 @@ btn: false,
 resize:false,
 area: ['300px', '330px'], 
 skin: 'jinsom-wechatpay-code-form',
-content: msg,
+content: '<div class="jinsom-wechatpay-code-content"><div id="jinsom-qrcode"></div><p><i class="jinsom-icon jinsom-weixinzhifu"></i> 微信扫码支付</p></div>',
 cancel: function(index, layero){ 
 $('#jinsom-credit-recharge-form input[name="WIDout_trade_no"]').val(new Date().getTime());
 jinsom_check_order_wechatpay_ajax.abort();
+},
+success:function(){
+jinsom_qrcode('jinsom-qrcode',200,200,msg);
 }
 });
 
@@ -1656,7 +1662,6 @@ layer.msg(msg.msg);
 
 //弹窗转发 分享到微信功能
 function jinsom_singe_share_wechat(url){
-layer.load(1);
 layer.open({
 title:'分享到微信',
 btn: false,
@@ -1664,15 +1669,14 @@ type: 1,
 resize:false,
 area: ['240px', '315px'],
 skin: 'jinsom-pop-share',
-content: '<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+url+'"/><p>打开微信“扫一扫”</p>',
+content: '<div id="jinsom-qrcode"></div><p>打开微信“扫一扫”</p>',
 success: function(layero, index){
-layer.closeAll('loading');
+jinsom_qrcode('jinsom-qrcode',200,200,url);
 }
 });    
 }
 
 function jinsom_singe_share_qq(url){
-layer.load(1);
 layer.open({
 title:'分享到QQ',
 btn: false,
@@ -1680,9 +1684,9 @@ type: 1,
 resize:false,
 area: ['240px', '315px'],
 skin: 'jinsom-pop-share',
-content: '<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+url+'"/><p>打开QQ“扫一扫”</p>',
+content: '<div id="jinsom-qrcode"></div><p>打开QQ“扫一扫”</p>',
 success: function(layero, index){
-layer.closeAll('loading');
+jinsom_qrcode('jinsom-qrcode',200,200,url);
 }
 });    
 }
@@ -1691,8 +1695,7 @@ layer.closeAll('loading');
 
 //侧栏小工具 分享到微信功能
 function jinsom_sidebar_share_wechat(){
-share_url=$('#jinsom-sidebar-share-link').html();
-layer.load(1);
+url=$('#jinsom-sidebar-share-link').html();
 layer.open({
 title:'分享到微信',
 btn: false,
@@ -1700,16 +1703,15 @@ type: 1,
 resize:false,
 area: ['240px', '315px'],
 skin: 'jinsom-pop-share',
-content: '<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+share_url+'"/><p>打开微信“扫一扫”</p>',
+content: '<div id="jinsom-qrcode"></div><p>打开微信“扫一扫”</p>',
 success: function(layero, index){
-layer.closeAll('loading');
+jinsom_qrcode('jinsom-qrcode',200,200,url);
 }
 });    
 }
 
 function jinsom_sidebar_share_qq(){
-share_url=$('#jinsom-sidebar-share-link').html();
-layer.load(1);
+url=$('#jinsom-sidebar-share-link').html();
 layer.open({
 title:'分享到QQ',
 btn: false,
@@ -1717,9 +1719,9 @@ type: 1,
 resize:false,
 area: ['240px', '315px'],
 skin: 'jinsom-pop-share',
-content: '<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+share_url+'"/><p>打开QQ“扫一扫”</p>',
+content: '<div id="jinsom-qrcode"></div><p>打开QQ“扫一扫”</p>',
 success: function(layero, index){
-layer.closeAll('loading');
+jinsom_qrcode('jinsom-qrcode',200,200,url);
 }
 });    
 }
@@ -3656,6 +3658,41 @@ if(msg.code==1){
 function c(){window.location.reload();}setTimeout(c,2000);
 }
 }
+});
+}
+
+
+//付费访问论坛
+function jinsom_bbs_visit_pay(bbs_id){
+layer.confirm('你确定要支付吗？',{
+btnAlign: 'c',
+}, function(){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/action/bbs-visit-pay.php",
+data:{bbs_id:bbs_id},
+success: function(msg){
+layer.closeAll('loading');
+layer.msg(msg.msg);
+if(msg.code==1){
+function c(){window.location.reload();}setTimeout(c,2000);
+}else if(msg.code==3){
+function c(){jinsom_recharge_credit_form();}
+setTimeout(c,1500);
+}
+}
+});
+});
+}
+
+
+//生成二维码
+function jinsom_qrcode(dom,width,height,link){
+$('#'+dom).qrcode({
+width:width,
+height:height,
+text:link
 });
 }
 

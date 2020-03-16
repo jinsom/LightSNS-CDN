@@ -1056,7 +1056,7 @@ data:{id:id},
 success: function(msg){
 layer.closeAll('loading');
 window.admin_apply_bbs_admin_read_form=layer.open({
-title:'详情信息',
+title:'申请详情',
 type: 1,
 fixed: false,
 area: ['500px','350px'], 
@@ -1094,11 +1094,90 @@ if(msg.code==1){
 if(type=='del'){
 $('#jinsom-admin-apply-bbs-admin-'+id).remove();
 }else if(type=='agree'){
-$('#jinsom-admin-apply-bbs-admin-'+id+' span').last().html('已经通过');
+$('#jinsom-admin-apply-bbs-admin-'+id+' span m').html('已经通过').attr('style','');
 }else if(type=='refuse'){
-$('#jinsom-admin-apply-bbs-admin-'+id+' span').last().html('已经拒绝');
+$('#jinsom-admin-apply-bbs-admin-'+id+' span m').html('已经拒绝').attr('style','');
 }
 layer.close(admin_apply_bbs_admin_read_form);
+}
+}
+});	
+});	
+}
+
+
+//论坛开通申请表单
+function jinsom_admin_apply_bbs_form(){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/admin/stencil/apply-bbs.php",
+success: function(msg){
+layer.closeAll('loading');
+layer.open({
+title:'论坛开通申请',
+type: 1,
+fixed: false,
+area: ['700px','410px'], 
+content: msg
+});
+}
+});	
+}
+
+//查看论坛申请表单
+function jinsom_admin_apply_bbs_read_form(id){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/admin/stencil/apply-bbs-do.php",
+data:{id:id},
+success: function(msg){
+layer.closeAll('loading');
+window.admin_apply_bbs_read_form=layer.open({
+title:'申请详情',
+type: 1,
+fixed: false,
+area: ['500px','350px'], 
+content: msg
+});
+}
+});	
+}
+
+//论坛申请操作
+function jinsom_admin_apply_bbs_do(type,id,obj){
+if(type=='agree'){
+title="通过";
+}else if(type=='refuse'){
+title="拒绝";
+}else{
+title="删除";	
+}
+
+layer.confirm('你确定要'+title+'吗？',{
+btn: ['确定','取消'],
+btnAlign: 'c',
+},
+function(){
+
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/admin/action/apply-bbs-do.php",
+data:{ID:id,type:type},
+success: function(msg){
+layer.closeAll('loading');
+layer.msg(msg.msg);
+if(msg.code==1){
+if(type=='del'){
+$('#jinsom-admin-apply-bbs-admin-'+id).remove();
+}else if(type=='agree'){
+$('#jinsom-admin-apply-bbs-admin-'+id+' span m').html('已经通过').attr('style','');
+}else if(type=='refuse'){
+$('#jinsom-admin-apply-bbs-admin-'+id+' span m').html('已经拒绝').attr('style','');
+}
+layer.close(admin_apply_bbs_read_form);
 }
 }
 });	

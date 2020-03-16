@@ -185,7 +185,8 @@ follow='';
 
 if(msg.item.code==1){
 for (var i = 0; i < item_arr.length; i++) {
-if(item_arr[i].type=='cash'||item_arr[i].type=='reg'||item_arr[i].type=='post_agree'||item_arr[i].type=='post_refuse'){
+type=item_arr[i].type;
+if(type=='cash'||type=='reg'||type=='post_agree'||type=='post_refuse'||type=='bbs-apply-refuse'){
 item+='\
 <li class="clear">\
 '+item_arr[i].status+'\

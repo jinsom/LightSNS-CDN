@@ -3,7 +3,7 @@ document.write("<script language='javascript' src='"+jinsom.cdn_url+"/mobile/js/
 document.write("<script language='javascript' src='"+jinsom.cdn_url+"/mobile/js/chat.js'></script>");//聊天相关
 document.write("<script language='javascript' src='"+jinsom.cdn_url+"/mobile/js/comment.js'></script>");//评论相关
 document.write("<script language='javascript' src='"+jinsom.cdn_url+"/mobile/js/publish.js'></script>");//发布相关
-document.write("<script language='javascript' src='"+jinsom.cdn_url+"/mobile/js/recharge.js'></script>");//发布相关
+document.write("<script language='javascript' src='"+jinsom.theme_url+"/mobile/js/recharge.js'></script>");//发布相关
 document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/jquery.fancybox.min.js'></script>");//图片灯箱
 
 
@@ -970,15 +970,20 @@ myApp.actions(groups);
 
 //查看二维码
 function jinsom_show_user_code(){
-code_url=jinsom.member_url_permalink+jinsom.referral_link_name+'='+jinsom.user_id;
-show_avatar = myApp.photoBrowser({
-photos : ['https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+code_url],
-//theme:'dark',
-toolbar:false,
-type:'popup',
-exposition:false,
-});
-show_avatar.open();		
+url=jinsom.member_url_permalink+jinsom.referral_link_name+'='+jinsom.user_id;
+// show_avatar = myApp.photoBrowser({
+// photos : ['https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+code_url],
+// //theme:'dark',
+// toolbar:false,
+// type:'popup',
+// exposition:false,
+// });
+// show_avatar.open();	
+
+
+html='<div class="popup jinsom-publish-type-form profile-qrcode"><div class="page-content"><div id="jinsom-qrcode"></div><p class="tips">扫码加关注我</p><div class="close"><a href="#" class="link icon-only close-popup"><i class="jinsom-icon jinsom-xiangxia2"></i></a></div>';
+myApp.popup(html);
+jinsom_qrcode('jinsom-qrcode',200,200,url);
 }
 
 //修改昵称
@@ -1643,6 +1648,44 @@ SetCookie('lang',type);
 window.location.reload();
 }
 
+
+//付费访问论坛
+function jinsom_bbs_visit_pay(bbs_id){
+layer.open({
+content: '你确定要支付吗？'
+,btn: ['确定', '取消']
+,yes: function(index){
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/action/bbs-visit-pay.php",
+data:{bbs_id:bbs_id},
+success: function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+if(msg.code==1){
+function c(){window.location.reload();}setTimeout(c,2000);
+}else if(msg.code==3){
+function c(){
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/mywallet/recharge-credit.php'});
+}
+setTimeout(c,1500);
+}
+}
+});
+}
+});
+}
+
+
+//生成二维码
+function jinsom_qrcode(dom,width,height,link){
+$('#'+dom).qrcode({
+width:width,
+height:height,
+text:link
+});
+}
 
 
 //瀑布流图片预加载
