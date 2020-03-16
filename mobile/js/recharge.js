@@ -60,12 +60,14 @@ type:'GET',
 data:data,
 success:function(msg){   
 myApp.hideIndicator();
-html='<div class="popup jinsom-publish-type-form profile-qrcode"><div class="page-content"><div class="jinsom-alipay-qrcode-pay"><div id="jinsom-qrcode"></div><p class="tips">请用支付宝扫码支付</p></div><div class="close"><a href="#" class="link icon-only close-popup" onclick="jinsom_cancel_alipay_qrcode()"><i class="jinsom-icon jinsom-xiangxia2"></i></a></div>';
-myApp.popup(html);
-jinsom_qrcode('jinsom-qrcode',200,200,msg);
+window.location.href=msg;
+
+// html='<div class="popup jinsom-publish-type-form profile-qrcode"><div class="page-content"><div class="jinsom-alipay-qrcode-pay"><div id="jinsom-qrcode"></div><p class="tips">请用支付宝扫码支付</p></div><div class="close"><a href="#" class="link icon-only close-popup" onclick="jinsom_cancel_alipay_qrcode()"><i class="jinsom-icon jinsom-xiangxia2"></i></a></div>';
+// myApp.popup(html);
+// jinsom_qrcode('jinsom-qrcode',200,200,msg);
 
 // myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/mywallet/alipay-qrcode.php?url='+msg});
-jinsom_check_order_wechatpay(data);
+// jinsom_check_order_wechatpay(data);
 }   
 });
 
@@ -126,33 +128,33 @@ myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page
 }
 
 
-function jinsom_check_order_wechatpay(data){
-//长轮询付款
-jinsom_check_order_wechatpay_ajax=$.ajax({
-type: "POST",
-url:jinsom.jinsom_ajax_url+"/action/check-trade.php",
-data:data,
-success: function(msg){
-if(msg.code==0){
-jinsom_check_order_wechatpay(data);
-}else if(msg.code==1){
-$('.jinsom-alipay-qrcode-pay').html(msg.msg);
-// if(msg.type=='credit'){
-// credit=parseInt($('.jinsom-mycredit-credit-info .credit i').html());
-// recharge_number=parseInt(msg.recharge_number);
-// count=credit+recharge_number;
-// $('.jinsom-mycredit-credit-info .credit i').html(count);
-// }else{//开通会员
-// $('.jinsom-mycredit-user-info .vip m').html(msg.content);
+// function jinsom_check_order_wechatpay(data){
+// //长轮询付款
+// jinsom_check_order_wechatpay_ajax=$.ajax({
+// type: "POST",
+// url:jinsom.jinsom_ajax_url+"/action/check-trade.php",
+// data:data,
+// success: function(msg){
+// if(msg.code==0){
+// jinsom_check_order_wechatpay(data);
+// }else if(msg.code==1){
+// $('.jinsom-alipay-qrcode-pay').html(msg.msg);
+// // if(msg.type=='credit'){
+// // credit=parseInt($('.jinsom-mycredit-credit-info .credit i').html());
+// // recharge_number=parseInt(msg.recharge_number);
+// // count=credit+recharge_number;
+// // $('.jinsom-mycredit-credit-info .credit i').html(count);
+// // }else{//开通会员
+// // $('.jinsom-mycredit-user-info .vip m').html(msg.content);
+// // }
+// }else{
+// jinsom_check_order_wechatpay(data);	
 // }
-}else{
-jinsom_check_order_wechatpay(data);	
-}
-}
-});	
-}
+// }
+// });	
+// }
 
-//取消支付 取消长轮询
-function jinsom_cancel_alipay_qrcode(){
-jinsom_check_order_wechatpay_ajax.abort();
-}
+// //取消支付 取消长轮询
+// function jinsom_cancel_alipay_qrcode(){
+// jinsom_check_order_wechatpay_ajax.abort();
+// }
