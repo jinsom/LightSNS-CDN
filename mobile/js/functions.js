@@ -294,12 +294,12 @@ avatar=jinsom.avatar;
 if($(obj).children('i').hasClass('had')){
 like_num.html(parseInt(like_num.html())-1); 
 like_dom.removeClass('jinsom-shiliangzhinengduixiang31 had').addClass('jinsom-xihuan2');   
-$('.jinsom-post-'+post_id+' .footer').next().children('#had_like_'+user_id).remove();
+$('.jinsom-post-'+post_id+' .footer').next('.jinsom-post-like').children('#had_like_'+user_id).remove();
 
 }else{
 like_num.html(parseInt(like_num.html())+1); 
 like_dom.removeClass('jinsom-xihuan2').addClass('jinsom-shiliangzhinengduixiang31 had');   
-$('.jinsom-post-'+post_id+' .footer').next().prepend('<a href="#" id="had_like_'+user_id+'">'+avatar+'</a>');  
+$('.jinsom-post-'+post_id+' .footer').next('.jinsom-post-like').prepend('<a href="#" id="had_like_'+user_id+'">'+avatar+'</a>');  
 layer.open({content:'喜欢成功！',skin:'msg',time:2});
 }
 
@@ -1171,10 +1171,10 @@ success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
-$(obj).addClass("had").html('已关注');
+$(obj).addClass("had").html('已关');
 n++;	
 }else if(msg.code==2){
-$(obj).removeClass("had").html('关 注');
+$(obj).removeClass("had").html('关注');
 n--;	
 }
 $(".jinsom-topic-page-header .info .number span:nth-child(2) i").text(n); 

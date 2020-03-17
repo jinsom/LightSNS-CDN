@@ -441,7 +441,7 @@ layer.closeAll('loading');
 layer.msg(msg.msg);
 if(msg.code==1){
 $(obj).addClass("had");
-$(obj).html('<i class="jinsom-icon jinsom-yiguanzhu"></i> 已关注');
+$(obj).html('<i class="jinsom-icon jinsom-yiguanzhu"></i> 已 关');
 n++; 	
 }else if(msg.code==2){
 $(obj).removeClass("had");
@@ -472,7 +472,7 @@ layer.closeAll('loading');
 layer.msg(msg.msg);
 if(msg.code==1){
 $(obj).addClass("had");
-$(obj).html('<i class="jinsom-icon jinsom-yiguanzhu"></i> 已关注');
+$(obj).html('<i class="jinsom-icon jinsom-yiguanzhu"></i> 已 关');
 n++;	
 }else if(msg.code==2){
 $(obj).removeClass("had");
