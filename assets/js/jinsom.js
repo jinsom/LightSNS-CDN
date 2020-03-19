@@ -1269,7 +1269,10 @@ data:data,
 success: function(msg){}
 });
 
+
+
 //生成二维码
+if(type=='wechat'){
 layer.load(1);
 $.ajax({   
 url:ajax_url,
@@ -1298,6 +1301,36 @@ jinsom_check_order_wechatpay(data);
 
 }   
 }); 
+
+
+}else{
+layer.load(1);
+$.ajax({   
+url:ajax_url,
+type:'POST',   
+data:data,
+success:function(msg){   
+layer.closeAll('loading');
+window.wechatpay_code_form=layer.open({
+type:1,
+title:false,
+btn: false,
+resize:false,
+area: ['300px', '330px'], 
+skin: 'jinsom-wechatpay-code-form',
+content: '<div class="jinsom-wechatpay-code-content"><img style="width:200px;height:200px;" src="'+msg+'"><p><i class="jinsom-icon jinsom-weixinzhifu"></i> 微信扫码支付</p></div>',
+cancel: function(index, layero){ 
+$('#jinsom-credit-recharge-form input[name="WIDout_trade_no"]').val(new Date().getTime());
+jinsom_check_order_wechatpay_ajax.abort();
+}
+});
+
+jinsom_check_order_wechatpay(data);
+
+}   
+});	
+}
+
 
 }
 
