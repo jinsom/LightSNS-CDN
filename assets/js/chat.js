@@ -497,8 +497,8 @@ layer.load(1);
 },
 done: function(res, index, upload){
 layer.closeAll('loading');
-if(res.code == 0){
-$('.jinsom-chat-message-list').append('<li class="myself"><div class="jinsom-chat-message-list-user-info">'+jinsom.avatar+'</div><div class="jinsom-chat-message-list-content">'+res.data['src']+'</div></li>');
+if(res.code == 1){
+$('.jinsom-chat-message-list').append('<li class="myself"><div class="jinsom-chat-message-list-user-info">'+jinsom.avatar+'</div><div class="jinsom-chat-message-list-content">'+res.img+'</div></li>');
 $('.jinsom-chat-message-list').scrollTop($('.jinsom-chat-message-list')[0].scrollHeight);
 //图片加载完毕执行
 $(".jinsom-chat-message-list-content img").on('load',function(){
@@ -531,8 +531,8 @@ layer.load(1);
 },
 done: function(res, index, upload){
 layer.closeAll('loading');
-if(res.code == 0){
-$('.jinsom-chat-message-group-list').append('<li class="myself"><div class="jinsom-chat-message-list-user-info">'+jinsom.avatar+'</div><div class="jinsom-chat-message-list-content">'+res.data['src']+'</div></li>');
+if(res.code == 1){
+$('.jinsom-chat-message-group-list').append('<li class="myself"><div class="jinsom-chat-message-list-user-info">'+jinsom.avatar+'</div><div class="jinsom-chat-message-list-content">'+res.img+'</div></li>');
 $('.jinsom-chat-message-group-list').scrollTop($('.jinsom-chat-message-group-list')[0].scrollHeight);
 //图片加载完毕执行
 $(".jinsom-chat-message-list-content img").on('load',function(){

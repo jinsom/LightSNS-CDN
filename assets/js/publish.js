@@ -127,8 +127,8 @@ $('.jinsom-upload-add-icon').hide();//隐藏添加按钮
 
 
 if(number<words_images_max){
-if(res.code == 0){
-$('.jinsom-publish-words-image').prepend('<li><a href="'+res.pic+'" data-fancybox="publish-gallery"><img src="'+res.pic_thum+'" class="img"></a><div class="bar"><i class="jinsom-icon jinsom-fanhui2" onclick="jinsom_img_left(this)"></i><i class="jinsom-icon jinsom-bangzhujinru" onclick="jinsom_img_right(this)"></i><i class="jinsom-icon jinsom-guanbi" onclick="jinsom_remove_publish_img(this)"></i></div></li>');
+if(res.code == 1){
+$('.jinsom-publish-words-image').prepend('<li><a href="'+res.file_url+'" data-fancybox="publish-gallery"><img src="'+res.file_thum_url+'" class="img"></a><div class="bar"><i class="jinsom-icon jinsom-fanhui2" onclick="jinsom_img_left(this)"></i><i class="jinsom-icon jinsom-bangzhujinru" onclick="jinsom_img_right(this)"></i><i class="jinsom-icon jinsom-guanbi" onclick="jinsom_remove_publish_img(this)"></i></div></li>');
 }else{
 layer.msg(res.msg);	
 }

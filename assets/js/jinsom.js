@@ -678,7 +678,7 @@ layui.use(['upload'], function(){
 var upload = layui.upload;
 upload.render({
 elem: '.jinsom-bbs-child-setting-avatar span',
-url: jinsom.jinsom_ajax_url+'/upload/setting.php',
+url: jinsom.jinsom_ajax_url+'/upload/term.php',
 data: {bbs_id:bbs_id},
 accept:'file',
 before: function(obj){
@@ -686,12 +686,12 @@ $('.jinsom-bbs-child-setting-avatar span').show().html(jinsom.loading);
 },
 done: function(res, index, upload){
 $('.jinsom-bbs-child-setting-avatar span').hide().html('点击上传头像');
-if(res.code == 0){
+if(res.code == 1){
 if($('.jinsom-bbs-child-setting-avatar img').length>0){
-$('.jinsom-bbs-child-setting-avatar img').attr('src',res.data['src']);
+$('.jinsom-bbs-child-setting-avatar img').attr('src',res.file_url);
 }else{
 $('.jinsom-bbs-child-setting-avatar no-img').remove();
-$('.jinsom-bbs-child-setting-avatar').prepend('<img src="'+res.data['src']+'" class="avatar opacity">');
+$('.jinsom-bbs-child-setting-avatar').prepend('<img src="'+res.file_url+'" class="avatar opacity">');
 }
 }else{
 layer.msg(res.msg);	
@@ -830,7 +830,7 @@ layui.use(['upload'], function(){
 var upload = layui.upload;
 upload.render({
 elem: '.jinsom-bbs-child-setting-avatar span',
-url: jinsom.jinsom_ajax_url+'/upload/setting.php',
+url: jinsom.jinsom_ajax_url+'/upload/term.php',
 data: {bbs_id:bbs_id},
 accept:'file',
 before: function(obj){
@@ -838,12 +838,12 @@ $('.jinsom-bbs-child-setting-avatar span').show().html(jinsom.loading);
 },
 done: function(res, index, upload){
 $('.jinsom-bbs-child-setting-avatar span').hide().html('点击上传头像');
-if(res.code == 0){
+if(res.code == 1){
 if($('.jinsom-bbs-child-setting-avatar img').length>0){
-$('.jinsom-bbs-child-setting-avatar img').attr('src',res.data['src']);
+$('.jinsom-bbs-child-setting-avatar img').attr('src',res.file_url);
 }else{
 $('.jinsom-bbs-child-setting-avatar no-img').remove();
-$('.jinsom-bbs-child-setting-avatar').prepend('<img src="'+res.data['src']+'" class="avatar opacity">');
+$('.jinsom-bbs-child-setting-avatar').prepend('<img src="'+res.file_url+'" class="avatar opacity">');
 }
 }else{
 layer.msg(res.msg);	
@@ -891,7 +891,7 @@ var form = layui.form;
 form.render();
 upload.render({
 elem: '.jinsom-topic-setting-avatar span',
-url: jinsom.jinsom_ajax_url+'/upload/setting.php',
+url: jinsom.jinsom_ajax_url+'/upload/term.php',
 data: {bbs_id:topic_id},
 accept:'file',
 before: function(obj){
@@ -899,12 +899,12 @@ $('.jinsom-topic-setting-avatar span').show().html(jinsom.loading);
 },
 done: function(res, index, upload){
 $('.jinsom-topic-setting-avatar span').hide().html('点击上传头像');
-if(res.code == 0){
+if(res.code == 1){
 if($('.jinsom-topic-setting-avatar img').length>0){
-$('.jinsom-topic-setting-avatar img').attr('src',res.data['src']);
+$('.jinsom-topic-setting-avatar img').attr('src',res.file_url);
 }else{
 $('.jinsom-topic-setting-avatar no-img').remove();
-$('.jinsom-topic-setting-avatar').prepend('<img src="'+res.data['src']+'" class="avatar opacity">');
+$('.jinsom-topic-setting-avatar').prepend('<img src="'+res.file_url+'" class="avatar opacity">');
 }
 }else{
 layer.msg(res.msg);	

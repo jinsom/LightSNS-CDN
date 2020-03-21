@@ -58,7 +58,7 @@ $('#jinsom-upload-video').val('');
 if(msg.code==0){
 bar.width('0');
 }else if(msg.code==1){
-$('#jinsom-video-url').val(msg.url);
+$('#jinsom-video-url').val(msg.file_url);
 }
 
 
@@ -104,7 +104,7 @@ $('#jinsom-upload-music').val('');
 if(msg.code==0){
 bar.width('0');
 }else if(msg.code==1){
-$('#jinsom-music-url').val(msg.url);
+$('#jinsom-music-url').val(msg.file_url);
 }
 
 
@@ -146,7 +146,7 @@ layer.msg(msg.msg);
 if(msg.code == 0){
 bar.width('0');
 }else if(msg.code == 1){
-$('#jinsom-bg-music-url').val(msg.data.src);
+$('#jinsom-bg-music-url').val(msg.file_url);
 $('#jinsom-upload-user-bg-music').val('');
 }
 
@@ -194,7 +194,7 @@ success:function(data){
 $('#jinsom-insert-file').show();
 $('#jinsom-insert-file-input').val('');
 if(data.code == 1){
-$('#jinsom-insert-file-url').val(data.url);
+$('#jinsom-insert-file-url').val(data.file_url);
 $('#jinsom-insert-file-name').val(data.name);
 percent.html('上传成功！100%').children('i').remove();
 }else{
@@ -215,40 +215,6 @@ return false;
 }
 });
 
-//上传友链logo
-$('body').off('click').on('change','#jinsom-add-link-avatar', function(){
-$('.jinsom-add-link-avatar span').css('display','inline-block');
-$('.jinsom-add-link-avatar span').html('<i class="fa fa-spinner fa-spin"></i> 上传中...');
-$("#jinsom-add-link-avatar-form").ajaxSubmit({
-success:function(data){
-$('.jinsom-add-link-avatar span').hide();
-$('.jinsom-add-link-avatar span').html('上传网站logo');
-if(data == 0){
-return false;          
-}else if(data==1){
-layer.msg('只能上传图片格式的图片！');
-}else if(data==2){
-layer.msg('图片大小不能超过2M！');
-}else if(data==3){
-layer.msg('上传出错了！');
-}else{
-$('.jinsom-add-link-avatar .avatar').attr('src',data);
-$('#jinsom-add-link-avatar').val('');
-$('#jinsom-link-avatar').val(data);
-}
-}, 
-error:function(){
-layer.msg('上传失败！');
-$('.jinsom-add-link-avatar span').hide();
-$('.jinsom-add-link-avatar span').html('上传网站logo'); 
-$('#jinsom-add-link-avatar').val(''); 
-} });
-return false;
-});
-
-
-
-
 
 
 
@@ -266,9 +232,9 @@ before: function(obj){
 $('#jinsom-single-upload').html('<i class="fa fa-spin fa-refresh">');
 },
 done: function(res, index, upload){
-if(res.code == 0){
+if(res.code == 1){
 ue_single.focus();
-ue_single.execCommand('inserthtml','<img src="'+res.data['src']+'">');
+ue_single.execCommand('inserthtml','<img src="'+res.file_url+'">');
 }else{
 layer.msg(res.msg);	
 }
@@ -292,9 +258,9 @@ before: function(obj){
 $('#jinsom-bbs-upload').html('<i class="fa fa-spin fa-refresh">');
 },
 done: function(res, index, upload){
-if(res.code == 0){
+if(res.code == 1){
 ue.focus();
-ue.execCommand('inserthtml','<img src="'+res.data['src']+'">');
+ue.execCommand('inserthtml','<img src="'+res.file_url+'">');
 }else{
 layer.msg(res.msg);	
 }
@@ -318,9 +284,9 @@ before: function(obj){
 $('#jinsom-single-pay-upload').html('<i class="fa fa-spin fa-refresh">');
 },
 done: function(res, index, upload){
-if(res.code == 0){
+if(res.code == 1){
 ue_single_pay.focus();
-ue_single_pay.execCommand('inserthtml','<img src="'+res.data['src']+'">');
+ue_single_pay.execCommand('inserthtml','<img src="'+res.file_url+'">');
 }else{
 layer.msg(res.msg);	
 }
@@ -344,9 +310,9 @@ before: function(obj){
 $('#jinsom-bbs-pay-upload').html('<i class="fa fa-spin fa-refresh">');
 },
 done: function(res, index, upload){
-if(res.code == 0){
+if(res.code == 1){
 ue_pay.focus();
-ue_pay.execCommand('inserthtml','<img src="'+res.data['src']+'">');
+ue_pay.execCommand('inserthtml','<img src="'+res.file_url+'">');
 }else{
 layer.msg(res.msg);	
 }
@@ -371,9 +337,9 @@ $('#jinsom-bbs-comment-upload').html('<i class="fa fa-spin fa-refresh">');
 },
 done: function(res, index, upload){
 $('#jinsom-bbs-comment-upload').html('<i class="fa fa-picture-o"></i>');
-if(res.code == 0){
+if(res.code == 1){
 ue.focus();
-ue.execCommand('inserthtml','<img src="'+res.data['src']+'">');
+ue.execCommand('inserthtml','<img src="'+res.file_url+'">');
 }else{
 layer.msg(res.msg);	
 }
