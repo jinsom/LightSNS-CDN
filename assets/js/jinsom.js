@@ -1,6 +1,5 @@
 
 //引人js
-document.write("<script language='javascript' src='//cdn.jsdelivr.net/npm/layui-src@2.5.5/dist/layui.js'></script>");//layui
 document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/login.js'></script>");//登录相关
 document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/comment.js'></script>");//评论相关
 document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/delete.js'></script>");//删除相关
