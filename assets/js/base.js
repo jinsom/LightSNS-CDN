@@ -151,11 +151,6 @@ $('#jinsom-single-title-list').click(function(event){
 event.stopPropagation();
 $(this).children(".jinsom-single-title-list-content").toggle(0);
 });
-//论坛帖子右侧下拉
-$('.jinsom-bbs-single-title .do').click(function(event){
-event.stopPropagation();
-$(this).children(".jinsom-bbs-post-setting").toggle(100);
-});
 //个人主页拉黑下拉
 $('.jinsom-member-follow-info span:last-child').click(function(event){
 event.stopPropagation();
@@ -272,7 +267,6 @@ $('.jinsom-post-setting-box').hide();
 $('.jinsom-smile-form').hide();//显示表情
 $('.jinsom-single-title-list-content').hide();//文章左侧栏自动目录
 $('.jinsom-notice ul').hide();
-$('.jinsom-bbs-post-setting').hide();
 $('.jinsom-member-follow-box').hide();
 });
 

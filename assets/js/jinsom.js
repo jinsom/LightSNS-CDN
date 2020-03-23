@@ -492,7 +492,7 @@ $(".jinsom-topic-info-content .right span i").text(n);
 //===============================打赏============================
 
 //展示打赏页面
-function jinsom_reward_form(post_id){
+function jinsom_reward_form(post_id,type){
 if(!jinsom.is_login){
 jinsom_pop_login_style();	
 return false;
@@ -501,7 +501,7 @@ layer.load(1);
 $.ajax({   
 url:jinsom.jinsom_ajax_url+"/stencil/reward.php",
 type:'POST',   
-data:{post_id:post_id},    
+data:{post_id:post_id,type:type},    
 success:function(results){
 layer.open({
 title:false,
@@ -534,13 +534,13 @@ $('#jinsom-reward-number').focus();
 }
 
 //提交打赏
-function jinsom_reward(post_id){
+function jinsom_reward(post_id,type){
 number=parseInt($("#jinsom-reward-number").val());
 layer.load(1);
 $.ajax({   
 url:jinsom.jinsom_ajax_url+"/action/reward.php",
 type:'POST',   
-data:{number:number,post_id:post_id},    
+data:{number:number,post_id:post_id,type:type},    
 success:function(msg){
 layer.closeAll('loading');
 layer.msg(msg.msg);

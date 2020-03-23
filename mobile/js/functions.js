@@ -807,7 +807,7 @@ $('#jinsom-bbs-like-'+bbs_id).remove();//移除我关注的论坛
 
 
 //打赏
-function jinsom_reward(post_id,obj){
+function jinsom_reward(post_id,type,obj){
 if(!jinsom.is_login){
 myApp.loginScreen();  
 return false;
@@ -817,7 +817,7 @@ myApp.showIndicator();
 $.ajax({   
 url:jinsom.jinsom_ajax_url+"/action/reward.php",
 type:'POST',   
-data:{number:number,post_id:post_id},    
+data:{number:number,post_id:post_id,type:type},    
 success:function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
@@ -1171,10 +1171,10 @@ success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
-$(obj).addClass("had").html('已关');
+$(obj).addClass("had").html('<i class="jinsom-icon jinsom-yiguanzhu"></i> 已 关');
 n++;	
 }else if(msg.code==2){
-$(obj).removeClass("had").html('关注');
+$(obj).removeClass("had").html('<i class="jinsom-icon jinsom-guanzhu"></i> 关 注');
 n--;	
 }
 $(".jinsom-topic-page-header .info .number span:nth-child(2) i").text(n); 
