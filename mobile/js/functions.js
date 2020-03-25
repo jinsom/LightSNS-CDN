@@ -776,7 +776,7 @@ success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){//关注成功
-$(obj).removeClass('no').addClass('has');
+$(obj).removeClass('no').addClass('had');
 $(obj).html('<i class="jinsom-icon jinsom-yiguanzhu"></i>已关');  
 
 html='<li id="jinsom-bbs-like-'+bbs_id+'">\
@@ -795,7 +795,7 @@ $('.jinsom-bbs-like-content.publish .jinsom-bbs-like').prepend(html);
 
 
 }else{//取消关注
-$(obj).removeClass('has').addClass('no');  
+$(obj).removeClass('had').addClass('no');  
 $(obj).html('<i class="jinsom-icon jinsom-guanzhu"></i>关注');  
 
 $('#jinsom-bbs-like-'+bbs_id).remove();//移除我关注的论坛
