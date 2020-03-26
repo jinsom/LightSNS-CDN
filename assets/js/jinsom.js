@@ -2940,7 +2940,7 @@ tip='付费购买';
 action='<m class="jinsom-video-tips-btn opacity" onclick="jinsom_show_pay_form('+post_id+')">购买</m>';		
 }
 
-$('.jinsom-video-tips-'+post_id).html('<div class="jinsom-video-time-tips">仅限<span>'+tip+'</span>可以观看完整版，您可以试看'+stop_time_text+'</div>');
+//$('.jinsom-video-tips-'+post_id).html('<div class="jinsom-video-time-tips">仅限<span>'+tip+'</span>可以观看完整版，您可以试看'+stop_time_text+'</div>');
 eval('video_'+post_id).on("timeupdate", function(){
 video_time=$('#jinsom_video_'+post_id+' .xgplayer-time span').html();
 video_time_s=video_time.split(':')[video_time.split(':').length - 1];

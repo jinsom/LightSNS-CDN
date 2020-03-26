@@ -1186,11 +1186,11 @@ progress.html('选择一个视频');
 }else if(msg.code==1){
 $('#jinsom-upload-video-form').hide();
 $('.jinsom-remove-video-toolbar').css('display','flex');
-$('#jinsom-video-url').val(msg.url);
+$('#jinsom-video-url').val(msg.file_url);
 
 var jinsom_view_video = new Player({
 id: 'jinsom-publish-video-demo',
-url:msg.url,
+url:msg.file_url,
 fluid: true,
 autoplay: true,
 videoInit: true,
@@ -1273,7 +1273,7 @@ return false;
 }
 
 
-if(type=='music'&&myApp.device.os!='ios'){//上传音乐
+if(type=='music'){//上传音乐
 document.querySelector('#jinsom-upload-music').addEventListener('change', function () {
 var percent = $('.jinsom-upload-music-btn .percent');
 var progress = $(".jinsom-upload-music-btn p");
@@ -1295,7 +1295,7 @@ layer.open({content:msg.msg,skin:'msg',time:2});
 percent.width(0);
 progress.html('选择一个音频');
 }else if(msg.code==1){
-$('#jinsom-music-url').val(msg.url);
+$('#jinsom-music-url').val(msg.file_url);
 progress.html('音频已经上传');
 }
 

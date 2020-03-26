@@ -48,8 +48,8 @@ post_list.attr('page',2);
 post_list=$('.jinsom-post-list');	
 }
 }
-page = 2;
-loading = false;
+sns_page = 2;
+sns_loading = false;
 $(obj).addClass('on').siblings().removeClass('on');
 // if(load_type!='pull'&&load_type!='load'){//不是下拉刷新并且不是首页加载
 // post_list.html(jinsom.loading);
