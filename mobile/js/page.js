@@ -1225,7 +1225,7 @@ var canvas = document.createElement("canvas");
 canvas.width = video[0].videoWidth;
 canvas.height = video[0].videoHeight;
 var ctx=canvas.getContext("2d");
-if(myApp.device.os=='ios'&&jinsom_get_file_type(msg.url)=='.mov'&&(video[0].videoHeight>video[0].videoWidth)){
+if(myApp.device.os=='ios'&&jinsom_get_file_type(msg.file_url)=='.mov'&&(video[0].videoHeight>video[0].videoWidth)){
 ctx.rotate(90*Math.PI/180);
 ctx.translate(0,-video[0].videoWidth);
 ctx.drawImage(video[0], 0, 0, canvas.width*2, canvas.height);
