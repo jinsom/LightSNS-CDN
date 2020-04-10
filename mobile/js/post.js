@@ -92,15 +92,14 @@ hash : false
 
 //论坛内容切换 
 function jinsom_bbs_post(bbs_id,type,obj){
-if(status==0){
-return false;	
-}
+if(status==0){return false;	}
 bbs_loading = false; 
 $(obj).addClass('on').siblings().removeClass('on');
 more_list=$(obj).parent().next();
 more_list.attr('type',type);
 more_list.attr('page',2);
 status=0;
+more_list.prepend(jinsom.loading_post);
 $.ajax({
 type: "POST",
 url:  jinsom.mobile_ajax_url+"/post/bbs.php",

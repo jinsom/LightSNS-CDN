@@ -124,3 +124,8 @@ body{background:#fff}a:focus{outline:0!important;box-shadow:0 0 0!important}.jin
     height: 210px;
     overflow: hidden;
 }
+
+
+#menu-posts-exchange li:last-child {
+    display: none;
+}

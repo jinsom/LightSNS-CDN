@@ -1778,9 +1778,8 @@ window.open(weibo_url+share_url);
 //ajax获取设置页面
 function jinsom_setting_form(obj){
 user_id=$(obj).attr('author_id');
-$('.jinsom-post-list').empty();
 $(obj).addClass('on').siblings().removeClass('on');
-$('.jinsom-post-list').append(jinsom.loading);
+$('.jinsom-post-list').prepend(jinsom.loading_post);
 $.ajax({
 type: "POST",
 url:jinsom.jinsom_ajax_url+"/stencil/profile.php",
@@ -3729,6 +3728,270 @@ text:link
 }
 
 
+//订单确定表单
+function jinsom_goods_order_confirmation_form(post_id){
+var number=$('#jinsom-goods-number').val();
+var select_arr={};
+var i=0;
+$(".jinsom-goods-single-header .right .select li").each(function(){
+select_arr[i]={};
+select_arr[i]['name']=$(this).children('span').text();
+select_arr[i]['value']=$(this).children('.on').text();
+i++;
+});
+
+select_price='';//价格套餐选择的位置
+if($('.jinsom-goods-single-header .right .select-price').length>0){//存在价格套餐
+length=$('.jinsom-goods-single-header .right .select li').length;
+select_arr[length]={};
+select_arr[length]['name']=$('.jinsom-goods-single-header .right .select-price li span').text();
+select_arr[length]['value']=$('.jinsom-goods-single-header .right .select-price li n.on').text();
+select_price=$('.jinsom-goods-single-header .right .select-price li n.on').index();//价格套餐选择的位置
+}
+
+select_arr=JSON.stringify(select_arr);
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/stencil/order-confirmation.php",
+data:{select_arr:select_arr,post_id:post_id,number:number,select_price:select_price},
+success: function(msg){
+layer.closeAll('loading');
+layer.open({
+title:'订单确定',
+type: 1,
+fixed: false,
+offset: '100px',
+skin:'jinsom-goods-order-confirmation-form',
+area: ['500px','auto'],
+resize:false,
+content: msg
+});
+}
+});
+}
+
+
+//提交购买商品
+function jinsom_goods_buy(post_id){
+var number=$('#jinsom-goods-number').val();
+var address=$('.jinsom-goods-order-confirmation-content .address li input:radio:checked').val();
+var marks=$('.jinsom-goods-order-confirmation-content .marks textarea').val();
+
+var pay_type='creditpay';
+if($('.jinsom-credit-recharge-type').length>0){
+if($('.jinsom-credit-recharge-type li.on').length==0){
+layer.msg('请选择支付方式！');
+return false;
+}
+pay_type=$('.jinsom-credit-recharge-type li.on').attr('data');
+}
+
+
+var select_arr={};
+var i=0;
+$(".jinsom-goods-single-header .right .select li").each(function(){
+select_arr[i]={};
+select_arr[i]['name']=$(this).children('span').text();
+select_arr[i]['value']=$(this).children('.on').text();
+i++;
+});
+
+select_price='';//价格套餐选择的位置
+if($('.jinsom-goods-single-header .right .select-price').length>0){//存在价格套餐
+length=$('.jinsom-goods-single-header .right .select li').length;
+select_arr[length]={};
+select_arr[length]['name']=$('.jinsom-goods-single-header .right .select-price li span').text();
+select_arr[length]['value']=$('.jinsom-goods-single-header .right .select-price li n.on').text();
+select_price=$('.jinsom-goods-single-header .right .select-price li n.on').index();//价格套餐选择的位置
+}
+
+select_arr=JSON.stringify(select_arr);
+trade_no=$('#jinsom-goods-trade-no').val();
+
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/action/goods-buy.php",
+data:{select_arr:select_arr,post_id:post_id,number:number,address:address,marks:marks,select_price:select_price,pay_type:pay_type,trade_no:trade_no},
+success: function(msg){
+layer.closeAll('loading');
+if(msg.code==1){
+layer.msg(msg.msg);
+function c(){window.location.reload();}setTimeout(c,2000);
+}else if(msg.code==2){//充值页面
+layer.msg(msg.msg);
+function c(){jinsom_recharge_credit_form();}setTimeout(c,1500);
+}else if(msg.code==3){//人民币付款
+jinsom_goods_order_pay(pay_type,trade_no);//发起订单支付
+}else if(msg.code==5){//我的订单
+// layer.closeAll();
+layer.msg(msg.msg);
+function c(){jinsom_goods_order_form();}setTimeout(c,1500);
+}else{//其他失败情况
+layer.msg(msg.msg);
+}
+
+}
+});
+
+}
+
+//商品订单支付
+function jinsom_goods_order_pay(pay_type,trade_no){
+if(pay_type=='alipay'){
+window.location.href=jinsom.theme_url+'/extend/alipay/alipay.php?trade_no='+trade_no;
+}else if(pay_type=='qrcode'||pay_type=='wechat'||pay_type=='xunhu-wechat'){
+ajax_type='POST';
+pay_tips='<p><i class="jinsom-icon jinsom-weixinzhifu"></i> 微信扫码支付</p>';
+if(pay_type=='qrcode'){
+ajax_type='GET';
+pay_tips='<p style="color: #00a7ff;"><i class="jinsom-icon jinsom-zhifubaozhifu" style="color: #00a7ff;font-size: 24px;vertical-align: -3px;"></i> 支付宝扫码支付</p>';
+pay_url=jinsom.theme_url+'/extend/alipay/qrcode.php';
+}else if(pay_type=='wechat'){
+pay_url=jinsom.jinsom_ajax_url+"/stencil/wechatpay-code.php";
+}else if(pay_type=='xunhu-wechat'){
+pay_url=jinsom.jinsom_ajax_url+"/stencil/wechatpay-xunhu-code.php";
+}
+	
+
+//生成二维码
+layer.load(1);
+$.ajax({   
+url:pay_url,
+type:ajax_type,   
+data:{trade_no:trade_no},
+success:function(msg){   
+layer.closeAll('loading');
+if(pay_type=='xunhu-wechat'){
+pay_code='<img style="width:200px;height:200px;" src="'+msg+'">';
+}else{
+pay_code='<div id="jinsom-qrcode"></div>';
+}
+
+layer.open({
+type:1,
+title:false,
+btn: false,
+resize:false,
+area: ['300px', '330px'], 
+skin: 'jinsom-wechatpay-code-form',
+content: '<div class="jinsom-wechatpay-code-content">'+pay_code+pay_tips+'</div>',
+cancel: function(index,layero){ 
+$('#jinsom-goods-trade-no').val(new Date().getTime());
+jinsom_check_goods_order_ajax.abort();//取消长轮询
+},
+success:function(){
+if(pay_type!='xunhu-wechat'){
+jinsom_qrcode('jinsom-qrcode',200,200,msg);
+}
+jinsom_check_goods_order(trade_no);//发起长轮询
+}
+});
+
+
+}   
+});
+
+
+}
+}
+
+
+//检查订单状态
+function jinsom_check_goods_order(trade_no){
+jinsom_check_goods_order_ajax=$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/action/check-trade-goods.php",
+data:{trade_no:trade_no},
+success: function(msg){
+if(msg.code==0){
+jinsom_check_goods_order(trade_no);
+}else if(msg.code==1){
+$('.jinsom-wechatpay-code-content').html(msg.msg);
+function c(){window.location.reload();}setTimeout(c,2000);
+}else{
+jinsom_check_goods_order(trade_no);	
+}
+}
+});	
+}
+
+
+//我的订单表单
+function jinsom_goods_order_form(){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/stencil/goods-order.php",
+success: function(msg){
+layer.closeAll('loading');
+
+layer.open({
+type:1,
+title:'我的订单',
+resize:false,
+fixed: false,
+area: ['700px', '580px'], 
+skin: 'jinsom-goods-order-form',
+content: msg
+});
+
+}
+});
+
+}
+
+
+//提交订单之后再次进行支付的确定表单
+function jinsom_goods_order_confirmation_buy_form(trade_no,type){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/stencil/order-confirmation-buy.php",
+data:{trade_no:trade_no,type:type},
+success: function(msg){
+layer.closeAll('loading');
+layer.open({
+title:'订单支付',
+type: 1,
+fixed: false,
+// offset: '100px',
+skin:'jinsom-goods-order-confirmation-form',
+area: ['500px','auto'],
+resize:false,
+content: msg
+});
+}
+});
+}
+
+
+//删除商品订单
+function jinsom_goods_order_delete(trade_no,obj){
+layer.confirm('你确定要删除吗？',{
+btnAlign: 'c',
+}, function(){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:  jinsom.jinsom_ajax_url+"/action/goods-order-delete.php",
+data: {trade_no:trade_no},
+success: function(msg){
+layer.closeAll('loading');
+layer.msg(msg.msg);
+$(obj).parents('li').fadeTo("slow",0.06, function(){
+$(this).slideUp(0.06, function() {
+$(this).remove();
+});
+});
+}
+});
+});
+}
+
+
+
 //设置cookie
 function SetCookie(name,value){
 var Days = 30*12*10;//十年
@@ -3762,6 +4025,3 @@ document.cookie= name + "="+cval+";expires="+exp.toGMTString();
 function jinsom_test(){
 layer.msg('该功能开发中，即将开启。');
 }
-
-
-

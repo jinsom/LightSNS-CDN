@@ -1,4 +1,4 @@
-document.write("<script language='javascript' src='"+jinsom.cdn_url+"/mobile/js/post.js?ver=123'></script>");//文章相关
+document.write("<script language='javascript' src='"+jinsom.theme_url+"/mobile/js/post.js?ver=123'></script>");//文章相关
 document.write("<script language='javascript' src='"+jinsom.cdn_url+"/mobile/js/login.js'></script>");//登录相关
 document.write("<script language='javascript' src='"+jinsom.cdn_url+"/mobile/js/chat.js'></script>");//聊天相关
 document.write("<script language='javascript' src='"+jinsom.cdn_url+"/mobile/js/comment.js'></script>");//评论相关
@@ -1113,7 +1113,7 @@ $('.jinsom-search-content').css({'margin-top':'10vw','background-color':'#eeeeee
 $('.jinsom-search-hot,.jinsom-pop-search-bbs,.jinsom-pop-search-topic').remove();
 $('#jinsom-search').val(keyword);
 list=$('.jinsom-search-post-list');
-list.html(jinsom.loading);
+list.prepend(jinsom.loading_post);
 $.ajax({
 type: "POST",
 url:  jinsom.mobile_ajax_url+"/post/search.php",
@@ -1137,8 +1137,8 @@ layer.open({content:'请输入搜索关键词！',skin:'msg',time:2});
 return false;
 }
 list=$('.jinsom-search-post-list');
-list.html(jinsom.loading);
 list.attr('type',type);
+list.prepend(jinsom.loading_post);
 $.ajax({
 type: "POST",
 url:  jinsom.mobile_ajax_url+"/post/search.php",
