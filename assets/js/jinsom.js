@@ -134,7 +134,7 @@ $(obj).html('加精帖子');
 
 
 //电脑签到
-function jinsom_sign(ticket,randstr){
+function jinsom_sign(ticket,randstr,obj){
 layer.load(1); 
 $.ajax({
 type: "POST",
@@ -145,41 +145,137 @@ success: function(msg){
 layer.closeAll('loading');
 if(msg.code==0){//签到失败
 layer.msg(msg.msg);
-}else if(msg.code==1){//已经签到
+}else if(msg.code==1||msg.code==2){//签到成功
+
+if(msg.code==2){
 layer.msg(msg.msg);
-$('.jinsom-sidebar-user-info .sign').addClass('had').html(msg.text);
-}else if(msg.code==2){//签到成功
-layer.msg(msg.tip,{time:2000});
-if(msg.msg!=''){//如果有设置奖励
-function d(){layer.msg(msg.msg,{time:2200});}
-setTimeout(d,2000);
+}else{
+layer.open({
+title:false,
+type: 1,
+skin:'jinsom-sign-success-form',
+area: ['300px','auto'],
+resize:false,
+content: msg.content
+});
 }
-$('.jinsom-sidebar-user-info .sign').addClass('had').html(msg.text).removeAttr('onclick');
-$('.jinsom-sidebar-user-info .sign').prepend('<i class="jinsom-icon jinsom-yiwen2" onclick="jinsom_sign_info()"></i>');
+$(obj).addClass('had').html(msg.text);
+$('.jinsom-sign-page-all-days span').html(msg.sign_c);
+month_day=parseInt($('.jinsom-sign-page-month-days span').text());
+$('.jinsom-sign-page-month-days span').html(month_day+1);
+$('.jinsom-sign-page-content tbody td.today').removeClass('no-sign').addClass('had-sign').children('span').append('<i class="jinsom-icon jinsom-dagou"></i>');
 }
 }
 });
 return false;
 }
 
-//弹出签到说明表单
-function jinsom_sign_info(){
+//补签表单
+function jinsom_sign_add_form(day){
 layer.load(1);
 $.ajax({
 type: "POST",
-url:jinsom.jinsom_ajax_url+"/stencil/sign-info.php",
+url:jinsom.jinsom_ajax_url+"/stencil/sign-add.php",
+data:{day:day},
 success: function(msg){
 layer.closeAll(); 
 layer.open({
-title:'签到奖励说明',
+title:false,
 btn: false,
-area: ['500px', 'auto'],
+skin:'jinsom-sign-add-form',
+area: ['300px','auto'],
 resize:false,
-content: msg
+content:msg
 })
 }
-}); 
+});
 }
+
+//补签
+function jinsom_sign_add(day){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/action/sign-add.php",
+data:{day:day},
+success: function(msg){
+layer.closeAll(); 
+if(msg.code==1){
+layer.open({
+title:false,
+type: 1,
+skin:'jinsom-sign-success-form',
+area: ['300px','auto'],
+resize:false,
+content: msg.content
+});
+
+//前端渲染
+$('.jinsom-sign-page-all-days span').html(msg.sign_c);
+month_day=parseInt($('.jinsom-sign-page-month-days span').text());
+$('.jinsom-sign-page-month-days span').html(month_day+1);
+$('#jinsom-sign-day-'+day).removeClass('no-sign').addClass('had-sign').children('span').html(day+'<i class="jinsom-icon jinsom-dagou"></i>');
+
+}else{
+layer.msg(msg.msg);
+}
+}
+});
+}
+
+
+//查看签到宝箱
+function jinsom_sign_treasure_form(number){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/stencil/sign-treasure.php",
+data:{number:number},
+success: function(msg){
+layer.closeAll('loading');
+layer.open({
+title:false,
+type: 1,
+fixed: false,
+skin:'jinsom-sign-treasure-form',
+area: ['300px','auto'],
+resize:false,
+content: msg
+});
+}
+});	
+}
+
+
+//领取宝箱奖励
+function jinsom_sign_treasure(number,obj){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/action/sign-treasure.php",
+data:{number:number},
+success: function(msg){
+layer.closeAll(); 
+if(msg.code==1){
+layer.open({
+title:false,
+type: 1,
+skin:'jinsom-sign-success-form',
+area: ['300px','auto'],
+resize:false,
+content: msg.content
+});
+
+//前端渲染
+$(obj).addClass('had').html('已领取').parents('li').removeClass('shake');
+
+}else{
+layer.msg(msg.msg);
+}
+}
+});
+}
+
 
 //弹出推广规则说明表单
 function jinsom_referral_info(){
@@ -223,8 +319,17 @@ return false;
 if(!showposts){layer.msg('请输入帖子相关->帖子数量');return false;}
 if(showposts<5){layer.msg('帖子数量要大于或等于5');return false;}
 
+enabled='';
+disabled='';
+$('#jinsom-bbs-menu-setting-1 li').each(function(){
+enabled+=$(this).attr('data')+',';
+});
+$('#jinsom-bbs-menu-setting-2 li').each(function(){
+disabled+=$(this).attr('data')+',';
+});
 
-data = $('#jinsom-bbs-setting-form').serialize();
+data=$('#jinsom-bbs-setting-form').serialize();
+data+='&enabled_menu='+enabled+'&disabled_menu='+disabled;
 layer.load(1);
 $.ajax({
 type: "POST",
@@ -1838,14 +1943,15 @@ element.progress('jinsom-bg-music', percent*100+'%');
 
 //论坛列表加载更多
 function jinsom_ajax_bbs(obj,type){
-var page=$(obj).attr('data');
-var bbs_id=$('.jinsom-bbs-header').attr('data');
+page=$(obj).attr('data');
+bbs_id=$('.jinsom-bbs-header').attr('data');
+topic=$('.jinsom-bbs-box-header .left li.on').attr('topic');
 $(obj).html(jinsom.loading);
 ajax_obj=obj;
 $.ajax({
 type: "POST",
-url:jinsom.jinsom_ajax_url+"/more/bbs.php",
-data: {page:page,bbs_id:bbs_id,type:type},
+url:jinsom.jinsom_ajax_url+"/ajax/bbs.php",
+data: {page:page,bbs_id:bbs_id,type:type,topic:topic},
 success: function(msg){   
 $(ajax_obj).html('加载更多');
 if(msg==0){
@@ -1899,10 +2005,11 @@ function jinsom_ajax_bbs_menu(type,obj){
 $(obj).addClass('on').siblings().removeClass('on');
 var bbs_id=$('.jinsom-bbs-header').attr('data');
 $('.jinsom-bbs-list-box').html(jinsom.loading);
+topic=$(obj).attr('topic');
 $.ajax({
 type: "POST",
 url:jinsom.jinsom_ajax_url+"/ajax/bbs.php",
-data: {page:1,bbs_id:bbs_id,type:type},
+data: {page:1,bbs_id:bbs_id,type:type,topic:topic},
 success: function(msg){   
 
 $('.jinsom-bbs-list-box').empty();
@@ -3825,9 +3932,9 @@ function c(){jinsom_recharge_credit_form();}setTimeout(c,1500);
 }else if(msg.code==3){//人民币付款
 jinsom_goods_order_pay(pay_type,trade_no);//发起订单支付
 }else if(msg.code==5){//我的订单
-// layer.closeAll();
+layer.closeAll();
 layer.msg(msg.msg);
-function c(){jinsom_goods_order_form();}setTimeout(c,1500);
+function c(){layer.closeAll();jinsom_goods_order_form();}setTimeout(c,1800);
 }else{//其他失败情况
 layer.msg(msg.msg);
 }
@@ -3992,6 +4099,9 @@ $(this).remove();
 
 
 
+
+
+
 //设置cookie
 function SetCookie(name,value){
 var Days = 30*12*10;//十年
@@ -4025,3 +4135,10 @@ document.cookie= name + "="+cval+";expires="+exp.toGMTString();
 function jinsom_test(){
 layer.msg('该功能开发中，即将开启。');
 }
+
+
+
+$(".xgplayer-start").click(function(){
+title=$(this).parents('.jinsom-post-video').next('h2').text();
+return title;
+});

@@ -381,24 +381,115 @@ success: function(msg){
 myApp.hideIndicator();
 if(msg.code==0){//签到失败
 layer.open({content:msg.msg,skin:'msg',time:2});
-}else if(msg.code==1){//已经签到
-layer.open({content:msg.msg,skin:'msg',time:2});
+}else if(msg.code==1||msg.code==2){//已经签到|签到成功
+layer.open({
+content:'<div class="jinsom-sign-success-form">'+msg.content+'</div>'
+});
+
 $(obj).addClass('had').html(msg.text_mobile);
-$(obj).parent().prev().find('span').html(msg.day);
-$('.jinsom-mine-page .list-block li.sign .item-after').html('连续签到'+msg.day+'天');
-}else if(msg.code==2){//签到成功
-layer.open({content:msg.tip,skin:'msg',time:2});
-if(msg.msg!=''){//如果有设置奖励
-function d(){layer.open({content:msg.msg,skin:'msg',time:2});}setTimeout(d,2000);
-}
-$(obj).addClass('had').html(msg.text_mobile);
-$(obj).parent().prev().find('span').html(msg.day);
-$('.jinsom-mine-page .list-block li.sign .item-after').html('连续签到'+msg.day+'天');
+$(obj).parent().prev().find('span').html(msg.sign_c);
+month_day=parseInt($('.jinsom-sign-page-month-days span').text());
+$('.jinsom-sign-page-month-days span').html(month_day+1);
+$('.jinsom-mine-page .list-block li.sign .item-after').html('累计'+msg.sign_c+'天');
+$('.jinsom-sign-page-content tbody td.today').removeClass('no-sign').addClass('had-sign').children('span').append('<i class="jinsom-icon jinsom-dagou"></i>');
+
+
 }
 }
 });
-return false;
 }
+
+
+//补签表单
+function jinsom_sign_add_form(day){
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/stencil/sign-add.php",
+data:{day:day},
+success: function(msg){
+myApp.hideIndicator();
+layer.open({
+content:'<div class="jinsom-sign-add-form">'+msg+'</div>'
+});
+}
+});
+}
+
+//补签
+function jinsom_sign_add(day){
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/action/sign-add.php",
+data:{day:day},
+success: function(msg){
+myApp.hideIndicator();
+if(msg.code==1){
+layer.open({
+content:'<div class="jinsom-sign-success-form">'+msg.content+'</div>'
+});
+
+//前端渲染
+$('.jinsom-sign-header .left p:first-child span').text(msg.sign_c);
+$('.jinsom-mine-page .list-block li.sign .item-after').html('累计'+msg.sign_c+'天');
+$('.jinsom-sign-page-all-days span').html(msg.sign_c);
+month_day=parseInt($('.jinsom-sign-page-month-days span').text());
+$('.jinsom-sign-page-month-days span').html(month_day+1);
+$('#jinsom-sign-day-'+day).removeClass('no-sign').addClass('had-sign').children('span').html(day+'<i class="jinsom-icon jinsom-dagou"></i>');
+
+}else{
+layer.open({content:msg.msg,skin:'msg',time:2});
+}
+}
+});
+}
+
+
+//查看签到宝箱
+function jinsom_sign_treasure_form(number){
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/stencil/sign-treasure.php",
+data:{number:number},
+success: function(msg){
+myApp.hideIndicator();
+layer.open({
+content:'<div class="jinsom-sign-treasure-form">'+msg+'</div>'
+});
+}
+});	
+}
+
+
+//领取宝箱奖励
+function jinsom_sign_treasure(number,obj){
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/action/sign-treasure.php",
+data:{number:number},
+success: function(msg){
+myApp.hideIndicator();
+if(msg.code==1){
+layer.open({
+content:'<div class="jinsom-sign-success-form">'+msg.content+'</div>'
+});
+
+//前端渲染
+$(obj).addClass('had').html('已领取').removeAttr('onclick');
+}else{
+layer.open({content:msg.msg,skin:'msg',time:2});
+}
+}
+});
+}
+
+
+
+
+
 
 
 
@@ -969,18 +1060,8 @@ myApp.actions(groups);
 
 
 //查看二维码
-function jinsom_show_user_code(){
-url=jinsom.member_url_permalink+jinsom.referral_link_name+'='+jinsom.user_id;
-// show_avatar = myApp.photoBrowser({
-// photos : ['https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+code_url],
-// //theme:'dark',
-// toolbar:false,
-// type:'popup',
-// exposition:false,
-// });
-// show_avatar.open();	
-
-
+function jinsom_show_user_code(user_id){
+url=jinsom.member_url_permalink+jinsom.referral_link_name+'='+user_id;
 html='<div class="popup jinsom-publish-type-form profile-qrcode"><div class="page-content"><div id="jinsom-qrcode"></div><p class="tips">扫码加关注我</p><div class="close"><a href="#" class="link icon-only close-popup"><i class="jinsom-icon jinsom-xiangxia2"></i></a></div>';
 myApp.popup(html);
 jinsom_qrcode('jinsom-qrcode',200,200,url);
@@ -1102,6 +1183,8 @@ myApp.popup('.jinsom-publish-bbs-type-form');
 
 //搜索
 function jinsom_search(keyword){
+search_loading = false;
+search_page=2;
 keyword=$.trim(keyword);
 if(keyword==''){
 layer.open({content:'请输入搜索关键词！',skin:'msg',time:2});	
@@ -1117,7 +1200,7 @@ list.prepend(jinsom.loading_post);
 $.ajax({
 type: "POST",
 url:  jinsom.mobile_ajax_url+"/post/search.php",
-data: {keyword:keyword,type:type},
+data: {keyword:keyword,type:type,page:1},
 success: function(msg){
 if(msg!=0){
 list.html(msg);
@@ -1130,19 +1213,22 @@ list.html('<div class="jinsom-empty-page">没有更多内容</div>');
 
 //搜索
 function jinsom_ajax_search(type,obj){
+search_loading = false;
+search_page=2;
 $(obj).addClass('on').siblings().removeClass('on');
 keyword=$.trim($('#jinsom-search').val());
 if(keyword==''){
 layer.open({content:'请输入搜索关键词！',skin:'msg',time:2});	
 return false;
 }
+$('.page-content').animate({ scrollTop: 0 },0);
 list=$('.jinsom-search-post-list');
 list.attr('type',type);
 list.prepend(jinsom.loading_post);
 $.ajax({
 type: "POST",
 url:  jinsom.mobile_ajax_url+"/post/search.php",
-data: {keyword:keyword,type:type},
+data: {keyword:keyword,type:type,page:1},
 success: function(msg){
 if(msg!=0){
 list.html(msg);

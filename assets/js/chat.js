@@ -6,41 +6,31 @@ var jinsom_user_chat_ajax = null,jinsom_user_chat_group_ajax = null;
 
 
 //打开单人聊天模式
-function jinsom_open_user_chat(user_id,obj,type){
+function jinsom_open_user_chat(user_id,obj){
 if(!jinsom.is_login){
 jinsom_pop_login_style();	
 return false;
 }
 
-if(user_id==jinsom.user_id){layer.msg('你不能跟自己聊天！');return false;}
 $('.jinsom-group-user-info').remove();//资料卡片打开IM聊天
 if($('.jinsom-chat-windows-loading').length>0){
 return false;
 }
-$(obj).children('.jinsom-chat-list-tips').remove();
+$(obj).children('.jinsom-chat-list-tips').remove();//移除提醒
 
-if(type==1){//IM列表打开聊天
-name=$(obj).find('.name').html();
-link=$(obj).attr('link');
-name='<a href="'+link+'" target="_blank">'+name+'</a>';
-desc=$(obj).attr('desc');
-avatar=$(obj).children('.jinsom-chat-content-recent-user-avatar').html();
-}else if(type==2){//个人主页打开IM聊天
-name=$('.jinsom-member-username h1').html();
-desc=$('.jinsom-member-desc').html();
-avatar=$('.jinsom-member-avatar p').html();
-}else if(type==3){//资料卡片打开IM聊天
-name=$(obj).parent('.jinsom-info-card .btn').siblings('.jinsom-info-card-bg').find('.name').html();
-desc=$(obj).parent('.jinsom-info-card .btn').siblings('.jinsom-info-card-bg').children('.desc').html();
-avatar=$(obj).parent('.jinsom-info-card .btn').siblings('.jinsom-info-card-bg').children('.jinsom-info-card-avatar').html();
-}else if(type==4){//群组里面打开成员进行聊天
-name=$(obj).children('span').html();
-desc=$(obj).attr('desc');
-avatar=$(obj).children('m').html();	
-}
+$.ajax({
+type: "POST",
+url:jinsom.module_url+"/chat/chat-info.php",
+data: {author_id:user_id,type:'one'},
+success: function(msg){
+if(msg.code==1){
+count=msg.count;
+status=msg.status;	
+name=msg.nickname;
+desc=msg.desc;
+avatar=msg.avatar;
 
-count=$(obj).attr('data-count');
-status=$(obj).attr('online');
+
 if($('.jinsom-chat-user-window').length==0){
 layer.open({
 type:1,
@@ -50,10 +40,7 @@ area: ['600px', '540px'],
 title: ' ',
 shade: 0,
 maxmin: true,
-zIndex: layer.zIndex,
-success: function(layero){
-layer.setTop(layero);
-},
+// zIndex: layer.zIndex,
 resizing: function(layero){
 chat_window_height=layero.height();
 add_height=chat_window_height-540;
@@ -84,7 +71,8 @@ content:
 '</div>'+
 '<textarea class="jinsom-chat-textarea"></textarea>'+
 '<div class="jinsom-chat-windows-footer-send clear">'+
-'<div class="jinsom-chat-send-message-btn opacity" onclick="jinsom_send_msg()">发送</div></div></div>'
+'<div class="jinsom-chat-send-message-btn opacity" onclick="jinsom_send_msg()">发送</div></div></div>',
+
 });  
 
 
@@ -93,6 +81,7 @@ jinsom_stop_user_Ajax();//打开另外一个聊天时，终止前一个ajax；
 }
 
 
+//==================渲染=========================
 //上传图片
 $('.jinsom-chat-windows-footer-bar.one .image').remove();//先移除原始模块
 $('.jinsom-chat-windows-footer-bar.one .smile').after('<span class="image jinsom-icon jinsom-tupian1"></span>');//重新添加模块
@@ -103,7 +92,7 @@ $('.jinsom-chat-user-window').append('<div class="jinsom-chat-windows-user-heade
 $('.jinsom-chat-message-list').empty();
 $('.jinsom-chat-message-list').append('<div class="jinsom-chat-windows-loading"></div>');
 
-$.ajax({
+$.ajax({//获取聊天记录
 type: "POST",
 url:jinsom.module_url+"/chat/message-list.php",
 data: {user_id:user_id},
@@ -117,11 +106,17 @@ $(".jinsom-chat-message-list-content img").on('load',function(){
 $('.jinsom-chat-message-list').scrollTop($('.jinsom-chat-message-list')[0].scrollHeight);
 } );
 
+jinsom_ajax_get_messages();//发起长轮询
+
 }
 });
 
 
-jinsom_ajax_get_messages();//发起长轮询
+}else{
+layer.msg(msg.msg);
+}
+}
+});//获取IM聊天信息
 
 
 }
@@ -174,7 +169,7 @@ if(jinsom_user_chat_ajax) {jinsom_user_chat_ajax.abort();}
 
 
 //打开群组聊天模式
-function jinsom_open_group_chat(bbs_id,obj,type){
+function jinsom_open_group_chat(bbs_id){
 if(!jinsom.is_login){
 jinsom_pop_login_style();	
 return false;
@@ -183,23 +178,20 @@ return false;
 if($('.jinsom-chat-windows-group-loading').length>0){
 return false;
 }
-if(type==1){//IM列表打开
-name=$(obj).find('.name').text();
-link=$(obj).attr('link');
-name='<a href="'+link+'" target="_blank">'+name+'</a>';
-desc=$(obj).attr('desc');
-avatar=$(obj).children('.jinsom-chat-content-recent-user-avatar').html();
-notice=$(obj).attr('notice');
-number=$(obj).attr('number');	
-}else if(type==2){//论坛页面打开
-name=$('.jinsom-bbs-header-info-btn .name').text();
-desc=$('.jinsom-bbs-header-info-desc').html();
-avatar=$('.jinsom-bbs-header-info-avatar').html();
-notice=$('.jinsom-bbs-header-info-btn .chat').attr('notice');
-number=$('.jinsom-bbs-header-info-btn .chat').attr('number');
-}
 
-count=$(obj).attr('data-count');
+
+$.ajax({
+type: "POST",
+url:jinsom.module_url+"/chat/chat-info.php",
+data: {bbs_id:bbs_id,type:'group'},
+success: function(msg){
+if(msg.code==1){
+notice=msg.notice;
+name=msg.name;
+desc=msg.desc;
+avatar=msg.avatar;
+number=msg.number;
+
 
 if($('.jinsom-chat-group-window').length==0){
 layer.open({
@@ -210,10 +202,6 @@ area: ['750px', '540px'],
 title: ' ',
 shade: 0,
 maxmin: true,
-zIndex: layer.zIndex,
-success: function(layero){
-layer.setTop(layero);
-},
 resizing: function(layero){
 chat_window_height=layero.height();
 add_height=chat_window_height-540;
@@ -268,6 +256,10 @@ content: '\
 jinsom_stop_group_Ajax();//打开另外一个群组时，终止前一个ajax；
 }
 
+
+
+
+
 //上传图片
 $('.jinsom-chat-windows-footer-bar.group .image').remove();//先移除原始模块
 $('.jinsom-chat-windows-footer-bar.group .smile').after('<span class="image jinsom-icon jinsom-tupian1"></span>');//重新添加模块
@@ -276,7 +268,7 @@ jinsom_im_upload_group(bbs_id);
 
 
 $('.jinsom-chat-group-window .jinsom-chat-windows-user-header').remove();
-$('.jinsom-chat-group-window').append('<div class="jinsom-chat-windows-user-header" count="'+count+'" bbs-id="'+bbs_id+'"><div class="jinsom-chat-windows-user-avatar">'+avatar+'</div><div class="jinsom-chat-windows-user-info"><div class="jinsom-chat-windows-user-name">'+name+'</div><div class="jinsom-chat-windows-user-desc">'+desc+'</div>	</div></div>');
+$('.jinsom-chat-group-window').append('<div class="jinsom-chat-windows-user-header" bbs-id="'+bbs_id+'"><div class="jinsom-chat-windows-user-avatar">'+avatar+'</div><div class="jinsom-chat-windows-user-info"><div class="jinsom-chat-windows-user-name">'+name+'</div><div class="jinsom-chat-windows-user-desc">'+desc+'</div>	</div></div>');
 $('.jinsom-chat-group-notice-desc').html(notice);
 $('.jinsom-chat-group-user-number span').html('（'+number+'人）');
 $('.jinsom-chat-message-group-list').empty();//群组记录
@@ -320,7 +312,11 @@ $('.jinsom-chat-group-user-list').append(msg);
 });
 
 
-
+}else{
+layer.msg(msg.msg);
+}
+}
+});//获取群聊信息
 
 
 }
@@ -385,7 +381,7 @@ layer.closeAll('loading');
 layer.open({
 title:false,
 type:1,
-zIndex: layer.zIndex,
+zIndex: 9999999999,
 area: ['375px', '265px'],
 shade: 0,
 skin: 'jinsom-group-user-info',
@@ -417,7 +413,7 @@ data: {bbs_id:bbs_id},
 success: function(msg){
 $(this_dom).html('加入群聊');
 if(msg==1){
-jinsom_open_group_chat(bbs_id,this,2);
+jinsom_open_group_chat(bbs_id);
 }else if(msg==2){
 layer.msg('请先关注论坛才可以加入群聊！');	
 }else if(msg==3){

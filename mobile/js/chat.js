@@ -76,7 +76,7 @@ if(jinsom_user_chat_ajax) {jinsom_user_chat_ajax.abort();}
 
 
 //打开单对单聊天
-function jinsom_open_one_chat(author_id,obj){
+function jinsom_open_user_chat(author_id,obj){
 if(!jinsom.is_login){
 myApp.loginScreen();  
 return false;

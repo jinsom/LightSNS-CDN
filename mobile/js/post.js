@@ -99,11 +99,12 @@ more_list=$(obj).parent().next();
 more_list.attr('type',type);
 more_list.attr('page',2);
 status=0;
+topic=$(obj).attr('topic');
 more_list.prepend(jinsom.loading_post);
 $.ajax({
 type: "POST",
 url:  jinsom.mobile_ajax_url+"/post/bbs.php",
-data: {bbs_id:bbs_id,type:type},
+data: {bbs_id:bbs_id,type:type,topic:topic},
 success: function(msg){
 if(msg!=0){
 

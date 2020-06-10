@@ -237,7 +237,7 @@ layer.closeAll('loading');
 window.admin_key_add_form=layer.open({
 title:'卡密生成',
 type: 1,
-area: ['540px', '340px'], 
+area: ['540px', '368px'], 
 content: msg
 });
 layui.use(['form','laydate'], function () {
@@ -329,7 +329,7 @@ layer.closeAll('loading');
 window.admin_key_add_form=layer.open({
 title:'卡密导出',
 type: 1,
-area: ['640px', '305px'], 
+area: ['640px', '330px'], 
 content: msg
 });
 layui.use(['form'], function () {
@@ -366,7 +366,7 @@ layer.closeAll('loading');
 window.admin_key_add_form=layer.open({
 title:'卡密删除',
 type: 1,
-area: ['630px', '215px'], 
+area: ['630px', '240px'], 
 content: msg
 });
 layui.use(['form'], function () {
@@ -1183,6 +1183,35 @@ layer.close(admin_apply_bbs_read_form);
 });	
 });	
 }
+
+//商城订单
+function jinsom_admin_shop_order_form(){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/admin/stencil/shop-order.php",
+success: function(msg){
+layer.closeAll('loading');
+window.admin_apply_bbs_read_form=layer.open({
+title:'订单详情',
+type: 1,
+fixed: false,
+area: ['750px','680px'], 
+content: msg
+});
+}
+});	
+}
+
+
+
+
+
+
+
+
+
+
 
 
 function jinsom_no(){
