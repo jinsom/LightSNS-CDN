@@ -65,7 +65,7 @@ content:
 '<div class="jinsom-chat-message-list" data-no-instant></div>'+
 '<div class="jinsom-chat-windows-footer">'+
 '<div class="jinsom-chat-windows-footer-bar one clear">'+
-'<span onclick="jinsom_im_smile(this)" class="jinsom-icon smile jinsom-weixiao-"></span>'+
+'<span onclick="jinsom_im_smile(this,5)" class="jinsom-icon smile jinsom-weixiao-"></span>'+
 '<span class="image jinsom-icon jinsom-tupian1"></span>'+
 '<span class="notice jinsom-icon jinsom-tongzhi1"></span>'+
 '</div>'+
@@ -233,7 +233,7 @@ content: '\
 <div class="jinsom-chat-message-group-list" data-no-instant></div>\
 <div class="jinsom-chat-windows-footer">\
 <div class="jinsom-chat-windows-footer-bar group clear">\
-<span onclick="jinsom_im_smile(this)" class="jinsom-icon smile jinsom-weixiao-"></span>\
+<span onclick="jinsom_im_smile(this,5)" class="jinsom-icon smile jinsom-weixiao-"></span>\
 <span class="image jinsom-icon jinsom-tupian1"></span>\
 <span class="jinsom-upload-group-img-loading"></span>\
 </div>\

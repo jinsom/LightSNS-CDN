@@ -1206,12 +1206,92 @@ content: msg
 
 
 
+//查看订单
+function jinsom_goods_order_view_form(trade_no){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/admin/stencil/order-view.php",
+data:{trade_no:trade_no},
+success: function(msg){
+layer.closeAll('loading');
+window.goods_order_view_form=layer.open({
+title:'订单查看',
+type: 1,
+fixed: false,
+offset: '100px',
+skin:'jinsom-goods-order-view-form',
+area: ['500px','auto'],
+resize:false,
+content: msg
+});
+}
+});
+}
+
+//发货表单
+function jinsom_goods_order_send_form(trade_no){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/admin/stencil/order-send.php",
+data:{trade_no:trade_no},
+success: function(msg){
+layer.closeAll('loading');
+window.goods_order_send_form=layer.open({
+title:'订单发货',
+type: 1,
+fixed: false,
+skin:'jinsom-goods-order-send-form',
+area: ['500px','auto'],
+resize:false,
+content: msg
+});
+}
+});
+}
+
+//发货
+function jinsom_goods_order_send(trade_no){
+content=$('#jinsom-goods-order-send-content').val();
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/admin/action/order-send.php",
+data:{content:content,trade_no:trade_no},
+success: function(msg){
+layer.closeAll('loading');
+layer.msg(msg.msg);
+function c(){
+layer.close(goods_order_send_form);
+layer.close(goods_order_view_form);
+}setTimeout(c,2000);
+}
+});
+}
 
 
-
-
-
-
+//删除聊天记录
+function jinsom_goods_order_delete(trade_no){
+layer.confirm('你确定要删除该订单？',{
+btn: ['确定','取消'],
+btnAlign: 'c',
+},
+function(){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/admin/action/order-delete.php",
+data:{trade_no:trade_no},
+success: function(msg){
+layer.closeAll('loading');
+layer.msg(msg.msg);
+$('.order-'+trade_no).remove();
+layer.close(goods_order_view_form);
+}
+});
+});
+}
 
 
 function jinsom_no(){

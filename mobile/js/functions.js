@@ -1297,7 +1297,7 @@ success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
-history.back(-1);//返回上一页	
+function c(){history.back(-1);}setTimeout(c,2000);
 }
 }
 });

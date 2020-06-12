@@ -3118,7 +3118,7 @@ content: msg
 }
 
 //显示IM表情
-function jinsom_im_smile(obj){
+function jinsom_im_smile(obj,type){
 window.event.stopPropagation();
 this_dom=$(obj);
 if(this_dom.children('.jinsom-smile-form').length>0){
@@ -3128,9 +3128,16 @@ layer.load(1);
 $.ajax({
 type: "POST",
 url:jinsom.module_url+"/stencil/smile-im.php",
+data:{type:type},
 success: function(msg){
 layer.closeAll('loading');
-$(this_dom).html(msg);
+
+if(type==1){
+$(this_dom).append(msg);//普通
+}else{
+$(this_dom).html(msg);//IM
+}
+
 $(this_dom).children('.jinsom-smile-form').show();
 }
 });
@@ -4095,6 +4102,61 @@ $(this).remove();
 }
 });
 });
+}
+
+
+//商品评价表单
+function jinsom_goods_order_comment_form(post_id,trade_no){
+layer.closeAll();
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/stencil/goods-order-comment.php",
+data:{post_id:post_id,trade_no:trade_no},
+success: function(msg){
+layer.closeAll('loading');
+layer.open({
+title:'订单评价',
+type: 1,
+fixed: false,
+skin:'jinsom-goods-order-comment-form',
+area: ['500px','auto'],
+resize:false,
+content: msg
+});
+
+layui.use(['rate'], function(){
+var rate = layui.rate;
+rate.render({
+elem: '#jinsom-goods-order-comment-star',
+value:5
+})
+});
+
+}
+});
+}
+
+//商品评价
+function jinsom_goods_order_comment(post_id,trade_no){
+star=$('.jinsom-goods-order-comment-content .layui-icon-rate-solid').length;
+content=$('#jinsom-goods-order-comment-val').val();
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/action/goods-order-comment.php",
+data: {star:star,content:content,post_id:post_id,trade_no:trade_no},
+success: function(msg){
+layer.closeAll('loading');
+layer.msg(msg.msg);
+if(msg.code==1){
+function c(){window.location.reload();}setTimeout(c,2000);
+}
+
+}
+});
+
+
 }
 
 

@@ -232,6 +232,37 @@ myApp.onPageBeforeInit('send-gift',function(page){
 window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 });
 
+//--------------------------实时动态-----------------
+myApp.onPageBeforeInit('now',function(page){
+window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
+
+now_loading = false;
+now_page=2;
+now_list=$('.jinsom-now-content .jinsom-chat-user-list');
+$('.jinsom-now-content.infinite-scroll').on('infinite',function(){
+if (now_loading) return;
+now_loading = true;
+now_list.append(jinsom.loading_post);
+$.ajax({
+type: "POST",
+url:  jinsom.mobile_ajax_url+"/post/now.php",
+data: {page:now_page},
+success: function(msg){
+if(msg!=0){
+now_list.append(msg);
+now_loading = false; 
+now_page++;
+}else{
+now_loading = true; 
+}
+$('.jinsom-load-post').remove();
+}
+});
+}); 
+
+
+});
+
 //--------------------------我的礼物-----------------
 myApp.onPageBeforeInit('my-gift',function(page){
 window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
@@ -1606,7 +1637,9 @@ $('.jinsom-load-post').remove();
 
 //我的粉丝页面
 myApp.onPageAfterAnimation('follower', function (page) {
-window.history.pushState(null,null,'/?follower&r='+Math.random().toString(36).substr(2,5));
+window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
+type=page.query['type'];
+
 //滚动事件
 $('.jinsom-follower-content').scroll(function(){
 navbarH=$('.navbar').height();
@@ -1622,7 +1655,7 @@ more_list.after(jinsom.loading);
 $.ajax({
 type: "POST",
 url:  jinsom.mobile_ajax_url+"/user/follower.php",
-data: {page:page,user_id:user_id},
+data: {page:page,user_id:user_id,type:type},
 success: function(msg){
 if(msg.code!=0){  
 
@@ -1652,7 +1685,7 @@ more_list.append(html);
 page=page+1;
 more_list.attr('page',page);
 }else{
-more_list.append('<div class="jinsom-empty-page">没有更多粉丝</div>'); 
+more_list.append('<div class="jinsom-empty-page">暂时没有更多了</div>'); 
 }
 $('.jinsom-load').remove();
 }

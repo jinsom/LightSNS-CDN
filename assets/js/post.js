@@ -220,3 +220,33 @@ jinsom_post_js();
 }
 });
 }
+
+
+
+//电脑端动态加载更多评论
+function jinsom_more_comment(post_id,obj){
+if($('.jinsom-load-post').length==0){
+$(obj).before(jinsom.loading_post);
+$(obj).hide();
+}
+page=$(obj).attr('page');
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/more/post-comment.php",
+data: {post_id:post_id,page:page},
+success: function(msg){   
+$('.jinsom-load-post').remove();
+$(obj).show();
+if(msg==0){
+layer.msg('没有更多评论！');
+$(obj).remove();
+}else{
+$('.jinsom-post-comment-list').append(msg);
+paged=parseInt(page)+1;
+$(obj).attr('page',paged);	
+}
+
+}
+});
+
+}
