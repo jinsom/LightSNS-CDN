@@ -1195,20 +1195,7 @@ $('.jinsom-search-tab').show();
 $('.jinsom-search-content').css({'margin-top':'10vw','background-color':'#eeeeee'});
 $('.jinsom-search-hot,.jinsom-pop-search-bbs,.jinsom-pop-search-topic').remove();
 $('#jinsom-search').val(keyword);
-list=$('.jinsom-search-post-list');
-list.prepend(jinsom.loading_post);
-$.ajax({
-type: "POST",
-url:  jinsom.mobile_ajax_url+"/post/search.php",
-data: {keyword:keyword,type:type,page:1},
-success: function(msg){
-if(msg!=0){
-list.html(msg);
-}else{
-list.html('<div class="jinsom-empty-page">没有更多内容</div>');	
-}
-}
-});	
+jinsom_search_js(keyword);
 }
 
 //搜索
@@ -1222,8 +1209,14 @@ layer.open({content:'请输入搜索关键词！',skin:'msg',time:2});
 return false;
 }
 $('.page-content').animate({ scrollTop: 0 },0);
-list=$('.jinsom-search-post-list');
 list.attr('type',type);
+
+jinsom_search_js(keyword);
+}
+
+
+function jinsom_search_js(keyword){
+list=$('.jinsom-search-post-list');
 list.prepend(jinsom.loading_post);
 $.ajax({
 type: "POST",
@@ -1237,6 +1230,38 @@ list.html('<div class="jinsom-empty-page">没有更多内容</div>');
 }
 }
 });	
+
+
+//加载更多
+search_loading = false;
+search_page=2;
+search_post_list=$('.jinsom-search-post-list');
+$('.jinsom-search-content.infinite-scroll').on('infinite',function(){
+search_type=$('.jinsom-search-tab li.on').attr('type');
+if(search_type=='user'||search_type=='forum'||search_type=='topic') return;
+if (search_loading) return;
+search_loading = true;
+search_post_list.after(jinsom.loading_post);
+keyword=$.trim($('#jinsom-search').val());
+$.ajax({
+type: "POST",
+url:  jinsom.mobile_ajax_url+"/post/search.php",
+data: {keyword:keyword,type:search_type,page:search_page},
+success: function(msg){
+if(msg!=0){
+search_post_list.append(msg);
+search_loading = false; 
+search_page++;
+}else{
+search_loading = true; 
+}
+$('.jinsom-load-post').remove();
+}
+});
+
+
+});
+
 
 }
 

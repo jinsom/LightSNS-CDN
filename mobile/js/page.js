@@ -149,34 +149,6 @@ jinsom_search(value);
 
 
 
-search_loading = false;
-search_page=2;
-search_post_list=$('.jinsom-search-post-list');
-$('.jinsom-search-content.infinite-scroll').on('infinite',function(){
-search_type=$('.jinsom-search-tab li.on').attr('type');
-if(search_type=='user'||search_type=='forum'||search_type=='topic') return;
-if (search_loading) return;
-search_loading = true;
-search_post_list.after(jinsom.loading_post);
-keyword=$.trim($('#jinsom-search').val());
-$.ajax({
-type: "POST",
-url:  jinsom.mobile_ajax_url+"/post/search.php",
-data: {keyword:keyword,type:search_type,page:search_page},
-success: function(msg){
-if(msg!=0){
-search_post_list.append(msg);
-search_loading = false; 
-search_page++;
-}else{
-search_loading = true; 
-}
-$('.jinsom-load-post').remove();
-}
-});
-
-
-});
 
 
 
