@@ -482,11 +482,15 @@ url:jinsom.jinsom_ajax_url+"/upload/avatar-base64.php",
 data:{base64:data,user_id:post_id=page.query['user_id']},
 success: function(msg){
 myApp.hideIndicator();
+if(msg.code==1){
 $('.jinsom-setting-box .avatarimg img.avatar').attr('src',msg.url);
 if(msg.self){//如果是自己操作
 $('.jinsom-mine-user-info img.avatar,.jinsom-setting-box .avatarimg img.avatar,.jinsom-home-navbar img.avatar').attr('src',msg.url);
 }
 history.back(-1);//返回上一页
+}else{
+layer.open({content:msg.msg,skin:'msg',time:2});
+}
 }
 });	
 })

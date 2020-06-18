@@ -388,13 +388,12 @@ like_dom.addClass('jinsom-had-like');//文章左侧栏
 like_dom.children('i').addClass('jinsom-shiliangzhinengduixiang31').removeClass('jinsom-xihuan2');//文章左侧栏
 like_num.html(parseInt(like_num.html())+1);  
 $(obj).parent().next().children('.jinsom-post-like-list').prepend('<a href="#" id="had_like_'+user_id+'">'+avatar+jinsom.verify+'</a>');
-layer.msg('喜欢成功！');
+// layer.msg('喜欢成功！');
 }
 $.ajax({   
 url:jinsom.jinsom_ajax_url+"/action/like-post.php",
 type:'POST',   
 data:{post_id:post_id},    
-success:function(results){}   
 }); 
 }
 
@@ -427,35 +426,31 @@ $(obj).children('i').addClass('jinsom-shiliangzhinengduixiang31').removeClass('j
 like_dom.children('i').addClass('jinsom-shiliangzhinengduixiang31').removeClass('jinsom-xihuan2');
 like_num.html(parseInt(like_num.html())+1);  
 like_dom.parent().next().children('.jinsom-post-like-list').prepend('<a href="#" id="had_like_'+user_id+'">'+avatar+jinsom.verify+'</a>');
-layer.msg('喜欢成功！');
+// layer.msg('喜欢成功！');
 }
 $.ajax({   
 url:jinsom.jinsom_ajax_url+"/action/like-post.php",
 type:'POST',   
-data:{post_id:post_id},    
-success:function(results){}   
+data:{post_id:post_id},     
 }); 
 }
 
 
-//喜欢帖子
-function jinsom_bbs_like_post(post_id,obj){
-this_dom=$(obj);
-layer.load(1);
+//收藏商品
+function jinsom_like_goods(post_id,obj){
+if($(obj).hasClass('had')){
+$(obj).removeClass('had').children('i').removeClass('jinsom-shoucang').addClass('jinsom-shoucang1');	
+$(obj).children('span').text('收藏');
+}else{
+$(obj).addClass('had').children('i').removeClass('jinsom-shoucang1').addClass('jinsom-shoucang');	
+$(obj).children('span').text('已收藏');	
+}
+
 $.ajax({   
 url:jinsom.jinsom_ajax_url+"/action/like-post.php",
 type:'POST',   
 data:{post_id:post_id},    
-success:function(msg){
-layer.closeAll('loading');
-layer.msg(msg.msg);
-if(msg.code==1){
-this_dom.html('取消喜欢').addClass('had');	
-}else{
-this_dom.html('喜欢帖子').removeClass('had');	
-}
-}   
-}); 	
+});	
 }
 
 

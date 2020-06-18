@@ -1694,7 +1694,7 @@ layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
 $(obj).addClass('had').removeClass('on').text('已领取');
 number_obj=$('.jinsom-task-form-header .header .number n');
-number=parseInt(number_obj.text());
+number=parseInt(msg.task);
 number_obj.text(number+1);
 $('.jinsom-mine-page .list-block li.task .item-after n').text(number+1);
 }
