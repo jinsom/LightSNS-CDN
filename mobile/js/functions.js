@@ -525,128 +525,51 @@ follow_dom.html('<i class="jinsom-icon jinsom-xianghuguanzhu"></i>互关');
 
 
 //动态播放视频
-function jinsom_play_video(post_id,obj){
-myApp.showIndicator();
-$.ajax({
-type: "POST",
-url: jinsom.mobile_ajax_url+"/post/video.php",
-data: {post_id:post_id},
-dataType:'json',
-async: false,
-success: function(msg){ 
-myApp.hideIndicator();
-myApp.popup('<div class="popup jinsom-video-pop"><div class="navbar jinsom-video-player-navbar"><div class="navbar-inner"><div class="left"><a href="#" class="link icon-only close-popup"><i class="jinsom-icon jinsom-fanhui2"></i></a></div></div></div><div id="jinsom-video"></div></div>');
-
-video_type=jinsom_get_file_type(msg.url);
-if(video_type=='.m3u8'){
-player1='HlsJsPlayer';
-}else if(video_type=='.flv'){
-player1='FlvJsPlayer';
-}else{
-player1='Player';	
-}
-
-var jinsom_video = new window[player1]({
-id: 'jinsom-video',
-url: msg.url,
-fluid: true,
-autoplay: true,
-"x5-video-player-type": "h5",
-"x5-video-player-fullscreen": "true",
+function jinsom_play_video(post_id,video_url,obj){
+$(obj).before('<div id="jinsom-video-'+post_id+'"></div>');
+$(obj).remove();
+video_type=jinsom_video_type(video_url);
+window['video_'+post_id]=new window[video_type]({
+id:'jinsom-video-'+post_id,
+url:video_url,
+'x5-video-player-type': 'h5',
+'x5-video-player-fullscreen': false,
+playbackRate: [0.5,0.75,1,1.5,2,4,6,8],
+fitVideoSize:'fixWidth',
+playsinline: true,
+autoplay:true,
 enterLogo:{
 url: jinsom.video_logo,
 width: 120,
 height: 50
 },
-});
-
-
-
-navbar_height=parseInt($('.navbar').height());
-w_height=parseInt($(window).height());
-$('#jinsom-video').css({'height':w_height-navbar_height+'px','margin-top':navbar_height+'px'});
-player.pause();//先关闭音乐
-$('.jinsom-player-footer-btn .play i').removeClass('jinsom-zanting1').addClass('jinsom-bofang-');
-play_post_id=$('.jinsom-player-footer-btn .play').attr('post_id');
-$('.jinsom-music-voice-'+play_post_id).html('<i class="jinsom-icon jinsom-yuyin1"> </i> 点击播放');
-$('.jinsom-pop-music-player').hide();
-
-if(myApp.device.os!='ios'){
-jinsom_video.play();	
-}
-
-if(!msg.code){
-
-
-jinsom_video.on("timeupdate", function(){
-video_time=$('#jinsom-video .xgplayer-time span').html();
-video_time_s=video_time.split(':')[video_time.split(':').length - 1];
-video_time_m=video_time.split(':',1);
-video_time_all=parseInt(video_time_m)*60+parseInt(video_time_s);
-// console.log(video_time_all);
-if(video_time_all>=msg.time){
-// myApp.closeModal();
-jinsom_video.pause();
-jinsom_video.destroy();
-$('#jinsom-video').remove();
-// jinsom_video.fullScreen.cancel();
-// window.location.reload();
-
-if(msg.type=='pay'){
-$('.jinsom-video-pop').append('\
-<div class="page-content jinsom-video-power-content" style="top:'+navbar_height+'px;">\
-<div class="box">\
-该视频需要<span>付费购买</span>才可以观看完整版</br>\
-<a href="#" class="link" onclick="jinsom_buy_post_form('+post_id+')">付费购买</a>\
-</div>\
-</div>\
-');
-}else if(msg.type=='pass'){
-$('.jinsom-video-pop').append('\
-<div class="page-content jinsom-video-power-content" style="top:'+navbar_height+'px;">\
-<div class="box">\
-该视频需要<span>输入密码</span>才可以观看完整版</br>\
-<a href="#" class="link" onclick=\'layer.open({content:"移动端暂未开启！",skin:"msg",time:2});\'>输入密码</a>\
-</div>\
-</div>\
-');	
-}else if(msg.type=='vip'){
-$('.jinsom-video-pop').append('\
-<div class="page-content jinsom-video-power-content" style="top:'+navbar_height+'px;">\
-<div class="box">\
-该视频仅限<span>会员用户</span>才可以观看完整版</br>\
-<a href="#" class="link" onclick="myApp.closeModal();jinsom_recharge_vip_type_form();">开通会员</a>\
-</div>\
-</div>\
-');	
-}else if(msg.type=='login'){
-$('.jinsom-video-pop').append('\
-<div class="page-content jinsom-video-power-content" style="top:'+navbar_height+'px;">\
-<div class="box">\
-该视频仅限<span>登录用户</span>才可以观看完整版</br>\
-<a href="#" class="link open-login-screen" onclick="myApp.closeModal();">马上登录</a>\
-</div>\
-</div>\
-');	
-}
-
-}
+ignores: ['volume','time','progress','pc']
 });
 
 }
 
+//获取视频播放类型
+function jinsom_video_type(video_url){
+var index1=video_url.lastIndexOf(".");
+var index2=video_url.length;
+var type=video_url.substring(index1,index2);
+if(type=='.m3u8'){
+return 'HlsJsPlayer';
+}else if(type=='.flv'){
+return 'FlvJsPlayer';
+}else{
+return 'Player';	
+}
+}
 
-}
-});
-}
 
 //获取文件后缀
-function jinsom_get_file_type(filename){
-var index1=filename.lastIndexOf(".");
-var index2=filename.length;
-var type=filename.substring(index1,index2);
-return type;
-}
+// function jinsom_get_file_type(filename){
+// var index1=filename.lastIndexOf(".");
+// var index2=filename.length;
+// var type=filename.substring(index1,index2);
+// return type;
+// }
 
 
 //播放视频
@@ -833,17 +756,21 @@ myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
 $(obj).removeAttr('onclick');
-$('.jinsom-video-img-'+post_id+' .tips').remove();//如果是视频则移除视频的提示。
-function c(){myApp.getCurrentView().router.back();}setTimeout(c,1500);
+function c(){window.location.href="/?p="+post_id;}setTimeout(c,1500);
+
+
+// $('.jinsom-video-img-'+post_id+' .tips').remove();//如果是视频则移除视频的提示。
+// function c(){myApp.getCurrentView().router.back();}setTimeout(c,1500);
 //将列表也同步状态
-$.ajax({
-type: "POST",
-url:jinsom.mobile_ajax_url+"/post/hide-content.php",
-data: {post_id:post_id,type:'pay'},
-success: function(msg){
-$('.jinsom-tips-'+post_id).removeClass('jinsom-tips').addClass('jinsom-hide-content').html(msg.content);
-}
-});
+// $.ajax({
+// type: "POST",
+// url:jinsom.mobile_ajax_url+"/post/hide-content.php",
+// data: {post_id:post_id,type:'pay'},
+// success: function(msg){
+// $('.jinsom-tips-'+post_id).removeClass('jinsom-tips').addClass('jinsom-hide-content').html(msg.content);
+// }
+// });
+
 }else if(msg.code==3){//弹出金币充值窗口
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/mywallet/recharge-credit.php'});
 }
@@ -851,6 +778,13 @@ myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page
 });    
 }
 
+function jinsom_video_password(post_id){
+if(!jinsom.is_login){
+myApp.loginScreen();  
+return false;
+}
+layer.open({content:'暂未开启！',skin:'msg',time:2});
+}
 
 //关注论坛
 function jinsom_bbs_like(bbs_id,obj){

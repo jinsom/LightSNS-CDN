@@ -673,16 +673,6 @@ layer.msg('请输入视频地址或上传视频！');
 return false;	
 }
 
-// video_ret=/^https?:\/\/\S+\.mp4|m3u8$/;
-// if (!video_ret.test(video_url)){
-// layer.msg('只支持mp4和m3u8格式的视频外链，请以http开头'); 
-// return false;
-// }  
-// video_type=jinsom_get_file_type(video_url);
-// if(video_type!='.mp4'&&video_type!='.m3u8'&&video_type!='.flv'&&video_type!='.mov'){
-// layer.msg('仅支持MP4，m3u8，flv，mov的视频格式！');
-// return false;		
-// }
 
 video_img=$('#jinsom-video-img-url').val();
 

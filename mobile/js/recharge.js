@@ -37,7 +37,8 @@ success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
-history.back(-1);
+function d(){window.location.reload();}setTimeout(d,1500);//刷新页面
+// history.back(-1);
 }
 
 }

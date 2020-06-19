@@ -455,74 +455,6 @@ data:{post_id:post_id},
 
 
 
-
-
-//弹窗视频
-function jinsom_pop_video(video_url,video_img,obj){
-var title =$(obj).attr('data');
-if(title==''){title='每日视频推荐';}
-layer.open({
-type: 1,
-title: title,
-area: ['600px','380px'],
-fixed:false,
-shade: 0.3,
-resize:false,
-skin:'jinsom-pop-video',
-closeBtn: 1,
-anim:1,
-shadeClose: false,
-content: '<div id="jinsom-pop-video"></div>'
-});
-video_type=jinsom_get_file_type(video_url);
-
-
-if(video_type!='.mp4'&&video_type!='.m3u8'&&video_type!='.flv'&&video_type!='.mov'){
-layer.msg('仅支持MP4，m3u8，flv，mov的视频格式！');
-return false;		
-}
-
-if(video_type=='.m3u8'){
-player='HlsJsPlayer';
-}else if(video_type=='.flv'){
-player='FlvJsPlayer';
-}else{
-player='Player';	
-}
-
-var dp_pop = new window[player]({
-id: 'jinsom-pop-video',
-url: video_url,
-fluid: true,
-autoplay: true,
-poster: video_img,
-enterLogo:{
-url: jinsom.video_logo,
-width: 120,
-height: 50
-},
-});
-
-$('body').on('contextmenu','video',function(){return false;});
-
-
-// dp_pop.play();
-dp_pop.on("error", function(){
-layer.msg('视频地址加载失败！');
-});
-dp_pop.on("fullscreen", function(){
-$('.layui-layer-shade').hide();
-$('.jinsom-header,.jinsom-right-bar').hide();
-
-});
-dp_pop.on("fullscreen_cancel", function(){
-$('.layui-layer-shade').show();
-$('.jinsom-header,.jinsom-right-bar').show();
-});
-}
-
-
-
 //关注论坛
 function jinsom_bbs_like(bbs_id,obj){
 if(!jinsom.is_login){
@@ -3025,64 +2957,58 @@ function d(){window.location.reload();}setTimeout(d,2000);
 
 }
 
-//视频权限
-function jinsom_video_power(post_id,stop_time,stop_time_text,type){
-if(type=='login'){
-tip='登录用户';
-action='<m class="jinsom-video-tips-btn opacity" onclick="jinsom_pop_login_style()">马上登录</m>';	
-}else if(type=='vip'){
-tip='会员用户';
-action='<m class="jinsom-video-tips-btn opacity" onclick="jinsom_recharge_vip_form()">开通会员</m>';		
-}else if(type=='password'){
-tip='输入密码';
-action='<m class="jinsom-video-tips-btn opacity" onclick="jinsom_music_password_form('+post_id+')">输入密码</m>';		
-}else if(type=='pay'){
-tip='付费购买';
-action='<m class="jinsom-video-tips-btn opacity" onclick="jinsom_show_pay_form('+post_id+')">购买</m>';		
-}
-
-//$('.jinsom-video-tips-'+post_id).html('<div class="jinsom-video-time-tips">仅限<span>'+tip+'</span>可以观看完整版，您可以试看'+stop_time_text+'</div>');
-eval('video_'+post_id).on("timeupdate", function(){
-video_time=$('#jinsom_video_'+post_id+' .xgplayer-time span').html();
-video_time_s=video_time.split(':')[video_time.split(':').length - 1];
-video_time_m=video_time.split(':',1);
-video_time_all=parseInt(video_time_m)*60+parseInt(video_time_s);
-if(video_time_all>=stop_time){
-eval('video_'+post_id).pause();
-jinsom_video_exitfullscreen();//退出全屏
-$('.jinsom-video-tips-'+post_id).html('\
-<div class="jinsom-video-tips-content">\
-<div class="jinsom-video-tips-box">\
-该视频仅限<span>'+tip+'</span>可以观看完整版</br>\
-'+action+'\
-</div>\
-</div>');
-}
+//视频播放
+function jinsom_post_video(post_id,video_url,cover,autoplay){
+video_type=jinsom_video_type(video_url);
+window['video_'+post_id]=new window[video_type]({
+id:'jinsom-video-'+post_id,
+url:video_url,
+poster:cover,
+playbackRate: [0.5,0.75,1,1.5,2,4,6,8],
+fitVideoSize:'fixWidth',
+autoplay:autoplay,
+enterLogo:{
+url: jinsom.video_logo,
+width: 120,
+height: 50
+},
 });
+// window['video_'+post_id].on('play',function(){
+// alert(SetCookie('current_video',post_id));
+
+// })
+
 }
 
-//退出全屏
-function jinsom_video_exitfullscreen(){
-var el = document;
-var cfs = el.cancelFullScreen || el.webkitCancelFullScreen ||
-el.mozCancelFullScreen || el.exitFullScreen;
-if (cfs) { //typeof cfs != "undefined" && cfs
-cfs.call(el);
-} else if (typeof window.ActiveXObject != "undefined") {
-//for IE，这里和fullScreen相同，模拟按下F11键退出全屏
-var wscript = new ActiveXObject("WScript.Shell");
-if (wscript != null) {
-wscript.SendKeys("{F11}");
+//获取视频播放类型
+function jinsom_video_type(video_url){
+var index1=video_url.lastIndexOf(".");
+var index2=video_url.length;
+var type=video_url.substring(index1,index2);
+if(type=='.m3u8'){
+return 'HlsJsPlayer';
+}else if(type=='.flv'){
+return 'FlvJsPlayer';
+}else{
+return 'Player';	
 }
-}	
 }
 
-//获取文件后缀
-function jinsom_get_file_type(filename){
-var index1=filename.lastIndexOf(".");
-var index2=filename.length;
-var type=filename.substring(index1,index2);
-return type;
+//弹窗视频
+function jinsom_pop_video(video_url,video_img,obj){
+var rand = Math.floor(Math.random()*(100000 - 9999999) + 9999999);
+var title =$(obj).attr('data');
+if(title==''){title='每日视频推荐';}
+layer.open({
+type: 1,
+title: title,
+area: ['600px','380px'],
+fixed:false,
+resize:false,
+skin:'jinsom-pop-video',
+content: '<div id="jinsom-video-'+rand+'"></div>'
+});
+jinsom_post_video(rand,video_url,video_img,true);
 }
 
 
