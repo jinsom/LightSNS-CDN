@@ -2967,17 +2967,23 @@ poster:cover,
 playbackRate: [0.5,0.75,1,1.5,2,4,6,8],
 fitVideoSize:'fixWidth',
 autoplay:autoplay,
-enterLogo:{
-url: jinsom.video_logo,
-width: 120,
-height: 50
-},
+// enterLogo:{
+// url: jinsom.video_logo,
+// width: 120,
+// height: 50
+// },
 });
-// window['video_'+post_id].on('play',function(){
-// alert(SetCookie('current_video',post_id));
-
-// })
-
+window['video_'+post_id].on('play',function(){
+if($('.jinsom-video-playing').length>0){
+current_post_id=$('.jinsom-video-playing').attr('post_id');
+window['video_'+current_post_id].pause();
+}
+	
+$('#jinsom-video-'+post_id).addClass('jinsom-video-playing');
+})
+window['video_'+post_id].on('pause',function(){
+$('#jinsom-video-'+post_id).removeClass('jinsom-video-playing');
+})
 }
 
 //获取视频播放类型

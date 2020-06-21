@@ -2,13 +2,19 @@
 
 //---------------------------内容详情页面-----------------
 myApp.onPageBeforeInit('post-single',function(page){
-jinsom_lightbox();
 post_id=page.query['post_id'];
 if(jinsom.permalink_structure){//固定连接
 window.history.pushState(null,null,page.query['url']+'#'+Math.random().toString(36).substr(2,5));	
 }else{//朴素
 window.history.pushState(null,null,'/?p='+post_id+'#'+Math.random().toString(36).substr(2,5));	
 }
+
+if($('.jinsom-video-playing').length>0){
+current_post_id=$('.jinsom-video-playing').attr('post_id');
+window['video_'+current_post_id].pause();
+}
+
+jinsom_lightbox();//灯箱
 
 //音乐模块
 play_post_id=$('.jinsom-player-footer-btn .play').attr('post_id');

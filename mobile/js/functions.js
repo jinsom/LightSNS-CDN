@@ -526,7 +526,7 @@ follow_dom.html('<i class="jinsom-icon jinsom-xianghuguanzhu"></i>互关');
 
 //动态播放视频
 function jinsom_play_video(post_id,video_url,obj){
-$(obj).before('<div id="jinsom-video-'+post_id+'"></div>');
+$(obj).before('<div id="jinsom-video-'+post_id+'" post_id="'+post_id+'"></div>');
 $(obj).remove();
 video_type=jinsom_video_type(video_url);
 window['video_'+post_id]=new window[video_type]({
@@ -538,14 +538,19 @@ playbackRate: [0.5,0.75,1,1.5,2,4,6,8],
 fitVideoSize:'fixWidth',
 playsinline: true,
 autoplay:true,
-enterLogo:{
-url: jinsom.video_logo,
-width: 120,
-height: 50
-},
 ignores: ['volume','time','progress','pc']
 });
-
+window['video_'+post_id].on('play',function(){
+if($('.jinsom-video-playing').length>0){
+current_post_id=$('.jinsom-video-playing').attr('post_id');
+window['video_'+current_post_id].pause();
+}
+	
+$('#jinsom-video-'+post_id).addClass('jinsom-video-playing');
+})
+window['video_'+post_id].on('pause',function(){
+$('#jinsom-video-'+post_id).removeClass('jinsom-video-playing');
+})
 }
 
 //获取视频播放类型
@@ -560,64 +565,6 @@ return 'FlvJsPlayer';
 }else{
 return 'Player';	
 }
-}
-
-
-//获取文件后缀
-// function jinsom_get_file_type(filename){
-// var index1=filename.lastIndexOf(".");
-// var index2=filename.length;
-// var type=filename.substring(index1,index2);
-// return type;
-// }
-
-
-//播放视频
-function jinsom_play_video_custom(url){
-myApp.popup('<div class="popup jinsom-video-pop"><div class="navbar jinsom-video-player-navbar"><div class="navbar-inner"><div class="left"><a href="#" class="link icon-only close-popup"><i class="jinsom-icon jinsom-fanhui2"></i></a></div></div></div><div id="jinsom-video"></div></div>');
-
-video_type=jinsom_get_file_type(url);
-if(video_type=='.m3u8'){
-player1='HlsJsPlayer';
-}else if(video_type=='.flv'){
-player1='FlvJsPlayer';
-}else{
-player1='Player';	
-}
-
-// var jinsom_video = new DPlayer({
-// element: document.getElementById('jinsom-video'),
-// screenshot:false,
-// video: {url:url}
-// });	
-
-let jinsom_video = new window[player1]({
-id: 'jinsom-video',
-url: url,
-fluid: true,
-autoplay: true,
-"x5-video-player-type": "h5",
-"x5-video-player-fullscreen": "true",
-enterLogo:{
-url: jinsom.video_logo,
-width: 120,
-height: 50
-},
-});
-
-navbar_height=parseInt($('.navbar').height());
-w_height=parseInt($(window).height());
-$('#jinsom-video').css({'height':w_height-navbar_height+'px','margin-top':navbar_height+'px'});
-player.pause();//先关闭音乐
-$('.jinsom-player-footer-btn .play i').removeClass('jinsom-zanting1').addClass('jinsom-bofang-');
-play_post_id=$('.jinsom-player-footer-btn .play').attr('post_id');
-$('.jinsom-music-voice-'+play_post_id).html('<i class="jinsom-icon jinsom-yuyin1"> </i> 点击播放');
-$('.jinsom-pop-music-player').hide();
-
-if(myApp.device.os!='ios'){
-jinsom_video.play();	
-}
-
 }
 
 
@@ -1129,7 +1076,7 @@ $('.jinsom-search-tab').show();
 $('.jinsom-search-content').css({'margin-top':'10vw','background-color':'#eeeeee'});
 $('.jinsom-search-hot,.jinsom-pop-search-bbs,.jinsom-pop-search-topic').remove();
 $('#jinsom-search').val(keyword);
-jinsom_search_js(keyword);
+jinsom_search_js(keyword,type);
 }
 
 //搜索
@@ -1145,11 +1092,11 @@ return false;
 $('.page-content').animate({ scrollTop: 0 },0);
 list.attr('type',type);
 
-jinsom_search_js(keyword);
+jinsom_search_js(keyword,type);
 }
 
 
-function jinsom_search_js(keyword){
+function jinsom_search_js(keyword,type){
 list=$('.jinsom-search-post-list');
 list.prepend(jinsom.loading_post);
 $.ajax({
