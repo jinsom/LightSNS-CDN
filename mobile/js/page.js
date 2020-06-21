@@ -1332,7 +1332,7 @@ ctx.drawImage(video[0], 0, 0, canvas.width*2, canvas.height);
 }else{
 ctx.drawImage(video[0], 0, 0, canvas.width, canvas.height);	
 }
-video_cover=canvas.toDataURL("image/png");
+video_cover=canvas.toDataURL("image/jpeg");
 
 $('.jinsom-publish-video-set-cover-content').html('<img src="'+video_cover+'">');
 $.ajax({
