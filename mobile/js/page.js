@@ -1284,12 +1284,14 @@ $('#jinsom-video-url').val(msg.file_url);
 var jinsom_view_video = new Player({
 id: 'jinsom-publish-video-demo',
 url:msg.file_url,
-fluid: true,
-autoplay: true,
-videoInit: true,
-playsinline: true,
-whitelist: [''],
 'x5-video-player-type': 'h5',
+'x5-video-player-fullscreen': false,
+playbackRate: [0.5,0.75,1,1.5,2,4,6,8],
+fitVideoSize:'fixWidth',
+playsinline: true,
+videoInit: true,
+autoplay:true,
+ignores: ['volume','time','progress','pc']
 });
 
 video = $('#jinsom-publish-video-demo video');
@@ -1316,12 +1318,16 @@ $('#jinsom-video-img-url,#jinsom-video-url').val('');
 $('.jinsom-remove-video-toolbar .read').click(function(){
 if(!$(this).hasClass('on')){
 var canvas = document.createElement("canvas");
-canvas.width = video[0].videoWidth;
-canvas.height = video[0].videoHeight;
+// canvas.width = video[0].videoWidth;
+// canvas.height = video[0].videoHeight;
+video_width=$('#jinsom-publish-video-demo').width();
+video_height=$('#jinsom-publish-video-demo').height();
+canvas.width=video_width;
+canvas.height=video_height;
 var ctx=canvas.getContext("2d");
-if(myApp.device.os=='ios'&&jinsom_get_file_type(msg.file_url)=='.mov'&&(video[0].videoHeight>video[0].videoWidth)){
+if(myApp.device.os=='ios'&&jinsom_get_file_type(msg.file_url)=='.mov'&&(video_height>video_width)){
 ctx.rotate(90*Math.PI/180);
-ctx.translate(0,-video[0].videoWidth);
+ctx.translate(0,-video_width);
 ctx.drawImage(video[0], 0, 0, canvas.width*2, canvas.height);
 }else{
 ctx.drawImage(video[0], 0, 0, canvas.width, canvas.height);	
@@ -1335,9 +1341,14 @@ dataType:'json',
 url:jinsom.jinsom_ajax_url+"/upload/video-img-base64.php",
 data:{base64:video_cover},
 success: function(rel){
+if(rel.code==1){
 $('#jinsom-video-img-url').val(rel.url);	
 $('.jinsom-remove-video-toolbar span.read').addClass('on').text('已截取封面');
 $('.jinsom-publish-video-set-cover-content').html('<img src="'+rel.url+'">');
+}else{
+layer.open({content:rel.msg,skin:'msg',time:2});
+$('.jinsom-remove-video-toolbar span.read').addClass('on').removeAttr('data-popup').removeClass('open-popup');
+}
 }
 });	
 }
