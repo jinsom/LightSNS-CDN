@@ -83,7 +83,10 @@ clickContent: function(current, event){
 return "close";
 },
 },
-hash : false
+hash:false,
+afterShow: function(instance,current){
+window.history.pushState(null,null,'/?lightbox&r='+Math.random().toString(36).substr(2,5));
+},
 });	
 }
 

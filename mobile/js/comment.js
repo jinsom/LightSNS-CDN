@@ -2,12 +2,23 @@
 //评论内容
 function jinsom_comment(post_id,ticket,randstr){
 content=$('#jinsom-comment-content-'+post_id).val();
+img='';
+img_html='';
+if($('#jinsom-publish-images-list li').length>0){
+$('#jinsom-publish-images-list li').each(function(){
+img+=$(this).children('a').attr('href')+',';
+img_html+='<a data-fancybox="gallery-new" href="'+$(this).children('a').attr('href')+'">'+$(this).children('a').html()+'</a>';
+});
+img=img.substr(0,img.length-1);
+img_html='<div class="jinsom-comment-image-list clear">'+img_html+'</div>';
+}
+
 myApp.showIndicator();
 $.ajax({
 type:"POST",
 dataType:'json',
 url:jinsom.jinsom_ajax_url+"/action/comment.php",
-data: {content:content,post_id:post_id,ticket:ticket,randstr:randstr},
+data: {content:content,post_id:post_id,ticket:ticket,randstr:randstr,img:img},
 success: function(msg){
 myApp.hideIndicator();
 comment_list=$('.jinsom-single-comment-list-'+post_id);
@@ -38,6 +49,7 @@ comment_list.prepend('\
 </div>\
 </div>\
 <div class="content">'+msg.content+'</div>\
+'+img_html+'\
 <div class="footer">\
 <span class="time">刚刚</span>\
 <span class="comment">\
@@ -47,7 +59,7 @@ comment_list.prepend('\
 </div>\
 </div>\
 ');
-// $('.page-on-left .page-content').animate({scrollTop:comment_list.offset().top},800);
+jinsom_lightbox();
 
 }else if(msg.code==2){//没有绑定手机号
 layer.open({content:msg.msg,skin:'msg',time:2});
@@ -63,12 +75,24 @@ layer.open({content:msg.msg,skin:'msg',time:2});
 //回复帖子 一级
 function jinsom_bbs_comment(post_id,bbs_id,ticket,randstr){
 content=$('#jinsom-comment-content-'+post_id).val();
+img='';
+img_html='';
+if($('#jinsom-publish-images-list li').length>0){
+$('#jinsom-publish-images-list li').each(function(){
+img+=$(this).children('a').attr('href')+',';
+img_html+='<a data-fancybox="gallery-new" href="'+$(this).children('a').attr('href')+'">'+$(this).children('a').html()+'</a>';
+});
+img=img.substr(0,img.length-1);
+img_html='<div class="jinsom-comment-image-list clear">'+img_html+'</div>';
+}
+
+
 myApp.showIndicator();
 $.ajax({
 type:"POST",
 dataType:'json',
 url:jinsom.jinsom_ajax_url+"/action/comment-bbs.php",
-data: {content:content,post_id:post_id,bbs_id:bbs_id,type:1,ticket:ticket,randstr:randstr},
+data: {content:content,post_id:post_id,bbs_id:bbs_id,type:1,ticket:ticket,randstr:randstr,img:img},
 success: function(msg){
 myApp.hideIndicator();
 comment_list=$('.jinsom-single-comment-list-'+post_id);
@@ -89,7 +113,7 @@ comment_num.html(parseInt(comment_num.html())+1);
 $('.jinsom-post-'+post_id).next('.jinsom-single-comment').children('.header').find('span').html(parseInt(comment_num.html()));
 $('.jinsom-post-'+post_id).parent().prev().find('.number').html(parseInt(comment_num.html())+'条回帖');
 
-comment_list.append('\
+comment_list.prepend('\
 <div class="jinsom-comment-'+msg.id+'">\
 <div class="up" onclick="jinsom_comment_up('+msg.id+',this)"><i class="fa fa-thumbs-o-up"></i><m>0</m></div>\
 <div class="header clear">\
@@ -100,6 +124,7 @@ comment_list.append('\
 </div>\
 </div>\
 <div class="content">'+msg.content+'</div>\
+'+img_html+'\
 <div class="footer">\
 <span class="time">刚刚</span>\
 <span class="comment">\
@@ -108,7 +133,7 @@ comment_list.append('\
 </div>\
 </div>\
 ');
-// $('.page-on-left .page-content').animate({scrollTop:comment_list.offset().top},800);
+jinsom_lightbox()
 
 if($('.jinsom-tips-'+post_id).hasClass('jinsom-comment-can-see')){//回复可见
 

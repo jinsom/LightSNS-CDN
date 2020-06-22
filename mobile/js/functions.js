@@ -1399,10 +1399,17 @@ $('.jinsom-leaderboard-content').html(msg);
 });
 }
 
-//快捷插入表情
+//快捷回复
 function jinsom_quick_reply(a,obj){
-content=$(obj).parent().next('textarea');
+content=$(obj).parent().next().children('textarea');
 content.val(content.val()+a);
+}
+
+//快捷插入表情
+function jinsom_add_smile(a,type,obj){//普通
+content=$('.jinsom-smile-textarea');
+content.val(content.val()+a);
+layer.closeAll();
 }
 
 //保释黑名单用户
@@ -1678,6 +1685,10 @@ height:height,
 text:link
 });
 }
+
+
+
+
 
 
 //瀑布流图片预加载

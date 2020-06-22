@@ -45,6 +45,7 @@ comment_list.append(msg);
 comment_page++;
 comment_loading = false;  
 } 
+jinsom_lightbox();//灯箱
 }
 });
 });
@@ -86,6 +87,134 @@ if(res.ret === 0){jinsom_comment(post_id,res.ticket,res.randstr);}
 });
 }
 
+$('.jinsom-comment-content-main .smile').click(function(){
+layer.open({
+type: 1,
+content: $(this).next().html(),
+anim: 'up',
+style: 'position:fixed;bottom:0;left:0;width:100%;height:65vw;border:none;'
+});
+});
+
+
+document.querySelector('#file').addEventListener('change',function(){
+var that = this;
+var number=that.files.length;
+var words_images_max=6;	
+
+if(number>words_images_max||$('#jinsom-publish-images-list li').length>=words_images_max){
+layer.open({content:'最多只能上传'+words_images_max+'张图片！',skin:'msg',time:2});
+return false;
+}
+
+a=0;//计时器
+for(i = 0; i< number; i ++) {
+$('.jinsom-publish-words-form .add i').hide();//显示加载loading
+$('.jinsom-publish-words-form .add span').css('display','inline-block');//显示加载loading
+info=that.files[i];
+if(info.type!='image/gif'){
+lrz(info)
+.then(function (rst) {
+$.ajax({
+type: "POST",
+dataType:'json',
+url:jinsom.jinsom_ajax_url+"/upload/words-base64.php",
+data:{base64:rst.base64},
+success: function(msg){
+img_count=$('#jinsom-publish-images-list li').length;//获取已经上传的图片数量
+if(img_count>=words_images_max-1){//如果已经上传了9张
+$('.jinsom-publish-words-form .add').hide();//隐藏添加按钮
+}
+if(img_count<words_images_max){//如果上传的超过了9张就不载入容器
+if(msg.code==1){
+$('#jinsom-publish-images-list').append('<li><i class="jinsom-icon jinsom-guanbi" onclick="jinsom_remove_image('+words_images_max+',this)"></i><a href="'+msg.url+'" data-fancybox="gallery-publish"><img src="'+msg.url+'"></a></li>');
+jinsom_lightbox();//渲染灯箱
+a++;
+
+if(a==number){//如果照片已经上传完成就关闭
+$('#file').val('');//清空已选状态
+$('.jinsom-publish-words-form .add i').show();//关闭loading动画
+$('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
+}
+
+}else{
+layer.open({content:msg.msg,skin:'msg',time:2});
+}
+
+}else{
+$('#file').val('');//清空已选状态
+$('.jinsom-publish-words-form .add i').show();//关闭loading动画
+$('.jinsom-publish-words-form .add span').hide();	//关闭loading动画	
+}
+
+}
+});
+});
+
+}else{//gif图片上传
+if(info.size/(1024*1024)<1){
+var reader = new FileReader();
+reader.onload = function (evt) {
+image=evt.target.result;
+$.ajax({
+type: "POST",
+dataType:'json',
+url:jinsom.jinsom_ajax_url+"/upload/words-base64.php",
+data:{base64:image},
+success: function(msg){
+img_count=$('#jinsom-publish-images-list li').length;//获取已经上传的图片数量
+if(img_count>=words_images_max-1){//如果已经上传了9张
+$('.jinsom-publish-words-form .add').hide();//隐藏添加按钮
+}
+if(img_count<words_images_max){//如果上传的超过了9张就不载入容器
+if(msg.code==1){
+$('#jinsom-publish-images-list').append('<li><i class="jinsom-icon jinsom-guanbi" onclick="jinsom_remove_image('+words_images_max+',this)"></i><a href="'+msg.url+'" data-fancybox="gallery-publish"><img src="'+msg.url+'"></a></li>');
+jinsom_lightbox();//渲染灯箱
+a++;
+
+if(a==number){//如果照片已经上传完成就关闭
+$('#file').val('');//清空已选状态
+$('.jinsom-publish-words-form .add i').show();//关闭loading动画
+$('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
+}
+
+}else{
+layer.open({content:msg.msg,skin:'msg',time:2});
+}
+
+}else{
+$('#file').val('');//清空已选状态
+$('.jinsom-publish-words-form .add i').show();//关闭loading动画
+$('.jinsom-publish-words-form .add span').hide();	//关闭loading动画	
+}
+
+}
+});
+
+
+}
+reader.readAsDataURL(info);
+}else{
+layer.open({content:'上传的动图不能超过1MB！',skin:'msg',time:2});
+$('#file').val('');//清空已选状态
+$('.jinsom-publish-words-form .add i').show();//关闭loading动画
+$('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
+}
+
+
+
+}
+
+}
+});
+
+//图片拖动排序
+var el = document.getElementById('jinsom-publish-images-list');
+var sortable = Sortable.create(el);
+
+
+
+
 });
 
 
@@ -112,6 +241,130 @@ if(res.ret === 0){jinsom_bbs_comment(post_id,bbs_id,res.ticket,res.randstr);}
 });
 }
 
+$('.jinsom-comment-content-main .smile').click(function(){
+layer.open({
+type: 1,
+content: $(this).next().html(),
+anim: 'up',
+style: 'position:fixed;bottom:0;left:0;width:100%;height:65vw;border:none;'
+});
+});
+
+document.querySelector('#file').addEventListener('change',function(){
+var that = this;
+var number=that.files.length;
+var words_images_max=6;	
+
+if(number>words_images_max||$('#jinsom-publish-images-list li').length>=words_images_max){
+layer.open({content:'最多只能上传'+words_images_max+'张图片！',skin:'msg',time:2});
+return false;
+}
+
+a=0;//计时器
+for(i = 0; i< number; i ++) {
+$('.jinsom-publish-words-form .add i').hide();//显示加载loading
+$('.jinsom-publish-words-form .add span').css('display','inline-block');//显示加载loading
+info=that.files[i];
+if(info.type!='image/gif'){
+lrz(info)
+.then(function (rst) {
+$.ajax({
+type: "POST",
+dataType:'json',
+url:jinsom.jinsom_ajax_url+"/upload/words-base64.php",
+data:{base64:rst.base64},
+success: function(msg){
+img_count=$('#jinsom-publish-images-list li').length;//获取已经上传的图片数量
+if(img_count>=words_images_max-1){//如果已经上传了9张
+$('.jinsom-publish-words-form .add').hide();//隐藏添加按钮
+}
+if(img_count<words_images_max){//如果上传的超过了9张就不载入容器
+if(msg.code==1){
+$('#jinsom-publish-images-list').append('<li><i class="jinsom-icon jinsom-guanbi" onclick="jinsom_remove_image('+words_images_max+',this)"></i><a href="'+msg.url+'" data-fancybox="gallery-publish"><img src="'+msg.url+'"></a></li>');
+jinsom_lightbox();//渲染灯箱
+a++;
+
+if(a==number){//如果照片已经上传完成就关闭
+$('#file').val('');//清空已选状态
+$('.jinsom-publish-words-form .add i').show();//关闭loading动画
+$('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
+}
+
+}else{
+layer.open({content:msg.msg,skin:'msg',time:2});
+}
+
+}else{
+$('#file').val('');//清空已选状态
+$('.jinsom-publish-words-form .add i').show();//关闭loading动画
+$('.jinsom-publish-words-form .add span').hide();	//关闭loading动画	
+}
+
+}
+});
+});
+
+}else{//gif图片上传
+if(info.size/(1024*1024)<1){
+var reader = new FileReader();
+reader.onload = function (evt) {
+image=evt.target.result;
+$.ajax({
+type: "POST",
+dataType:'json',
+url:jinsom.jinsom_ajax_url+"/upload/words-base64.php",
+data:{base64:image},
+success: function(msg){
+img_count=$('#jinsom-publish-images-list li').length;//获取已经上传的图片数量
+if(img_count>=words_images_max-1){//如果已经上传了9张
+$('.jinsom-publish-words-form .add').hide();//隐藏添加按钮
+}
+if(img_count<words_images_max){//如果上传的超过了9张就不载入容器
+if(msg.code==1){
+$('#jinsom-publish-images-list').append('<li><i class="jinsom-icon jinsom-guanbi" onclick="jinsom_remove_image('+words_images_max+',this)"></i><a href="'+msg.url+'" data-fancybox="gallery-publish"><img src="'+msg.url+'"></a></li>');
+jinsom_lightbox();//渲染灯箱
+a++;
+
+if(a==number){//如果照片已经上传完成就关闭
+$('#file').val('');//清空已选状态
+$('.jinsom-publish-words-form .add i').show();//关闭loading动画
+$('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
+}
+
+}else{
+layer.open({content:msg.msg,skin:'msg',time:2});
+}
+
+}else{
+$('#file').val('');//清空已选状态
+$('.jinsom-publish-words-form .add i').show();//关闭loading动画
+$('.jinsom-publish-words-form .add span').hide();	//关闭loading动画	
+}
+
+}
+});
+
+
+}
+reader.readAsDataURL(info);
+}else{
+layer.open({content:'上传的动图不能超过1MB！',skin:'msg',time:2});
+$('#file').val('');//清空已选状态
+$('.jinsom-publish-words-form .add i').show();//关闭loading动画
+$('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
+}
+
+
+
+}
+
+}
+});
+
+//图片拖动排序
+var el = document.getElementById('jinsom-publish-images-list');
+var sortable = Sortable.create(el);
+
 });
 
 //--------------------------- 二级回帖-----------------
@@ -131,6 +384,15 @@ new TencentCaptcha(document.getElementById('comment-3'),jinsom.machine_verify_ap
 if(res.ret === 0){jinsom_bbs_comment_floor(comment_id,post_id,bbs_id,res.ticket,res.randstr);}
 });
 }
+
+$('.jinsom-comment-content-main .smile').click(function(){
+layer.open({
+type: 1,
+content: $(this).next().html(),
+anim: 'up',
+style: 'position:fixed;bottom:0;left:0;width:100%;height:65vw;border:none;'
+});
+});
 
 });
 
@@ -209,6 +471,50 @@ window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(3
 myApp.onPageBeforeInit('send-gift',function(page){
 window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 });
+
+//--------------------------sns默认页面-----------------
+myApp.onPageBeforeInit('sns',function(page){
+window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
+
+//if(jinsom.mobile_sns_slider){//首页幻灯片
+$('#jinsom-sns-slider').owlCarousel({
+items: 1,
+margin:15,
+autoplay:true,
+autoplayTimeout:5000,
+loop: true,
+});
+//}
+
+//加载更多内容
+sns_loading = false;
+sns_page = 2;
+index_post_list=$('.jinsom-post-list');
+$('.jinsom-sns-page-content.infinite-scroll').on('infinite',function(){
+if(sns_loading) return;
+sns_loading = true;
+index_post_list.after(jinsom.loading_post);
+type=$('.jinsom-home-menu li.on').attr('data');
+$.ajax({
+type: "POST",
+url:  jinsom.mobile_ajax_url+"/post/data.php",
+data: {page:sns_page,type:type,load_type:'more'},
+success: function(msg){
+$('.jinsom-load-post').remove();
+if(msg==0){
+sns_loading = true; 
+}else{
+index_post_list.append(msg);
+jinsom_lightbox()
+sns_page++;
+sns_loading = false;  
+} 
+}
+});
+}); 
+
+});
+
 
 //--------------------------实时动态-----------------
 myApp.onPageBeforeInit('now',function(page){
@@ -1204,6 +1510,7 @@ for(i = 0; i< number; i ++) {
 $('.jinsom-publish-words-form .add i').hide();//显示加载loading
 $('.jinsom-publish-words-form .add span').css('display','inline-block');//显示加载loading
 info=that.files[i];
+if(info.type!='image/gif'){
 lrz(info)
 .then(function (rst) {
 $.ajax({
@@ -1240,13 +1547,62 @@ $('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
 
 }
 });
-})
-.catch(function (err) {
-// 处理失败会执行
-})
-.always(function (){
-
 });
+
+}else{//gif图片上传
+if(info.size/(1024*1024)<1){
+var reader = new FileReader();
+reader.onload = function (evt) {
+image=evt.target.result;
+$.ajax({
+type: "POST",
+dataType:'json',
+url:jinsom.jinsom_ajax_url+"/upload/words-base64.php",
+data:{base64:image},
+success: function(msg){
+img_count=$('#jinsom-publish-images-list li').length;//获取已经上传的图片数量
+if(img_count>=words_images_max-1){//如果已经上传了9张
+$('.jinsom-publish-words-form .add').hide();//隐藏添加按钮
+}
+if(img_count<words_images_max){//如果上传的超过了9张就不载入容器
+if(msg.code==1){
+$('#jinsom-publish-images-list').append('<li><i class="jinsom-icon jinsom-guanbi" onclick="jinsom_remove_image('+words_images_max+',this)"></i><a href="'+msg.url+'" data-fancybox="gallery-publish"><img src="'+msg.url+'"></a></li>');
+jinsom_lightbox();//渲染灯箱
+a++;
+
+if(a==number){//如果照片已经上传完成就关闭
+$('#file').val('');//清空已选状态
+$('.jinsom-publish-words-form .add i').show();//关闭loading动画
+$('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
+}
+
+}else{
+layer.open({content:msg.msg,skin:'msg',time:2});
+}
+
+}else{
+$('#file').val('');//清空已选状态
+$('.jinsom-publish-words-form .add i').show();//关闭loading动画
+$('.jinsom-publish-words-form .add span').hide();	//关闭loading动画	
+}
+
+}
+});
+
+
+}
+reader.readAsDataURL(info);
+}else{
+layer.open({content:'上传的动图不能超过1MB！',skin:'msg',time:2});
+$('#file').val('');//清空已选状态
+$('.jinsom-publish-words-form .add i').show();//关闭loading动画
+$('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
+}
+
+
+
+}
+
 }
 });
 
@@ -1490,6 +1846,16 @@ $('.jinsom-publish-power-form').html(msg);
 }
 });
 
+
+
+$('.jinsom-publish-words-form .smile').click(function(){
+layer.open({
+type: 1,
+content: $(this).next().html(),
+anim: 'up',
+style: 'position:fixed;bottom:0;left:0;width:100%;height:65vw;border:none;'
+});
+});
 
 
 });
