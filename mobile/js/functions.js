@@ -240,7 +240,9 @@ success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){//成功
-$(obj).parent('.footer').prev().html('<m class="delete"><i class="fa fa-trash"></i> 该评论内容已被删除。</m>');
+comment_dom=$(obj).parent('.footer');
+comment_dom.siblings('.jinsom-comment-image-list').remove();
+comment_dom.siblings('.content').html('<m class="delete"><i class="fa fa-trash"></i> 该评论内容已被删除。</m>');
 $(obj).remove();
 }
 }

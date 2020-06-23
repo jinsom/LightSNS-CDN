@@ -152,7 +152,7 @@ $('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
 });
 
 }else{//gif图片上传
-if(info.size/(1024*1024)<1){
+if(info.size/(1024*1024)<jinsom.mobile_gif_size_max){
 var reader = new FileReader();
 reader.onload = function (evt) {
 image=evt.target.result;
@@ -195,7 +195,7 @@ $('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
 }
 reader.readAsDataURL(info);
 }else{
-layer.open({content:'上传的动图不能超过1MB！',skin:'msg',time:2});
+layer.open({content:'上传的动图不能超过'+jinsom.mobile_gif_size_max+'MB！',skin:'msg',time:2});
 $('#file').val('');//清空已选状态
 $('.jinsom-publish-words-form .add i').show();//关闭loading动画
 $('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
@@ -305,7 +305,7 @@ $('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
 });
 
 }else{//gif图片上传
-if(info.size/(1024*1024)<1){
+if(info.size/(1024*1024)<jinsom.mobile_gif_size_max){
 var reader = new FileReader();
 reader.onload = function (evt) {
 image=evt.target.result;
@@ -348,7 +348,7 @@ $('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
 }
 reader.readAsDataURL(info);
 }else{
-layer.open({content:'上传的动图不能超过1MB！',skin:'msg',time:2});
+layer.open({content:'上传的动图不能超过'+jinsom.mobile_gif_size_max+'MB！',skin:'msg',time:2});
 $('#file').val('');//清空已选状态
 $('.jinsom-publish-words-form .add i').show();//关闭loading动画
 $('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
@@ -1550,7 +1550,7 @@ $('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
 });
 
 }else{//gif图片上传
-if(info.size/(1024*1024)<1){
+if(info.size/(1024*1024)<jinsom.mobile_gif_size_max){
 var reader = new FileReader();
 reader.onload = function (evt) {
 image=evt.target.result;
@@ -1593,7 +1593,7 @@ $('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
 }
 reader.readAsDataURL(info);
 }else{
-layer.open({content:'上传的动图不能超过1MB！',skin:'msg',time:2});
+layer.open({content:'上传的动图不能超过'+jinsom.mobile_gif_size_max+'MB！',skin:'msg',time:2});
 $('#file').val('');//清空已选状态
 $('.jinsom-publish-words-form .add i').show();//关闭loading动画
 $('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
