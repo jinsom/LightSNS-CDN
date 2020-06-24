@@ -169,6 +169,7 @@ function jinsom_video_post_data(obj){
 if(status==0){
 return false;	
 }
+$('.page-content').animate({scrollTop:0},0);
 video_page = 2;
 video_loading = false;
 $(obj).addClass('on').siblings().removeClass('on');

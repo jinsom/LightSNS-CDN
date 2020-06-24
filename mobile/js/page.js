@@ -753,6 +753,7 @@ window.history.pushState(null,null,'/?p='+post_id+'#'+Math.random().toString(11)
 var video_list=$('.jinsom-video-special-list');
 var video_loading = false;
 var video_page = 2;
+number=video_list.attr('number');
 $('.jinsom-video-page-content.infinite-scroll').on('infinite',function(){
 if (video_loading) return;
 video_loading = true;
@@ -761,7 +762,7 @@ topic=$('.jinsom-video-special-menu li.on').attr('data');
 $.ajax({
 type: "POST",
 url:  jinsom.mobile_ajax_url+"/post/video-special.php",
-data: {topic:topic,page:video_page,type:'more'},
+data: {topic:topic,page:video_page,number:number,type:'more'},
 success: function(msg){
 if(msg==0){
 video_list.append('<div class="jinsom-empty-page">没有更多内容</div>'); 
