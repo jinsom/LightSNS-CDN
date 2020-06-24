@@ -575,6 +575,7 @@ success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
+type=$('.jinsom-home-menu li.on').attr('data');
 jinsom_post_data(type,'pull',0,this);
 function d(){myApp.getCurrentView().router.back();}
 setTimeout(d,2500);

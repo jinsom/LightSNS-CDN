@@ -540,7 +540,7 @@ playbackRate: [0.5,0.75,1,1.5,2,4,6,8],
 fitVideoSize:'fixWidth',
 playsinline: true,
 autoplay:true,
-ignores: ['volume','time','progress','pc']
+ignores: ['volume','time','pc']
 });
 window['video_'+post_id].on('play',function(){
 if($('.jinsom-video-playing').length>0){
