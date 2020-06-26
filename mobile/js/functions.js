@@ -1686,6 +1686,14 @@ text:link
 });
 }
 
+//打开海报页面
+function jinsom_content_playbill_page(post_id,url){
+layer.closeAll();
+myApp.getCurrentView().router.load({
+url:jinsom.theme_url+'/mobile/templates/page/content-playbill.php?post_id='+post_id,
+query:{url:url}
+});	
+}
 
 
 

@@ -135,6 +135,10 @@ $(obj).html('加精帖子');
 
 //电脑签到
 function jinsom_sign(ticket,randstr,obj){
+if(!jinsom.is_login){
+jinsom_pop_login_style();	
+return false;
+}
 layer.load(1); 
 $.ajax({
 type: "POST",
@@ -438,6 +442,10 @@ data:{post_id:post_id},
 
 //收藏商品
 function jinsom_like_goods(post_id,obj){
+if(!jinsom.is_login){
+jinsom_pop_login_style();	
+return false;
+}
 if($(obj).hasClass('had')){
 $(obj).removeClass('had').children('i').removeClass('jinsom-shoucang').addClass('jinsom-shoucang1');	
 $(obj).children('span').text('收藏');

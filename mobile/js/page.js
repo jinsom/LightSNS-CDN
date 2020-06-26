@@ -2311,3 +2311,56 @@ $(this).addClass('on').siblings().removeClass('on');
 $('.jinsom-task-form-content').find('ul').eq($(this).index()).show().siblings().hide();
 });
 });
+
+
+//生成内容海报
+myApp.onPageBeforeInit('content-playbill',function(page){
+url=page.query['url'];
+// console.log(page.query);
+window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
+jinsom_qrcode('jinsom-content-playbill-code',60,60,url);
+$('#jinsom-add-content-playbill').click(function(){
+obj=$(this);
+obj.html('<i class="fa fa-spinner fa-spin"></i> 海报生成中...')
+const vm = this;
+const domObj = document.getElementById('jinsom-content-playbill');
+const left = domObj.getBoundingClientRect().left;
+const top = domObj.offsetTop;
+const width = domObj.offsetWidth;
+const height = domObj.offsetHeight;
+const scale = 3;
+const canvas = document.createElement('canvas');
+canvas.width = width*scale;
+canvas.height = height*scale;
+canvas.style.width=width+"px";
+canvas.style.height=height+"px";
+const context = canvas.getContext("2d");
+context.scale(scale,scale);
+context.translate(-left,-top);
+html2canvas(domObj,{
+// dpi:1,
+scale: scale,
+canvas: canvas,
+useCORS: true,
+logging: false,
+// allowTaint:true,
+width:width,
+height:height,
+}).then(function(canvas) {
+
+
+vm.posterImg = canvas.toDataURL('image/png')
+vm.mask = true;
+$('#jinsom-content-playbill').html('<img src="'+vm.posterImg+'">');
+obj.after('<div class="jinsom-save-content-playbill">「 海报已生成，长按图片进行保存 」</div>');
+obj.remove()
+});
+});
+
+});
+
+
+//推广
+myApp.onPageBeforeInit('referral', function (page) {
+window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
+});

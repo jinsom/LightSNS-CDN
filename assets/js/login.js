@@ -14,8 +14,8 @@ layer.closeAll();
 layer.open({
 title:'登录帐号',
 btn: false,
-area: ['auto'],
-skin: 'jinsom-login-form',
+area: ['400px','auto'],
+skin: 'jinsom-login-form login',
 content: msg
 })
 }
@@ -34,8 +34,8 @@ layer.closeAll();
 layer.open({
 title:'注册帐号',
 btn: false,
-area: ['auto'],
-skin: 'jinsom-login-form',
+area: ['400px','auto'],
+skin: 'jinsom-login-form reg',
 content: msg
 })
 }
