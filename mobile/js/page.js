@@ -2328,7 +2328,7 @@ const left = domObj.getBoundingClientRect().left;
 const top = domObj.offsetTop;
 const width = domObj.offsetWidth;
 const height = domObj.offsetHeight;
-const scale = 3;
+const scale = 1.5;
 const canvas = document.createElement('canvas');
 canvas.width = width*scale;
 canvas.height = height*scale;
@@ -2364,3 +2364,56 @@ obj.remove()
 myApp.onPageBeforeInit('referral', function (page) {
 window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 });
+
+
+
+//直播
+myApp.onPageBeforeInit('live', function (page) {
+post_id=$('.jinsom-live-content').attr('post_id');
+if(jinsom.permalink_structure){//固定连接
+window.history.pushState(null,null,page.query['url']+'#'+Math.random().toString(36).substr(2,5));	
+}else{//朴素
+window.history.pushState(null,null,'/?p='+post_id+'#'+Math.random().toString(36).substr(2,5));	
+}
+
+video_url=$('#jinsom-video-live').attr('data');
+if(video_url){
+cover=$('#jinsom-video-live').attr('cover');
+video_type=jinsom_video_type(video_url);
+window.player=new window[video_type]({
+id:'jinsom-video-live',
+url:video_url,
+poster:cover,
+'x5-video-player-type': 'h5',
+'x5-video-player-fullscreen': false,
+playsinline: true,
+// fluid: true,
+// autoplay:true,
+ignores: ['volume','time','pc']
+});
+}
+
+
+//菜单
+$('.jinsom-live-page-nav li').click(function(){
+$('.jinsom-live-toolbar textarea,.jinsom-live-toolbar').removeAttr('style');
+$('.jinsom-live-toolbar,.jinsom-home-right-bar').hide();
+$(this).addClass('on').siblings().removeClass('on');
+$(this).parents('.jinsom-live-page-header').next().children('ul').eq($(this).index()).show().siblings().hide();
+if($(this).hasClass('comment')){
+$('.jinsom-live-toolbar,.jinsom-home-right-bar').show();
+$('.jinsom-live-page-nav-list').scrollTop($('.jinsom-live-page-nav-list')[0].scrollHeight);//互动评论向下啦
+}
+});
+
+
+$('.jinsom-live-page-nav-list').scrollTop($('.jinsom-live-page-nav-list')[0].scrollHeight);//互动评论向下啦
+jinsom_ajax_get_live_comment();//发起
+jinsom_lightbox();
+});
+
+
+//关闭直播界面
+myApp.onPageBack('live',function (page){//返回
+ajax_get_live_comment.abort();
+})

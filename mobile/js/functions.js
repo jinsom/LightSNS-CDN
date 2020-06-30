@@ -1696,7 +1696,106 @@ query:{url:url}
 }
 
 
+//直播评论互动
+function jinsom_comment_live(post_id){
+content=$.trim($('#jinsom-live-comment-content').val());
+myApp.showIndicator();
+$.ajax({
+type:"POST",
+dataType:'json',
+url:jinsom.jinsom_ajax_url+"/action/comment-live.php",
+data: {content:content,post_id:post_id},
+success: function(msg) {
+myApp.hideIndicator();
+if(msg.code==1){//成功
+$('#jinsom-live-comment-content').val('');
+comment_html='\
+<li>\
+<div class="left">'+msg.avatar+'</div>\
+<div class="right">\
+<div class="name">'+msg.nickname+'</div>\
+<div class="content">'+msg.content+'</div>\
+</div>\
+</li>\
+';
+if($('.jinsom-live-page-nav-list ul.comment-list .jinsom-empty-page').length>0){
+$('.jinsom-live-page-nav-list ul.comment-list').html(comment_html);
+}else{
+$('.jinsom-live-page-nav-list ul.comment-list').append(comment_html);
+}
+$('.jinsom-live-page-nav-list').scrollTop($('.jinsom-live-page-nav-list')[0].scrollHeight);//互动评论向下啦
+count=parseInt($('.jinsom-live-content').attr('count'));
+$('.jinsom-live-content').attr('count',count+1);
+if(ajax_get_live_comment){ajax_get_live_comment.abort();}
+jinsom_ajax_get_live_comment();
 
+}else if(msg.code==2){//没有绑定手机号
+layer.open({content:msg.msg,skin:'msg',time:2});
+function d(){myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-phone.php'});}setTimeout(d,2000);
+}else{
+layer.open({content:msg.msg,skin:'msg',time:2});
+}
+},
+});
+}
+
+
+//直播精彩视频切换
+function jinsom_live_jingcai_video_play(url,obj){
+$(obj).addClass('on').siblings().removeClass('on');
+if($('.jinsom-no-video-live').length>0){
+$('.jinsom-no-video-live').before('<div id="jinsom-video-live"></div>');
+$('.jinsom-no-video-live').remove();
+}
+$('#jinsom-video-live').empty();
+video_type=jinsom_video_type(url);
+new window[video_type]({
+id: 'jinsom-video-live',
+url: url,
+autoplay: true,
+playsinline: true,
+'x5-video-player-type': 'h5',
+'x5-video-player-fullscreen': false,
+});
+}
+
+//实时获取弹幕
+function jinsom_ajax_get_live_comment(){
+count=parseInt($('.jinsom-live-content').attr('count'));
+post_id=$('.jinsom-live-content').attr('post_id');
+window.ajax_get_live_comment=$.ajax({
+type: "POST",
+url:jinsom.module_url+"/action/live-comment-ajax.php",
+timeout:30000,
+dataType:'json',
+data: {count:count,post_id:post_id},
+success: function(msg){
+if(msg.code==2){
+$('.jinsom-live-page-nav-list ul.comment-list').append(msg.msg);
+$('.jinsom-live-page-nav-list').scrollTop($('.jinsom-live-page-nav-list')[0].scrollHeight);//互动评论向下啦
+$('.jinsom-live-content').attr('count',msg.count);
+jinsom_ajax_get_live_comment();
+}else if(msg.code==3){//异常
+}else{
+jinsom_ajax_get_live_comment();	
+}
+},
+error:function(XMLHttpRequest,textStatus,errorThrown){ 
+if(textStatus=="timeout"){ 
+jinsom_ajax_get_live_comment();
+} 
+} 
+});	
+}
+
+//打赏界面
+function jinsom_reward_form(post_id,type){
+if(!jinsom.is_login){
+myApp.loginScreen();  
+return false;
+}
+myApp.getCurrentView().router.loadPage(jinsom.theme_url+'/mobile/templates/page/reward.php?post_id='+post_id+'&type='+type);
+}
 
 
 //瀑布流图片预加载
@@ -1745,3 +1844,4 @@ if(cval!=null){
 document.cookie= name + "="+cval+";expires="+exp.toGMTString();
 } 
 }
+

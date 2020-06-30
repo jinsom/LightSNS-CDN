@@ -4005,7 +4005,7 @@ layer.open({
 title:'订单支付',
 type: 1,
 fixed: false,
-// offset: '100px',
+offset: '100px',
 skin:'jinsom-goods-order-confirmation-form',
 area: ['500px','auto'],
 resize:false,
