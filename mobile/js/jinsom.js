@@ -109,57 +109,14 @@ myApp.loginScreen();
 
 //sns首页
 if(mobile_page.sns){
-
-//首页下拉刷新
-var ptrContent = $('#jinsom-view-sns .pull-to-refresh-content');
-ptrContent.on('refresh', function (e) {
-setTimeout(function (){//显示刷新成功
-$('#jinsom-view-sns .preloader').hide();
-$('#jinsom-view-sns .jinsom-refresh-success').show();
-}, 800);
-
-//下拉刷新完成
-setTimeout(function (){
-myApp.pullToRefreshDone();
-$('#jinsom-view-sns .preloader').show();
-$('#jinsom-view-sns .jinsom-refresh-success').hide();
-type=$('.jinsom-home-menu li.on').attr('data');
-jinsom_post_data(type,'pull',0,this);
-}, 1600);
-
-});
-
-
-
-//首页加载更多内容
-sns_loading = false;
-sns_page = 2;
-index_post_list=$('.jinsom-post-list');
-$('#jinsom-view-sns .infinite-scroll').on('infinite',function(){
-if(sns_loading) return;
-sns_loading = true;
-index_post_list.after(jinsom.loading_post);
-type=$('.jinsom-home-menu li.on').attr('data');
-$.ajax({
-type: "POST",
-url:  jinsom.mobile_ajax_url+"/post/data.php",
-data: {page:sns_page,type:type,load_type:'more'},
-success: function(msg){
-$('.jinsom-load-post').remove();
-if(msg==0){
-sns_loading = true; 
-}else{
-index_post_list.append(msg);
-jinsom_lightbox()
-sns_page++;
-sns_loading = false;  
-} 
+jinsom_index_sns_js_load();
 }
-});
-}); 
 
-}//sns首页
 
+//消息页面
+if(mobile_page.notice){
+jinsom_index_notice_js_load();
+}
 
 
 //视频专题加载更多事情

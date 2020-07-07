@@ -486,32 +486,7 @@ loop: true,
 });
 //}
 
-//加载更多内容
-sns_loading = false;
-sns_page = 2;
-index_post_list=$('.jinsom-post-list');
-$('.jinsom-sns-page-content.infinite-scroll').on('infinite',function(){
-if(sns_loading) return;
-sns_loading = true;
-index_post_list.after(jinsom.loading_post);
-type=$('.jinsom-home-menu li.on').attr('data');
-$.ajax({
-type: "POST",
-url:  jinsom.mobile_ajax_url+"/post/data.php",
-data: {page:sns_page,type:type,load_type:'more'},
-success: function(msg){
-$('.jinsom-load-post').remove();
-if(msg==0){
-sns_loading = true; 
-}else{
-index_post_list.append(msg);
-jinsom_lightbox()
-sns_page++;
-sns_loading = false;  
-} 
-}
-});
-}); 
+jinsom_index_sns_js_load();
 
 });
 
@@ -732,9 +707,10 @@ $(this).parent().next().children().eq($(this).index()).show().siblings().hide();
 
 
 //消息
-myApp.onPageBeforeInit('notice', function (page) {
+myApp.onPageBeforeInit('notice', function (page){
 window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 $('.jinsom-mine-page li.notice .item-after').empty();//移除红点
+jinsom_index_notice_js_load();
 $('.jinsom-chat-notice li').click(function(event){
 $(this).children('.tips').remove();
 });
@@ -2328,7 +2304,7 @@ const left = domObj.getBoundingClientRect().left;
 const top = domObj.offsetTop;
 const width = domObj.offsetWidth;
 const height = domObj.offsetHeight;
-const scale = 1.5;
+const scale = 3;
 const canvas = document.createElement('canvas');
 canvas.width = width*scale;
 canvas.height = height*scale;
@@ -2363,6 +2339,13 @@ obj.remove()
 //推广
 myApp.onPageBeforeInit('referral', function (page) {
 window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
+
+//复制推广链接
+var clipboard = new ClipboardJS('#jinsom-referral-cover');
+clipboard.on('success', function(e) {
+e.clearSelection();
+layer.open({content:'复制成功！',skin:'msg',time:2});
+});
 });
 
 
@@ -2406,12 +2389,13 @@ $('.jinsom-live-page-nav-list').scrollTop($('.jinsom-live-page-nav-list')[0].scr
 }
 });
 
-
-$('.jinsom-live-page-nav-list').scrollTop($('.jinsom-live-page-nav-list')[0].scrollHeight);//互动评论向下啦
 jinsom_ajax_get_live_comment();//发起
 jinsom_lightbox();
 });
 
+myApp.onPageAfterAnimation('live', function (page) {
+$('.jinsom-live-page-nav-list').scrollTop($('.jinsom-live-page-nav-list')[0].scrollHeight);//互动评论向下啦
+});
 
 //关闭直播界面
 myApp.onPageBack('live',function (page){//返回

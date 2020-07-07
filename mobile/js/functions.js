@@ -1690,11 +1690,19 @@ text:link
 function jinsom_content_playbill_page(post_id,url){
 layer.closeAll();
 myApp.getCurrentView().router.load({
-url:jinsom.theme_url+'/mobile/templates/page/content-playbill.php?post_id='+post_id,
+url:jinsom.theme_url+'/mobile/templates/page/playbill-content.php?post_id='+post_id,
 query:{url:url}
 });	
 }
 
+//打开推广海报页面
+function jinsom_referral_playbill_page(url){
+layer.closeAll();
+myApp.getCurrentView().router.load({
+url:jinsom.theme_url+'/mobile/templates/page/playbill-referral.php',
+query:{url:url}
+});	
+}
 
 //直播评论互动
 function jinsom_comment_live(post_id){
@@ -1797,6 +1805,111 @@ return false;
 myApp.getCurrentView().router.loadPage(jinsom.theme_url+'/mobile/templates/page/reward.php?post_id='+post_id+'&type='+type);
 }
 
+//生成推广地址
+function jinsom_referral_url(obj){
+$(obj).append('<i class="fa fa-spinner fa-spin"></i>');
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+url:jinsom.mobile_ajax_url+"/action/referral-url.php",
+success: function(msg){
+myApp.hideIndicator();
+$(obj).children('i').remove();
+layer.open({content:msg.msg,skin:'msg',time:2});
+if(msg.code==1){
+$('.jinsom-referral-url').show();
+$('#jinsom-referral-url-cover').html(msg.url);
+// $(obj).remove();
+}
+}
+});
+}
+
+
+//首页sns模块
+function jinsom_index_sns_js_load(){
+//首页下拉刷新
+var ptrContent = $('.jinsom-sns-page-content.pull-to-refresh-content');
+ptrContent.on('refresh', function (e) {
+setTimeout(function (){//显示刷新成功
+$('.jinsom-sns-page-content .preloader').hide();
+$('.jinsom-sns-page-content .jinsom-refresh-success').show();
+}, 800);
+
+//下拉刷新完成
+setTimeout(function (){
+myApp.pullToRefreshDone();
+$('.jinsom-sns-page-content .preloader').show();
+$('.jinsom-sns-page-content .jinsom-refresh-success').hide();
+type=$('.jinsom-home-menu li.on').attr('data');
+jinsom_post_data(type,'pull',0,this);
+}, 1600);
+
+});
+
+
+
+//首页加载更多内容
+sns_loading = false;
+sns_page = 2;
+index_post_list=$('.jinsom-post-list');
+$('.jinsom-sns-page-content.infinite-scroll').on('infinite',function(){
+if(sns_loading) return;
+sns_loading = true;
+index_post_list.after(jinsom.loading_post);
+type=$('.jinsom-home-menu li.on').attr('data');
+$.ajax({
+type: "POST",
+url:  jinsom.mobile_ajax_url+"/post/data.php",
+data: {page:sns_page,type:type,load_type:'more'},
+success: function(msg){
+$('.jinsom-load-post').remove();
+if(msg==0){
+sns_loading = true; 
+}else{
+index_post_list.append(msg);
+jinsom_lightbox()
+sns_page++;
+sns_loading = false;  
+} 
+}
+});
+}); 
+}
+
+//首页消息模块
+function jinsom_index_notice_js_load(){
+//下拉刷新
+var ptrContent = $('.jinsom-notice-page-content.pull-to-refresh-content');
+ptrContent.on('refresh', function (e) {
+setTimeout(function (){//显示刷新成功
+$('.jinsom-notice-page-content .preloader').hide();
+$('.jinsom-notice-page-content .jinsom-refresh-success').show();
+}, 800);
+
+// //下拉刷新完成
+setTimeout(function (){
+myApp.pullToRefreshDone();
+$('.jinsom-notice-page-content .preloader').show();
+$('.jinsom-notice-page-content .jinsom-refresh-success').hide();
+//消息页面
+$.ajax({   
+url:jinsom.mobile_ajax_url+"/stencil/notice-page.php",
+type:'POST',    
+success:function(msg){
+$('.jinsom-chat').html(msg);
+$('.jinsom-chat-notice li').click(function(event){
+$(this).children('.tips').remove();
+});
+}
+});
+}, 1600);
+
+});
+
+
+}
+
 
 //瀑布流图片预加载
 function jinsom_loadImage(url) {
@@ -1809,6 +1922,9 @@ img.onload = function () {
 return img.src;
 };
 };
+
+
+
 
 //cookies
 function SetCookie(name,value){
