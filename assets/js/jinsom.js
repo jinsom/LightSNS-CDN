@@ -1228,15 +1228,16 @@ success:function(msg){
 layer.closeAll('loading');
 layer.msg(msg.msg);
 if(msg.code==1){
-if(msg.type=='credit'){//充值金币
-layer.close(recharge_credit_form);//关闭充值窗口
-credit=parseInt($('.jinsom-mycredit-credit-info .credit i').html());
-recharge_number=parseInt(msg.recharge_number);
-count=credit+recharge_number;
-$('.jinsom-mycredit-credit-info .credit i').html(count);
-}else{
-$('.jinsom-mycredit-user-info .vip m').html(msg.content);//开通会员
-}
+function c(){window.location.reload();}setTimeout(c,2000);
+// if(msg.type=='credit'){//充值金币
+// layer.close(recharge_credit_form);//关闭充值窗口
+// credit=parseInt($('.jinsom-mycredit-credit-info .credit i').html());
+// recharge_number=parseInt(msg.recharge_number);
+// count=credit+recharge_number;
+// $('.jinsom-mycredit-credit-info .credit i').html(count);
+// }else{
+// $('.jinsom-mycredit-user-info .vip m').html(msg.content);//开通会员
+// }
 }else{
 layer.close(index);
 }
