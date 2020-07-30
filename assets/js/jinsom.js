@@ -1,12 +1,12 @@
 
 //引人js
-document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/login.js'></script>");//登录相关
-document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/comment.js'></script>");//评论相关
-document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/delete.js'></script>");//删除相关
-document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/chat.js'></script>");//IM相关
-document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/publish.js'></script>");//发表相关
-document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/editor.js'></script>");//编辑相关
-document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/post.js'></script>");//内容相关
+document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/assets/js/login.js'></script>");//登录相关
+document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/assets/js/comment.js'></script>");//评论相关
+document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/assets/js/delete.js'></script>");//删除相关
+document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/assets/js/chat.js'></script>");//IM相关
+document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/assets/js/publish.js'></script>");//发表相关
+document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/assets/js/editor.js'></script>");//编辑相关
+document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/assets/js/post.js'></script>");//内容相关
 
 //置顶动态
 function jinsom_sticky_post(post_id,type,obj){
@@ -2738,7 +2738,7 @@ done: function(res, index, upload){
 layer.closeAll('loading');
 layer.msg(res.msg);	
 if(res.code == 1){
-$(this.item[0]).siblings('.item').val(res.url).show();
+$(this.item[0]).siblings('.item').val(res.file_url).show();
 $(this.item[0]).remove();
 }
 },

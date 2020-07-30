@@ -139,6 +139,9 @@ $('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
 
 }else{
 layer.open({content:msg.msg,skin:'msg',time:2});
+$('#file').val('');//清空已选状态
+$('.jinsom-publish-words-form .add i').show();//关闭loading动画
+$('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
 }
 
 }else{
@@ -180,6 +183,9 @@ $('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
 
 }else{
 layer.open({content:msg.msg,skin:'msg',time:2});
+$('#file').val('');//清空已选状态
+$('.jinsom-publish-words-form .add i').show();//关闭loading动画
+$('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
 }
 
 }else{
@@ -292,6 +298,9 @@ $('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
 
 }else{
 layer.open({content:msg.msg,skin:'msg',time:2});
+$('#file').val('');//清空已选状态
+$('.jinsom-publish-words-form .add i').show();//关闭loading动画
+$('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
 }
 
 }else{
@@ -333,6 +342,9 @@ $('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
 
 }else{
 layer.open({content:msg.msg,skin:'msg',time:2});
+$('#file').val('');//清空已选状态
+$('.jinsom-publish-words-form .add i').show();//关闭loading动画
+$('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
 }
 
 }else{
@@ -692,11 +704,7 @@ window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(3
 
 //幸运抽奖
 myApp.onPageBeforeInit('luck-draw', function (page) {
-if(jinsom.permalink_structure){//固定连接
-window.history.pushState(null,null,page.query['url']+'#'+Math.random().toString(36).substr(2,5));	
-}else{//朴素
-window.history.pushState(null,null,'/?p='+post_id+'#'+Math.random().toString(11).substr(5,8));	
-}
+window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 
 //列表tab切换
 $('.jinsom-luck-draw-list li').click(function(){
@@ -779,6 +787,7 @@ $('.jinsom-mine-user-info img.avatar,.jinsom-setting-box .avatarimg img.avatar,.
 history.back(-1);//返回上一页
 }else{
 layer.open({content:msg.msg,skin:'msg',time:2});
+avatar.resetImage();
 }
 }
 });	
@@ -786,19 +795,19 @@ layer.open({content:msg.msg,skin:'msg',time:2});
 });
 
 
-function reset() {
-avatar.resetImage();
-}
-//获取上传前信息
-function getInfo() {
-var fileInfo = avatar.getfileInfo();
-console.log(fileInfo);
-}
-//获取base64
-function getdata() {
-var urldata = avatar.getDataUrl();
-console.log(urldata);
-}
+// function reset() {
+// avatar.resetImage();
+// }
+// //获取上传前信息
+// function getInfo() {
+// var fileInfo = avatar.getfileInfo();
+// console.log(fileInfo);
+// }
+// //获取base64
+// function getdata() {
+// var urldata = avatar.getDataUrl();
+// console.log(urldata);
+// }
 
 });
 
@@ -1514,6 +1523,9 @@ $('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
 
 }else{
 layer.open({content:msg.msg,skin:'msg',time:2});
+$('#file').val('');//清空已选状态
+$('.jinsom-publish-words-form .add i').show();//关闭loading动画
+$('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
 }
 
 }else{
@@ -1555,6 +1567,9 @@ $('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
 
 }else{
 layer.open({content:msg.msg,skin:'msg',time:2});
+$('#file').val('');//清空已选状态
+$('.jinsom-publish-words-form .add i').show();//关闭loading动画
+$('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
 }
 
 }else{
@@ -2229,7 +2244,7 @@ success:function(msg){
 if(msg.code==0){
 layer.open({content:msg.msg,skin:'msg',time:2});	
 }
-$(".jinsom-upload-activity-form-1").parent().hide().next().val(msg.url).show();
+$(".jinsom-upload-activity-form-1").parent().hide().next().val(msg.file_url).show();
 }, 
 error:function(){
 layer.open({content:'上传失败！',skin:'msg',time:2});
@@ -2244,7 +2259,7 @@ success:function(msg){
 if(msg.code==0){
 layer.open({content:msg.msg,skin:'msg',time:2});	
 }
-$(".jinsom-upload-activity-form-2").parent().hide().next().val(msg.url).show();
+$(".jinsom-upload-activity-form-2").parent().hide().next().val(msg.file_url).show();
 }, 
 error:function(){
 layer.open({content:'上传失败！',skin:'msg',time:2});
@@ -2259,7 +2274,7 @@ success:function(msg){
 if(msg.code==0){
 layer.open({content:msg.msg,skin:'msg',time:2});	
 }
-$(".jinsom-upload-activity-form-3").parent().hide().next().val(msg.url).show();
+$(".jinsom-upload-activity-form-3").parent().hide().next().val(msg.file_url).show();
 }, 
 error:function(){
 layer.open({content:'上传失败！',skin:'msg',time:2});

@@ -1,10 +1,10 @@
-document.write("<script language='javascript' src='"+jinsom.cdn_url+"/mobile/js/post.js?ver=123'></script>");//文章相关
-document.write("<script language='javascript' src='"+jinsom.cdn_url+"/mobile/js/login.js'></script>");//登录相关
-document.write("<script language='javascript' src='"+jinsom.cdn_url+"/mobile/js/chat.js'></script>");//聊天相关
-document.write("<script language='javascript' src='"+jinsom.cdn_url+"/mobile/js/comment.js'></script>");//评论相关
-document.write("<script language='javascript' src='"+jinsom.cdn_url+"/mobile/js/publish.js'></script>");//发布相关
-document.write("<script language='javascript' src='"+jinsom.cdn_url+"/mobile/js/recharge.js'></script>");//发布相关
-document.write("<script language='javascript' src='"+jinsom.cdn_url+"/assets/js/jquery.fancybox.min.js'></script>");//图片灯箱
+document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/mobile/js/post.js?ver=123'></script>");//文章相关
+document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/mobile/js/login.js'></script>");//登录相关
+document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/mobile/js/chat.js'></script>");//聊天相关
+document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/mobile/js/comment.js'></script>");//评论相关
+document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/mobile/js/publish.js'></script>");//发布相关
+document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/mobile/js/recharge.js'></script>");//发布相关
+document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/assets/js/jquery.fancybox.min.js'></script>");//图片灯箱
 
 
 //置顶动态
