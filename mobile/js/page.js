@@ -2244,7 +2244,7 @@ success:function(msg){
 if(msg.code==0){
 layer.open({content:msg.msg,skin:'msg',time:2});	
 }
-$(".jinsom-upload-activity-form-1").parent().hide().next().val(msg.file_url).show();
+$(".jinsom-upload-activity-form-1").parent().hide().next().val(msg.file_url).after('<img src="'+msg.file_url+'">');
 }, 
 error:function(){
 layer.open({content:'上传失败！',skin:'msg',time:2});
@@ -2259,7 +2259,7 @@ success:function(msg){
 if(msg.code==0){
 layer.open({content:msg.msg,skin:'msg',time:2});	
 }
-$(".jinsom-upload-activity-form-2").parent().hide().next().val(msg.file_url).show();
+$(".jinsom-upload-activity-form-2").parent().hide().next().val(msg.file_url).after('<img src="'+msg.file_url+'">');
 }, 
 error:function(){
 layer.open({content:'上传失败！',skin:'msg',time:2});
@@ -2274,7 +2274,7 @@ success:function(msg){
 if(msg.code==0){
 layer.open({content:msg.msg,skin:'msg',time:2});	
 }
-$(".jinsom-upload-activity-form-3").parent().hide().next().val(msg.file_url).show();
+$(".jinsom-upload-activity-form-3").parent().hide().next().val(msg.file_url).after('<img src="'+msg.file_url+'">');
 }, 
 error:function(){
 layer.open({content:'上传失败！',skin:'msg',time:2});

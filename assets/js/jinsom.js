@@ -2738,7 +2738,7 @@ done: function(res, index, upload){
 layer.closeAll('loading');
 layer.msg(res.msg);	
 if(res.code == 1){
-$(this.item[0]).siblings('.item').val(res.file_url).show();
+$(this.item[0]).siblings('.item').val(res.file_url).after('<img src="'+res.file_url+'">');
 $(this.item[0]).remove();
 }
 },
