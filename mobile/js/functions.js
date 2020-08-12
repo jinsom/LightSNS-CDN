@@ -1924,6 +1924,13 @@ return img.src;
 };
 
 
+//点击广告
+function jinsom_click_ad(){
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/action/click-ad.php",
+});	
+}
 
 
 //cookies

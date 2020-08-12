@@ -96,6 +96,7 @@ window.history.pushState(null,null,'/?lightbox&r='+Math.random().toString(36).su
 //论坛内容切换 
 function jinsom_bbs_post(bbs_id,type,obj){
 if(status==0){return false;	}
+bbs_page=2;
 bbs_loading = false; 
 $(obj).addClass('on').siblings().removeClass('on');
 more_list=$(obj).parent().next();

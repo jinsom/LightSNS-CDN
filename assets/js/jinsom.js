@@ -4091,10 +4091,16 @@ function c(){window.location.reload();}setTimeout(c,2000);
 
 }
 });
-
-
 }
 
+
+//点击广告
+function jinsom_click_ad(){
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/action/click-ad.php",
+});	
+}
 
 
 
