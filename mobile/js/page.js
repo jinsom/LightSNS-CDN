@@ -2416,3 +2416,29 @@ $('.jinsom-live-page-nav-list').scrollTop($('.jinsom-live-page-nav-list')[0].scr
 myApp.onPageBack('live',function (page){//返回
 ajax_get_live_comment.abort();
 })
+
+
+//宠物乐园
+myApp.onPageBeforeInit('pet', function (page){
+window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
+});
+
+//宠物窝
+myApp.onPageBeforeInit('pet-nest', function (page){
+window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
+});
+
+//宠物商城
+myApp.onPageBeforeInit('pet-store', function (page){
+window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
+});
+
+//宠物列表
+myApp.onPageBeforeInit('pet-list', function (page){
+window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
+});
+
+//宠物记录
+myApp.onPageBeforeInit('pet-note', function (page){
+window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
+});

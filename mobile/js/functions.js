@@ -1932,6 +1932,104 @@ url:jinsom.jinsom_ajax_url+"/action/click-ad.php",
 });	
 }
 
+//出售宠物
+function jinsom_pet_sell(id,number,obj){
+myApp.showIndicator();
+$.ajax({   
+url:jinsom.mobile_ajax_url+"/action/pet.php",
+type:'POST',    
+data:{id:id,type:'sell'},
+success:function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+
+if(msg.code==1){
+$(obj).after('<div class="jinsom-pet-nest-btn" onclick="jinsom_pet_store('+number+')">'+msg.text+'</div>').remove();
+$('.jinsom-pet-content.mine .jinsom-pet-nest-list li').eq(number).find('.pet_img').remove();
+$('.jinsom-pet-content.mine .jinsom-pet-nest-list li').eq(number).find('.green').text(msg.text);
+$('.jinsom-pet-nest-list.single .pet_img').remove();
+$('.navbar-on-center .center').text('');
+}
+
+}
+});
+}
+
+//购买窝、解锁窝
+function jinsom_pet_buy_nest(number,obj){
+myApp.showIndicator();
+$.ajax({   
+url:jinsom.mobile_ajax_url+"/action/pet.php",
+type:'POST',    
+data:{number:number,type:'deblocking'},
+success:function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+if(msg.code==1){
+$(obj).after('<div class="jinsom-pet-nest-btn" onclick="jinsom_pet_store('+number+')">'+msg.text+'</div>').remove();
+$('.jinsom-pet-content.mine .jinsom-pet-nest-list li').eq(number).removeClass('gray');
+$('.jinsom-pet-content.mine .jinsom-pet-nest-list li').eq(number).find('.no').text(msg.text).addClass('green');
+$('.jinsom-pet-nest-list.single li').removeClass('gray');
+}
+
+}
+});
+}
+
+//购买宠物蛋
+function jinsom_pet_buy(number,iiii){
+myApp.showIndicator();
+$.ajax({   
+url:jinsom.mobile_ajax_url+"/action/pet.php",
+type:'POST',    
+data:{number:number,iiii:iiii,type:'buy'},
+success:function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+if(msg.code==1){
+$('.jinsom-pet-nest-btn').remove();
+$('.jinsom-pet-nest-list.single li .animal').html('<img class="egg_img" src="'+msg.img_egg+'">');
+$('.jinsom-pet-content.mine .jinsom-pet-nest-list li').eq(number).find('.animal').html('<img class="egg_img" src="'+msg.img_egg+'">');
+$('.jinsom-pet-nest-list.single li .nest').append('<p>'+msg.text+' '+msg.hatch_time+'</p>');
+$('.jinsom-pet-content.mine .jinsom-pet-nest-list li').eq(number).find('.green').text(msg.text+' '+msg.hatch_time).removeClass('green');
+$('.navbar-on-center').prev().children('.center').text(msg.pet_name);
+function d(){history.back(-1);}setTimeout(d,1500);
+}
+
+}
+});	
+}
+
+//打开商店界面
+function jinsom_pet_store(number){
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/pet-store.php?number='+number});	
+}
+
+//偷宠物
+function jinsom_pet_steal(id,number,obj){
+myApp.showIndicator();
+$.ajax({   
+url:jinsom.mobile_ajax_url+"/action/pet.php",
+type:'POST',    
+data:{id:id,type:'steal'},
+success:function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+
+if(msg.code==1){
+$(obj).remove();
+$('.jinsom-pet-content.other .jinsom-pet-nest-list li').eq(number).find('.pet_img').remove();
+$('.jinsom-pet-content.other .jinsom-pet-nest-list li').eq(number).find('.green').text(msg.text);
+$('.jinsom-pet-content.other .jinsom-pet-nest-list li').eq(number).children('a').removeAttr('href');
+$('.jinsom-pet-nest-list.single .pet_img').remove();
+$('.jinsom-pet-nest-list.single li .nest p').text(msg.text).addClass('green');
+// function d(){history.back(-1);}setTimeout(d,1500);
+}
+
+}
+});
+}
+
 
 //cookies
 function SetCookie(name,value){
