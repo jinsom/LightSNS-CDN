@@ -2419,12 +2419,18 @@ ajax_get_live_comment.abort();
 
 
 //宠物乐园
-myApp.onPageBeforeInit('pet', function (page){
+myApp.onPageBeforeInit('pet-mine', function (page){
+window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
+});
+myApp.onPageBeforeInit('pet-other', function (page){
 window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 });
 
 //宠物窝
-myApp.onPageBeforeInit('pet-nest', function (page){
+myApp.onPageBeforeInit('pet-nest-mine', function (page){
+window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
+});
+myApp.onPageBeforeInit('pet-nest-other', function (page){
 window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 });
 
