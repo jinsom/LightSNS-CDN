@@ -1767,10 +1767,9 @@ jinsom_qrcode('jinsom-qrcode',200,200,url);
 
 
 //侧栏小工具 分享到微信功能
-function jinsom_sidebar_share_wechat(){
-url=$('#jinsom-sidebar-share-link').html();
+function jinsom_sidebar_share_wechat(title,url){
 layer.open({
-title:'分享到微信',
+title:title,
 btn: false,
 type: 1,
 resize:false,
