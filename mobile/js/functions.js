@@ -1933,12 +1933,12 @@ url:jinsom.jinsom_ajax_url+"/action/click-ad.php",
 }
 
 //出售宠物
-function jinsom_pet_sell(id,number,obj){
+function jinsom_pet_sell(id,number,obj,ticket,randstr){
 myApp.showIndicator();
 $.ajax({   
 url:jinsom.mobile_ajax_url+"/action/pet.php",
 type:'POST',    
-data:{id:id,type:'sell'},
+data:{id:id,type:'sell',ticket:ticket,randstr:randstr},
 success:function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});

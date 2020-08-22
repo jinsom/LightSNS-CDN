@@ -2429,6 +2429,15 @@ window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(3
 //宠物窝
 myApp.onPageBeforeInit('pet-nest-mine', function (page){
 window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
+
+if($('#pet-1').length>0){
+pet_id=$('#pet-1').attr('data-id');
+pet_number=$('#pet-1').attr('data-number');
+new TencentCaptcha(document.getElementById('pet-1'),jinsom.machine_verify_appid,function(res){
+if(res.ret === 0){jinsom_pet_sell(pet_id,pet_number,document.getElementById('pet-1'),res.ticket,res.randstr);}
+});
+}
+
 });
 myApp.onPageBeforeInit('pet-nest-other', function (page){
 window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
