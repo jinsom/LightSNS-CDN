@@ -107,7 +107,7 @@ done: function(res, index, upload){
 $('.jinsom-publish-set-video-img-upload').html('<i class="jinsom-icon jinsom-shangchuan"></i> 上传封面');
 layer.msg(res.msg);
 if(res.code == 1){
-$('#jinsom-video-img-url').val(res.url);
+$('#jinsom-video-img-url').val(res.file_url);
 }
 },
 error: function(index, upload){

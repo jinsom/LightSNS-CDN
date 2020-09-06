@@ -2340,7 +2340,7 @@ height:height,
 }).then(function(canvas) {
 
 
-vm.posterImg = canvas.toDataURL('image/png')
+vm.posterImg = canvas.toDataURL('image/jpeg')
 vm.mask = true;
 $('#jinsom-content-playbill').html('<img src="'+vm.posterImg+'">');
 obj.after('<div class="jinsom-save-content-playbill">「 海报已生成，长按图片进行保存 」</div>');

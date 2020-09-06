@@ -536,11 +536,16 @@ id:'jinsom-video-'+post_id,
 url:video_url,
 'x5-video-player-type': 'h5',
 'x5-video-player-fullscreen': false,
-playbackRate: [0.5,0.75,1,1.5,2,4,6,8],
+playbackRate: [0.5,1,2,6,8],
 fitVideoSize:'fixWidth',
 playsinline: true,
 autoplay:true,
-ignores: ['volume','time','pc']
+ignores: ['volume','pc'],
+closeVideoTouch: true,
+rotate:{
+innerRotate: true, //只旋转内部video
+clockwise: false // 旋转方向是否为顺时针
+}
 });
 window['video_'+post_id].on('play',function(){
 if($('.jinsom-video-playing').length>0){
