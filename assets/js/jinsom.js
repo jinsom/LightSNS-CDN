@@ -3867,7 +3867,7 @@ success: function(msg){
 layer.closeAll('loading');
 if(msg.code==1){
 layer.msg(msg.msg);
-function c(){window.location.reload();}setTimeout(c,2000);
+function c(){layer.closeAll();jinsom_goods_order_form();}setTimeout(c,2000);
 }else if(msg.code==2){//充值页面
 layer.msg(msg.msg);
 function c(){jinsom_recharge_credit_form();}setTimeout(c,1500);
@@ -4085,7 +4085,7 @@ success: function(msg){
 layer.closeAll('loading');
 layer.msg(msg.msg);
 if(msg.code==1){
-function c(){window.location.reload();}setTimeout(c,2000);
+function c(){layer.closeAll();jinsom_goods_order_form();}setTimeout(c,2000);
 }
 
 }
