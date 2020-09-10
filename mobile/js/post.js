@@ -12,7 +12,7 @@ function jinsom_post_data(data_type,load_type,author_id,obj){
 
 if($('.jinsom-load-post').length==0&&load_type!='pull'){
 if(!author_id){
-$('.jinsom-post-list').prepend(jinsom.loading_post);
+$('.jinsom-post-list-sns').prepend(jinsom.loading_post);
 }else{
 $('.jinsom-member-mine-post-list').prepend(jinsom.loading_post);	
 }
@@ -38,14 +38,14 @@ post_list=$('.pages .page:last-child .jinsom-member-mine-post-list');
 post_list=$('.pages .page:last-child .jinsom-member-other-post-list');
 }
 }else{
-post_list=$('.jinsom-post-list');	
+post_list=$('.jinsom-post-list-sns');	
 }
 }else{
 if(author_id){
 post_list=$(obj).parent().next();
 post_list.attr('page',2);
 }else{
-post_list=$('.jinsom-post-list');	
+post_list=$('.jinsom-post-list-sns');	
 }
 }
 sns_page = 2;
