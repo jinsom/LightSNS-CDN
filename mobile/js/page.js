@@ -2466,3 +2466,76 @@ window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(3
 myApp.onPageBeforeInit('pet-note', function (page){
 window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 });
+
+
+//收藏
+myApp.onPageBeforeInit('collect', function (page){
+window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
+jinsom_lightbox();//灯箱
+
+
+//加载更多
+collect_loading = false;
+collect_page = 2;
+collect_post_list=$('.jinsom-collect-content .jinsom-post-list');
+$('.jinsom-collect-content.infinite-scroll').on('infinite',function(){
+if(collect_loading) return;
+collect_loading = true;
+collect_post_list.after(jinsom.loading_post);
+type=$('.jinsom-collect-tab li.on').attr('type');
+$.ajax({
+type: "POST",
+url:  jinsom.mobile_ajax_url+"/post/collect.php",
+data: {page:collect_page,type:type,load_type:'more'},
+success: function(msg){
+$('.jinsom-load-post').remove();
+if(msg==0){
+collect_loading = true; 
+}else{
+collect_post_list.append(msg);
+jinsom_lightbox()
+collect_page++;
+collect_loading = false;  
+} 
+}
+});
+});
+
+
+});
+
+
+//收藏-图片
+myApp.onPageBeforeInit('collect-img', function (page){
+window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
+jinsom_lightbox();//灯箱
+
+
+
+//加载更多
+collect_img_loading = false;
+collect_img_page = 2;
+collect_img_post_list=$('.jinsom-collect-img-content');
+$('.jinsom-collect-img-content.infinite-scroll').on('infinite',function(){
+if(collect_img_loading) return;
+collect_img_loading = true;
+collect_img_post_list.after(jinsom.loading_post);
+type=$('.jinsom-collect-tab li.on').attr('type');
+$.ajax({
+type: "POST",
+url:  jinsom.mobile_ajax_url+"/post/collect-img.php",
+data: {page:collect_img_page,type:type,load_type:'more'},
+success: function(msg){
+$('.jinsom-load-post').remove();
+if(msg==0){
+collect_img_loading = true; 
+}else{
+collect_img_post_list.append(msg);
+jinsom_lightbox()
+collect_img_page++;
+collect_img_loading = false;  
+} 
+}
+});
+});
+});

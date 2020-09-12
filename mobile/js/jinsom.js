@@ -343,7 +343,9 @@ myApp.closeModal();//关闭弹窗
 // }else{
 // console.log(2);
 $.fancybox.close();//关闭灯箱 
-myApp.getCurrentView().router.back();	
+if($(' .fancybox-bg').length<=0){//不存在灯箱才返回
+myApp.getCurrentView().router.back();
+}	
 // }
 
 

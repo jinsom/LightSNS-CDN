@@ -68,27 +68,7 @@ jinsom_lightbox();//图片灯箱
 
 }
 
-//图片灯箱
-function jinsom_lightbox(){
-$("[data-fancybox]").fancybox({
-loop : true,
-arrows : false,
-protect:false,
-buttons : ['download','thumbs','close'],
-mobile:{
-clickSlide: function(current, event){
-return "close";
-},
-clickContent: function(current, event){
-return "close";
-},
-},
-hash:false,
-afterShow: function(instance,current){
-window.history.pushState(null,null,'/?lightbox&r='+Math.random().toString(36).substr(2,5));
-},
-});	
-}
+
 
 
 
@@ -184,6 +164,24 @@ data: {topic:topic,page:1,type:'click'},
 success: function(msg){
 post_list.html(msg);
 status=1;
+}
+});
+}
+
+
+function jinsom_collect_post(type,obj){
+$('.page-content').animate({ scrollTop: 0 },0);
+collect_loading = false;
+collect_page = 2;
+$(obj).addClass('on').siblings().removeClass('on');
+post_list=$('.jinsom-collect-content .jinsom-post-list');
+$.ajax({
+type: "POST",
+url:  jinsom.mobile_ajax_url+"/post/collect.php",
+data: {type:type,page:1},
+success: function(msg){
+post_list.html(msg);
+jinsom_lightbox();//灯箱
 }
 });
 }

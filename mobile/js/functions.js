@@ -308,8 +308,7 @@ layer.open({content:'喜欢成功！',skin:'msg',time:2});
 $.ajax({   
 url:jinsom.jinsom_ajax_url+"/action/like-post.php",
 type:'POST',   
-data:{post_id:post_id},    
-success:function(results){}   
+data:{post_id:post_id},
 }); 
 
 }
@@ -2038,6 +2037,75 @@ myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page
 }
 
 
+
+//收藏内容
+function jinsom_collect(post_id,type,obj){
+if(!jinsom.is_login){
+myApp.loginScreen();  
+return false;
+}
+if(type=='img'){
+url=$(obj).parent().siblings('.fancybox-stage').find('img').attr('src');
+}else{
+url='';	
+}
+
+if($(obj).children('i').hasClass('jinsom-shoucang')){
+$(obj).children('i').addClass('jinsom-shoucang1').removeClass('jinsom-shoucang');
+$(obj).children('p').text($(obj).attr('a'));
+}else{
+$(obj).children('i').addClass('jinsom-shoucang').removeClass('jinsom-shoucang1');
+$(obj).children('p').text($(obj).attr('b'));
+}
+$.ajax({   
+url:jinsom.jinsom_ajax_url+"/action/collect.php",
+type:'POST',   
+data:{post_id:post_id,type:type,url:url},  
+}); 
+}
+
+
+//图片灯箱
+function jinsom_lightbox(){
+$("[data-fancybox]").fancybox({
+loop : true,
+arrows : false,
+protect:false,
+buttons : ['collect','download','thumbs','close'],
+btnTpl: {
+collect:
+'<a  onclick=\'jinsom_collect("","img",this)\' class="fancybox-button fancybox-button--collect" href="javascript:;"><i class="jinsom-icon jinsom-shoucang1"></i></a>'
+},
+mobile:{
+clickSlide: function(current, event){
+return "close";
+},
+clickContent: function(current, event){
+return "close";
+},
+},
+hash:false,
+afterShow: function(instance,current){
+window.history.pushState(null,null,'/?lightbox&r='+Math.random().toString(36).substr(2,5));
+// console.log($.fancybox.getInstance().current.src);
+
+$.ajax({   
+url:jinsom.jinsom_ajax_url+"/action/collect-is.php",
+type:'POST',   
+data:{url:$.fancybox.getInstance().current.src}, 
+success:function(msg){ 
+if(msg.code==1){
+$('.fancybox-button--collect i').addClass('jinsom-shoucang').removeClass('jinsom-shoucang1');
+}else{
+$('.fancybox-button--collect i').addClass('jinsom-shoucang1').removeClass('jinsom-shoucang');	
+}
+} 
+}); 
+
+
+},
+});	
+}
 
 
 //cookies
