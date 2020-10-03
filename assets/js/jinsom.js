@@ -3841,19 +3841,22 @@ pay_type=$('.jinsom-credit-recharge-type li.on').attr('data');
 if($('.jinsom-goods-order-confirmation-content .pass-info').length>0){
 var info_arr={};
 var a=0;
+var b='';
 $(".jinsom-goods-order-confirmation-content .pass-info .list li").each(function(){
-if($(this).children('input').val()==''){
-layer.msg('下单信息不能为空！');
-return false;	
-}
 info_arr[a]={};
 info_arr[a]['name']=$(this).children('span').text();
 info_arr[a]['value']=$(this).children('input').val();
+b+=$(this).children('input').val();
 a++;
 });
 info_arr=JSON.stringify(info_arr);
 }else{
 info_arr='';	
+}
+
+if(b==''){
+layer.msg('下单信息不能为空！');
+return false;	
 }
 
 
