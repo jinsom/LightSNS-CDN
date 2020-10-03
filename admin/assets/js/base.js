@@ -1068,10 +1068,30 @@ content: msg
 
 //版主申请操作
 function jinsom_admin_apply_bbs_admin_do(type,id,obj){
+
+if(type=='refuse'){//拒绝
+layer.prompt({title: '请输入拒绝通过的原因', formType: 2},function(reason,index){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/admin/action/apply-bbs-admin-do.php",
+data:{ID:id,type:type,reason:reason},
+success: function(msg){
+layer.closeAll('loading');
+layer.msg(msg.msg);
+if(msg.code==1){
+$('#jinsom-admin-apply-bbs-admin-'+id+' span m').html('已经拒绝').attr('style','');
+layer.close(index);
+layer.close(admin_apply_bbs_admin_read_form);
+}
+}
+});
+});
+}else{//删除或通过
+
+
 if(type=='agree'){
 title="通过";
-}else if(type=='refuse'){
-title="拒绝";
 }else{
 title="删除";	
 }
@@ -1095,14 +1115,16 @@ if(type=='del'){
 $('#jinsom-admin-apply-bbs-admin-'+id).remove();
 }else if(type=='agree'){
 $('#jinsom-admin-apply-bbs-admin-'+id+' span m').html('已经通过').attr('style','');
-}else if(type=='refuse'){
-$('#jinsom-admin-apply-bbs-admin-'+id+' span m').html('已经拒绝').attr('style','');
 }
 layer.close(admin_apply_bbs_admin_read_form);
 }
 }
 });	
 });	
+
+
+}
+
 }
 
 
@@ -1147,10 +1169,30 @@ content: msg
 
 //论坛申请操作
 function jinsom_admin_apply_bbs_do(type,id,obj){
+
+if(type=='refuse'){//拒绝
+layer.prompt({title: '请输入拒绝通过的原因', formType: 2},function(reason,index){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/admin/action/apply-bbs-do.php",
+data:{ID:id,type:type,reason:reason},
+success: function(msg){
+layer.closeAll('loading');
+layer.msg(msg.msg);
+if(msg.code==1){
+$('#jinsom-admin-apply-bbs-admin-'+id+' span m').html('已经拒绝').attr('style','');
+layer.close(index);
+layer.close(admin_apply_bbs_read_form);
+}
+}
+});
+});
+}else{//删除或通过
+
+
 if(type=='agree'){
 title="通过";
-}else if(type=='refuse'){
-title="拒绝";
 }else{
 title="删除";	
 }
@@ -1174,14 +1216,20 @@ if(type=='del'){
 $('#jinsom-admin-apply-bbs-admin-'+id).remove();
 }else if(type=='agree'){
 $('#jinsom-admin-apply-bbs-admin-'+id+' span m').html('已经通过').attr('style','');
-}else if(type=='refuse'){
-$('#jinsom-admin-apply-bbs-admin-'+id+' span m').html('已经拒绝').attr('style','');
 }
 layer.close(admin_apply_bbs_read_form);
 }
 }
 });	
 });	
+
+
+
+
+}
+
+
+
 }
 
 //商城订单

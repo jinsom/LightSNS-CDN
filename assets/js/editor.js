@@ -454,13 +454,10 @@ return false;
 }
 
 if(post_type=='pay_see'||post_type=='vip_see'||post_type=='login_see'||post_type=='comment_see'){
-
-if(post_type!='pay_see'){
 hide_content=ue_pay.getContent();
 if($.trim(hide_content)==''){
 layer.msg('隐藏内容不能为空！');
 return false; 
-}
 }
 
 if(post_type=='pay_see'){
@@ -564,7 +561,7 @@ $('#jinsom-bbs-publish-btn').removeAttr('onclick');
 $(window).unbind('beforeunload');
 
 ue.execCommand('clearlocaldata');
-if(post_type=='vip_see'||post_type=='login_see'||post_type=='comment_see'){
+if(post_type=='pay_see'||post_type=='vip_see'||post_type=='login_see'||post_type=='comment_see'){
 ue_pay.execCommand('clearlocaldata');
 }
 

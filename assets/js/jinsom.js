@@ -3837,6 +3837,26 @@ pay_type=$('.jinsom-credit-recharge-type li.on').attr('data');
 }
 
 
+//下单信息
+if($('.jinsom-goods-order-confirmation-content .pass-info').length>0){
+var info_arr={};
+var a=0;
+$(".jinsom-goods-order-confirmation-content .pass-info .list li").each(function(){
+if($(this).children('input').val()==''){
+layer.msg('下单信息不能为空！');
+return false;	
+}
+info_arr[a]={};
+info_arr[a]['name']=$(this).children('span').text();
+info_arr[a]['value']=$(this).children('input').val();
+a++;
+});
+info_arr=JSON.stringify(info_arr);
+}else{
+info_arr='';	
+}
+
+
 var select_arr={};
 var i=0;
 $(".jinsom-goods-single-header .right .select li").each(function(){
@@ -3857,12 +3877,11 @@ select_price=$('.jinsom-goods-single-header .right .select-price li n.on').index
 
 select_arr=JSON.stringify(select_arr);
 trade_no=$('#jinsom-goods-trade-no').val();
-
 layer.load(1);
 $.ajax({
 type: "POST",
 url:jinsom.jinsom_ajax_url+"/action/goods-buy.php",
-data:{select_arr:select_arr,post_id:post_id,number:number,address:address,marks:marks,select_price:select_price,pay_type:pay_type,trade_no:trade_no},
+data:{info_arr:info_arr,select_arr:select_arr,post_id:post_id,number:number,address:address,marks:marks,select_price:select_price,pay_type:pay_type,trade_no:trade_no},
 success: function(msg){
 layer.closeAll('loading');
 if(msg.code==1){
@@ -3870,7 +3889,7 @@ layer.msg(msg.msg);
 function c(){layer.closeAll();jinsom_goods_order_form();}setTimeout(c,2000);
 }else if(msg.code==2){//充值页面
 layer.msg(msg.msg);
-function c(){jinsom_recharge_credit_form();}setTimeout(c,1500);
+function c(){layer.closeAll();jinsom_recharge_credit_form();}setTimeout(c,1500);
 }else if(msg.code==3){//人民币付款
 jinsom_goods_order_pay(pay_type,trade_no);//发起订单支付
 }else if(msg.code==5){//我的订单
