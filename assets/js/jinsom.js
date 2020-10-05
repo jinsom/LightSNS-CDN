@@ -4124,6 +4124,46 @@ url:jinsom.jinsom_ajax_url+"/action/click-ad.php",
 }
 
 
+//评论置顶
+function jinsom_up_comment(comment_id,bbs_id,obj){
+title=$(obj).text();
+layer.confirm('你确定要'+title+'吗？', {
+btnAlign: 'c',
+btn: ['确定','取消'] 
+}, function(){
+layer.load(1);
+$.ajax({
+type: "POST",
+dataType:'json',
+url:  jinsom.jinsom_ajax_url+"/action/up-comment.php",
+data: {comment_id:comment_id,bbs_id:bbs_id},
+success: function(msg){
+layer.closeAll('loading');
+layer.msg(msg.msg);  
+$(obj).text(msg.name);
+
+if(!bbs_id){//动态类
+$(obj).parents('.jinsom-post-comment-list').find('.up-comment').remove();	
+if(msg.code==1){//成功
+$(obj).parents('li').find('.jinsom-comment-info-footer').prepend('<span class="up-comment">'+title+'</span>');
+$(obj).parents('.jinsom-post-comment-list').prepend($(obj).parents('li'));
+$(obj).parents('li').siblings().find('.comment-up').text(title);
+}
+}else{//帖子
+$(obj).parents('.jinsom-bbs-comment-list').find('.up-comment').remove();	
+if(msg.code==1){//成功
+$(obj).parents('.jinsom-bbs-single-box').children('.right').prepend('<span class="up-comment">'+title+'</span>');
+$(obj).parents('.jinsom-bbs-comment-list').prepend($(obj).parents('.jinsom-bbs-single-box'));
+$(obj).parents('.jinsom-bbs-single-box').siblings().find('.comment-up').text(title);
+}
+}
+
+
+}
+});
+}); 
+}
+
 
 
 

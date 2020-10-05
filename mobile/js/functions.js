@@ -2108,6 +2108,36 @@ $('.fancybox-button--collect i').addClass('jinsom-shoucang1').removeClass('jinso
 }
 
 
+//评论置顶
+function jinsom_up_comment(comment_id,bbs_id,obj){
+title=$(obj).text();
+layer.open({
+content: '你确定要'+title+'吗？'
+,btn: ['确定', '取消']
+,yes: function(index){
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+dataType:'json',
+url:  jinsom.jinsom_ajax_url+"/action/up-comment.php",
+data: {comment_id:comment_id,bbs_id:bbs_id},
+success: function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+$(obj).text(msg.name);
+$(obj).parents('.jinsom-single-comment-list').find('.up-comment').remove();	
+if(msg.code==1){//成功
+$(obj).parents('.jinsom-comment-li').find('.from').prepend('<span class="up-comment">'+title+'</span>');
+$(obj).parents('.jinsom-single-comment-list').prepend($(obj).parents('.jinsom-comment-li'));
+$(obj).parents('.jinsom-comment-li').siblings().find('.comment-up').text(title);
+}
+}
+});
+}
+}); 
+}
+
+
 //cookies
 function SetCookie(name,value){
 var argv=SetCookie.arguments;
