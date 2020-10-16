@@ -1634,12 +1634,17 @@ id: 'jinsom-publish-video-demo',
 url:msg.file_url,
 'x5-video-player-type': 'h5',
 'x5-video-player-fullscreen': false,
-playbackRate: [0.5,0.75,1,1.5,2,4,6,8],
+playbackRate: [0.5,1,2,6,8],
 fitVideoSize:'fixWidth',
 playsinline: true,
 videoInit: true,
 autoplay:true,
-ignores: ['volume','time','progress','pc']
+ignores: ['volume','pc'],
+closeVideoTouch: true,
+rotate:{
+innerRotate: true, //只旋转内部video
+clockwise: false // 旋转方向是否为顺时针
+}
 });
 
 video = $('#jinsom-publish-video-demo video');
@@ -2387,7 +2392,12 @@ poster:cover,
 playsinline: true,
 // fluid: true,
 // autoplay:true,
-ignores: ['volume','time','pc']
+ignores: ['volume','pc'],
+closeVideoTouch: true,
+rotate:{
+innerRotate: true, //只旋转内部video
+clockwise: false // 旋转方向是否为顺时针
+}
 });
 }
 

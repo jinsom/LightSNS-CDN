@@ -2972,7 +2972,7 @@ window['video_'+post_id]=new window[video_type]({
 id:'jinsom-video-'+post_id,
 url:video_url,
 poster:cover,
-playbackRate: [0.5,0.75,1,1.5,2,4,6,8],
+playbackRate: [0.5,1,2,6,8],
 fitVideoSize:'fixWidth',
 autoplay:autoplay,
 // enterLogo:{
