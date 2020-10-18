@@ -3,11 +3,6 @@
 //---------------------------内容详情页面-----------------
 myApp.onPageBeforeInit('post-single',function(page){
 post_id=page.query['post_id'];
-if(jinsom.permalink_structure){//固定连接
-window.history.pushState(null,null,page.query['url']+'#'+Math.random().toString(36).substr(2,5));	
-}else{//朴素
-window.history.pushState(null,null,'/?p='+post_id+'#'+Math.random().toString(36).substr(2,5));	
-}
 
 if($('.jinsom-video-playing').length>0){
 current_post_id=$('.jinsom-video-playing').attr('post_id');
@@ -58,12 +53,6 @@ jinsom_lightbox();//灯箱
 
 //---------------------------案例页面-----------------
 myApp.onPageBeforeInit('case',function(page){
-post_id=page.query['post_id'];
-if(jinsom.permalink_structure){//固定连接
-window.history.pushState(null,null,page.query['url']+'#'+Math.random().toString(36).substr(2,5));	
-}else{//朴素
-window.history.pushState(null,null,'/?p='+post_id+'#'+Math.random().toString(11).substr(5,8));	
-}
 $('.jinsom-home-menu.case li').click(function(){
 $(this).addClass('on').siblings().removeClass('on');
 $(this).parents('.navbar').next().children('.page-on-center').find('ul').eq($(this).index()).show().siblings().hide();
@@ -74,7 +63,6 @@ $(this).parents('.navbar').next().children('.page-on-center').find('ul').eq($(th
 //---------------------------动态评论-----------------
 myApp.onPageAfterAnimation('comment-post',function(page){
 post_id=page.query['post_id'];
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 name=page.query['name'];
 //$('#jinsom-comment-content-'+post_id).focus();
 if(name!='undefined'){
@@ -219,25 +207,12 @@ var el = document.getElementById('jinsom-publish-images-list');
 var sortable = Sortable.create(el);
 
 
-
-
 });
 
 
-
-//---------------------------帖子楼层页面-----------------
-myApp.onPageBeforeInit('comment-bbs-floor-page',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-
-//---------------------------音乐评论列表页面-----------------
-myApp.onPageBeforeInit('comment-list-music',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
 
 //--------------------------- 一级回帖-----------------
 myApp.onPageAfterAnimation('comment-bbs-post',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 post_id=page.query['post_id'];
 bbs_id=page.query['bbs_id'];
 
@@ -381,7 +356,6 @@ var sortable = Sortable.create(el);
 
 //--------------------------- 二级回帖-----------------
 myApp.onPageAfterAnimation('comment-bbs-post-floor',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 post_id=page.query['post_id'];
 bbs_id=page.query['bbs_id'];
 comment_id=page.query['comment_id'];
@@ -408,41 +382,26 @@ style: 'position:fixed;bottom:0;left:0;width:100%;height:65vw;border:none;'
 
 });
 
+
 //---------------------------搜索页面-----------------
-myApp.onPageBeforeInit('search-mobile',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
 myApp.onPageBeforeInit('search-mobile',function(page){
 search_keywords=page.query['search_keywords'];
 if(search_keywords){
 jinsom_search(search_keywords);	
 }
-
 $('#jinsom-search').focus();
-
 $('#jinsom-search-form').submit(function (event) {
 //动作：阻止表单的默认行为
 event.preventDefault();
 value=$('#jinsom-search').val();
 jinsom_search(value);
 })
-
-
-
-
-
-
 });
+
+
+
 //---------------------------论坛大厅-----------------
 myApp.onPageBeforeInit('bbs-show',function(page){
-
-post_id=page.query['post_id'];
-if(jinsom.permalink_structure){//固定连接
-window.history.pushState(null,null,page.query['url']+'#'+Math.random().toString(36).substr(2,5));	
-}else{//朴素
-window.history.pushState(null,null,'/?p='+post_id+'#'+Math.random().toString(11).substr(5,8));	
-}
-
 $('#jinsom-bbs-slider').owlCarousel({
 items: 1,
 margin:15,
@@ -458,13 +417,6 @@ $(this).addClass('on').siblings().removeClass('on').parent().next().children().e
 
 //---------------------------话题中心-----------------
 myApp.onPageBeforeInit('topic-show',function(page){
-post_id=page.query['post_id'];
-if(jinsom.permalink_structure){//固定连接
-window.history.pushState(null,null,page.query['url']+'#'+Math.random().toString(36).substr(2,5));	
-}else{//朴素
-window.history.pushState(null,null,'/?p='+post_id+'#'+Math.random().toString(36).substr(2,5));	
-}
-
 navbar_height=parseInt($('.navbar').height());
 w_height=parseInt($(window).height());
 $('.jinsom-topic-show-form').height(w_height-navbar_height);
@@ -473,22 +425,9 @@ $(this).addClass('on').siblings().removeClass('on').parent().next().children().e
 });
 });
 
-//--------------------------发表动态-----------------
-myApp.onPageBeforeInit('publish',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-
-
-//--------------------------赠送礼物-----------------
-myApp.onPageBeforeInit('send-gift',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
 
 //--------------------------sns默认页面-----------------
 myApp.onPageBeforeInit('sns',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-
-//if(jinsom.mobile_sns_slider){//首页幻灯片
 $('#jinsom-sns-slider').owlCarousel({
 items: 1,
 margin:15,
@@ -496,17 +435,13 @@ autoplay:true,
 autoplayTimeout:5000,
 loop: true,
 });
-//}
-
 jinsom_index_sns_js_load();
-
 });
 
 
 //--------------------------实时动态-----------------
 myApp.onPageBeforeInit('now',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-
+//加载更多
 now_loading = false;
 now_page=2;
 now_list=$('.jinsom-now-content .jinsom-chat-user-list');
@@ -534,53 +469,10 @@ $('.jinsom-load-post').remove();
 
 });
 
-//--------------------------我的礼物-----------------
-myApp.onPageBeforeInit('my-gift',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
 
-//--------------------------礼物记录-----------------
-myApp.onPageBeforeInit('gift-note',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-
-//---------------------------附近的人-----------------
-myApp.onPageBeforeInit('nearby-people',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-
-//---------------------------话题排行榜-----------------
-myApp.onPageBeforeInit('topic-rank',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-
-//---------------------------打赏页面-----------------
-myApp.onPageBeforeInit('reward',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-
-//---------------------------购买付费内容页面-----------------
-myApp.onPageBeforeInit('post-buy',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-
-//---------------------------充值金币页面-----------------
-myApp.onPageBeforeInit('recharge-credit',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-//---------------------------充值会员页面-----------------
-myApp.onPageBeforeInit('recharge-vip',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-
-//---------------------------卡密兑换页面-----------------
-myApp.onPageBeforeInit('key-recharge',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
 
 //---------------------------提现-----------------
 myApp.onPageBeforeInit('cash',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 $('.jinsom-cash-form-content .type>m').click(function(){
 $(this).addClass('on').siblings().removeClass('on');
 if($(this).attr('type')=='alipay'){
@@ -597,31 +489,14 @@ $('.jinsom-cash-form-content .number n').text(number+'元');
 });
 });
 
-//---------------------------提现记录-----------------
-myApp.onPageBeforeInit('cash-note',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-
-//---------------------------提现记录详情-----------------
-myApp.onPageBeforeInit('cash-note-more',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-
-//---------------------------经验记录页面-----------------
-myApp.onPageBeforeInit('exp-note',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
 
 //签到
 myApp.onPageBeforeInit('sign', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-
 if($('#sign-1').length>0){
 new TencentCaptcha(document.getElementById('sign-1'),jinsom.machine_verify_appid,function(res){
 if(res.ret === 0){jinsom_sign(document.getElementById('sign-1'),res.ticket,res.randstr);}
 });
 }
-
 
 var hadsign = new Array(); //已签到的数组
 hadsign[0] = "765189111";
@@ -639,57 +514,7 @@ qdDay: hadsign,
 });
 
 });
-//签到排行榜
-myApp.onPageBeforeInit('sign-rank', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
 
-//我的钱包
-myApp.onPageBeforeInit('mywallet', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-
-//活跃用户
-myApp.onPageBeforeInit('online', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-
-//会员中心
-myApp.onPageBeforeInit('vip', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-
-//活动报名表单
-myApp.onPageBeforeInit('activity-form', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-
-//排行榜
-myApp.onPageBeforeInit('leaderboard', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-//小黑屋
-myApp.onPageBeforeInit('black-house', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-
-//转发
-myApp.onPageBeforeInit('reprint', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-
-//抢红包
-myApp.onPageBeforeInit('get-redbag', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-//马甲
-myApp.onPageBeforeInit('majia', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-//设置语言
-myApp.onPageBeforeInit('setting-language', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
 
 
 
@@ -699,15 +524,11 @@ $('.jinsom-publish-redbag-form .type li').click(function(){
 $(this).addClass('on').siblings().removeClass('on');
 $('.jinsom-publish-redbag-form .tips').html($(this).attr('title'));
 });
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 });
 
 //幸运抽奖
 myApp.onPageBeforeInit('luck-draw', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-
-//列表tab切换
-$('.jinsom-luck-draw-list li').click(function(){
+$('.jinsom-luck-draw-list li').click(function(){//列表tab切换
 $(this).addClass('on').siblings().removeClass('on');
 $(this).parent().next().children().eq($(this).index()).show().siblings().hide();
 });
@@ -716,7 +537,6 @@ $(this).parent().next().children().eq($(this).index()).show().siblings().hide();
 
 //消息
 myApp.onPageBeforeInit('notice', function (page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 $('.jinsom-mine-page li.notice .item-after').empty();//移除红点
 jinsom_index_notice_js_load();
 $('.jinsom-chat-notice li').click(function(event){
@@ -726,14 +546,6 @@ $(this).children('.tips').remove();
 
 //---------------------------视频专题-----------------
 myApp.onPageBeforeInit('video-special',function(page){
-
-post_id=page.query['post_id'];
-if(jinsom.permalink_structure){//固定连接
-window.history.pushState(null,null,page.query['url']+'#'+Math.random().toString(36).substr(2,5));	
-}else{//朴素
-window.history.pushState(null,null,'/?p='+post_id+'#'+Math.random().toString(11).substr(5,8));	
-}
-
 var video_list=$('.jinsom-video-special-list');
 var video_loading = false;
 var video_page = 2;
@@ -764,7 +576,6 @@ $('.jinsom-load-post').remove();
 
 //---------------------------上传头像页面-----------------
 myApp.onPageBeforeInit('upload-avatar',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 var avatar = new Mavatar({el: '#jinsom-avatar-demo',backgroundColor:'#fff',width:'250px',height:'250px', fileOnchange: function (e) {
 }});
 margintop=($('body').width()-250)/2;
@@ -776,7 +587,7 @@ $.ajax({
 type:"POST",
 dataType:'json',
 url:jinsom.jinsom_ajax_url+"/upload/avatar-base64.php",
-data:{base64:data,user_id:post_id=page.query['user_id']},
+data:{base64:data,user_id:page.query['user_id']},
 success: function(msg){
 myApp.hideIndicator();
 if(msg.code==1){
@@ -813,8 +624,6 @@ avatar.resetImage();
 
 //---------------------------设置页面-----------------
 myApp.onPageInit('setting', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'#'+Math.random().toString(36).substr(2,5));
-
 $('.jinsom-setting-box li.vip-time').change(function(event) {//设置VIP到期时间
 vip_time=$(this).children('input').val();
 author_id=$('.jinsom-setting-content').attr('data');
@@ -900,8 +709,6 @@ this_dom.siblings('.value').html('风险账户');
 });
 //---------------------------更多设置页面-----------------
 myApp.onPageInit('setting-more', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'#'+Math.random().toString(36).substr(2,5));
-
 $('.jinsom-setting-box li.gender select').change(function(event) {//设置性别
 gender=$(this).val();
 author_id=$('.jinsom-setting-content').attr('data');
@@ -949,14 +756,12 @@ this_dom.find('.value').html(birthday);
 
 //---------------------------更多个人说明页面-----------------
 myApp.onPageAfterAnimation('setting-desc', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'#'+Math.random().toString(36).substr(2,5));
 t=$('#jinsom-setting-desc').val(); 
 $('#jinsom-setting-desc').val("").focus().val(t); 
 });
 
 //---------------------------更多头衔设置页面-----------------
 myApp.onPageAfterAnimation('setting-honor', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'#'+Math.random().toString(36).substr(2,5));
 $('.jinsom-user_honor-select-form .list li').click(function(){
 $(this).addClass('on').siblings().removeClass('on');
 });
@@ -966,20 +771,15 @@ $(this).addClass('on').siblings().removeClass('on');
 
 //---------------------------设置-修改手机号-----------------
 myApp.onPageAfterAnimation('setting-phone', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'#'+Math.random().toString(36).substr(2,5));
-
 if($('#code-3').length>0){
 new TencentCaptcha(document.getElementById('code-3'),jinsom.machine_verify_appid,function(res){
 if(res.ret === 0){jinsom_get_code(120,'phone',res.ticket,res.randstr);}
 });
 }
-
 });
 
 //---------------------------设置-修改邮箱号-----------------
 myApp.onPageAfterAnimation('setting-email', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'#'+Math.random().toString(36).substr(2,5));
-
 if($('#code-4').length>0){
 new TencentCaptcha(document.getElementById('code-4'),jinsom.machine_verify_appid,function(res){
 if(res.ret === 0){jinsom_get_code(120,'mail',res.ticket,res.randstr);}
@@ -1015,12 +815,6 @@ queue: false
 myApp.onPageAfterAnimation('bbs',function(page){
 $('[data-page=bbs] .navbar').removeClass('color');//移除color
 bbs_id=page.query.bbs_id;
-
-if(jinsom.permalink_structure){//固定连接
-window.history.pushState(null,null,page.query['url']+'#'+Math.random().toString(36).substr(2,5));	
-}else{//朴素
-window.history.pushState(null,null,'/?cat='+bbs_id+'#'+Math.random().toString(36).substr(2,5));	
-}
 
 
 
@@ -1090,11 +884,6 @@ myApp.onPageBeforeInit('topic',function(page){
 $('[data-page=topic] .navbar').removeClass('color');//移除color
 topic_id=page.query.topic_id;
 
-if(jinsom.permalink_structure){//固定连接
-window.history.pushState(null,null,page.query['url']+'#'+Math.random().toString(36).substr(2,5));	
-}else{//朴素
-window.history.pushState(null,null,'/?tag='+topic_id+'#'+Math.random().toString(36).substr(2,5));	
-}
 
 jinsom_lightbox();
 
@@ -1143,22 +932,9 @@ $('.jinsom-load').remove();
 
 
 });
-//--------------------------我关注的论坛页面-----------------
-myApp.onPageBeforeInit('bbs-like',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-//--------------------------我关注的话题页面-----------------
-myApp.onPageBeforeInit('topic-like',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-//--------------------------推荐论坛页面-----------------
-myApp.onPageBeforeInit('bbs-commend',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
 
 //--------------------------大转盘页面-----------------
 myApp.onPageBeforeInit('lottery',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 $('.jinsom-lottery-money span.add').click(function(){
 number=$('#jinsom-lottery-money').val();
 if(number){
@@ -1168,25 +944,14 @@ number=0;
 }
 add_number=parseInt($(this).attr('data'));
 $('#jinsom-lottery-money').val(number+add_number);
-
+});
 });
 
-});
 
 //---------------------------个人主页-自己-----------------
-
-
 myApp.onPageBeforeInit('member-mine',function(page){
 $('[data-page=member-mine] .navbar').removeClass('color');//移除color
 jinsom_lightbox();
-author_id=page.query.author_id;
-
-if(jinsom.permalink_structure){//固定连接
-window.history.pushState(null,null,page.query['url']+'#'+Math.random().toString(36).substr(2,5));	
-}else{//朴素
-window.history.pushState(null,null,'/?author='+author_id+'#'+Math.random().toString(36).substr(2,5));	
-}
-
 });
 
 
@@ -1254,14 +1019,6 @@ show_avatar.open();
 myApp.onPageBeforeInit('member-other',function(page){
 $('[data-page=member-other] .navbar').removeClass('color');//移除color
 jinsom_lightbox();
-author_id=page.query.author_id;
-
-if(jinsom.permalink_structure){//固定连接
-window.history.pushState(null,null,page.query['url']+'#'+Math.random().toString(36).substr(2,5));	
-}else{//朴素
-window.history.pushState(null,null,'/?author='+author_id+'#'+Math.random().toString(36).substr(2,5));	
-}
-
 });
 
 myApp.onPageAfterAnimation('member-other', function (page) {
@@ -1353,7 +1110,6 @@ $('#jinsom-view-notice .jinsom-refresh-success').hide();
 //---------------------------单对单聊天-----------------
 myApp.onPageBeforeInit('chat-one',function(page){
 author_id=page.query.author_id;
-window.history.pushState(null,null,'/?chat='+author_id+'&r='+Math.random().toString(36).substr(2,5));
 jinsom_lightbox();
 $('#jinsom-chat-user-'+author_id+' .tips').remove();//消灭提示
 $('.jinsom-chat-list-content').scrollTop($('.jinsom-chat-list-content')[0].scrollHeight);
@@ -1397,7 +1153,6 @@ jinsom_stop_user_Ajax();//关闭长轮询
 //---------------------群聊-------
 myApp.onPageBeforeInit('chat-group',function(page){
 bbs_id=page.query.bbs_id;
-window.history.pushState(null,null,'/?group='+bbs_id+'&r='+Math.random().toString(36).substr(2,5));
 jinsom_lightbox();
 $('.jinsom-chat-group-list-content').scrollTop($('.jinsom-chat-group-list-content')[0].scrollHeight);
 
@@ -1932,36 +1687,8 @@ $('.jinsom-send-gift-toolbar span.send i').html($(this).children('.bottom').attr
 });
 
 
-
-//---------------------与我相关-------
-myApp.onPageBeforeInit('item-notice',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-$('.jinsom-chat-user-list li').click(function(){//消除红点
-$(this).find('.item-media').find('span').remove();
-});
-});
-//---------------------评论回复-------
-myApp.onPageBeforeInit('comment-notice',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-$('.jinsom-chat-user-list li').click(function(){//消除红点
-$(this).find('.item-media').find('span').remove();
-});
-});
-//---------------------喜欢关注-------
-myApp.onPageBeforeInit('like-follow-notice',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-$('.jinsom-chat-user-list li').click(function(){//消除红点
-$(this).find('.item-media').find('span').remove();
-});
-});
 //---------------------系统通知------
 myApp.onPageBeforeInit('system-notice',function(page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-$('.jinsom-chat-user-list li').click(function(){//消除红点
-$(this).find('.item-media').find('span').remove();
-});
-
-
 system_notice_loading = false;
 system_notice_page=2;
 system_notice_list=$('.jinsom-site-notice-content');
@@ -1993,7 +1720,6 @@ $('.jinsom-load-post').remove();
 
 //我的粉丝页面
 myApp.onPageAfterAnimation('follower', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 type=page.query['type'];
 
 //滚动事件
@@ -2056,7 +1782,6 @@ $('.jinsom-load').remove();
 
 //---------------------我的访客-------
 myApp.onPageBeforeInit('visitor',function(page){
-window.history.pushState(null,null,'/?visitor&r='+Math.random().toString(36).substr(2,5));
 $('.jinsom-mine-page li.visitor .item-title>i').remove();//移除红点
 });
 
@@ -2068,7 +1793,6 @@ $('.jinsom-mine-page li.visitor .item-title>i').remove();//移除红点
 
 //收入记录
 myApp.onPageBeforeInit('income', function (page) {
-window.history.pushState(null,null,'/?income&r='+Math.random().toString(36).substr(2,5));
 //滚动事件
 $('.jinsom-recharge-note-content').scroll(function(){
 navbarH=$('.navbar').height();
@@ -2124,7 +1848,6 @@ $('.jinsom-load').remove();
 
 //支出记录
 myApp.onPageBeforeInit('outlay', function (page) {
-window.history.pushState(null,null,'?outlay&r='+Math.random().toString(36).substr(2,5));
 //滚动事件
 $('.jinsom-recharge-note-content').scroll(function(){
 navbarH=$('.navbar').height();
@@ -2182,7 +1905,6 @@ $('.jinsom-load').remove();
 
 //充值记录
 myApp.onPageBeforeInit('recharge-note', function (page) {
-window.history.pushState(null,null,'?recharge-note&r='+Math.random().toString(36).substr(2,5));
 //滚动事件
 $('.jinsom-recharge-note-content').scroll(function(){
 navbarH=$('.navbar').height();
@@ -2290,15 +2012,7 @@ layer.open({content:'上传失败！',skin:'msg',time:2});
 
 });
 
-//任务
-myApp.onPageBeforeInit('task', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
 
-//宝箱任务
-myApp.onPageBeforeInit('task-treasure', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
 
 //任务事件
 myApp.onPageAfterAnimation('task', function (page) {
@@ -2312,8 +2026,6 @@ $('.jinsom-task-form-content').find('ul').eq($(this).index()).show().siblings().
 //生成内容海报
 myApp.onPageBeforeInit('content-playbill',function(page){
 url=page.query['url'];
-// console.log(page.query);
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 jinsom_qrcode('jinsom-content-playbill-code',60,60,url);
 $('#jinsom-add-content-playbill').click(function(){
 obj=$(this);
@@ -2358,7 +2070,6 @@ obj.remove()
 
 //推广
 myApp.onPageBeforeInit('referral', function (page) {
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 
 //复制推广链接
 var clipboard = new ClipboardJS('#jinsom-referral-cover');
@@ -2372,13 +2083,6 @@ layer.open({content:'复制成功！',skin:'msg',time:2});
 
 //直播
 myApp.onPageBeforeInit('live', function (page) {
-post_id=$('.jinsom-live-content').attr('post_id');
-if(jinsom.permalink_structure){//固定连接
-window.history.pushState(null,null,page.query['url']+'#'+Math.random().toString(36).substr(2,5));	
-}else{//朴素
-window.history.pushState(null,null,'/?p='+post_id+'#'+Math.random().toString(36).substr(2,5));	
-}
-
 video_url=$('#jinsom-video-live').attr('data');
 if(video_url){
 cover=$('#jinsom-video-live').attr('cover');
@@ -2428,18 +2132,9 @@ ajax_get_live_comment.abort();
 })
 
 
-//宠物乐园
-myApp.onPageBeforeInit('pet-mine', function (page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-myApp.onPageBeforeInit('pet-other', function (page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
 
-//宠物窝
+//宠物窝-自己
 myApp.onPageBeforeInit('pet-nest-mine', function (page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-
 if($('#pet-1').length>0){
 pet_id=$('#pet-1').attr('data-id');
 pet_number=$('#pet-1').attr('data-number');
@@ -2447,11 +2142,10 @@ new TencentCaptcha(document.getElementById('pet-1'),jinsom.machine_verify_appid,
 if(res.ret === 0){jinsom_pet_sell(pet_id,pet_number,document.getElementById('pet-1'),res.ticket,res.randstr);}
 });
 }
-
 });
-myApp.onPageBeforeInit('pet-nest-other', function (page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 
+//宠物窝-别人
+myApp.onPageBeforeInit('pet-nest-other', function (page){
 if($('#pet-1').length>0){
 pet_id=$('#pet-1').attr('data-id');
 pet_number=$('#pet-1').attr('data-number');
@@ -2459,31 +2153,13 @@ new TencentCaptcha(document.getElementById('pet-1'),jinsom.machine_verify_appid,
 if(res.ret === 0){jinsom_pet_steal(pet_id,pet_number,document.getElementById('pet-1'),res.ticket,res.randstr);}
 });
 }
-
 });
 
-//宠物商城
-myApp.onPageBeforeInit('pet-store', function (page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-
-//宠物列表
-myApp.onPageBeforeInit('pet-list', function (page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
-
-//宠物记录
-myApp.onPageBeforeInit('pet-note', function (page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
-});
 
 
 //收藏
 myApp.onPageBeforeInit('collect', function (page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 jinsom_lightbox();//灯箱
-
-
 //加载更多
 collect_loading = false;
 collect_page = 2;
@@ -2517,11 +2193,7 @@ collect_loading = false;
 
 //收藏-图片
 myApp.onPageBeforeInit('collect-img', function (page){
-window.history.pushState(null,null,'/?'+page.name+'&r='+Math.random().toString(36).substr(2,5));
 jinsom_lightbox();//灯箱
-
-
-
 //加载更多
 collect_img_loading = false;
 collect_img_page = 2;

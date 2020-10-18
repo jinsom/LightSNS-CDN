@@ -47,8 +47,10 @@ jinsom_post_data(type,'pull',0,this);
 
 
 
-
-
+//与我相关-消除红点
+$("body").on("click",'.jinsom-chat-user-list li', function(e){
+$(this).find('.item-media').find('span').remove();
+});
 
 
 });
