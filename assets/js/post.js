@@ -1,54 +1,32 @@
 
 
-//首页或个人主页获取内容数据
-var jinsom_post_status=1;
-function jinsom_post(type,obj){
-
-if($('.jinsom-load-post').length==0){
-$('.jinsom-post-list').prepend(jinsom.loading_post);
-}
-
-if(jinsom_post_status==0){
+//获取内容数据
+function jinsom_post(type,load_type,obj){
+if($('.jinsom-load-post').length>0){//防止多次点击
 return false;	
 }
+if(load_type=='more'){//加载更多
+page=$(obj).attr('page');
+$(obj).before(jinsom.loading_post);
+$(obj).hide();	
+data=$('.jinsom-index-menu li.on').attr('data');
+}else{//ajax切换
+page=1;
+$(obj).addClass('on').siblings().removeClass('on');//菜单切换效果
+$('.jinsom-post-list').prepend(jinsom.loading_post);//加载动画
+data=$(obj).attr('data');
+}
 
-$(obj).addClass('on').siblings().removeClass('on');
 
-author_id=$(obj).attr('author_id');
-jinsom_post_status=0;
 $.ajax({
 type: "POST",
 url:jinsom.jinsom_ajax_url+"/data/post.php",
-data: {type:type,author_id:author_id},
-success: function(msg){   
-$('.jinsom-post-list').html(msg);
-jinsom_post_js();//ajax后加载要执行的脚本
-jinsom_post_status=1;
-}
-});
-}
-
-
-
-//首页或个人主页加载更多数据
-function jinsom_post_more(type,obj){
-page=$(obj).attr('page');
-
-author_id=$(obj).attr('author_id');
-
-if($('.jinsom-load-post').length==0){
-$(obj).before(jinsom.loading_post);
-$(obj).hide();
-}
-
-$.ajax({
-type: "POST",
-url:jinsom.jinsom_ajax_url+"/more/data.php",
-data: {type:type,page:page,author_id:author_id},
-success: function(msg){   
+data: {type:type,page:page,load_type:load_type,index:$(obj).index(),author_id:$(obj).attr('author_id'),data:data},
+success: function(msg){
+if(load_type=='more'){//加载更多
 $('.jinsom-load-post').remove();
 $(obj).show();
-if(msg==0){
+if(msg==0){//没有数据
 layer.msg('没有更多内容！');
 $(obj).remove();
 }else{
@@ -56,6 +34,11 @@ $(obj).before(msg);
 page=parseInt(page)+1;
 $(obj).attr('page',page);	
 }
+}else{//ajax切换
+$('.jinsom-post-list').html(msg);
+}
+
+
 jinsom_post_js();//ajax后加载要执行的脚本
 }
 });

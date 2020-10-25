@@ -3026,8 +3026,8 @@ jinsom_post_video(rand,video_url,video_img,true);
 }
 
 
-//弹窗展示我关注的论坛
-function jinsom_follow_bbs_form(topic_name){
+//弹窗展示我关注/推荐的论坛
+function jinsom_follow_commend_bbs_form(type,topic_name){
 if(!jinsom.is_login){
 jinsom_pop_login_style();	
 return false;
@@ -3035,7 +3035,7 @@ return false;
 layer.load(1);
 $.ajax({   
 url:jinsom.jinsom_ajax_url+"/stencil/follow-bbs.php",
-data:{topic_name:topic_name},
+data:{type:type,topic_name:topic_name},
 type:'POST', 
 success:function(msg){
 layer.closeAll('loading');
@@ -3488,6 +3488,7 @@ fixed: false,
 skin:'jinsom-pop-task-form',
 offset: '50px',
 area: ['700px'],
+offset: '50px',
 resize:false,
 content: msg
 });

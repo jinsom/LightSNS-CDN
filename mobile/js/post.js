@@ -1,36 +1,15 @@
 //内容相关的js
 
-/*
-data_type：数据类型 all:全部  words：动态 music：音乐 single：文章 video：视频
-load_type：加载类型  pull:下拉刷新 menu：菜单 load：首次载入
-author_id:页面属性  如果为0则为非个人主页  大于0则为个人主页
-obj：this
-*/
+
 var status=1;
-function jinsom_post_data(data_type,load_type,author_id,obj){
 
-
-if($('.jinsom-load-post').length==0&&load_type!='pull'){
-if(!author_id){
-$('.jinsom-post-list-sns').prepend(jinsom.loading_post);
-}else{
-$('.jinsom-member-mine-post-list').prepend(jinsom.loading_post);	
+//下拉和ajax
+function jinsom_post(type,load_type,obj){
+if($('.jinsom-load-post').length>0){//防止多次点击
+return false;	
 }
-}
-
-
-if(!author_id){
-$('.page-content').animate({ scrollTop: 0 },0);
-
-// if($(obj).index()!=0){
-// $('.jinsom-mobile-home-sns-top').hide();
-// }else{
-// $('.jinsom-mobile-home-sns-top').show();
-// }
-
-}
-
-if(load_type=='load'||load_type=='pull'){
+author_id=$(obj).attr('author_id');
+if(load_type=='ajax'){//点击菜单
 if(author_id){
 if(author_id==jinsom.user_id){
 post_list=$('.pages .page:last-child .jinsom-member-mine-post-list');	
@@ -38,29 +17,29 @@ post_list=$('.pages .page:last-child .jinsom-member-mine-post-list');
 post_list=$('.pages .page:last-child .jinsom-member-other-post-list');
 }
 }else{
-post_list=$('.jinsom-post-list-sns');	
+post_list=$('.jinsom-post-list-sns');
+$('.page-content').animate({scrollTop: 0 },0);	
 }
-}else{
-if(author_id){
-post_list=$(obj).parent().next();
-post_list.attr('page',2);
-}else{
-post_list=$('.jinsom-post-list-sns');	
+data=$(obj).attr('data');
+}else{//下拉
+data=$('.jinsom-home-menu li.on').attr('data');
 }
-}
-sns_page = 2;
-sns_loading = false;
-$(obj).addClass('on').siblings().removeClass('on');
-// if(load_type!='pull'&&load_type!='load'){//不是下拉刷新并且不是首页加载
-// post_list.html(jinsom.loading);
-// }
 
+post_list.prepend(jinsom.loading_post);//加载动画
+
+sns_page=2;
+sns_loading=false;
+mine_page=2;
+mine_loading=false;
+other_page=2;
+other_loading=false;
+$(obj).addClass('on').siblings().removeClass('on');
 
 $.ajax({
-type: "POST",
-url:  jinsom.mobile_ajax_url+"/post/data.php",
-data: {type:data_type,author_id:author_id},
-success: function(msg){
+type:"POST",
+url:jinsom.mobile_ajax_url+"/post/data.php",
+data:{page:1,type:type,load_type:load_type,index:$(obj).index(),author_id:author_id,data:data},
+success:function(msg){
 post_list.html(msg);
 jinsom_lightbox();//图片灯箱
 }

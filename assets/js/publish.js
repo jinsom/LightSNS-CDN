@@ -27,15 +27,15 @@ content: msg
 }
 
 //弹出对应类型的表单
-function jinsom_publish_power(type,topic_name){
+function jinsom_publish_power(type,bbs_id,topic_name){
 if(!jinsom.is_login){
 jinsom_pop_login_style();	
 return false;
 }
 layer.closeAll(); 
 
-if(type=='bbs'){
-jinsom_follow_bbs_form(topic_name);
+if(type=='follow-bbs'||type=='commend-bbs'){//推荐/关注的论坛列表
+jinsom_follow_commend_bbs_form(type,topic_name);
 return false;
 }
 
@@ -43,7 +43,7 @@ layer.load(1);
 $.ajax({
 type: "POST",
 url:jinsom.jinsom_ajax_url+"/publish/power.php",
-data:{type:type},
+data:{type:type,bbs_id:bbs_id},
 success: function(msg){
 if(msg.code==0){
 layer.closeAll('loading');
@@ -53,6 +53,11 @@ layer.msg(msg.msg);
 if(type=='single'){
 window.location.href=jinsom.member_url_permalink+'info=publish-single&topic_name='+topic_name;
 return false;
+}
+
+if(type=='bbs'){
+window.location.href=jinsom.member_url_permalink+'info=publish-bbs&bbs_id='+bbs_id+'&topic_name='+topic_name;
+return false;	
 }
 
 
@@ -787,32 +792,6 @@ function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,2000);//弹出�
 
 }
 
-//显示发帖表单
-function jinsom_publish_bbs_form(bbs_id,topic_name){
-if(!jinsom.is_login){
-jinsom_pop_login_style();	
-return false;
-}
-layer.load(1);
-$.ajax({
-type:"POST",
-url:jinsom.jinsom_ajax_url+"/publish/bbs-type.php",
-data:{bbs_id:bbs_id},
-success: function(msg){
-layer.closeAll('loading');
-if(msg.code==1){
-child_id=$('.jinsom-bbs-header').attr('child_id');
-if(child_id!=''){
-window.location.href=jinsom.member_url_permalink+'info=publish-bbs&bbs_id='+bbs_id+'&child_bbs_id='+child_id+'&topic_name='+topic_name;
-}else{
-window.location.href=jinsom.member_url_permalink+'info=publish-bbs&bbs_id='+bbs_id+'&topic_name='+topic_name;	
-}
-}else{
-layer.msg(msg.msg);	
-}
-}
-});
-}
 
 
 //发布帖子

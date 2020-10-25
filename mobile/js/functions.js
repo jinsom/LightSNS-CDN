@@ -758,15 +758,23 @@ $(obj).removeClass('no').addClass('had');
 $(obj).html('<i class="jinsom-icon jinsom-yiguanzhu"></i>已关');  
 
 html='<li id="jinsom-bbs-like-'+bbs_id+'">\
-<a href="javascript:jinsom_publish_bbs_type('+bbs_id+')" class="link">\
-<div class="img">\
+<div class="item-content">\
+<div class="item-media">\
+<a href=\'javascript:jinsom_publish_form("bbs",'+bbs_id+')\' class="link">\
 '+$(obj).siblings('.item-media').children('a').html()+'\
-</div>\
-<div class="name">'+$(obj).siblings('.item-inner').find('.name').text()+'</div>\
 </a>\
+</div>\
+<div class="item-inner">\
+<div class="item-title">\
+<a href=\'javascript:jinsom_publish_form("bbs",'+bbs_id+')\' class="link">\
+<div class="name">'+$(obj).siblings('.item-inner').find('.name').text()+'</div>\
+<div class="desc">'+$(obj).siblings('.item-inner').find('.desc').text()+'</div>\
+</a>\
+</div></div></div>\
 </li>';
+
 if($('.jinsom-bbs-like-content.publish .jinsom-empty-page').length>0){
-$('.jinsom-bbs-like-content.publish').html('<div class="jinsom-bbs-like">'+html+'</div>');
+$('.jinsom-bbs-like-content.publish').html('<div class="jinsom-chat-user-list bbs-commend list-block">'+html+'</div>');
 }else{
 $('.jinsom-bbs-like-content.publish .jinsom-bbs-like').prepend(html);
 }
@@ -1031,41 +1039,6 @@ history.back(-1);//返回上一页
 }
 
 
-
-//关注的论坛直接弹出论坛的发布类型
-function jinsom_publish_bbs_type(bbs_id){
-myApp.showIndicator();
-$.ajax({
-type:"POST",
-url:jinsom.mobile_ajax_url+"/publish/bbs-type.php",
-data:{bbs_id:bbs_id},
-success: function(msg){
-myApp.hideIndicator();
-if(msg=='normal'){
-jinsom_publish_bbs_form(bbs_id,'normal');	
-}else if(msg=='pay'){
-jinsom_publish_bbs_form(bbs_id,'pay');	
-}else if(msg=='comment'){
-jinsom_publish_bbs_form(bbs_id,'comment');	
-}else if(msg=='vip'){
-jinsom_publish_bbs_form(bbs_id,'vip');	
-}else if(msg=='login'){
-jinsom_publish_bbs_form(bbs_id,'login');	
-}else if(msg=='answer'){
-jinsom_publish_bbs_form(bbs_id,'answer');	
-}else if(msg=='vote'){
-jinsom_publish_bbs_form(bbs_id,'vote');	
-}else if(msg=='activity'){
-jinsom_publish_bbs_form(bbs_id,'activity');	
-}else if(msg=='no'){
-layer.open({content:'没有开启发布功能！',skin:'msg',time:2});
-}else{
-$('.jinsom-publish-bbs-type-form .bottom').html(msg);	
-myApp.popup('.jinsom-publish-bbs-type-form');
-}
-}
-});	
-}
 
 
 //搜索
@@ -1393,12 +1366,14 @@ layer.open({content:'复制成功！',skin:'msg',time:2});
 
 
 //切换排行榜数据
-function jinsom_leaderboard_data(type,obj){
+function jinsom_leaderboard_data(post_id,obj){
 $(obj).addClass('on').siblings().removeClass('on');
+$('.jinsom-leaderboard-content').prepend(jinsom.loading_post);
+number=$(obj).index();
 $.ajax({
 type: "POST",
 url:  jinsom.mobile_ajax_url+"/stencil/leaderboard.php",
-data: {type:type},
+data: {post_id:post_id,number:number},
 success: function(msg){	
 $('.jinsom-leaderboard-content').html(msg);
 }
@@ -1835,20 +1810,9 @@ function jinsom_index_sns_js_load(){
 //首页下拉刷新
 var ptrContent = $('.jinsom-sns-page-content.pull-to-refresh-content');
 ptrContent.on('refresh', function (e) {
-setTimeout(function (){//显示刷新成功
-$('.jinsom-sns-page-content .preloader').hide();
-$('.jinsom-sns-page-content .jinsom-refresh-success').show();
-}, 800);
-
-//下拉刷新完成
-setTimeout(function (){
 myApp.pullToRefreshDone();
-$('.jinsom-sns-page-content .preloader').show();
-$('.jinsom-sns-page-content .jinsom-refresh-success').hide();
-type=$('.jinsom-home-menu li.on').attr('data');
-jinsom_post_data(type,'pull',0,this);
-}, 1600);
-
+type=$('.jinsom-home-menu li.on').attr('type');
+jinsom_post(type,'pull',this);
 });
 
 
@@ -1861,11 +1825,12 @@ $('.jinsom-sns-page-content.infinite-scroll').on('infinite',function(){
 if(sns_loading) return;
 sns_loading = true;
 index_post_list.after(jinsom.loading_post);
-type=$('.jinsom-home-menu li.on').attr('data');
+type=$('.jinsom-home-menu li.on').attr('type');
+data=$('.jinsom-home-menu li.on').attr('data');
 $.ajax({
 type: "POST",
 url:  jinsom.mobile_ajax_url+"/post/data.php",
-data: {page:sns_page,type:type,load_type:'more'},
+data: {page:sns_page,type:type,load_type:'more',data:data},
 success: function(msg){
 $('.jinsom-load-post').remove();
 if(msg==0){
@@ -2135,6 +2100,27 @@ $(obj).parents('.jinsom-comment-li').siblings().find('.comment-up').text(title);
 });
 }
 }); 
+}
+
+
+//表情
+function jinsom_smile_form(obj){
+layer.open({
+type: 1,
+content: $(obj).next().html(),
+anim: 'up',
+style: 'position:fixed;bottom:0;left:0;width:100%;height:65vw;border:none;'
+});	
+}
+
+//发布权限
+function jinsom_publish_power_form(){
+layer.open({
+type: 1,
+content: $('.jinsom-publish-power-list-form').html(),
+anim: 'up',
+style: 'position:fixed;bottom:0;left:0;width:100%;border:none;'
+});	
 }
 
 
