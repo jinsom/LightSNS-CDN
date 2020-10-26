@@ -23,6 +23,7 @@ $('.page-content').animate({scrollTop: 0 },0);
 data=$(obj).attr('data');
 }else{//下拉
 data=$('.jinsom-home-menu li.on').attr('data');
+post_list=$('.jinsom-post-list-sns');
 }
 
 post_list.prepend(jinsom.loading_post);//加载动画
