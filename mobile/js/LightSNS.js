@@ -2237,20 +2237,19 @@ window.Jinsom = function () {
                         page: s
                     })
                 }
-                //"jinsom-home-page" != s.name && "jinsom-notice-page" != s.name && "jinsom-find-page" != s.name && "jinsom-mine-page" != s.name && "jinsom-video-page" != s.name && "jinsom-single-page" != s.name && "jinsom-custom-page" != s.name && "jinsom-shop-page" != s.name && ("post-single" == s.name || "case" == s.name || "bbs-show" == s.name || "topic-show" == s.name || "video-special" == s.name || "bbs" == s.name || "topic" == s.name || "member-mine" == s.name || "member-other" == s.name ? jinsom.permalink_structure ? window.history.pushState(null, null, s.query.url + "#" + Math.random().toString(36).substr(2, 5)) : window.history.pushState(null, null, "/?p=" + s.query.post_id + "#" + Math.random().toString(36).substr(2, 5)) : window.history.pushState(null, null, "/?" + s.name + "&r=" + Math.random().toString(36).substr(2, 5)))
-           
-if("jinsom-home-page" != s.name && "jinsom-notice-page" != s.name && "jinsom-find-page" != s.name && "jinsom-mine-page" != s.name && "jinsom-video-page" != s.name && "jinsom-single-page" != s.name && "jinsom-custom-page" != s.name && "jinsom-shop-page" != s.name){
+
+
+if(s.name!=null&&s.name.indexOf('jinsom-')==-1){ 
 if(s.query.url){
-if(jinsom.permalink_structure){//固定连接	
-window.history.pushState(null,null,s.query.url+'#'+Math.random().toString(36).substr(2,5));		
-}else{//朴素	
-window.history.pushState(null,null,'/?p='+s.query.post_id+'#'+Math.random().toString(36).substr(2,5));		
+if(jinsom.permalink_structure){//固定连接   
+window.history.pushState(null,null,s.query.url+'#'+Math.random().toString(36).substr(2,5));     
+}else{//朴素  
+window.history.pushState(null,null,'/?p='+s.query.post_id+'#'+Math.random().toString(36).substr(2,5));      
 }
 }else{
-window.history.pushState(null,null,'/?'+s.name+'&r='+Math.random().toString(36).substr(2,5));	
+window.history.pushState(null,null,'/?'+s.name+'&r='+Math.random().toString(36).substr(2,5));   
 }
-
-}
+}//!=null
 
 
 

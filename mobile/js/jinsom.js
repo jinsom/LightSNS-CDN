@@ -18,25 +18,32 @@ myApp.hideIndicator();
 });
 // var $$=Jinsom;
 
-mobile_page=$.parseJSON(jinsom.mobile_page);//获取移动端开启的页面类型
-if(mobile_page){
-if(mobile_page.sns){view_sns=myApp.addView('#jinsom-view-sns',{dynamicNavbar:true,domCache:true});}
-if(mobile_page.notice){view_notice=myApp.addView('#jinsom-view-notice',{dynamicNavbar:true,domCache:true});}
-if(mobile_page.find){view_find=myApp.addView('#jinsom-view-find',{dynamicNavbar:true,domCache:true});}
-if(mobile_page.mine){view_mine=myApp.addView('#jinsom-view-mine',{dynamicNavbar:true,domCache:true});}
-if(mobile_page.bbs){view_bbs=myApp.addView('#jinsom-view-bbs',{dynamicNavbar:true,domCache:true});}
-if(mobile_page.video){view_video=myApp.addView('#jinsom-view-video',{dynamicNavbar:true,domCache:true});}
-if(mobile_page.single){view_single=myApp.addView('#jinsom-view-single',{dynamicNavbar:true,domCache:true});}
-if(mobile_page.custom_1){view_custom_1=myApp.addView('#jinsom-view-custom-1',{dynamicNavbar:true,domCache:true});}
-if(mobile_page.custom_2){view_custom_2=myApp.addView('#jinsom-view-custom-2',{dynamicNavbar:true,domCache:true});}
-if(mobile_page.custom_3){view_custom_3=myApp.addView('#jinsom-view-custom-3',{dynamicNavbar:true,domCache:true});}
+
+//强制登录
+if(jinsom.login_on_off&&!jinsom.is_login){
+myApp.loginScreen();
 }
 
 
 
+mobile_tab=$.parseJSON(jinsom.mobile_tab);//获取移动端开启的页面类型
+if(mobile_tab){
+for (var i = 0; i < mobile_tab.length; i++) {
+mobile_tab_type=mobile_tab[i].jinsom_mobile_tab_type;
+if(mobile_tab_type!='publish'){
+if(mobile_tab_type=='custom'){
+myApp.addView('#jinsom-view-custom-'+i,{dynamicNavbar:true,domCache:true});
+}else{
+myApp.addView('#jinsom-view-'+mobile_tab_type,{dynamicNavbar:true,domCache:true});	
+}
+}
+}//for
+}//if
+
+
 //判断页面属性
 if(jinsom.is_single){
-window.history.pushState(null,null,'/');
+//window.history.pushState(null,null,'/');
 if(jinsom.is_bbs_post){
 function a(){
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/post-bbs.php?post_id='+jinsom.post_id+'&bbs_id='+jinsom.bbs_id+'&url='+jinsom.post_url+'&type=bbs'});
@@ -77,78 +84,24 @@ myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page
 }
 
 if(jinsom.is_category){
-window.history.pushState(null,null,'/');
-function h(){
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/bbs.php?bbs_id='+jinsom.bbs_id+'&url='+jinsom.bbs_url});
-}setTimeout(h,500);	
 }
 
 if(jinsom.is_tag){
-window.history.pushState(null,null,'/');
-function i(){
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/topic.php?topic_id='+jinsom.topic_id+'&url='+jinsom.topic_url});
-}setTimeout(i,500);	
 }
 
 if(jinsom.is_search){
-window.history.pushState(null,null,'/');
-function j(){
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/search.php?search_keywords='+jinsom.search_keywords});
-}setTimeout(j,500);	
 }
 
 
 
 
-//强制登录
-if(jinsom.login_on_off&&!jinsom.is_login){
-myApp.loginScreen();
-}
 
 
 
-//sns首页
-if(mobile_page.sns){
-jinsom_index_sns_js_load();
-}
 
-
-//消息页面
-if(mobile_page.notice){
-jinsom_index_notice_js_load();
-}
-
-
-//视频专题加载更多事情
-if(mobile_page.video){//如果开启专题页面
-var video_loading = false;
-var video_page = 2;
-var video_list=$('.jinsom-video-special-list');
-number=video_list.attr('number');
-$('.jinsom-video-page-content.infinite-scroll').on('infinite',function(){
-if (video_loading) return;
-video_loading = true;
-video_list.after(jinsom.loading_post);
-topic=$('.jinsom-video-special-menu li.on').attr('data');
-$.ajax({
-type: "POST",
-url:  jinsom.mobile_ajax_url+"/post/video-special.php",
-data: {topic:topic,page:video_page,number:number,type:'more'},
-success: function(msg){
-if(msg==0){ 
-video_loading = true; 
-}else{
-video_list.append(msg);
-video_page++;
-video_loading = false;  
-}
-$('.jinsom-load-post').remove();
-}
-});
-
-}); 
-
-}
 
 
 
@@ -356,7 +309,7 @@ myApp.getCurrentView().router.back();
 if(navigator.userAgent.indexOf("Html5Plus")<0){//非app环境
 $("body").on("click",".back", function(e){
 history.back();
-console.log(3);
+// console.log(3);
 });
 }
 

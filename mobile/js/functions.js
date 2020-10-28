@@ -1807,6 +1807,8 @@ $('#jinsom-referral-url-cover').html(msg.url);
 
 //首页sns模块
 function jinsom_index_sns_js_load(){
+jinsom_lightbox();//图片灯箱
+
 //首页下拉刷新
 var ptrContent = $('.jinsom-sns-page-content.pull-to-refresh-content');
 ptrContent.on('refresh', function (e) {
@@ -1875,8 +1877,37 @@ $(this).children('.tips').remove();
 }, 1600);
 
 });
+}
 
+//视频专题后加载js
+function jinsom_index_video_special_js_load(){
+var video_loading = false;
+var video_page = 2;
+var video_list=$('.jinsom-video-special-list');
+number=video_list.attr('number');
+$('.jinsom-video-page-content.infinite-scroll').on('infinite',function(){
+if (video_loading) return;
+video_loading = true;
+video_list.after(jinsom.loading_post);
+topic=$('.jinsom-video-special-menu li.on').attr('data');
+$.ajax({
+type: "POST",
+url:  jinsom.mobile_ajax_url+"/post/video-special.php",
+data: {topic:topic,page:video_page,number:number,type:'more'},
+success: function(msg){
+if(msg==0){ 
+video_list.append('<div class="jinsom-empty-page">没有更多内容</div>'); 
+video_loading = true; 
+}else{
+video_list.append(msg);
+video_page++;
+video_loading = false;  
+}
+$('.jinsom-load-post').remove();
+}
+});
 
+}); 
 }
 
 
