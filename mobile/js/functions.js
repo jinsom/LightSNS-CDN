@@ -1815,6 +1815,7 @@ ptrContent.on('refresh', function (e) {
 myApp.pullToRefreshDone();
 type=$('.jinsom-home-menu li.on').attr('type');
 jinsom_post(type,'pull',this);
+jinsom_index_notice_js_load();//加载消息页面
 });
 
 
@@ -1850,32 +1851,35 @@ sns_loading = false;
 
 //首页消息模块
 function jinsom_index_notice_js_load(){
-//下拉刷新
-var ptrContent = $('.jinsom-notice-page-content.pull-to-refresh-content');
-ptrContent.on('refresh', function (e) {
-setTimeout(function (){//显示刷新成功
-$('.jinsom-notice-page-content .preloader').hide();
-$('.jinsom-notice-page-content .jinsom-refresh-success').show();
-}, 800);
-
-// //下拉刷新完成
-setTimeout(function (){
-myApp.pullToRefreshDone();
-$('.jinsom-notice-page-content .preloader').show();
-$('.jinsom-notice-page-content .jinsom-refresh-success').hide();
-//消息页面
 $.ajax({   
 url:jinsom.mobile_ajax_url+"/stencil/notice-page.php",
 type:'POST',    
 success:function(msg){
 $('.jinsom-chat').html(msg);
-$('.jinsom-chat-notice li').click(function(event){
-$(this).children('.tips').remove();
-});
+
+notice=0;
+$(".jinsom-chat .tips").each(function(){
+if($(this).text()){
+notice+=parseInt($(this).text());
 }
 });
-}, 1600);
+$('.toolbar .notice i').html('<span class="badge bg-red tips">'+notice+'</span>');
 
+$('.jinsom-chat-notice li').click(function(event){//消除红点
+all_notice=parseInt($('.toolbar .tips').text());
+if(all_notice){
+current_notice=parseInt($(this).children('.tips').text());
+number=all_notice-current_notice;
+if(number){
+$('.toolbar .tips').text(number);
+}else{
+$('.toolbar .tips').remove();
+}
+}
+$(this).children('.tips').remove();
+});
+
+}
 });
 }
 

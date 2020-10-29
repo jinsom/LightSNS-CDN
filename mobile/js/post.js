@@ -3,7 +3,7 @@
 
 var status=1;
 
-//下拉和ajax
+//pull和ajax
 function jinsom_post(type,load_type,obj){
 if($('.jinsom-load-post').length>0){//防止多次点击
 return false;	
@@ -21,6 +21,18 @@ post_list=$('.jinsom-post-list-sns');
 $('.page-content').animate({scrollTop: 0 },0);	
 }
 data=$(obj).attr('data');
+
+
+//自动滑动菜单
+menu_width=0;
+for(var i=0;i<$(obj).index();i++){
+menu_width+=$(obj).parent().children('li').eq(i).outerWidth(true);
+}
+$(obj).parent().animate({
+scrollLeft:menu_width-$(window).width()/2+$(obj).outerWidth()
+});
+
+
 }else{//下拉
 data=$('.jinsom-home-menu li.on').attr('data');
 post_list=$('.jinsom-post-list-sns');
@@ -43,6 +55,9 @@ data:{page:1,type:type,load_type:load_type,index:$(obj).index(),author_id:author
 success:function(msg){
 post_list.html(msg);
 jinsom_lightbox();//图片灯箱
+if(load_type=='pull'){
+layer.open({content:'刷新成功',skin:'msg',time:2});
+}
 }
 });
 
