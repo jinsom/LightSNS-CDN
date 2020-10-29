@@ -513,10 +513,23 @@ $(this).parent().next().children().eq($(this).index()).show().siblings().hide();
 
 //消息
 myApp.onPageBeforeInit('notice', function (page){
-$('.jinsom-mine-page li.notice .item-after').empty();//移除红点
+$('.jinsom-mine-box li.notice .item-after,.toolbar .mine i').empty();//移除红点
 jinsom_index_notice_js_load();
-$('.jinsom-chat-notice li').click(function(event){
-$(this).children('.tips').remove();
+
+//下拉刷新
+var ptrContent = $('.jinsom-notice-page-content.pull-to-refresh-content');
+ptrContent.on('refresh', function (e) {
+if($('.jinsom-load-post').length>0){//防止多次下拉
+return false;	
+}
+$('.jinsom-chat').prepend(jinsom.loading_post);
+myApp.pullToRefreshDone();
+// //下拉刷新完成
+setTimeout(function (){
+jinsom_index_notice_js_load();
+layer.open({content:'刷新成功',skin:'msg',time:2});
+}, 800);
+
 });
 });
 

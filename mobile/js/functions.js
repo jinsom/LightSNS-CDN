@@ -1815,7 +1815,23 @@ ptrContent.on('refresh', function (e) {
 myApp.pullToRefreshDone();
 type=$('.jinsom-home-menu li.on').attr('type');
 jinsom_post(type,'pull',this);
+if($('#jinsom-view-notice').length>0){
 jinsom_index_notice_js_load();//加载消息页面
+}
+
+if($('.jinsom-mine-box li.notice').length>0){//如果我的里面开启了消息
+$.ajax({   
+url:jinsom.jinsom_ajax_url+"/action/notice-all.php",
+type:'POST',    
+success:function(msg){
+if(msg){
+$('.jinsom-mine-box li.notice .item-after,.toolbar .mine i').html('<span class="badge bg-red tips">'+msg+'</span>');	
+}
+}
+});	
+}
+
+
 });
 
 
@@ -1863,7 +1879,9 @@ if($(this).text()){
 notice+=parseInt($(this).text());
 }
 });
+if(notice){
 $('.toolbar .notice i').html('<span class="badge bg-red tips">'+notice+'</span>');
+}
 
 $('.jinsom-chat-notice li').click(function(event){//消除红点
 all_notice=parseInt($('.toolbar .tips').text());

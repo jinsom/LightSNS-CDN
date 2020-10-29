@@ -32,7 +32,9 @@ for (var i = 0; i < mobile_tab.length; i++) {
 mobile_tab_type=mobile_tab[i].jinsom_mobile_tab_type;
 if(mobile_tab_type!='publish'){
 if(mobile_tab_type=='custom'){
+if(mobile_tab[i].jinsom_mobile_tab_custom_type!='link'){
 myApp.addView('#jinsom-view-custom-'+i,{dynamicNavbar:true,domCache:true});
+}
 }else{
 myApp.addView('#jinsom-view-'+mobile_tab_type,{dynamicNavbar:true,domCache:true});	
 }

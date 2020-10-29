@@ -82,13 +82,13 @@ myApp.loginScreen();
 return false;
 }
 if($(obj).find('.badge').length>0){
-all_notice=parseInt($('.jinsom-footer-toolbar .tips').html());
-current_notice=parseInt($(obj).find('.badge').html());
+all_notice=parseInt($('.toolbar .notice .tips').text());
+current_notice=parseInt($(obj).find('.tips').text());
 number=all_notice-current_notice;
 if(number){//如果还有未读消息
-$('.jinsom-xiaoxizhongxin .badge').html(number);	
+$('.toolbar .notice .tips').html(number);	
 }else{
-$('.jinsom-xiaoxizhongxin .badge').remove();
+$('.toolbar .notice .tips').remove();
 }
 }
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/chat-one.php?author_id='+author_id});
