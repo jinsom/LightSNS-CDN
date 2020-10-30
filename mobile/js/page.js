@@ -1783,7 +1783,7 @@ $('.jinsom-load').remove();
 
 //---------------------我的访客-------
 myApp.onPageBeforeInit('visitor',function(page){
-$('.jinsom-mine-page li.visitor .item-title>i').remove();//移除红点
+$('.jinsom-mine-page li.visitor .item-title>i,.jinsom-mine-page li.visitor .p>i').remove();//移除红点
 });
 
 
