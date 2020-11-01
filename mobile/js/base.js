@@ -42,7 +42,7 @@ expdate.setTime(expdate.getTime()+(24*60*60*1000*30*12*10));
 SetCookie('sort',name,expdate,"/",null,false);	
 // function c(){window.location.reload();}setTimeout(c,1500);
 type=$('.jinsom-home-menu li.on').attr('data');
-jinsom_post(type,'pull',this);
+jinsom_post(type,'reload',this);
 });	
 
 

@@ -474,8 +474,14 @@ myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
 $(".jinsom-publish-words-form .content textarea").val('');
+if($('.page-on-center').prev().attr('data-page')=='bbs'){//在论坛页面
 myApp.getCurrentView().router.back();
 function e(){myApp.getCurrentView().router.refreshPage();}setTimeout(e,800);
+}else{//在首页
+function d(){myApp.getCurrentView().router.back();}setTimeout(d,2000);
+type=$('.jinsom-home-menu li.on').attr('data');
+jinsom_post(type,'reload',this);//重新加载内容
+}
 }else if(msg.code==5){
 function a(){myApp.popup('.jinsom-publish-topic-popup');}setTimeout(a,1500);
 }else if(msg.code==2){

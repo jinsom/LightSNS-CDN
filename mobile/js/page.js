@@ -513,7 +513,7 @@ $(this).parent().next().children().eq($(this).index()).show().siblings().hide();
 
 //消息
 myApp.onPageBeforeInit('notice', function (page){
-$('.jinsom-mine-box li.notice .item-after,.toolbar .mine i').empty();//移除红点
+$('.jinsom-mine-box li.notice .item-after,.jinsom-mine-box.cell li.notice i,.toolbar .mine i').empty();//移除红点
 jinsom_index_notice_js_load();
 
 //下拉刷新
@@ -1784,7 +1784,7 @@ $('.jinsom-load').remove();
 
 //---------------------我的访客-------
 myApp.onPageBeforeInit('visitor',function(page){
-$('.jinsom-mine-page li.visitor .item-title>i,.jinsom-mine-page li.visitor .p>i').remove();//移除红点
+$('.jinsom-mine-page li.visitor .item-title>i,.jinsom-mine-page li.visitor p>i').remove();//移除红点
 });
 
 

@@ -1815,7 +1815,7 @@ ptrContent.on('refresh', function (e) {
 myApp.pullToRefreshDone();
 type=$('.jinsom-home-menu li.on').attr('type');
 jinsom_post(type,'pull',this);
-if($('#jinsom-view-notice').length>0){
+if($('#jinsom-view-notice').length>0&&jinsom.is_login){
 jinsom_index_notice_js_load();//加载消息页面
 }
 
