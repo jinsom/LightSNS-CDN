@@ -129,6 +129,31 @@ pre {
 }
 }
 
+.preloader {
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    border-top: 0.3em solid rgba(0,0,0,0.1);
+    border-right: 0.3em solid rgba(0,0,0,0.1);
+    border-bottom: 0.3em solid rgba(0,0,0,0.1);
+    border-left: 0.3em solid #555;
+    transform: translateZ(0);
+    animation: preloader 300ms infinite linear;
+    transition: all 500ms ease;
+}
+@keyframes preloader {
+    0% {
+    -webkit-transform:rotate(0deg);
+    transform:rotate(0deg);
+}
+100% {
+    -webkit-transform:rotate(360deg);
+    transform:rotate(360deg);
+}
+}
+
+
+
 /*空模版*/
 .jinsom-empty-page {
     text-align: center;
@@ -3187,9 +3212,9 @@ video.dplayer-video.dplayer-video-current {
     user-select: none;
 }
 .jinsom-publish-words-form .add span {
-    width: 15vw;
-    height: 15vw;
-    margin-top: 7.5vw;
+    width: 10vw;
+    height: 10vw;
+    margin-top: 9vw;
     display: none;
 }
 .jinsom-publish-words-form .images ul {
