@@ -527,6 +527,7 @@ myApp.pullToRefreshDone();
 // //下拉刷新完成
 setTimeout(function (){
 jinsom_index_notice_js_load();
+$('.jinsom-chat-tab a').first().addClass('active').siblings().removeClass('active');
 layer.open({content:'刷新成功',skin:'msg',time:2});
 }, 800);
 

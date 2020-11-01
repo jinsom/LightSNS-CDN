@@ -6,6 +6,7 @@ var status=1;
 //pull和ajax
 function jinsom_post(type,load_type,obj){
 if($('.jinsom-load-post').length>0){//防止多次点击
+alert(1);
 return false;	
 }
 author_id=$(obj).attr('author_id');
@@ -32,10 +33,16 @@ $(obj).parent().animate({
 scrollLeft:menu_width-$(window).width()/2+$(obj).outerWidth()
 });
 
+index=$(obj).index();
 
 }else{//下拉
 data=$('.jinsom-home-menu li.on').attr('data');
 post_list=$('.jinsom-post-list-sns');
+if(author_id){
+index=$('.jinsom-member-menu li.on').index();
+}else{
+index=$('.jinsom-home-menu li.on').index();
+}
 }
 
 post_list.prepend(jinsom.loading_post);//加载动画
@@ -51,7 +58,7 @@ $(obj).addClass('on').siblings().removeClass('on');
 $.ajax({
 type:"POST",
 url:jinsom.mobile_ajax_url+"/post/data.php",
-data:{page:1,type:type,load_type:load_type,index:$(obj).index(),author_id:author_id,data:data},
+data:{page:1,type:type,load_type:load_type,index:index,author_id:author_id,data:data},
 success:function(msg){
 post_list.html(msg);
 jinsom_lightbox();//图片灯箱

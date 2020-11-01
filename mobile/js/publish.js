@@ -245,7 +245,7 @@ myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
 type=$('.jinsom-home-menu li.on').attr('data');
-jinsom_post(type,'pull',this);
+jinsom_post(type,'reload',this);//重新加载内容
 function d(){myApp.getCurrentView().router.back();}setTimeout(d,2500);
 }else if(msg.code==5){
 function a(){myApp.popup('.jinsom-publish-topic-popup');}setTimeout(a,1500);
@@ -315,7 +315,7 @@ myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
 type=$('.jinsom-home-menu li.on').attr('data');
-jinsom_post(type,'pull',this);
+jinsom_post(type,'reload',this);//重新加载内容
 function d(){myApp.getCurrentView().router.back();}
 setTimeout(d,2500);
 }else if(msg.code==5){
@@ -381,7 +381,7 @@ myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
 type=$('.jinsom-home-menu li.on').attr('data');
-jinsom_post(type,'pull',this);
+jinsom_post(type,'reload',this);//重新加载内容
 function d(){myApp.getCurrentView().router.back();}setTimeout(d,2500);
 }else if(msg.code==5){
 function a(){myApp.popup('.jinsom-publish-topic-popup');}setTimeout(a,1500);
@@ -529,7 +529,7 @@ myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
 type=$('.jinsom-home-menu li.on').attr('data');
-jinsom_post(type,'pull',this);
+jinsom_post(type,'reload',this);//重新加载内容
 function d(){myApp.getCurrentView().router.back();}
 setTimeout(d,2500);
 }

@@ -89,15 +89,12 @@ $(this).children('.jinsom-user-info-card').hide();
 
 //搜索页面======ajax加载
 function jinsom_ajax_search(type,obj){
-
-if($('.jinsom-load-post').length==0){
-$('.jinsom-search-content').prepend(jinsom.loading_post);
+if($('.jinsom-load-post').length>0){
+return false;
 }
 
-if(jinsom_post_status==0){
-return false;	
-}
 
+$('.jinsom-search-content').prepend(jinsom.loading_post);//加载动画
 keyword=$('#jinsom-search-val').val();
 $(obj).addClass('on').siblings().removeClass('on');
 jinsom_post_status=0;
@@ -148,14 +145,11 @@ jinsom_post_js();
 
 //=======================================话题页面加载数据===================
 function jinsom_topic_data(type,obj){
-
-if($('.jinsom-load-post').length==0){
-$('.jinsom-topic-post-list').prepend(jinsom.loading_post);
+if($('.jinsom-load-post').length>0){
+return false;
 }
 
-if(jinsom_post_status==0){
-return false;	
-}
+$('.jinsom-topic-post-list').prepend(jinsom.loading_post);//加载动画
 topic_id=$('.jinsom-topic-info').attr('data');
 post_list=$('.jinsom-topic-post-list');
 $(obj).addClass('on').siblings().removeClass('on');
