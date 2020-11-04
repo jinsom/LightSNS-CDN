@@ -190,7 +190,7 @@ function c(){window.location.reload();}setTimeout(c,2000);
 
 
 //保存设置
-function jinsom_admin_save_setting(){
+function jinsom_admin_save_setting(tips){
 data=$('#jinsom-panel-form').serializeJSONLightSNS();
 layer.load(1);
 $.ajax({
@@ -199,9 +199,8 @@ url: jinsom.jinsom_ajax_url+"/admin/action/admin-save.php",
 data:{data:data},
 success: function(msg){
 layer.closeAll('loading');
+if(tips){
 layer.msg(msg.msg);
-if(msg.code==1){
-
 }
 }
 });

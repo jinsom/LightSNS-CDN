@@ -534,9 +534,9 @@ layer.open({content:'刷新成功',skin:'msg',time:2});
 });
 });
 
-//---------------------------视频专题-----------------
+//---------------------------内页视频专题-----------------
 myApp.onPageBeforeInit('video-special',function(page){
-jinsom_index_video_special_js_load();//视频专题需要加载的js
+jinsom_index_video_special_js_load('#jinsom-page-video-special');//视频专题需要加载的js
 });
 
 //---------------------------上传头像页面-----------------
@@ -2108,14 +2108,14 @@ clockwise: false // 旋转方向是否为顺时针
 }
 
 
-//菜单
+//直播tab菜单
 $('.jinsom-live-page-nav li').click(function(){
 $('.jinsom-live-toolbar textarea,.jinsom-live-toolbar').removeAttr('style');
-$('.jinsom-live-toolbar,.jinsom-home-right-bar').hide();
+$('.jinsom-live-toolbar,.jinsom-right-bar').hide();
 $(this).addClass('on').siblings().removeClass('on');
 $(this).parents('.jinsom-live-page-header').next().children('ul').eq($(this).index()).show().siblings().hide();
 if($(this).hasClass('comment')){
-$('.jinsom-live-toolbar,.jinsom-home-right-bar').show();
+$('.jinsom-live-toolbar,.jinsom-right-bar').show();
 $('.jinsom-live-page-nav-list').scrollTop($('.jinsom-live-page-nav-list')[0].scrollHeight);//互动评论向下啦
 }
 });

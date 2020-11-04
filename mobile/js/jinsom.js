@@ -36,7 +36,7 @@ if(mobile_tab[i].jinsom_mobile_tab_custom_type!='link'){
 myApp.addView('#jinsom-view-custom-'+i,{dynamicNavbar:true,domCache:true});
 }
 }else{
-myApp.addView('#jinsom-view-'+mobile_tab_type,{dynamicNavbar:true,domCache:true});	
+myApp.addView('#jinsom-view-'+mobile_tab_type+'-'+i,{dynamicNavbar:true,domCache:true});	
 }
 }
 }//for

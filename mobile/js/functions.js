@@ -760,13 +760,13 @@ $(obj).html('<i class="jinsom-icon jinsom-yiguanzhu"></i>已关');
 html='<li id="jinsom-bbs-like-'+bbs_id+'">\
 <div class="item-content">\
 <div class="item-media">\
-<a href=\'javascript:jinsom_publish_form("bbs",'+bbs_id+')\' class="link">\
+<a href=\'javascript:jinsom_publish_power("bbs",'+bbs_id+',"")\' class="link">\
 '+$(obj).siblings('.item-media').children('a').html()+'\
 </a>\
 </div>\
 <div class="item-inner">\
 <div class="item-title">\
-<a href=\'javascript:jinsom_publish_form("bbs",'+bbs_id+')\' class="link">\
+<a href=\'javascript:jinsom_publish_power("bbs",'+bbs_id+',"")\' class="link">\
 <div class="name">'+$(obj).siblings('.item-inner').find('.name').text()+'</div>\
 <div class="desc">'+$(obj).siblings('.item-inner').find('.desc').text()+'</div>\
 </a>\
@@ -1902,16 +1902,17 @@ $(this).children('.tips').remove();
 }
 
 //视频专题后加载js
-function jinsom_index_video_special_js_load(){
+function jinsom_index_video_special_js_load(obj){
 var video_loading = false;
 var video_page = 2;
-var video_list=$('.jinsom-video-special-list');
-number=video_list.attr('number');
-$('.jinsom-video-page-content.infinite-scroll').on('infinite',function(){
+$(obj+' .infinite-scroll').on('infinite',function(){
 if (video_loading) return;
 video_loading = true;
+
+video_list=$(obj+' .jinsom-video-special-list');
+number=video_list.attr('number');
 video_list.after(jinsom.loading_post);
-topic=$('.jinsom-video-special-menu li.on').attr('data');
+topic=$(obj+' .jinsom-video-special-menu li.on').attr('data');
 $.ajax({
 type: "POST",
 url:  jinsom.mobile_ajax_url+"/post/video-special.php",
@@ -2177,31 +2178,49 @@ style: 'position:fixed;bottom:0;left:0;width:100%;border:none;'
 }
 
 
-//cookies
+//排序
+function jinsom_sort(){
+type=$('.jinsom-home-menu li.on').attr('type');//当前内容的类型
+sort_type=GetCookie('sort');
+buttons=[
+{text:'按发布时间',onClick:function(){SetCookie('sort','normal');jinsom_post(type,'reload',this);}},
+{text:'最新评论的',onClick:function(){SetCookie('sort','comment');jinsom_post(type,'reload',this);}},
+{text:'随机的内容',onClick:function(){SetCookie('sort','rand');jinsom_post(type,'reload',this);}},
+{text:'评论最多的',onClick:function(){SetCookie('sort','comment_count');jinsom_post(type,'reload',this);}},
+{text:'取消',color: 'red'},
+];
+if(sort_type=='normal'){
+buttons[0]['text']='按发布时间 <font style="color:#f00;">[当前]</font>';
+}else if(sort_type=='comment'){
+buttons[1]['text']='最新评论的 <font style="color:#f00;">[当前]</font>';	
+}else if(sort_type=='rand'){
+buttons[2]['text']='随机的内容 <font style="color:#f00;">[当前]</font>';	
+}else if(sort_type=='comment_count'){
+buttons[3]['text']='评论最多的 <font style="color:#f00;">[当前]</font>';	
+}
+myApp.actions(buttons);
+}
+
+
+
+//设置cookie
 function SetCookie(name,value){
-var argv=SetCookie.arguments;
-var argc=SetCookie.arguments.length;
-var expires=(2<argc)?argv[2]:null;
-var path=(3<argc)?argv[3]:null;
-var domain=(4<argc)?argv[4]:null;
-var secure=(5<argc)?argv[5]:false;
-document.cookie=name+"="+escape(value)+((expires==null)?"":("; expires="+expires.toGMTString()))+((path==null)?"":("; path="+path))+((domain==null)?"":("; domain="+domain))+((secure==true)?"; secure":"");
+var Days = 30*12*10;//十年
+var exp = new Date();
+exp.setTime(exp.getTime() + Days*24*60*60*1000);
+document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
 }
-function GetCookie(Name) {
-var search = Name + "=";
-var returnvalue = "";
-if (document.cookie.length > 0) {
-offset = document.cookie.indexOf(search);
-if (offset != -1) {      
-offset += search.length;
-end = document.cookie.indexOf(";", offset);                        
-if (end == -1)
- end = document.cookie.length;
-returnvalue=unescape(document.cookie.substring(offset,end));
+
+//获取cookie
+function GetCookie(name){
+var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+if(arr=document.cookie.match(reg)){
+return unescape(arr[2]);
+}else{
+return null;
 }
 }
-return returnvalue;
-}
+
 //删除cookie
 function DelCookie(name){
 var exp = new Date();
@@ -2211,4 +2230,3 @@ if(cval!=null){
 document.cookie= name + "="+cval+";expires="+exp.toGMTString();
 } 
 }
-

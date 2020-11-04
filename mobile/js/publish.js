@@ -1,6 +1,6 @@
 
 //打开发布内容表单
-function jinsom_publish_form(type,bbs_id){
+function jinsom_publish_power(type,bbs_id,topic){
 if(!jinsom.is_login){
 myApp.loginScreen();  
 return false;
@@ -14,8 +14,6 @@ return false;
 
 if($('.jinsom-topic-page-header').length>0){
 topic=$('.jinsom-topic-page-header').attr('topic');
-}else{
-topic='';	
 }
 
 myApp.showIndicator();
