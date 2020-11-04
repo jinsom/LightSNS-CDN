@@ -228,9 +228,9 @@ data: {post_id:post_id},
 success: function(msg){
 
 if(msg.is_like){//更新喜欢
-$('.jinsom-player-footer-btn .like i').removeClass('jinsom-xihuan2').addClass('jinsom-shiliangzhinengduixiang31');	
+$('.jinsom-player-footer-btn .like i').removeClass('jinsom-xihuan2').addClass('jinsom-xihuan1');	
 }else{
-$('.jinsom-player-footer-btn .like i').removeClass('jinsom-shiliangzhinengduixiang31').addClass('jinsom-xihuan2');		
+$('.jinsom-player-footer-btn .like i').removeClass('jinsom-xihuan1').addClass('jinsom-xihuan2');		
 }
 $('.jinsom-player-footer-btn .comment m').html(msg.comment_number);//更新评论
 

@@ -377,19 +377,19 @@ var avatar=jinsom.avatar;
 if($(obj).hasClass('jinsom-had-like')){
 $(obj).removeClass('jinsom-had-like');    
 $(obj).addClass('jinsom-no-like');
-$(obj).children('i').addClass('jinsom-xihuan2').removeClass('jinsom-shiliangzhinengduixiang31');
+$(obj).children('i').addClass('jinsom-xihuan2').removeClass('jinsom-xihuan1');
 like_dom.removeClass('jinsom-had-like');//文章左侧栏
 like_dom.addClass('jinsom-no-like');//文章左侧栏
-like_dom.children('i').addClass('jinsom-xihuan2').removeClass('jinsom-shiliangzhinengduixiang31');//文章左侧栏
+like_dom.children('i').addClass('jinsom-xihuan2').removeClass('jinsom-xihuan1');//文章左侧栏
 like_num.html(parseInt(like_num.html())-1); 
 $(obj).parent().next().children('.jinsom-post-like-list').find('#had_like_'+user_id).remove();
 }else{
 $(obj).removeClass('jinsom-no-like');    
 $(obj).addClass('jinsom-had-like');
-$(obj).children('i').addClass('jinsom-shiliangzhinengduixiang31').removeClass('jinsom-xihuan2');
+$(obj).children('i').addClass('jinsom-xihuan1').removeClass('jinsom-xihuan2');
 like_dom.removeClass('jinsom-no-like');//文章左侧栏    
 like_dom.addClass('jinsom-had-like');//文章左侧栏
-like_dom.children('i').addClass('jinsom-shiliangzhinengduixiang31').removeClass('jinsom-xihuan2');//文章左侧栏
+like_dom.children('i').addClass('jinsom-xihuan1').removeClass('jinsom-xihuan2');//文章左侧栏
 like_num.html(parseInt(like_num.html())+1);  
 $(obj).parent().next().children('.jinsom-post-like-list').prepend('<a href="#" id="had_like_'+user_id+'">'+avatar+jinsom.verify+'</a>');
 // layer.msg('喜欢成功！');
@@ -417,8 +417,8 @@ like_dom.removeClass('jinsom-had-like');
 $(obj).removeClass('jinsom-had-like');    
 like_dom.addClass('jinsom-no-like');
 $(obj).addClass('jinsom-no-like');
-$(obj).children('i').addClass('jinsom-xihuan2').removeClass('jinsom-shiliangzhinengduixiang31');
-like_dom.children('i').addClass('jinsom-xihuan2').removeClass('jinsom-shiliangzhinengduixiang31');
+$(obj).children('i').addClass('jinsom-xihuan2').removeClass('jinsom-xihuan1');
+like_dom.children('i').addClass('jinsom-xihuan2').removeClass('jinsom-xihuan1');
 like_num.html(parseInt(like_num.html())-1); 
 like_dom.parent().next().children('.jinsom-post-like-list').find('#had_like_'+user_id).remove();
 }else{
@@ -426,8 +426,8 @@ like_dom.removeClass('jinsom-no-like');
 $(obj).removeClass('jinsom-no-like');   
 like_dom.addClass('jinsom-had-like');
 $(obj).addClass('jinsom-had-like');
-$(obj).children('i').addClass('jinsom-shiliangzhinengduixiang31').removeClass('jinsom-xihuan2');
-like_dom.children('i').addClass('jinsom-shiliangzhinengduixiang31').removeClass('jinsom-xihuan2');
+$(obj).children('i').addClass('jinsom-xihuan1').removeClass('jinsom-xihuan2');
+like_dom.children('i').addClass('jinsom-xihuan1').removeClass('jinsom-xihuan2');
 like_num.html(parseInt(like_num.html())+1);  
 like_dom.parent().next().children('.jinsom-post-like-list').prepend('<a href="#" id="had_like_'+user_id+'">'+avatar+jinsom.verify+'</a>');
 // layer.msg('喜欢成功！');

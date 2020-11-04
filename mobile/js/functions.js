@@ -295,12 +295,12 @@ avatar=jinsom.avatar;
 
 if($(obj).children('i').hasClass('had')){
 like_num.html(parseInt(like_num.html())-1); 
-like_dom.removeClass('jinsom-shiliangzhinengduixiang31 had').addClass('jinsom-xihuan2');   
+like_dom.removeClass('jinsom-xihuan1 had').addClass('jinsom-xihuan2');   
 $('.jinsom-post-'+post_id+' .footer').next('.jinsom-post-like').children('#had_like_'+user_id).remove();
 
 }else{
 like_num.html(parseInt(like_num.html())+1); 
-like_dom.removeClass('jinsom-xihuan2').addClass('jinsom-shiliangzhinengduixiang31 had');   
+like_dom.removeClass('jinsom-xihuan2').addClass('jinsom-xihuan1 had');   
 $('.jinsom-post-'+post_id+' .footer').next('.jinsom-post-like').prepend('<a href="#" id="had_like_'+user_id+'">'+avatar+'</a>');  
 layer.open({content:'喜欢成功！',skin:'msg',time:2});
 }
@@ -342,17 +342,17 @@ user_id=jinsom.user_id;
 avatar=jinsom.avatar;
 
 if($(obj).hasClass('jinsom-xihuan2')){
-$(obj).removeClass('jinsom-xihuan2').addClass('jinsom-shiliangzhinengduixiang31');
+$(obj).removeClass('jinsom-xihuan2').addClass('jinsom-xihuan1');
 
 like_num.html(parseInt(like_num.html())+1); 
-like_dom.removeClass('jinsom-xihuan2').addClass('jinsom-shiliangzhinengduixiang31 had');   
+like_dom.removeClass('jinsom-xihuan2').addClass('jinsom-xihuan1 had');   
 $('.jinsom-post-'+post_id+' .footer').next().prepend('<a href="#" id="had_like_'+user_id+'">'+avatar+'</a>'); 
 layer.open({content:'喜欢成功！',skin:'msg',time:2});
 }else{
-$(obj).removeClass('jinsom-shiliangzhinengduixiang31').addClass('jinsom-xihuan2');    
+$(obj).removeClass('jinsom-xihuan1').addClass('jinsom-xihuan2');    
 
 like_num.html(parseInt(like_num.html())-1); 
-like_dom.removeClass('jinsom-shiliangzhinengduixiang31 had').addClass('jinsom-xihuan2');   
+like_dom.removeClass('jinsom-xihuan1 had').addClass('jinsom-xihuan2');   
 $('.jinsom-post-'+post_id+' .footer').next().children('#had_like_'+user_id).remove();
 }
 
@@ -2189,14 +2189,14 @@ buttons=[
 {text:'评论最多的',onClick:function(){SetCookie('sort','comment_count');jinsom_post(type,'reload',this);}},
 {text:'取消',color: 'red'},
 ];
-if(sort_type=='normal'){
-buttons[0]['text']='按发布时间 <font style="color:#f00;">[当前]</font>';
-}else if(sort_type=='comment'){
+if(sort_type=='comment'){
 buttons[1]['text']='最新评论的 <font style="color:#f00;">[当前]</font>';	
 }else if(sort_type=='rand'){
 buttons[2]['text']='随机的内容 <font style="color:#f00;">[当前]</font>';	
 }else if(sort_type=='comment_count'){
 buttons[3]['text']='评论最多的 <font style="color:#f00;">[当前]</font>';	
+}else{
+buttons[0]['text']='按发布时间 <font style="color:#f00;">[当前]</font>';
 }
 myApp.actions(buttons);
 }
