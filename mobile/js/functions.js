@@ -2183,20 +2183,23 @@ function jinsom_sort(){
 type=$('.jinsom-home-menu li.on').attr('type');//当前内容的类型
 sort_type=GetCookie('sort');
 buttons=[
-{text:'按发布时间',onClick:function(){SetCookie('sort','normal');jinsom_post(type,'reload',this);}},
-{text:'最新评论的',onClick:function(){SetCookie('sort','comment');jinsom_post(type,'reload',this);}},
-{text:'随机的内容',onClick:function(){SetCookie('sort','rand');jinsom_post(type,'reload',this);}},
-{text:'评论最多的',onClick:function(){SetCookie('sort','comment_count');jinsom_post(type,'reload',this);}},
+{text:'最新发布',onClick:function(){SetCookie('sort','normal');jinsom_post(type,'reload',this);}},
+{text:'最新回复',onClick:function(){SetCookie('sort','comment');jinsom_post(type,'reload',this);}},
+{text:'随机内容',onClick:function(){SetCookie('sort','rand');jinsom_post(type,'reload',this);}},
+{text:'本月热门',onClick:function(){SetCookie('sort','comment_count_month');jinsom_post(type,'reload',this);}},
+{text:'所有热门',onClick:function(){SetCookie('sort','comment_count');jinsom_post(type,'reload',this);}},
 {text:'取消',color: 'red'},
 ];
 if(sort_type=='comment'){
-buttons[1]['text']='最新评论的 <font style="color:#f00;">[当前]</font>';	
+buttons[1]['bold']=true;	
 }else if(sort_type=='rand'){
-buttons[2]['text']='随机的内容 <font style="color:#f00;">[当前]</font>';	
+buttons[2]['bold']=true;	
+}else if(sort_type=='comment_count_month'){
+buttons[3]['bold']=true;	
 }else if(sort_type=='comment_count'){
-buttons[3]['text']='评论最多的 <font style="color:#f00;">[当前]</font>';	
+buttons[4]['bold']=true;	
 }else{
-buttons[0]['text']='按发布时间 <font style="color:#f00;">[当前]</font>';
+buttons[0]['bold']=true;
 }
 myApp.actions(buttons);
 }
@@ -2230,3 +2233,6 @@ if(cval!=null){
 document.cookie= name + "="+cval+";expires="+exp.toGMTString();
 } 
 }
+
+
+
