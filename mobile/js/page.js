@@ -1181,6 +1181,12 @@ new TencentCaptcha(document.getElementById('publish-'+type),jinsom.machine_verif
 if(res.ret === 0){jinsom_publish_single(res.ticket,res.randstr);}
 });
 }	
+}else if(type=='secret'){
+if($('#publish-'+type).length>0){
+new TencentCaptcha(document.getElementById('publish-'+type),jinsom.machine_verify_appid,function(res){
+if(res.ret === 0){jinsom_publish_secret(res.ticket,res.randstr);}
+});
+}	
 }else if(type=='bbs'){//帖子类型
 if($('#publish-bbs').length>0){
 new TencentCaptcha(document.getElementById('publish-bbs'),jinsom.machine_verify_appid,function(res){
