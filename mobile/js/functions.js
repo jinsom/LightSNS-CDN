@@ -1815,7 +1815,7 @@ ptrContent.on('refresh', function (e) {
 myApp.pullToRefreshDone();
 type=$('.jinsom-home-menu li.on').attr('type');
 jinsom_post(type,'pull',this);
-if($('#jinsom-view-notice').length>0&&jinsom.is_login){
+if($('[id^=jinsom-view-notice]').length>0&&jinsom.is_login){
 jinsom_index_notice_js_load();//加载消息页面
 }
 
@@ -2202,6 +2202,50 @@ buttons[4]['bold']=true;
 buttons[0]['bold']=true;
 }
 myApp.actions(buttons);
+}
+
+//返回顶部
+function jinsom_totop(){
+current=myApp.getCurrentView().selector;
+if($(current+' .page-on-center').length>0){
+$('.page-on-center .page-content').animate({scrollTop:0},500);
+}else{
+$(current+' .page-content').animate({scrollTop:0},500);
+}	
+}
+
+//收起/展开右侧悬浮按钮
+function jinsom_hide_right_bar(){
+if($('.jinsom-right-bar').hasClass('hidden')){
+$('.jinsom-right-bar').removeClass('hidden');
+$('.jinsom-right-bar li.close').siblings().show();
+number=$('.jinsom-right-bar li').length;
+height=(number-1)*17-5;
+$('.jinsom-right-bar').css('height',height+'vw');
+$('.jinsom-right-bar li.close i').addClass('jinsom-guanbi').removeClass('jinsom-mulu1');
+}else{
+$('.jinsom-right-bar').addClass('hidden');
+$('.jinsom-right-bar li.close').siblings().hide();	
+$('.jinsom-right-bar').css('height','5vw');
+$('.jinsom-right-bar li.close i').removeClass('jinsom-guanbi').addClass('jinsom-mulu1');
+}
+$('.jinsom-right-bar li.music').hide();
+}
+
+
+//喜欢秘密
+function jinsom_like_secret(post_id,obj){
+if(!$(obj).hasClass('had')){
+$(obj).addClass('had');
+like_num=parseInt($(obj).children('n').text())+1;
+$(obj).children('n').text(like_num);
+$.ajax({
+type: "POST",
+dataType:'json',
+url:  jinsom.jinsom_ajax_url+"/action/like-secret.php",
+data: {post_id:post_id},
+});
+}
 }
 
 

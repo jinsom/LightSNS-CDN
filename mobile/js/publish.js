@@ -12,6 +12,12 @@ myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page
 return false;
 }
 
+if(type=='secret'){
+myApp.closeModal();
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/publish/'+type+'.php?type='+type});	
+return false;
+}
+
 if($('.jinsom-topic-page-header').length>0){
 topic=$('.jinsom-topic-page-header').attr('topic');
 }
@@ -540,5 +546,37 @@ setTimeout(d,2500);
 }
 }); 
 
+
+}
+
+
+
+
+//发布秘密
+function jinsom_publish_secret(ticket,randstr){
+if($.trim($(".jinsom-publish-words-form .content textarea").val())==''){
+layer.open({content:'请输入内容！',skin:'msg',time:2});
+return false;	
+}
+data=$("#jinsom-publish-form").serialize();
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+url: jinsom.jinsom_ajax_url+"/publish/secret.php",
+data:data+'&ticket='+ticket+'&randstr='+randstr,
+success: function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+if(msg.code==1){
+$('.jinsom-publish-words-form .content textarea').val('');
+type=$('.jinsom-secret-menu li.on').attr('data');
+jinsom_secret_post(type,'reload',this);
+function d(){myApp.getCurrentView().router.back();}setTimeout(d,2500);
+}else if(msg.code==2){
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-phone.php'});
+}
+
+}
+});  
 
 }

@@ -926,9 +926,10 @@ author_id=page.query.author_id;
 //加载更多
 mine_loading=false;
 mine_page=2;
-mine_post_list=$('.page-on-center .jinsom-member-mine-post-list');
+
 $('.page-on-center #jinsom-member-mine-page').on('infinite',function(){
 if(mine_loading) return;
+mine_post_list=$('.page-on-center .jinsom-member-mine-post-list');
 mine_loading = true;
 mine_post_list.after(jinsom.loading_post);
 type=$('.page-on-center .jinsom-member-menu li.on').attr('type');
@@ -989,9 +990,9 @@ author_id=page.query.author_id;
 //加载更多
 other_page=2;
 other_loading=false;
-other_post_list=$('.page-on-center .jinsom-member-other-post-list');
 $('.page-on-center #jinsom-member-other-page').on('infinite',function(){
 if(other_loading) return;
+other_post_list=$('.page-on-center .jinsom-member-other-post-list');
 other_loading = true;
 other_post_list.after(jinsom.loading_post);
 type=$('.page-on-center .jinsom-member-menu li.on').attr('type');
@@ -1231,7 +1232,7 @@ layer.closeAll();
 }
 
 
-if(type!='bbs'){//不是帖子
+if(type!='bbs'&&type!='secret'){//不是帖子
 $("body").on("click",'.jinsom-publish-power-list li', function(e){
 $('.jinsom-publish-power-list-form li').eq($(this).index()).addClass('on').siblings().removeClass('on');
 type=$(this).attr('type');
@@ -1261,7 +1262,7 @@ layer.closeAll();
 
 
 
-if(type!='video'&&type!='music'){
+if(type!='video'&&type!='music'&&type!='secret'){
 document.querySelector('#file').addEventListener('change', function () {
 var that = this;
 var number=that.files.length;
@@ -1387,7 +1388,11 @@ $('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
 //图片拖动排序
 var el = document.getElementById('jinsom-publish-images-list');
 var sortable = Sortable.create(el);
-}
+
+}//图片上传结束
+
+
+
 
 if(type=='video'){
 document.querySelector('#jinsom-upload-video').addEventListener('change', function () {
@@ -1562,7 +1567,7 @@ return false;
 
 
 
-
+if(type!='select'){
 //发布@好友
 $('.jinsom-publish-aite-popup').on('opened',function (){//打开
 if($('.jinsom-publish-aite-form .list.aite li').length==0){
@@ -1609,6 +1614,15 @@ $('.jinsom-publish-aite-form .list.topic').html(html);
 
 }
 });
+
+}
+
+if(type=='secret'){
+$('.jinsom-publish-secret-color-list li').click(function(){
+$(this).parent().prev().children('textarea').css('background-color',$(this).attr('data'));
+$('[name=color]').val($(this).attr('data'));
+});
+}
 
 
 
@@ -2226,8 +2240,43 @@ collect_img_loading = false;
 
 
 
-//发布帖子
-myApp.onPageAfterAnimation('publish-bbs',function(page){
+//树洞
+myApp.onPageBeforeInit('secret',function(page){
 
 
+//下拉刷新
+ptrContent = $('.jinsom-secret-content.pull-to-refresh-content');
+ptrContent.on('refresh', function (e){
+myApp.pullToRefreshDone();
+type=$('.jinsom-secret-menu li.on').attr('type');
+jinsom_secret_post(type,'pull',this);
+});
+
+
+//加载更多
+secret_loading = false;
+secret_page = 2;
+$('.jinsom-secret-content.infinite-scroll').on('infinite',function(){
+if(secret_loading) return;
+secret_post_list=$('.jinsom-post-secret-list');
+secret_loading = true;
+secret_post_list.after(jinsom.loading_post);
+type=$('.jinsom-secret-menu li.on').attr('data');
+$.ajax({
+type: "POST",
+url:  jinsom.mobile_ajax_url+"/post/secret.php",
+data: {page:secret_page,type:type,load_type:'more'},
+success: function(msg){
+$('.jinsom-load-post').remove();
+if(msg==0){
+secret_loading = true; 
+}else{
+secret_post_list.append(msg);
+jinsom_lightbox()
+secret_page++;
+secret_loading = false;  
+} 
+}
+});
+});
 });

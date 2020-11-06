@@ -188,3 +188,28 @@ jinsom_lightbox();//灯箱
 }
 });
 }
+
+
+//树洞
+function jinsom_secret_post(type,load_type,obj){
+if($('.jinsom-load-post').length>0){//防止多次点击
+return false;	
+}
+$('.jinsom-secret-content').animate({ scrollTop: 0 },0);
+secret_loading=false;
+secret_page=2;
+$(obj).addClass('on').siblings().removeClass('on');
+post_list=$('.jinsom-post-secret-list');
+post_list.prepend(jinsom.loading_post);
+$.ajax({
+type:"POST",
+url:jinsom.mobile_ajax_url+"/post/secret.php",
+data:{page:1,type:type,load_type:load_type},
+success: function(msg){
+post_list.html(msg);
+if(load_type=='pull'){
+layer.open({content:'刷新成功',skin:'msg',time:2});
+}
+}
+});
+}
