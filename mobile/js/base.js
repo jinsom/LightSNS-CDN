@@ -31,7 +31,7 @@ $('.jinsom-right-bar').addClass('right-bar-hidden');
 clearTimeout($.data(this,'scrollTimer'));
 $.data(this,'scrollTimer',setTimeout(function(){
 $('.jinsom-right-bar').removeClass('right-bar-hidden');
-},400));
+},2000));
 });
 }
 

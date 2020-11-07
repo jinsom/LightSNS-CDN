@@ -2242,10 +2242,94 @@ $(obj).children('n').text(like_num);
 $.ajax({
 type: "POST",
 dataType:'json',
-url:  jinsom.jinsom_ajax_url+"/action/like-secret.php",
-data: {post_id:post_id},
+url:  jinsom.mobile_ajax_url+"/action/secret.php",
+data: {post_id:post_id,type:'like'},
 });
 }
+}
+
+//删除秘密
+function jinsom_delete_secret(post_id){
+layer.closeAll();
+layer.open({
+content: '你确定要删除吗？'
+,btn: ['确定', '取消']
+,yes: function(index){
+myApp.showIndicator();
+$.ajax({
+type:"POST",
+url:jinsom.mobile_ajax_url+"/action/secret.php",
+data:{post_id:post_id,type:'delete'},
+success: function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+if(msg.code==1){
+history.back(-1);	
+$('#jinsom-secret-'+post_id).fadeTo("slow",0.06, function(){
+$(this).slideUp(0.06, function(){
+$(this).remove();
+});
+});
+
+}
+}
+});
+
+layer.close(index);
+}
+});
+}
+
+//评论私密
+function jinsom_secret_comment(){
+post_id=$('.jinsom-post-secret-list.single').attr('data');
+content=$('#jinsom-secret-comment-content').val();
+myApp.showIndicator();
+$.ajax({
+type:"POST",
+url:jinsom.mobile_ajax_url+"/action/secret.php",
+data:{post_id:post_id,content:content,type:'comment'},
+success: function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+if(msg.code==1){
+$('#jinsom-secret-comment-content').val('');
+$('.jinsom-secret-comment-list').prepend(msg.html);
+
+}
+}
+});
+}
+
+//删除秘密评论
+function jinsom_secret_comment_delete(comment_id){
+layer.closeAll();
+layer.open({
+content: '你确定要删除吗？'
+,btn: ['确定', '取消']
+,yes: function(index){
+	
+post_id=$('.jinsom-post-secret-list.single').attr('data');
+myApp.showIndicator();
+$.ajax({
+type:"POST",
+url:jinsom.mobile_ajax_url+"/action/secret.php",
+data:{comment_id:comment_id,post_id:post_id,type:'comment-delete'},
+success: function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+if(msg.code==1){
+$('#jinsom-secret-comment-'+comment_id).fadeTo("slow",0.06, function(){
+$(this).slideUp(0.06, function(){
+$(this).remove();
+});
+});
+}
+}
+});
+layer.close(index);
+}
+});
 }
 
 

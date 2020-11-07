@@ -571,7 +571,7 @@ if(msg.code==1){
 $('.jinsom-publish-words-form .content textarea').val('');
 type=$('.jinsom-secret-menu li.on').attr('data');
 jinsom_secret_post(type,'reload',this);
-function d(){myApp.getCurrentView().router.back();}setTimeout(d,2500);
+function d(){myApp.getCurrentView().router.back();}setTimeout(d,1800);
 }else if(msg.code==2){
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-phone.php'});
 }

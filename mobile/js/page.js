@@ -2254,7 +2254,7 @@ myApp.onPageBeforeInit('secret',function(page){
 ptrContent = $('.jinsom-secret-content.pull-to-refresh-content');
 ptrContent.on('refresh', function (e){
 myApp.pullToRefreshDone();
-type=$('.jinsom-secret-menu li.on').attr('type');
+type=$('.jinsom-secret-menu li.on').attr('data');
 jinsom_secret_post(type,'pull',this);
 });
 
@@ -2285,4 +2285,48 @@ secret_loading = false;
 }
 });
 });
+});
+
+
+//树洞-我的
+myApp.onPageBeforeInit('secret-mine',function(page){
+
+//加载更多
+secret_mine_loading = false;
+secret_mine_page = 2;
+$('.jinsom-secret-mine-content.infinite-scroll').on('infinite',function(){
+if(secret_mine_loading) return;
+secret_post_list=$('.jinsom-post-secret-list.mine');
+secret_mine_loading = true;
+secret_post_list.after(jinsom.loading_post);
+type=$('.jinsom-secret-menu li.on').attr('data');
+$.ajax({
+type: "POST",
+url:  jinsom.mobile_ajax_url+"/post/secret.php",
+data: {page:secret_mine_page,type:type,load_type:'more',author_id:1},
+success: function(msg){
+$('.jinsom-load-post').remove();
+if(msg==0){
+secret_mine_loading = true; 
+}else{
+secret_post_list.append(msg);
+jinsom_lightbox()
+secret_mine_page++;
+secret_mine_loading = false;  
+} 
+}
+});
+});
+
+});
+
+
+myApp.onPageBeforeInit('post-secret',function(page){
+$('.jinsom-secret-comment-btn .text').click(function(){
+obj=$(this).parent();
+obj.html('<textarea id="jinsom-secret-comment-content"></textarea>');
+obj.after('<div class="jinsom-secret-comment-content-btn" onclick="jinsom_secret_comment()">唠叨一下</div>');
+$('#jinsom-secret-comment-content').focus();
+});
+
 });

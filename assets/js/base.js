@@ -181,7 +181,7 @@ follow='';
 if(msg.item.code==1){
 for (var i = 0; i < item_arr.length; i++) {
 type=item_arr[i].type;
-if(type=='cash'||type=='reg'||type=='post_agree'||type=='post_refuse'||type=='bbs-apply-refuse'||type=='order-send'){
+if(type=='cash'||type=='reg'||type=='post_agree'||type=='post_refuse'||type=='bbs-apply-refuse'||type=='order-send'||type=='secret'){
 item+='\
 <li class="clear">\
 '+item_arr[i].status+'\
