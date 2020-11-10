@@ -1154,7 +1154,7 @@ jinsom_stop_group_Ajax();//关闭长轮询
 
 
 //---------------------------发布动态页面-----------------
-myApp.onPageAfterAnimation('publish',function(page){
+myApp.onPageBeforeInit('publish',function(page){
 type=page.query.type;
 
 if(type=='words'){
@@ -1625,8 +1625,11 @@ $('.jinsom-publish-aite-form .list.topic').html(html);
 
 if(type=='secret'){
 $('.jinsom-publish-secret-color-list li').click(function(){
-$(this).parent().prev().children('textarea').css('background-color',$(this).attr('data'));
+$(this).parent().prev().children('textarea').css('background',$(this).attr('data'));
 $('[name=color]').val($(this).attr('data'));
+});
+$('.jinsom-publish-secret-type-list li').click(function(){
+$(this).addClass('on').siblings().removeClass('on');
 });
 }
 
