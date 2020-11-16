@@ -2235,6 +2235,11 @@ $('.jinsom-right-bar li.music').hide();
 
 //喜欢秘密
 function jinsom_like_secret(post_id,obj){
+if(!jinsom.is_login){
+myApp.loginScreen();  
+return false;
+}
+
 if(!$(obj).hasClass('had')){
 $(obj).addClass('had');
 like_num=parseInt($(obj).children('n').text())+1;
