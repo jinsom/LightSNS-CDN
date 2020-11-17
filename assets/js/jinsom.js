@@ -1894,21 +1894,16 @@ layer.msg('没有更多内容！');
 $(ajax_obj).remove();
 }else{
 
+$(ajax_obj).before(msg);//追加内容
 
+
+//瀑布流渲染
 if($(obj).parent().hasClass('jinsom-bbs-list-4')){
-container=$('#jinsom-bbs-list-4');
-$(msg).find('img').each(function(index){
-jinsom_loadImage($(this).attr('src'));
-})
-var $newElems = $(msg).css({ opacity: 0}).appendTo(container);
-$newElems.imagesLoaded(function(){
-$newElems.animate({ opacity: 1},800);
-container.masonry( 'appended', $newElems,true);
-});
-}else{
-$(ajax_obj).before(msg);	
+grid.masonry('reloadItems');  
+grid.imagesLoaded().progress( function() {
+grid.masonry('layout');
+}); 
 }
-
 
 
 paged=parseInt(page)+1;
@@ -1947,19 +1942,15 @@ url:jinsom.jinsom_ajax_url+"/ajax/bbs.php",
 data: {page:1,bbs_id:bbs_id,type:type,topic:topic},
 success: function(msg){   
 
-$('.jinsom-bbs-list-box').empty();
+
+$('.jinsom-bbs-list-box').html(msg);//追加内容	
+
+//瀑布流渲染
 if($(obj).parents('.jinsom-bbs-box').next().hasClass('jinsom-bbs-list-4')){
-container=$('#jinsom-bbs-list-4');
-$(msg).find('img').each(function(index){
-jinsom_loadImage($(this).attr('src'));
-})
-var $newElems = $(msg).css({ opacity: 0}).appendTo(container);
-$newElems.imagesLoaded(function(){
-$newElems.animate({ opacity: 1},800);
-container.masonry( 'reload', $newElems,true);
-});
-}else{
-$('.jinsom-bbs-list-box').html(msg);	
+grid.masonry('reloadItems');  
+grid.imagesLoaded().progress( function() {
+grid.masonry('layout');
+}); 
 }
 
 
@@ -1985,18 +1976,14 @@ data: {page:1,bbs_id:bbs_id,content:content},
 success: function(msg){   
 
 $('.jinsom-bbs-list-box').empty();
+$('.jinsom-bbs-list-box').html(msg);//追加内容
+
+//瀑布流渲染
 if($('.jinsom-bbs-list-box').hasClass('jinsom-bbs-list-4')){
-container=$('#jinsom-bbs-list-4');
-$(msg).find('img').each(function(index){
-jinsom_loadImage($(this).attr('src'));
-})
-var $newElems = $(msg).css({ opacity: 0}).appendTo(container);
-$newElems.imagesLoaded(function(){
-$newElems.animate({ opacity: 1},800);
-container.masonry( 'reload', $newElems,true);
+grid.masonry('reloadItems');  
+grid.imagesLoaded().progress( function() {
+grid.masonry('layout');
 });
-}else{
-$('.jinsom-bbs-list-box').html(msg);	
 }
 
 }
@@ -2027,19 +2014,14 @@ $('.jinsom-bb-search-more').remove();
 
 $('.jinsom-bb-search-more').attr('data',page+1);
 
+$('.jinsom-bb-search-more').before(msg);//追加内容
 
+//瀑布流渲染
 if($(obj).parent().hasClass('jinsom-bbs-list-4')){
-container=$('#jinsom-bbs-list-4');
-$(msg).find('img').each(function(index){
-jinsom_loadImage($(this).attr('src'));
-})
-var $newElems = $(msg).css({ opacity: 0}).appendTo(container);
-$newElems.imagesLoaded(function(){
-$newElems.animate({ opacity: 1},800);
-container.masonry( 'appended', $newElems,true);
+grid.masonry('reloadItems');  
+grid.imagesLoaded().progress( function() {
+grid.masonry('layout');
 });
-}else{
-$('.jinsom-bb-search-more').before(msg);	
 }
 	
 }

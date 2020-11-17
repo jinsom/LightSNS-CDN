@@ -44,3 +44,23 @@ body{background:#fff}a:focus{outline:0!important;box-shadow:0 0 0!important}.jin
     font-size: 12px;
     color: #2196F3;
 }
+
+
+.wp-picker-container .wp-color-result.button {
+    height: 30px;
+}
+.wp-color-result-text {
+    height: 30px;
+    line-height: 30px;
+}
+.wp-picker-container input[type=text].wp-color-picker {
+    width: 200px;
+    border-color: #93c054;
+    border-radius: 2px;
+    padding: 0 10px;
+    height: 32px;
+}
+input.button.button-small.wp-picker-clear {
+    line-height: 30px;
+    height: 30px;
+}

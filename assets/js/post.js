@@ -5,23 +5,32 @@ function jinsom_post(type,load_type,obj){
 if($('.jinsom-load-post').length>0){//防止多次点击
 return false;	
 }
+author_id=$(obj).attr('author_id');
 if(load_type=='more'){//加载更多
 page=$(obj).attr('page');
 $(obj).before(jinsom.loading_post);
 $(obj).hide();	
 data=$('.jinsom-index-menu li.on').attr('data');
+
+if(author_id){
+index=$('.jinsom-member-menu li.on').index();
+}else{
+index=$('.jinsom-index-menu li.on').index();
+}
+
 }else{//ajax切换
 page=1;
 $(obj).addClass('on').siblings().removeClass('on');//菜单切换效果
 $('.jinsom-post-list').prepend(jinsom.loading_post);//加载动画
 data=$(obj).attr('data');
+index=$(obj).index();
 }
 
 
 $.ajax({
 type: "POST",
 url:jinsom.jinsom_ajax_url+"/data/post.php",
-data: {type:type,page:page,load_type:load_type,index:$(obj).index(),author_id:$(obj).attr('author_id'),data:data},
+data: {type:type,page:page,load_type:load_type,index:index,author_id:author_id,data:data},
 success: function(msg){
 if(load_type=='more'){//加载更多
 $('.jinsom-load-post').remove();

@@ -754,33 +754,24 @@ if(res.ret === 0){jinsom_get_code(120,'mail',res.ticket,res.randstr);}
 });
 
 
-myApp.onPageAfterAnimation('bbs',function(page){
-bbs_loading = false; 
-//渲染瀑布流
-var container = $('.page-on-center .jinsom-bbs-post-list-3');
-container.imagesLoaded(function(){
-container.masonry({
-itemSelector : '.grid',
-gutter: 0,
-isAnimated: true,
-isRTL:false,
-isResizable: true,//是否自动布局默认true
-gutterWidth:0,
-animationOptions:{
-duration: 800,
-easing: 'easeOutBounce',
-queue: false
-}
-});
-});
-
-});
 
 //--------------------论坛页面-------
 myApp.onPageAfterAnimation('bbs',function(page){
-$('[data-page=bbs] .navbar').removeClass('color');//移除color
+//$('[data-page=bbs] .navbar').removeClass('color');//移除color
 bbs_id=page.query.bbs_id;
 
+
+//渲染瀑布流
+if($('.page-on-center .jinsom-bbs-post-list-3').length>0){
+waterfull_margin=$('#jinsom-waterfull-margin').height();
+var grid=$('.page-on-center .jinsom-bbs-post-list-3').masonry({
+itemSelector:'.grid',
+gutter:waterfull_margin,
+});
+grid.imagesLoaded().progress( function() {
+grid.masonry('layout');
+});   
+} 
 
 
 //滚动事件
@@ -796,7 +787,13 @@ $('[data-page=bbs] .navbar').removeClass('color');
 });
 
 bbs_loading = false;
+var bbs_page;
+if(!bbs_page){
 bbs_page=2;
+}
+
+
+
 //bbs_post_list=$('.page-on-center .jinsom-bbs-post-list');
 bbs_post_list=$('[data-page="bbs"] .jinsom-bbs-post-list');
 $('.jinsom-bbs-content.infinite-scroll').on('infinite',function(){
@@ -806,31 +803,26 @@ bbs_post_list.after(jinsom.loading_post);
 type=$('.jinsom-bbs-menu-'+bbs_id+' li.on').attr('type');
 topic=$('.jinsom-bbs-menu-'+bbs_id+' li.on').attr('topic');
 if(type==''){type='new';}
-// console.log(type);
+
 $.ajax({
 type: "POST",
 url:  jinsom.mobile_ajax_url+"/post/bbs.php",
 data: {page:bbs_page,bbs_id:bbs_id,type:type,topic:topic},
 success: function(msg){
 if(msg!=0){
+bbs_post_list.append(msg);
 
 if(bbs_post_list.hasClass('jinsom-bbs-post-list-3')){//瀑布流
-container=$('.page-on-center .jinsom-bbs-post-list-3');
-$(msg).find('img').each(function(index){
-jinsom_loadImage($(this).attr('src'));
-})
-var $newElems = $(msg).css({ opacity: 1}).appendTo(container);
-$newElems.imagesLoaded(function(){
-// $newElems.animate({ opacity: 1},800);
-container.masonry( 'appended', $newElems,true);
+grid.masonry('reloadItems');  
+grid.imagesLoaded().progress( function() {
+grid.masonry('layout');
 });
-}else{
-bbs_post_list.append(msg);
 }
 
 bbs_loading = false; 
 bbs_page++;
 }else{
+layer.open({content:'没有更多内容！',skin:'msg',time:2});
 bbs_loading = true; 
 }
 $('.jinsom-load-post').remove();
@@ -915,7 +907,7 @@ $('#jinsom-lottery-money').val(number+add_number);
 
 //---------------------------个人主页-自己-----------------
 myApp.onPageBeforeInit('member-mine',function(page){
-$('[data-page=member-mine] .navbar').removeClass('color');//移除color
+// $('[data-page=member-mine] .navbar').removeClass('color');//移除color
 jinsom_lightbox();
 });
 
@@ -925,7 +917,10 @@ author_id=page.query.author_id;
 
 //加载更多
 mine_loading=false;
+var mine_page;
+if(!mine_page){
 mine_page=2;
+}
 
 $('.page-on-center #jinsom-member-mine-page').on('infinite',function(){
 if(mine_loading) return;
@@ -980,7 +975,7 @@ show_avatar.open();
 //---------------------------个人主页-别人-----------------
 
 myApp.onPageBeforeInit('member-other',function(page){
-$('[data-page=member-other] .navbar').removeClass('color');//移除color
+// $('[data-page=member-other] .navbar').removeClass('color');//移除color
 jinsom_lightbox();
 });
 
@@ -988,8 +983,13 @@ myApp.onPageAfterAnimation('member-other', function (page) {
 author_id=page.query.author_id;
 
 //加载更多
-other_page=2;
 other_loading=false;
+var other_page;
+if(!other_page){
+other_page=2;	
+}
+
+
 $('.page-on-center #jinsom-member-other-page').on('infinite',function(){
 if(other_loading) return;
 other_post_list=$('.page-on-center .jinsom-member-other-post-list');
@@ -2187,7 +2187,11 @@ myApp.onPageBeforeInit('collect', function (page){
 jinsom_lightbox();//灯箱
 //加载更多
 collect_loading = false;
-collect_page = 2;
+var collect_page;
+if(!collect_page){
+collect_page=2;
+}
+
 collect_post_list=$('.jinsom-collect-content .jinsom-post-list');
 $('.jinsom-collect-content.infinite-scroll').on('infinite',function(){
 if(collect_loading) return;
@@ -2221,7 +2225,11 @@ myApp.onPageBeforeInit('collect-img', function (page){
 jinsom_lightbox();//灯箱
 //加载更多
 collect_img_loading = false;
-collect_img_page = 2;
+var collect_img_page;
+if(!collect_img_page){
+collect_img_page=2;
+}
+
 collect_img_post_list=$('.jinsom-collect-img-content');
 $('.jinsom-collect-img-content.infinite-scroll').on('infinite',function(){
 if(collect_img_loading) return;

@@ -533,17 +533,3 @@ setTimeout(d,1000);
 
 });
 
-
-//瀑布流图片预加载
-function jinsom_loadImage(url) {
-var img = new Image(); 
-img.src = url;
-if (img.complete) {
-return img.src;
-}
-img.onload = function () {
-return img.src;
-};
-};
-
-

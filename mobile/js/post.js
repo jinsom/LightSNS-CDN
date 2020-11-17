@@ -81,11 +81,16 @@ return false;
 bbs_page=2;
 bbs_loading = false; 
 $(obj).addClass('on').siblings().removeClass('on');
-more_list=$(obj).parent().next();
-more_list.attr('type',type);
-more_list.attr('page',2);
+post_list=$(obj).parent().next();
+post_list.attr('type',type);
+post_list.attr('page',2);
 topic=$(obj).attr('topic');
-more_list.prepend(jinsom.loading_post);
+post_list.prepend(jinsom.loading_post);
+
+if($(obj).parent().next().hasClass('jinsom-bbs-post-list-3')){
+post_list.html(jinsom.loading_post);
+}
+
 $.ajax({
 type: "POST",
 url:  jinsom.mobile_ajax_url+"/post/bbs.php",
@@ -93,25 +98,26 @@ data: {bbs_id:bbs_id,type:type,topic:topic},
 success: function(msg){
 if(msg!=0){
 
-$(obj).parent().next().empty();
+post_list.html(msg);
+
+//渲染瀑布流
 if($(obj).parent().next().hasClass('jinsom-bbs-post-list-3')){
-container=$(obj).parent().next();
-$(msg).find('img').each(function(index){
-jinsom_loadImage($(this).attr('src'));
-})
-var $newElems = $(msg).css({ opacity: 1}).appendTo(container);
-$newElems.imagesLoaded(function(){
-// $newElems.animate({ opacity: 1},800);
-container.masonry( 'reload', $newElems,true);
+waterfull_margin=$('#jinsom-waterfull-margin').height();
+var grid=$('.page-on-center .jinsom-bbs-post-list-3').masonry({
+itemSelector:'.grid',
+gutter:waterfull_margin,
 });
-}else{
-more_list.html(msg);
+
+grid.masonry('reloadItems');  
+grid.imagesLoaded().progress( function() {
+grid.masonry('layout');
+});
 }
 
 
 
 }else{
-more_list.html(jinsom.empty);	
+post_list.html(jinsom.empty);	
 }
 }
 });	

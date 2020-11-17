@@ -510,13 +510,13 @@ myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 follow_dom=$('.jinsom-follow-'+author_id);
 if(msg.code==1){//取消关注
-follow_dom.removeClass('has').addClass('no');  
+follow_dom.removeClass('had').addClass('no');  
 follow_dom.html('<i class="jinsom-icon jinsom-guanzhu"></i>关注');
 }else if(msg.code==2){//关注成功
-follow_dom.removeClass('no').addClass('has');
+follow_dom.removeClass('no').addClass('had');
 follow_dom.html('<i class="jinsom-icon jinsom-yiguanzhu"></i>已关');     
 }else if(msg.code==3){//相互关注成功
-follow_dom.removeClass('no').addClass('has');
+follow_dom.removeClass('no').addClass('had');
 follow_dom.html('<i class="jinsom-icon jinsom-xianghuguanzhu"></i>互关');    
 }
 }
@@ -1934,18 +1934,6 @@ $('.jinsom-load-post').remove();
 }
 
 
-//瀑布流图片预加载
-function jinsom_loadImage(url) {
-var img = new Image(); 
-img.src = url;
-if (img.complete) {
-return img.src;
-}
-img.onload = function () {
-return img.src;
-};
-};
-
 
 //点击广告
 function jinsom_click_ad(){
@@ -2335,6 +2323,16 @@ $(this).remove();
 layer.close(index);
 }
 });
+}
+
+
+//打开页面
+function jinsom_is_page_repeat(page_name,url){
+if($('.pages [data-page='+page_name+']').length>0){
+history.back(-1);
+}else{
+myApp.getCurrentView().router.load({url:url});
+}
 }
 
 
