@@ -2192,6 +2192,30 @@ buttons[0]['bold']=true;
 myApp.actions(buttons);
 }
 
+//评论排序
+function jinsom_comment_sort(){
+sort_type=GetCookie('comment_sort');
+buttons=[
+{text:'正序',onClick:function(){
+SetCookie('comment_sort','DESC');
+dom='.page-on-center .jinsom-single-comment-list';
+jinsom_comment_data(1,$(dom).attr('post_id'),$(dom).attr('type'),$(dom).attr('bbs_id'),dom);
+}},
+{text:'倒叙',onClick:function(){
+SetCookie('comment_sort','ASC');
+dom='.page-on-center .jinsom-single-comment-list';
+jinsom_comment_data(1,$(dom).attr('post_id'),$(dom).attr('type'),$(dom).attr('bbs_id'),dom);
+}},
+{text:'取消',color: 'red'},
+];
+if(sort_type=='ASC'){
+buttons[1]['bold']=true;	
+}else{
+buttons[0]['bold']=true;
+}
+myApp.actions(buttons);
+}
+
 //返回顶部
 function jinsom_totop(){
 current=myApp.getCurrentView().selector;
@@ -2333,6 +2357,35 @@ history.back(-1);
 }else{
 myApp.getCurrentView().router.load({url:url});
 }
+}
+
+
+/*
+加载评论
+page：页数
+post_id：文章id
+type：如果是帖子填：bbs，否则留空
+bbs_id：论坛ID
+dom：列表dom
+ */
+function jinsom_comment_data(page,post_id,type,bbs_id,dom){
+$(dom).prepend(jinsom.loading_post);
+comment_loading=false;
+comment_page=2;
+$.ajax({
+type: "POST",
+url:  jinsom.mobile_ajax_url+"/post/comment.php",
+data: {page:page,post_id:post_id,type:type,bbs_id:bbs_id},
+success: function(msg){
+$('.jinsom-load-post').remove();
+if(msg==0){
+$(dom).html(jinsom.empty); 
+}else{
+$(dom).html(msg); 
+jinsom_lightbox();//灯箱
+} 
+}
+});	
 }
 
 

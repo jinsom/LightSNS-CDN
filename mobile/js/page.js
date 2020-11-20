@@ -17,6 +17,15 @@ if(play_post_id==post_id&&!player.paused){//正在播放的文章id和点击查�
 $('.jinsom-music-voice-'+post_id).html('<i class="jinsom-icon jinsom-yuyin1 tiping"> </i> 播放中...');	
 }
 
+
+$('.jinsom-single-comment>.header li').click(function(){
+$(this).addClass('on').siblings('li').removeClass('on');
+SetCookie('comment_author',$(this).attr('data'));
+dom='.page-on-center .jinsom-single-comment-list';
+jinsom_comment_data(1,post_id,$(dom).attr('type'),$(dom).attr('bbs_id'),dom);
+})
+
+
 //加载更多评论
 comment_loading = false;
 comment_page = 2;
@@ -756,15 +765,15 @@ if(res.ret === 0){jinsom_get_code(120,'mail',res.ticket,res.randstr);}
 
 
 //--------------------论坛页面-------
-myApp.onPageAfterAnimation('bbs',function(page){
+myApp.onPageInit('bbs',function(page){
 //$('[data-page=bbs] .navbar').removeClass('color');//移除color
 bbs_id=page.query.bbs_id;
 
 
 //渲染瀑布流
-if($('.page-on-center .jinsom-bbs-post-list-3').length>0){
+if($('.jinsom-bbs-post-list-3').length>0){
 waterfull_margin=$('#jinsom-waterfull-margin').height();
-var grid=$('.page-on-center .jinsom-bbs-post-list-3').masonry({
+var grid=$('.jinsom-bbs-post-list-3').masonry({
 itemSelector:'.grid',
 gutter:waterfull_margin,
 });
@@ -787,11 +796,7 @@ $('[data-page=bbs] .navbar').removeClass('color');
 });
 
 bbs_loading = false;
-var bbs_page;
-if(!bbs_page){
 bbs_page=2;
-}
-
 
 
 //bbs_post_list=$('.page-on-center .jinsom-bbs-post-list');
