@@ -116,7 +116,7 @@ $('.jinsom-publish-words-form .add').hide();//隐藏添加按钮
 }
 if(img_count<words_images_max){//如果上传的超过了9张就不载入容器
 if(msg.code==1){
-$('#jinsom-publish-images-list').append('<li><i class="jinsom-icon jinsom-guanbi" onclick="jinsom_remove_image('+words_images_max+',this)"></i><a href="'+msg.url+'" data-fancybox="gallery-publish"><img src="'+msg.url+'"></a></li>');
+$('#jinsom-publish-images-list').append('<li><i class="jinsom-icon jinsom-guanbi" onclick="jinsom_remove_image('+words_images_max+',this)"></i><a href="'+msg.file_url+'" data-fancybox="gallery-publish"><img src="'+msg.file_url+'"></a></li>');
 jinsom_lightbox();//渲染灯箱
 a++;
 
@@ -160,7 +160,7 @@ $('.jinsom-publish-words-form .add').hide();//隐藏添加按钮
 }
 if(img_count<words_images_max){//如果上传的超过了9张就不载入容器
 if(msg.code==1){
-$('#jinsom-publish-images-list').append('<li><i class="jinsom-icon jinsom-guanbi" onclick="jinsom_remove_image('+words_images_max+',this)"></i><a href="'+msg.url+'" data-fancybox="gallery-publish"><img src="'+msg.url+'"></a></li>');
+$('#jinsom-publish-images-list').append('<li><i class="jinsom-icon jinsom-guanbi" onclick="jinsom_remove_image('+words_images_max+',this)"></i><a href="'+msg.file_url+'" data-fancybox="gallery-publish"><img src="'+msg.file_url+'"></a></li>');
 jinsom_lightbox();//渲染灯箱
 a++;
 
@@ -254,7 +254,7 @@ $('.jinsom-publish-words-form .add').hide();//隐藏添加按钮
 }
 if(img_count<words_images_max){//如果上传的超过了9张就不载入容器
 if(msg.code==1){
-$('#jinsom-publish-images-list').append('<li><i class="jinsom-icon jinsom-guanbi" onclick="jinsom_remove_image('+words_images_max+',this)"></i><a href="'+msg.url+'" data-fancybox="gallery-publish"><img src="'+msg.url+'"></a></li>');
+$('#jinsom-publish-images-list').append('<li><i class="jinsom-icon jinsom-guanbi" onclick="jinsom_remove_image('+words_images_max+',this)"></i><a href="'+msg.file_url+'" data-fancybox="gallery-publish"><img src="'+msg.file_url+'"></a></li>');
 jinsom_lightbox();//渲染灯箱
 a++;
 
@@ -298,7 +298,7 @@ $('.jinsom-publish-words-form .add').hide();//隐藏添加按钮
 }
 if(img_count<words_images_max){//如果上传的超过了9张就不载入容器
 if(msg.code==1){
-$('#jinsom-publish-images-list').append('<li><i class="jinsom-icon jinsom-guanbi" onclick="jinsom_remove_image('+words_images_max+',this)"></i><a href="'+msg.url+'" data-fancybox="gallery-publish"><img src="'+msg.url+'"></a></li>');
+$('#jinsom-publish-images-list').append('<li><i class="jinsom-icon jinsom-guanbi" onclick="jinsom_remove_image('+words_images_max+',this)"></i><a href="'+msg.file_url+'" data-fancybox="gallery-publish"><img src="'+msg.file_url+'"></a></li>');
 jinsom_lightbox();//渲染灯箱
 a++;
 
@@ -565,9 +565,9 @@ data:{base64:data,user_id:page.query['user_id']},
 success: function(msg){
 myApp.hideIndicator();
 if(msg.code==1){
-$('.jinsom-setting-box .avatarimg img.avatar').attr('src',msg.url);
+$('.jinsom-setting-box .avatarimg img.avatar').attr('src',msg.file_url);
 if(msg.self){//如果是自己操作
-$('.jinsom-mine-user-info img.avatar,.jinsom-setting-box .avatarimg img.avatar,.jinsom-home-navbar img.avatar').attr('src',msg.url);
+$('.jinsom-mine-user-info img.avatar,.jinsom-setting-box .avatarimg img.avatar,.jinsom-home-navbar img.avatar').attr('src',msg.file_url);
 }
 history.back(-1);//返回上一页
 }else{
@@ -1309,7 +1309,7 @@ $('.jinsom-publish-words-form .add').hide();//隐藏添加按钮
 }
 if(img_count<words_images_max){//如果上传的超过了9张就不载入容器
 if(msg.code==1){
-$('#jinsom-publish-images-list').append('<li><i class="jinsom-icon jinsom-guanbi" onclick="jinsom_remove_image('+words_images_max+',this)"></i><a href="'+msg.url+'" data-fancybox="gallery-publish"><img src="'+msg.url+'"></a></li>');
+$('#jinsom-publish-images-list').append('<li><i class="jinsom-icon jinsom-guanbi" onclick="jinsom_remove_image('+words_images_max+',this)"></i><a href="'+msg.file_url+'" data-fancybox="gallery-publish"><img src="'+msg.file_url+'"></a></li>');
 jinsom_lightbox();//渲染灯箱
 a++;
 
@@ -1353,7 +1353,7 @@ $('.jinsom-publish-words-form .add').hide();//隐藏添加按钮
 }
 if(img_count<words_images_max){//如果上传的超过了9张就不载入容器
 if(msg.code==1){
-$('#jinsom-publish-images-list').append('<li><i class="jinsom-icon jinsom-guanbi" onclick="jinsom_remove_image('+words_images_max+',this)"></i><a href="'+msg.url+'" data-fancybox="gallery-publish"><img src="'+msg.url+'"></a></li>');
+$('#jinsom-publish-images-list').append('<li><i class="jinsom-icon jinsom-guanbi" onclick="jinsom_remove_image('+words_images_max+',this)"></i><a href="'+msg.file_url+'" data-fancybox="gallery-publish"><img src="'+msg.file_url+'"></a></li>');
 jinsom_lightbox();//渲染灯箱
 a++;
 
@@ -1497,9 +1497,9 @@ url:jinsom.jinsom_ajax_url+"/upload/video-img-base64.php",
 data:{base64:video_cover},
 success: function(rel){
 if(rel.code==1){
-$('#jinsom-video-img-url').val(rel.url);	
+$('#jinsom-video-img-url').val(rel.file_url);	
 $('.jinsom-remove-video-toolbar span.read').addClass('on').text('已截取封面');
-$('.jinsom-publish-video-set-cover-content').html('<img src="'+rel.url+'">');
+$('.jinsom-publish-video-set-cover-content').html('<img src="'+rel.file_url+'">');
 }else{
 layer.open({content:rel.msg,skin:'msg',time:2});
 $('.jinsom-remove-video-toolbar span.read').addClass('on').removeAttr('data-popup').removeClass('open-popup');
