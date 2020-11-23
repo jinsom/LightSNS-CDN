@@ -45,15 +45,14 @@ comment_list.prepend('\
 <div class="avatarimg">'+jinsom.avatar+jinsom.verify+'</div>\
 <div class="info">\
 <div class="name">'+jinsom.nickname+jinsom.lv+jinsom.vip+'</div>\
-<div class="from"><span>手机端</span></div>\
+<div class="from"><span class="time">刚刚</span><span>手机端</span></div>\
 </div>\
 </div>\
 <div class="content">'+msg.content+'</div>\
 '+img_html+'\
-<div class="footer">\
-<span class="time">刚刚</span>\
+<div class="footer clear">\
 <span class="comment">\
-<a href="'+jinsom.theme_url+'/mobile/templates/page/comment.php?post_id='+post_id+'&name='+jinsom.nickname_base+'" class="link"></a>\
+<a href="'+jinsom.theme_url+'/mobile/templates/page/comment.php?post_id='+post_id+'&name='+jinsom.nickname_base+'" class="link"><m></m></a>\
 </span>\
 <span class="delete" onclick="jinsom_delete_post_comments('+msg.id+',this)"></span>\
 </div>\
@@ -120,13 +119,12 @@ comment_list.prepend('\
 <div class="avatarimg">'+jinsom.avatar+jinsom.verify+'</div>\
 <div class="info">\
 <div class="name">'+jinsom.nickname+jinsom.lv+jinsom.vip+'</div>\
-<div class="from"><span>手机端</span></div>\
+<div class="from"><span class="time">刚刚</span><span>手机端</span></div>\
 </div>\
 </div>\
 <div class="content">'+msg.content+'</div>\
 '+img_html+'\
-<div class="footer">\
-<span class="time">刚刚</span>\
+<div class="footer clear">\
 <span class="comment">\
 <a href="'+jinsom.theme_url+'/mobile/templates/page/comment-child-page.php?post_id='+post_id+'&comment_id='+msg.id+'&bbs_id='+bbs_id+'" class="link"><m></m></a>\
 </span>\
@@ -196,21 +194,20 @@ $('.jinsom-comment-'+comment_id).parents('#jinsom-comment-child-page').prev().fi
 
 
 
-comment_list.append('\
+comment_list.prepend('\
 <div class="jinsom-comment-'+msg.id+'">\
 <div class="up" onclick="jinsom_comment_up('+msg.id+',this)"><i class="fa fa-thumbs-o-up"></i><m>0</m></div>\
 <div class="header clear">\
 <div class="avatarimg">'+jinsom.avatar+jinsom.verify+'</div>\
 <div class="info">\
 <div class="name">'+jinsom.nickname+jinsom.lv+jinsom.vip+'</div>\
-<div class="from"><span>手机端</span></div>\
+<div class="from"><span class="time">刚刚</span><span>手机端</span></div>\
 </div>\
 </div>\
 <div class="content">'+msg.content+'</div>\
-<div class="footer">\
-<span class="time">刚刚</span>\
+<div class="footer clear">\
 <span class="comment">\
-<a href="'+jinsom.theme_url+'/mobile/templates/page/comment-bbs-floor.php?post_id='+post_id+'&comment_id='+comment_id+'&bbs_id='+bbs_id+'&name='+jinsom.nickname_base+'" class="link"></a>\
+<a href="'+jinsom.theme_url+'/mobile/templates/page/comment-bbs-floor.php?post_id='+post_id+'&comment_id='+comment_id+'&bbs_id='+bbs_id+'&name='+jinsom.nickname_base+'" class="link"><m></m></a>\
 </span>\
 </div>\
 </div>\

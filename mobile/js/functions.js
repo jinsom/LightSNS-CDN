@@ -1825,7 +1825,8 @@ url:jinsom.jinsom_ajax_url+"/action/notice-all.php",
 type:'POST',    
 success:function(msg){
 if(msg){
-$('.jinsom-mine-box li.notice .item-after,.toolbar .mine i').html('<span class="badge bg-red tips">'+msg+'</span>');	
+$('.jinsom-mine-box li.notice .item-after,.jinsom-mine-box li.notice i,.toolbar .mine i,.navbar i.tips').html('<span class="badge bg-red tips">'+msg+'</span>');	
+$('.navbar .notice-tips').html(msg);
 }
 }
 });	

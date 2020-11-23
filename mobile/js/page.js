@@ -469,7 +469,7 @@ $('.jinsom-cash-form-content .wechat-phone').show();
 }
 });
 $("#jinsom-cash-number").bind("input propertychange",function(){
-number=Math.floor($(this).val()/page.query['ratio']);
+number=Math.floor($(this).val()/$(this).attr('data'));
 $('.jinsom-cash-form-content .number n').text(number+'元');
 });
 });
