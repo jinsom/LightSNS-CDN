@@ -102,7 +102,7 @@ $('.jinsom-publish-words-form .add i').hide();//显示加载loading
 $('.jinsom-publish-words-form .add span').css('display','inline-block');//显示加载loading
 info=that.files[i];
 if(info.type!='image/gif'){
-lrz(info)
+lrz(info,{quality:parseInt(jinsom.comment_img_quality)})
 .then(function (rst) {
 $.ajax({
 type: "POST",
@@ -240,7 +240,7 @@ $('.jinsom-publish-words-form .add i').hide();//显示加载loading
 $('.jinsom-publish-words-form .add span').css('display','inline-block');//显示加载loading
 info=that.files[i];
 if(info.type!='image/gif'){
-lrz(info)
+lrz(info,{quality:parseInt(jinsom.comment_img_quality)})
 .then(function (rst) {
 $.ajax({
 type: "POST",
@@ -477,7 +477,7 @@ $('.jinsom-cash-form-content .number n').text(number+'元');
 
 //签到
 myApp.onPageBeforeInit('sign', function (page) {
-if($('#sign-1').length>0){
+if($('#sign-1').length>0&&!jinsom.is_admin){
 new TencentCaptcha(document.getElementById('sign-1'),jinsom.machine_verify_appid,function(res){
 if(res.ret === 0){jinsom_sign(document.getElementById('sign-1'),res.ticket,res.randstr);}
 });
@@ -1163,37 +1163,37 @@ myApp.onPageBeforeInit('publish',function(page){
 type=page.query.type;
 
 if(type=='words'){
-if($('#publish-'+type).length>0){
+if($('#publish-'+type).length>0&&!jinsom.is_admin){
 new TencentCaptcha(document.getElementById('publish-'+type),jinsom.machine_verify_appid,function(res){
 if(res.ret === 0){jinsom_publish_words(res.ticket,res.randstr);}
 });
 }
 }else if(type=='music'){
-if($('#publish-'+type).length>0){
+if($('#publish-'+type).length>0&&!jinsom.is_admin){
 new TencentCaptcha(document.getElementById('publish-'+type),jinsom.machine_verify_appid,function(res){
 if(res.ret === 0){jinsom_publish_music_video('music',res.ticket,res.randstr);}
 });
 }
 }else if(type=='video'){
-if($('#publish-'+type).length>0){
+if($('#publish-'+type).length>0&&!jinsom.is_admin){
 new TencentCaptcha(document.getElementById('publish-'+type),jinsom.machine_verify_appid,function(res){
 if(res.ret === 0){jinsom_publish_music_video('video',res.ticket,res.randstr);}
 });
 }
 }else if(type=='single'){
-if($('#publish-'+type).length>0){
+if($('#publish-'+type).length>0&&!jinsom.is_admin){
 new TencentCaptcha(document.getElementById('publish-'+type),jinsom.machine_verify_appid,function(res){
 if(res.ret === 0){jinsom_publish_single(res.ticket,res.randstr);}
 });
 }	
 }else if(type=='secret'){
-if($('#publish-'+type).length>0){
+if($('#publish-'+type).length>0&&!jinsom.is_admin){
 new TencentCaptcha(document.getElementById('publish-'+type),jinsom.machine_verify_appid,function(res){
 if(res.ret === 0){jinsom_publish_secret(res.ticket,res.randstr);}
 });
 }	
 }else if(type=='bbs'){//帖子类型
-if($('#publish-bbs').length>0){
+if($('#publish-bbs').length>0&&!jinsom.is_admin){
 new TencentCaptcha(document.getElementById('publish-bbs'),jinsom.machine_verify_appid,function(res){
 if(res.ret === 0){jinsom_publish_bbs(res.ticket,res.randstr);}
 });
@@ -1295,7 +1295,7 @@ $('.jinsom-publish-words-form .add i').hide();//显示加载loading
 $('.jinsom-publish-words-form .add span').css('display','inline-block');//显示加载loading
 info=that.files[i];
 if(info.type!='image/gif'){
-lrz(info)
+lrz(info,{quality:parseInt(jinsom.publish_img_quality)})
 .then(function (rst) {
 $.ajax({
 type: "POST",
@@ -2165,7 +2165,7 @@ ajax_get_live_comment.abort();
 
 //宠物窝-自己
 myApp.onPageBeforeInit('pet-nest-mine', function (page){
-if($('#pet-1').length>0){
+if($('#pet-1').length>0&&!jinsom.is_admin){
 pet_id=$('#pet-1').attr('data-id');
 pet_number=$('#pet-1').attr('data-number');
 new TencentCaptcha(document.getElementById('pet-1'),jinsom.machine_verify_appid,function(res){
@@ -2176,7 +2176,7 @@ if(res.ret === 0){jinsom_pet_sell(pet_id,pet_number,document.getElementById('pet
 
 //宠物窝-别人
 myApp.onPageBeforeInit('pet-nest-other', function (page){
-if($('#pet-1').length>0){
+if($('#pet-1').length>0&&!jinsom.is_admin){
 pet_id=$('#pet-1').attr('data-id');
 pet_number=$('#pet-1').attr('data-number');
 new TencentCaptcha(document.getElementById('pet-1'),jinsom.machine_verify_appid,function(res){

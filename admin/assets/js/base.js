@@ -1243,6 +1243,7 @@ window.admin_apply_bbs_read_form=layer.open({
 title:'订单详情',
 type: 1,
 fixed: false,
+offset: '61px',
 area: ['750px','680px'], 
 content: msg
 });
