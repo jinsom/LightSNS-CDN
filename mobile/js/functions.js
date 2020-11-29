@@ -2404,6 +2404,15 @@ jinsom_lightbox();//灯箱
 }
 
 
+function jinsom_popup_iframe(url){
+var popuphtml='<div class="jinsom-iframe-popup popup">'+
+'<iframe src='+url+' style="width:100%;height:100vh;border:none;"></iframe>'+
+'<div class="jinsom-iframe-popup-close"><a href="#" class="close-popup"><i class="jinsom-icon jinsom-guanbi"></i></a></div>'+
+'</div>'
+myApp.popup(popuphtml);
+}
+
+
 
 //设置cookie
 function SetCookie(name,value){

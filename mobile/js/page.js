@@ -102,7 +102,7 @@ $('.jinsom-publish-words-form .add i').hide();//显示加载loading
 $('.jinsom-publish-words-form .add span').css('display','inline-block');//显示加载loading
 info=that.files[i];
 if(info.type!='image/gif'){
-lrz(info,{quality:parseInt(jinsom.comment_img_quality)})
+lrz(info,{quality:parseFloat(jinsom.comment_img_quality)})
 .then(function (rst) {
 $.ajax({
 type: "POST",
@@ -240,7 +240,7 @@ $('.jinsom-publish-words-form .add i').hide();//显示加载loading
 $('.jinsom-publish-words-form .add span').css('display','inline-block');//显示加载loading
 info=that.files[i];
 if(info.type!='image/gif'){
-lrz(info,{quality:parseInt(jinsom.comment_img_quality)})
+lrz(info,{quality:parseFloat(jinsom.comment_img_quality)})
 .then(function (rst) {
 $.ajax({
 type: "POST",
@@ -1295,7 +1295,7 @@ $('.jinsom-publish-words-form .add i').hide();//显示加载loading
 $('.jinsom-publish-words-form .add span').css('display','inline-block');//显示加载loading
 info=that.files[i];
 if(info.type!='image/gif'){
-lrz(info,{quality:parseInt(jinsom.publish_img_quality)})
+lrz(info,{quality:parseFloat(jinsom.publish_img_quality)})
 .then(function (rst) {
 $.ajax({
 type: "POST",

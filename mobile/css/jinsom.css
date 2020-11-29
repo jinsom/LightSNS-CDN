@@ -2492,6 +2492,7 @@ display: none !important;
 .jinsom-reg-doc a {
     color: #2196F3;
     text-shadow: 0 0px 0px #000;
+    font-size: 3.5vw;
 }
 .jinsom-reg-doc-form .picker-modal-inner,.jinsom-get-invite-code .picker-modal-inner {
     overflow-y: scroll;
@@ -8656,4 +8657,20 @@ h1 .commend:before{
     border: 1px solid #ccc;
     background-color: #f8f8f8;
     border-radius: 1vw;
+}
+.jinsom-iframe-popup-close {
+    position: absolute;
+    width: 15vw;
+    height: 15vw;
+    text-align: center;
+    line-height: 15vw;
+    background-color: rgb(0 0 0 / 0.5);
+    border-radius: 100%;
+    top: 50%;
+    margin-top: -7.5vw;
+    right: 2vw;
+}
+.jinsom-iframe-popup-close i {
+    font-size: 8vw;
+    color: #fff;
 }
