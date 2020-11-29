@@ -7492,6 +7492,23 @@ h1 .commend:before{
     height: 65vw;
     box-sizing: border-box !important;
 }
+.jinsom-smile-form ul {
+    padding: 0;
+    margin: 0;
+}
+.jinsom-smile-form .header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2vw;
+}
+.jinsom-smile-form .header li {
+    padding: 3vw 0;
+    margin-right: 4vw;
+    font-size: 4.5vw;
+}
+.jinsom-smile-form .header li.on {
+    color: var(--jinsom-color);
+}
 .jinsom-smile-form span {
     display: inline-block;
     height: 10vw;
@@ -7537,12 +7554,7 @@ h1 .commend:before{
     margin: 4vw;
 }
 .jinsom-content-playbill-header {
-    height: 60vw;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     position: relative;
-    border-radius: 1vw;
 }
 .jinsom-content-playbill-content {
     line-height: 6.5vw;

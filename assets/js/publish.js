@@ -50,6 +50,10 @@ layer.closeAll('loading');
 layer.msg(msg.msg);	
 }else if(msg.code==1){
 
+if(!topic_name){
+topic_name='';
+}
+
 if(type=='single'){
 window.location.href=jinsom.member_url_permalink+'info=publish-single&topic_name='+topic_name;
 return false;

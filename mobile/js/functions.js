@@ -1076,6 +1076,16 @@ jinsom_search_js(keyword,type);
 
 
 function jinsom_search_js(keyword,type){
+
+// if(GetCookie('search-history')){
+// SetCookie('search-history',keyword);
+// }else{
+// SetCookie('search-history',keyword);
+// }
+
+
+// console.log(GetCookie('search-history'));
+
 list=$('.jinsom-search-post-list');
 list.prepend(jinsom.loading_post);
 $.ajax({
@@ -2154,6 +2164,10 @@ content: $(obj).next().html(),
 anim: 'up',
 style: 'position:fixed;bottom:0;left:0;width:100%;height:65vw;border:none;'
 });	
+$('.jinsom-smile-form .header li').click(function(){
+$(this).addClass('on').siblings().removeClass('on');
+$(this).parent().next().children('ul').eq($(this).index()).show().siblings().hide();
+});
 }
 
 //发布权限
@@ -2202,7 +2216,7 @@ SetCookie('comment_sort','DESC');
 dom='.page-on-center .jinsom-single-comment-list';
 jinsom_comment_data(1,$(dom).attr('post_id'),$(dom).attr('type'),$(dom).attr('bbs_id'),dom);
 }},
-{text:'倒叙',onClick:function(){
+{text:'倒序',onClick:function(){
 SetCookie('comment_sort','ASC');
 dom='.page-on-center .jinsom-single-comment-list';
 jinsom_comment_data(1,$(dom).attr('post_id'),$(dom).attr('type'),$(dom).attr('bbs_id'),dom);

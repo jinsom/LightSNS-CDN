@@ -3035,37 +3035,43 @@ content: msg
 }
 
 //显示IM表情
-function jinsom_im_smile(obj,type){
+function jinsom_smile(obj,type,dom){
 window.event.stopPropagation();
-this_dom=$(obj);
-if(this_dom.children('.jinsom-smile-form').length>0){
-this_dom.children('.jinsom-smile-form').toggle(100);
+if($(obj).children('.jinsom-smile-form').length>0){
+$(obj).children('.jinsom-smile-form').toggle(100);
 }else{
 layer.load(1);
 $.ajax({
 type: "POST",
-url:jinsom.module_url+"/stencil/smile-im.php",
-data:{type:type},
+url:jinsom.module_url+"/stencil/smile.php",
+data:{type:type,dom:dom},
 success: function(msg){
 layer.closeAll('loading');
 
-if(type==1){
-$(this_dom).append(msg);//普通
+if(type=='im'){
+$(obj).html(msg);//IM
 }else{
-$(this_dom).html(msg);//IM
+$(obj).append(msg);//普通|富文本
 }
 
-$(this_dom).children('.jinsom-smile-form').show();
+//切换表情
+$('.jinsom-smile-form .header li').click(function(e){
+e.stopPropagation();
+$(this).addClass('on').siblings().removeClass('on');
+$(this).parent().next().children('ul').eq($(this).index()).show().siblings().hide();
+});
+
+$(obj).children('.jinsom-smile-form').show();
 }
 });
 }
 }
 
 //显示内容表情
-function jinsom_post_smile(obj){
-window.event.stopPropagation();
-$(obj).children('.jinsom-smile-form').toggle(100);
-}
+// function jinsom_post_smile(obj){
+// window.event.stopPropagation();
+// $(obj).children('.jinsom-smile-form').toggle(100);
+// }
 
 
 //清除未读IM消息

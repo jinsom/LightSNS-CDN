@@ -261,6 +261,13 @@ $(".jinsom-header-right").on("click",'.jinsom-notice ul', function(e){
 e.stopPropagation();
 });
 
+//切换表情
+$("body").on("click",'.jinsom-smile-form .header li', function(e){
+e.stopPropagation();
+$(this).addClass('on').siblings().removeClass('on');
+
+});
+
 //委派事件
 $(document).on('click', function(event){
 $('.jinsom-post-setting-box').hide();

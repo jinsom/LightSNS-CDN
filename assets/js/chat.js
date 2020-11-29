@@ -65,7 +65,7 @@ content:
 '<div class="jinsom-chat-message-list" data-no-instant></div>'+
 '<div class="jinsom-chat-windows-footer">'+
 '<div class="jinsom-chat-windows-footer-bar one clear">'+
-'<span onclick="jinsom_im_smile(this,5)" class="jinsom-icon smile jinsom-weixiao-"></span>'+
+'<span onclick=\'jinsom_smile(this,"im","")\' class="jinsom-icon smile jinsom-weixiao-"></span>'+
 '<span class="image jinsom-icon jinsom-tupian1"></span>'+
 '<span class="notice jinsom-icon jinsom-tongzhi1"></span>'+
 '</div>'+
@@ -228,28 +228,28 @@ jinsom_stop_group_Ajax();//关闭窗口时，终止前一个ajax；
 },
 //<span class="bag jinsom-icon jinsom-hongbao3" onclick="jinsom_test()"></span>\
 //<span class="touzi jinsom-icon jinsom-dice" onclick="jinsom_test()"></span>\
-content: '\
-<div class="jinsom-chat-windows-left">\
-<div class="jinsom-chat-message-group-list" data-no-instant></div>\
-<div class="jinsom-chat-windows-footer">\
-<div class="jinsom-chat-windows-footer-bar group clear">\
-<span onclick="jinsom_im_smile(this,5)" class="jinsom-icon smile jinsom-weixiao-"></span>\
-<span class="image jinsom-icon jinsom-tupian1"></span>\
-<span class="jinsom-upload-group-img-loading"></span>\
-</div>\
-<textarea class="jinsom-chat-textarea-group"></textarea>\
-<div class="jinsom-chat-windows-footer-send clear">\
-<div class="jinsom-chat-send-message-btn-group opacity" onclick="jinsom_send_group_msg()">发送</div>\
-</div></div></div>\
-<div class="jinsom-chat-windows-right">\
-<div class="jinsom-chat-group-notice">\
-<div class="jinsom-chat-group-notice-title">群公告</div>\
-<div class="jinsom-chat-group-notice-desc"></div>\
-</div>\
-<div class="jinsom-chat-group-user">\
-<div class="jinsom-chat-group-user-number">群成员 <span></span></div>\
-<div class="jinsom-chat-group-user-list"></div>\
-</div></div>'
+content: 
+'<div class="jinsom-chat-windows-left">'+
+'<div class="jinsom-chat-message-group-list" data-no-instant></div>'+
+'<div class="jinsom-chat-windows-footer">'+
+'<div class="jinsom-chat-windows-footer-bar group clear">'+
+'<span onclick=\'jinsom_smile(this,"im","")\' class="jinsom-icon smile jinsom-weixiao-"></span>'+
+'<span class="image jinsom-icon jinsom-tupian1"></span>'+
+'<span class="jinsom-upload-group-img-loading"></span>'+
+'</div>'+
+'<textarea class="jinsom-chat-textarea-group"></textarea>'+
+'<div class="jinsom-chat-windows-footer-send clear">'+
+'<div class="jinsom-chat-send-message-btn-group opacity" onclick="jinsom_send_group_msg()">发送</div>'+
+'</div></div></div>'+
+'<div class="jinsom-chat-windows-right">'+
+'<div class="jinsom-chat-group-notice">'+
+'<div class="jinsom-chat-group-notice-title">群公告</div>'+
+'<div class="jinsom-chat-group-notice-desc"></div>'+
+'</div>'+
+'<div class="jinsom-chat-group-user">'+
+'<div class="jinsom-chat-group-user-number">群成员 <span></span></div>'+
+'<div class="jinsom-chat-group-user-list"></div>'+
+'</div></div>'
 });  
 
 }else{

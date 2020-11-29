@@ -10,13 +10,15 @@ if(load_type=='more'){//加载更多
 page=$(obj).attr('page');
 $(obj).before(jinsom.loading_post);
 $(obj).hide();	
-data=$('.jinsom-index-menu li.on').attr('data');
 
 if(author_id){
-index=$('.jinsom-member-menu li.on').index();
+menu_list=$('.jinsom-member-menu li.on');
 }else{
-index=$('.jinsom-index-menu li.on').index();
+menu_list=$('.jinsom-index-menu li.on');
 }
+
+data=menu_list.attr('data');
+index=menu_list.index();
 
 }else{//ajax切换
 page=1;
