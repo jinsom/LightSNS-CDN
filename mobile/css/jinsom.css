@@ -4256,6 +4256,7 @@ display: none !important;
     overflow-y: hidden;
     white-space: nowrap;
     border-bottom: 1px solid #f5f5f5;
+    -webkit-overflow-scrolling: touch;
 }
 .jinsom-bbs-child-show li {
     text-align: center;
@@ -7499,7 +7500,6 @@ h1 .commend:before{
 }
 .jinsom-smile-form .header {
     display: flex;
-    justify-content: center;
     margin-bottom: 2vw;
 }
 .jinsom-smile-form .header li {
@@ -8658,19 +8658,79 @@ h1 .commend:before{
     background-color: #f8f8f8;
     border-radius: 1vw;
 }
-.jinsom-iframe-popup-close {
-    position: absolute;
-    width: 15vw;
-    height: 15vw;
-    text-align: center;
-    line-height: 15vw;
-    background-color: rgb(0 0 0 / 0.5);
-    border-radius: 100%;
-    top: 50%;
-    margin-top: -7.5vw;
-    right: 2vw;
+
+.jinsom-iframe-popup {
+    overflow: hidden;
 }
-.jinsom-iframe-popup-close i {
-    font-size: 8vw;
+.jinsom-iframe-popup .navbar {
+    position: fixed;
+}
+
+.jinsom-publish-select-cat {
+    padding-left: 4vw;
+    margin-top: 4vw;
+    margin-bottom: -4vw;
+}
+.jinsom-publish-select-cat .select-title {
+    margin-bottom: 2vw;
+}
+.jinsom-publish-select-cat .select-content {
+    white-space: nowrap;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+.jinsom-publish-select-cat .select-content li {
+    display: inline-block;
+    margin-right: 4vw;
+    width: 16vw;
+}
+.jinsom-publish-select-cat .select-content li p {
+    text-align: center;
+    margin-top: 1vw;
+    color: #aaa;
+    font-size: 3.2vw;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.jinsom-publish-select-cat .select-content li.on p {
+    color: var(--jinsom-color);
+}
+.jinsom-publish-select-cat .select-content li .img {
+    width: 14vw;
+    height: 14vw;
+    border-radius: 3vw;
+    position: relative;
+    background-size: cover;
+    margin: auto;
+}
+.jinsom-publish-select-cat .select-content li .img .shade {
+    width: 100%;
+    height: 100%;
+    border-radius: 3vw;
+    background-color: rgb(0, 0, 0);
+    opacity: 0.5;
+}
+.jinsom-publish-select-cat .select-content li.on .img .shade {
+    opacity: 0;
+}
+.jinsom-publish-select-cat .select-content li .img>span {
+    width: 6vw;
+    height: 6vw;
+    display: inline-block;
+    position: absolute;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 6vw;
+    top: 7vw;
+    background-color: var(--jinsom-color);
     color: #fff;
+    margin-top: -3vw;
+    left: 7vw;
+    margin-left: -3vw;
+    display: none;
+}
+.jinsom-publish-select-cat .select-content li.on .img>span {
+    display: block;
 }

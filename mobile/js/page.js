@@ -1200,6 +1200,12 @@ if(res.ret === 0){jinsom_publish_bbs(res.ticket,res.randstr);}
 }
 
 
+//选择子分类
+$('.jinsom-publish-select-cat .select-content li').click(function(){
+$(this).addClass('on').siblings().removeClass('on');
+$('input[name="bbs_child_id"]').val($(this).attr('data'));
+});
+
 $('.jinsom-publish-power-list').children('li').eq(0).addClass('on');
 type=$('.jinsom-publish-power-list').children('li').eq(0).attr('type');
 $('input[name="post-type"]').val(type);
