@@ -432,7 +432,10 @@ if($.trim(content)==''){
 layer.msg('请输入内容！');
 return false;  
 }
-content_a=content.replace(/\[s\-(\d+)\]/g,'<img src="'+jinsom.smile_url+'$1.png" class="wp-smiley">');
+
+smile_add_arr=$.parseJSON(jinsom.smile_add);
+content_a=content.replace(/\[s\-(\d+)\]/g,'<img src="'+jinsom.smile_url+smile_add_arr[0]['smile_url']+'/$1.png" class="wp-smiley">');
+content_a=content.replace(/\[s\-(\d+)\-(\d+)\]/g,function(){var args=arguments;return '<img src="'+jinsom.smile_url+smile_add_arr[(args[1]-1)]['smile_url']+'/'+args[2]+'.png" class="wp-smiley">'});
 $('.jinsom-chat-message-list').append('<li class="myself"><div class="jinsom-chat-message-list-user-info">'+jinsom.avatar+'</div><div class="jinsom-chat-message-list-content">'+content_a+'</div></li>');
 $('.jinsom-chat-textarea').val('');
 $('.jinsom-chat-message-list').scrollTop($('.jinsom-chat-message-list')[0].scrollHeight);
@@ -459,7 +462,9 @@ if($.trim(content)==''){
 layer.msg('请输入内容！');
 return false;  
 }
-content_a=content.replace(/\[s\-(\d+)\]/g,'<img src="'+jinsom.smile_url+'$1.png" class="wp-smiley">');
+smile_add_arr=$.parseJSON(jinsom.smile_add);
+content_a=content.replace(/\[s\-(\d+)\]/g,'<img src="'+jinsom.smile_url+smile_add_arr[0]['smile_url']+'/$1.png" class="wp-smiley">');
+content_a=content.replace(/\[s\-(\d+)\-(\d+)\]/g,function(){var args=arguments;return '<img src="'+jinsom.smile_url+smile_add_arr[(args[1]-1)]['smile_url']+'/'+args[2]+'.png" class="wp-smiley">'});
 $('.jinsom-chat-message-group-list').append('<li class="myself"><div class="jinsom-chat-message-list-user-info">'+jinsom.avatar+'</div><div class="jinsom-chat-message-list-content">'+content_a+'</div></li>');
 $('.jinsom-chat-textarea-group').val('');
 $('.jinsom-chat-message-group-list').scrollTop($('.jinsom-chat-message-group-list')[0].scrollHeight);

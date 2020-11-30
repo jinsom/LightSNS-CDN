@@ -8659,9 +8659,9 @@ h1 .commend:before{
     border-radius: 1vw;
 }
 
-.jinsom-iframe-popup {
+/*.jinsom-iframe-popup {
     overflow: hidden;
-}
+}*/
 .jinsom-iframe-popup .navbar {
     position: fixed;
 }
