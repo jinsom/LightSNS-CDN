@@ -416,7 +416,7 @@ layer.open({content:'请输入内容！',skin:'msg',time:2});
 return false;	
 }
 
-if($('#jinsom-bbs-category').val()==''){
+if($('.jinsom-publish-select-cat').length>0&&$('input[name="bbs_child_id"]').val()==0){
 layer.open({content:'请选择分类！',skin:'msg',time:2});
 return false; 
 } 
