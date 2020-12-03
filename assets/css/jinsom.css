@@ -2340,14 +2340,14 @@ img.wp-smiley {
 .jinsom-chat-loading {
     width: 240px;
     height: 50px;
-    background-image: url(../../../../../../wp-admin/images/spinner.gif);
+    background-image: url(../../images/spinner.gif);
     background-repeat: no-repeat;
     background-position: center;
 }
 .jinsom-chat-windows-loading,.jinsom-chat-windows-group-loading,.jinsom-chat-group-user-list-loading {
     width: 100%;
     height: 150px;
-    background-image: url(../../../../../../wp-admin/images/spinner.gif);
+    background-image: url(../../images/spinner.gif);
     background-repeat: no-repeat;
     background-position: center;
 }

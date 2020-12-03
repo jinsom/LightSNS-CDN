@@ -1964,6 +1964,10 @@ display: none !important;
     padding: 4vw 4vw 0vw;
     overflow: hidden;
 }
+.jinsom-comment-li.current-comment {
+    background-color: #fff9f9;
+    border: 1px solid #e2dada;
+}
 .jinsom-single-comment-list .jinsom-empty-page {
     padding: 10vw 0;
 }
@@ -6086,11 +6090,8 @@ h1 .commend:before{
 .jinsom-bbs-post-list>.jinsom-post-words:last-child {
     margin-bottom: 0;
 }
-.jinsom-bbs-post-list-2 {
-    padding: 4vw;
-    background-color: #fff;
-}
-.jinsom-bbs-post-list-4 {
+
+.jinsom-bbs-post-list-4,.jinsom-bbs-post-list-2 {
     padding: 4vw;
 }
 .jinsom-bbs-post-list .jinsom-load-post {
@@ -6111,9 +6112,10 @@ h1 .commend:before{
     border-radius: 1vw;
     margin-bottom: 4vw;
     position: relative;
-}
-.jinsom-bbs-post-list-4 .jinsom-bbs-list-lattice {
     margin-right: 4vw;
+}
+.jinsom-bbs-post-list-3 .jinsom-bbs-list-lattice {
+    margin-right: 0;
 }
 .jinsom-bbs-list-lattice .bg {
     height: 30vw;

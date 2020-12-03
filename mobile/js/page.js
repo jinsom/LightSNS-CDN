@@ -654,7 +654,7 @@ this_dom.siblings('.value').html(verify_text);
 });
 });
 
-$('.jinsom-setting-box li.user_power select').change(function(event){//设置认证类型
+$('.jinsom-setting-box li.user_power select').change(function(event){//设置用户组
 user_power=$(this).val();
 author_id=$('.jinsom-setting-content').attr('data');
 this_dom=$(this);
@@ -671,9 +671,11 @@ this_dom.siblings('.value').html('正常用户');
 }else if(user_power==2){
 this_dom.siblings('.value').html('网站管理');
 }else if(user_power==3){
-this_dom.siblings('.value').html('黑名单');
+this_dom.siblings('.value').html('巡查员');
 }else if(user_power==4){
 this_dom.siblings('.value').html('风险账户');
+}else if(user_power==5){
+this_dom.siblings('.value').html('审核员');
 }
 }
 }
