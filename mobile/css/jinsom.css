@@ -2186,7 +2186,7 @@ display: none !important;
 .jinsom-member-header .info p {
     margin: 0;
 }
-.jinsom-member-content {
+.jinsom-member-content,.jinsom-history-single-content {
     background-color: #eee;
 }
 .jinsom-member-menu,.jinsom-topic-menu {

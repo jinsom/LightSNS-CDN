@@ -4493,6 +4493,9 @@ blockquote {
     border-bottom: 1px dotted #e6e6e6;
     padding: 10px 0 5px;
 }
+.jinsom-post-comment-list li.current-comment {
+    background-color: #fff9f9;
+}
 .jinsom-post-comment-list li:last-child {
     border-bottom: none;
 }
@@ -5886,6 +5889,9 @@ figure.effect-ming:hover figcaption::before, figure.effect-ming:hover p {
     background-repeat: repeat-y;
     position: relative;
     display: flex;
+}
+.jinsom-bbs-single-box.current-comment {
+    background-color: #fff9f9;
 }
 .jinsom-bbs-single-header {
     background-color: #fff;

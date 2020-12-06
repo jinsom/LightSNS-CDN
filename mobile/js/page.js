@@ -25,6 +25,27 @@ dom='.page-on-center .jinsom-single-comment-list';
 jinsom_comment_data(1,post_id,$(dom).attr('type'),$(dom).attr('bbs_id'),dom);
 })
 
+//记录历史访问
+history_single=GetCookie('history_single');
+if(history_single){
+
+history_single_arr= new Array();
+history_single_arr=history_single.split(",");
+
+if(history_single_arr.includes(post_id)){
+history_single_arr.splice($.inArray(post_id,history_single_arr),1);//删除指定的文章id
+history_single_arr.push(post_id);
+}else{
+if(history_single_arr.length>30){
+history_single_arr.shift();
+}
+history_single_arr.push(post_id);
+}
+SetCookie('history_single',history_single_arr.join(','));
+}else{
+SetCookie('history_single',post_id);
+}
+
 
 //加载更多评论
 comment_loading = false;
