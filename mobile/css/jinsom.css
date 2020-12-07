@@ -1185,6 +1185,14 @@ display: none !important;
     margin: 0;
     margin-bottom: 2vw;
 }
+.jinsom-post-words .content h1 .sticky-member,.jinsom-post-single h1 .sticky-member {
+    margin-left: 1vw;
+    margin-right: 1vw;
+    vertical-align: 0.6vw !important;
+}
+.jinsom-post-words .content h1 .sticky-member:before,.jinsom-post-single h1 .sticky-member:before{
+    content: '主页置顶';
+}
 .jinsom-post-words .content h1 .type,.jinsom-single h1 .type {
     padding: 0.5vw 1.5vw;
     border-radius: 1vw;
@@ -2202,7 +2210,7 @@ display: none !important;
 .jinsom-member-menu li, .jinsom-topic-menu li {
     margin-right: 6.5vw;
     display: inline-block;
-    font-size: 4.5vw;
+    font-size: 4vw;
     padding: 2vw 0;
     position: relative;
     color: #333;
@@ -4618,7 +4626,7 @@ display: none !important;
 
 
 /*置顶推荐图标*/
-.jinsom-post-words .header .info .name .sticky,.jinsom-post-words .content h1 .sticky,.jinsom-post-single h1 .sticky{
+.jinsom-post-words .header .info .name .sticky, .jinsom-post-words .content h1 .sticky, .jinsom-post-single h1 .sticky, .jinsom-post-words .content h1 .sticky-member,.jinsom-post-single h1 .sticky-member{
     padding: 0.5vw 1.5vw;
     border-radius: 1vw;
     background-color: #1E9FFF;
@@ -4636,8 +4644,8 @@ display: none !important;
     font-size: 3.5vw;
     vertical-align: 0.3vw;
 }
-.jinsom-post-words .content h1 .sticky,.jinsom-post-words .content h1 .commend,.jinsom-post-single h1 .sticky,.jinsom-post-single h1 .commend{
-    margin-left:0;
+.jinsom-post-words .content h1 .sticky, .jinsom-post-words .content h1 .commend, .jinsom-post-single h1 .sticky, .jinsom-post-single h1 .commend{
+    margin-left:1vw;
     margin-right:1vw;  
     vertical-align: 0.6vw;
 }

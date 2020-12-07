@@ -7,25 +7,25 @@ document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/mobile/js
 document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/assets/js/jquery.fancybox.min.js'></script>");//图片灯箱
 
 
-//置顶动态
-function jinsom_sticky_post(post_id,obj){
+//置顶内容：全局置顶==板块置顶==主页置顶==推荐==加精
+function jinsom_sticky(post_id,bbs_id,type,obj){
 layer.closeAll();
 layer.open({
-content: '你要'+$(obj).children('p').html()+'这个内容吗？'
+content: '你确定要'+$(obj).children('p').html()+'吗？'
 ,btn: ['确定', '取消']
 ,yes: function(index){
 myApp.showIndicator();
 $.ajax({
 type: "POST",
 url:  jinsom.jinsom_ajax_url+"/action/commend-post.php",
-data: {post_id:post_id,type:'sticky-post'},
+data: {post_id:post_id,bbs_id:bbs_id,type:type},
 success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
-if(msg.code==1){//置顶成功
-$(obj).html('取消置顶');
-}else if(msg.code==2){//取消置顶
-$(obj).html('置顶');
+if(msg.code==1||msg.code==2){
+$(obj).html(msg.html);
+}else if(msg.code==5){
+function c(){myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/mywallet/recharge-vip.php'});}setTimeout(c,1500);
 }
 }
 });
@@ -33,36 +33,6 @@ layer.close(index);
 }
 });
 }
-
-
-//推荐动态
-function jinsom_commend_post(post_id,obj){
-layer.closeAll();
-layer.open({
-content: '你要'+$(obj).children('p').html()+'这个内容吗？'
-,btn: ['确定', '取消']
-,yes: function(index){
-myApp.showIndicator();
-$.ajax({
-type: "POST",
-url:  jinsom.jinsom_ajax_url+"/action/commend-post.php",
-data: {post_id:post_id,type:'commend-post'},
-success: function(msg){
-myApp.hideIndicator();
-layer.open({content:msg.msg,skin:'msg',time:2});
-if(msg.code==1){//推荐成功
-$(obj).html('取消推荐');	
-}else if(msg.code==2){//取消置顶
-$(obj).html('推荐');
-}
-}
-});
-
-layer.close(index);
-}
-});
-}
-
 
 
 
@@ -100,65 +70,6 @@ layer.close(index);
 });
 }
 
-
-
-//置顶帖子
-function jinsom_sticky_bbs_post(post_id,bbs_id,obj){
-layer.closeAll();
-layer.open({
-content: '你要'+$(obj).children('p').html()+'这个内容吗？'
-,btn: ['确定', '取消']
-,yes: function(index){
-myApp.showIndicator();
-$.ajax({
-type: "POST",
-url:  jinsom.jinsom_ajax_url+"/action/commend-post.php",
-data: {post_id:post_id,bbs_id:bbs_id,type:'sticky-bbs-post'},
-success: function(msg){
-myApp.hideIndicator();
-layer.open({content:msg.msg,skin:'msg',time:2});
-if(msg.code==1){//置顶成功
-$(obj).html('取消置顶');
-}else if(msg.code==2){//取消置顶
-$(obj).html('论坛置顶');
-}
-}
-});
-
-layer.close(index);
-}
-});
-}
-
-
-
-
-//加精帖子
-function jinsom_commend_bbs_post(post_id,bbs_id,obj){
-layer.closeAll();
-layer.open({
-content: '你要'+$(obj).children('p').html()+'这个内容吗？'
-,btn: ['确定', '取消']
-,yes: function(index){
-myApp.showIndicator();
-$.ajax({
-type: "POST",
-url:  jinsom.jinsom_ajax_url+"/action/commend-post.php",
-data: {post_id:post_id,bbs_id:bbs_id,type:'commend-bbs-post'},
-success: function(msg){
-myApp.hideIndicator();
-layer.open({content:msg.msg,skin:'msg',time:2});
-if(msg.code==1){//加精成功
-$(obj).html('取消加精');
-}else if(msg.code==2){//取消加精
-$(obj).html('加精');
-}
-}
-});
-layer.close(index);
-}
-});
-}
 
 
 //采纳答案

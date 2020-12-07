@@ -8,128 +8,29 @@ document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/assets/js
 document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/assets/js/editor.js'></script>");//编辑相关
 document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/assets/js/post.js'></script>");//内容相关
 
-//置顶动态
-function jinsom_sticky_post(post_id,type,obj){
-if(type=='no'){
-title='你要取消置顶吗？';
-}else{
-title='你要置顶这篇内容吗？';
-}
-layer.confirm(title,{
+//置顶内容：全局置顶==板块置顶==主页置顶==推荐==加精
+function jinsom_sticky(post_id,bbs_id,type,obj){
+layer.confirm('你确定要'+$(obj).html()+'吗？',{
 btnAlign: 'c',
 }, function(){
 layer.load(1);
 $.ajax({
 type: "POST",
 url:  jinsom.jinsom_ajax_url+"/action/commend-post.php",
-data: {post_id:post_id,type:'sticky-post'},
+data: {post_id:post_id,bbs_id:bbs_id,type:type},
 success: function(msg){
 layer.closeAll('loading');
 layer.msg(msg.msg);
-if(msg.code==1){//置顶成功
-$(obj).html('取消置顶');
-}else if(msg.code==2){//取消置顶
-$(obj).html('置顶内容');
+if(msg.code==1||msg.code==2){
+$(obj).html(msg.html);
+}else if(msg.code==5){
+function c(){jinsom_recharge_vip_form();}setTimeout(c,1500);
 }
 }
 });
 });
 }
 
-
-
-//推荐动态
-function jinsom_commend_post(post_id,type,obj){
-if(type=='no'){
-title='你要取消推荐这条内容吗？';
-}else{
-title='你要推荐这条内容吗？';
-}
-layer.confirm(title,{
-btnAlign: 'c',
-}, function(){
-layer.load(1);
-$.ajax({
-type: "POST",
-url:  jinsom.jinsom_ajax_url+"/action/commend-post.php",
-data: {post_id:post_id,type:'commend-post'},
-success: function(msg){
-layer.closeAll('loading');
-layer.msg(msg.msg);
-if(msg.code==1){//推荐成功
-$(obj).html('取消推荐');	
-}else if(msg.code==2){//取消置顶
-$(obj).html('推荐内容');
-}
-}
-});
-});
-}
-
-
-
-//置顶帖子
-function jinsom_sticky_bbs_post(post_id,bbs_id,type,obj){
-if(type=='no'){
-title='你要取消置顶吗？';
-}else{
-title='你要置顶这篇内容吗？';
-}
-layer.confirm(title,{
-btnAlign: 'c',
-}, function(){
-layer.load(1);
-$.ajax({
-type: "POST",
-url:  jinsom.jinsom_ajax_url+"/action/commend-post.php",
-data: {post_id:post_id,bbs_id:bbs_id,type:'sticky-bbs-post'},
-success: function(msg){
-layer.closeAll('loading');
-layer.msg(msg.msg);
-if(msg.code==1){//置顶成功
-$(obj).parents('.do').prev().append('<span class="jinsom-bbs-post-type-up"></span>');
-$(obj).html('取消置顶');
-}else if(msg.code==2){//取消置顶
-$(obj).parents('.do').prev().children('.jinsom-bbs-post-type-up').remove();
-$(obj).html('置顶内容');
-}
-}
-});
-});
-}
-
-
-
-
-//加精帖子
-function jinsom_commend_bbs_post(post_id,bbs_id,type,obj){
-if(type=='no'){
-title='你要取消加精吗？';
-}else{
-title='你要加精这篇内容吗？';
-}
-layer.confirm(title,{
-btnAlign: 'c',
-}, function(){
-layer.load(1);
-$.ajax({
-type: "POST",
-url:  jinsom.jinsom_ajax_url+"/action/commend-post.php",
-data: {post_id:post_id,bbs_id:bbs_id,type:'commend-bbs-post'},
-success: function(msg){
-layer.closeAll('loading');
-layer.msg(msg.msg);
-if(msg.code==1){//加精成功
-$(obj).parents('.do').prev().append('<span class="jinsom-bbs-post-type-nice"></span>');
-$(obj).html('取消加精');
-}else if(msg.code==2){//取消加精
-$(obj).parents('.do').prev().children('.jinsom-bbs-post-type-nice').remove();
-$(obj).html('加精帖子');
-}
-}
-});
-});
-}
 
 
 

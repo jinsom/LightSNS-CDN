@@ -1122,6 +1122,22 @@ td, th {
 .jinsom-lv .jinsom-icon,.jinsom-vip .jinsom-icon {
     font-size: 12px;
 }
+.jinsom-member-top {
+    background-color: #1E9FFF;
+    border-radius: 2px;
+    cursor: pointer;
+    vertical-align: 2px;
+    font-size: 14px;
+    padding: 1px 6px;
+}
+.jinsom-post-user-info-name .jinsom-member-top {
+    padding: 0 5px;
+    font-size: 12px;
+    vertical-align: 0px;
+}
+.jinsom-member-top:before{
+    content: '主页置顶';
+}
 
 /*侧栏小工具*/
 .jinsom-sidebar-box{
@@ -3104,8 +3120,8 @@ img.wp-smiley {
     padding: 0px 20px;
     clear: both;
 }
-.jinsom-posts-list>h1.single,.jinsom-posts-list>h2.single {
-    font-size: 22px !important;
+.jinsom-posts-list>h1.single, .jinsom-posts-list>h2.single {
+    font-size: 20px !important;
     margin-bottom: 10px !important;
     padding: 0 30px 0 20px !important;
     line-height: inherit !important;
@@ -3115,6 +3131,10 @@ img.wp-smiley {
 }
 .jinsom-posts-list>h1.single.bbs,.jinsom-posts-list>h2.single.bbs {
     clear: none;
+}
+.jinsom-posts-list>h2.single .jinsom-top, .jinsom-posts-list>h2.single .jinsom-commend-icon {
+    font-size: 14px;
+    padding: 1px 6px;
 }
 .jinsom-posts-list>h1.single span {
     vertical-align: 3px;
