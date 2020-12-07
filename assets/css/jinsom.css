@@ -750,6 +750,7 @@ td, th {
     padding-left: 8px;
     line-height: 16px;
     margin-bottom: 10px;
+    font-weight: normal;
 }
 
 .jinsom-member-left-honor li {

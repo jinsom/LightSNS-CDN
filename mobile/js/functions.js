@@ -2126,11 +2126,13 @@ buttons=[
 SetCookie('comment_sort','DESC');
 dom='.page-on-center .jinsom-single-comment-list';
 jinsom_comment_data(1,$(dom).attr('post_id'),$(dom).attr('type'),$(dom).attr('bbs_id'),dom);
+$('.jinsom-single-comment>.header .sort span').text('正序');
 }},
 {text:'倒序',onClick:function(){
 SetCookie('comment_sort','ASC');
 dom='.page-on-center .jinsom-single-comment-list';
 jinsom_comment_data(1,$(dom).attr('post_id'),$(dom).attr('type'),$(dom).attr('bbs_id'),dom);
+$('.jinsom-single-comment>.header .sort span').text('倒序');
 }},
 {text:'取消',color: 'red'},
 ];
