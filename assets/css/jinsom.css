@@ -532,22 +532,13 @@ td, th {
 }
 .jinsom-profile-bg-music span {
     background-color: var(--jinsom-color);
-    border-radius: var(--jinsom-border-radius);
+    border-radius:2px;
     display: inline-block;
     color: #fff;
     padding: 10px 36px;
     cursor: pointer;
     margin-left: 10px;
     position: relative;
-}
-.jinsom-profile-bg-music span m {
-    position: absolute;
-    right: -20px;
-    top: -5px;
-    font-size: 12px;
-    background-color: #F44336;
-    padding: 2px 8px;
-    border-radius: 9px;
 }
 #jinsom-upload-user-bg-music {
     position: absolute;
@@ -7500,13 +7491,14 @@ figure.effect-ming:hover figcaption::before, figure.effect-ming:hover p {
 .jinsom-post-comment-more {
     text-align: center;
     cursor: pointer;
-    padding: 8px 20px;
-    border-radius: 4px;
+    padding: 10px 20px;
+    border-radius: 2px;
     background-color: #bbb;
     color: #fff;
     width: 120px;
     margin: 20px auto;
     box-sizing: border-box;
+    font-size: 13px;
 }
 .jinsom-post-comment-more:hover {
     background-color: #999;
@@ -7925,6 +7917,7 @@ figure.effect-ming:hover figcaption::before, figure.effect-ming:hover p {
 .jinsom-pop-share .layui-layer-content {
     padding: 20px;
     text-align: center;
+    height: auto !important;
 }
 #jinsom-qrcode{
     width: 200px;
@@ -8466,7 +8459,7 @@ figure.effect-ming:hover figcaption::before, figure.effect-ming:hover p {
 .jinsom-topic-list li .desc {
     font-size: 13px;
     line-height: 25px;
-    color: #333;
+    color: #999;
     margin-bottom: 10px;
     height: 50px;
     display: -webkit-box;

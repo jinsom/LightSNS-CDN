@@ -1136,7 +1136,7 @@ url:jinsom.jinsom_ajax_url+"/admin/stencil/apply-bbs.php",
 success: function(msg){
 layer.closeAll('loading');
 layer.open({
-title:'论坛开通申请',
+title:jinsom.bbs_name+'申请开通',
 type: 1,
 fixed: false,
 area: ['700px','410px'], 

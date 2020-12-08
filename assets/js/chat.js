@@ -415,7 +415,7 @@ $(this_dom).html('加入群聊');
 if(msg==1){
 jinsom_open_group_chat(bbs_id);
 }else if(msg==2){
-layer.msg('请先关注论坛才可以加入群聊！');	
+layer.msg('请先关注'+jinsom.bbs_name+'才允许加入群聊！');	
 }else if(msg==3){
 jinsom_pop_login_style();
 }

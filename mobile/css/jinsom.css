@@ -3552,7 +3552,7 @@ display: none !important;
     color: #FF9800;
 }
 .jinsom-publish-aite-form .list.topic li.search .name{
-    color: #555 !important;
+    color: #333 !important;
 }
 .jinsom-publish-aite-form .list.topic li.search .hot {
     color: #999 !important;
@@ -3564,12 +3564,12 @@ display: none !important;
     display: inherit;
 }
 .jinsom-publish-aite-form .list .new .name {
-    font-size: 5vw;
     border-bottom: none;
     padding-bottom: 0;
 }
 .jinsom-publish-aite-form .list .new .desc {
     color: #999;
+    font-size: 3.2vw;
 }
 .jinsom-publish-power-form {
     padding: 4vw;

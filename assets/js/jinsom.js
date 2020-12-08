@@ -603,7 +603,7 @@ data: {bbs_id:bbs_id},
 success: function(msg){
 layer.closeAll('loading');
 layer.open({
-title:'父级论坛设置',
+title:'父级'+jinsom.bbs_name+'设置',
 skin: 'jinsom-bbs-setting-form', 
 type: 1,
 area: ['800px', '600px'], 
@@ -754,7 +754,7 @@ data: {bbs_id:bbs_id},
 success: function(msg){
 layer.closeAll('loading');
 layer.open({
-title:'子论坛设置',
+title:jinsom.bbs_name+'子版块设置',
 skin: 'jinsom-bbs-setting-form', 
 type: 1,
 area: ['500px', '400px'], 
@@ -1535,18 +1535,6 @@ content: msg
 
 
 
-
-
-
-//论坛移除图片
-function jinsom_remove_multiple_img(obj){
-$(obj).parent().remove();
-}
-
-
-
-
-
 //关注按钮
 function jinsom_follow(author_id,obj){
 if(!jinsom.is_login){
@@ -1562,13 +1550,13 @@ success: function(msg){
 layer.closeAll('loading');
 layer.msg(msg.msg);
 if(msg.code==1){//取消关注
-$(obj).removeClass('has').addClass('no');
+$(obj).removeClass('had').addClass('no');
 $(obj).html('<i class="jinsom-icon jinsom-guanzhu"></i>关注');
 }else if(msg.code==2){//关注成功
-$(obj).removeClass('no').addClass('has'); 
+$(obj).removeClass('no').addClass('had'); 
 $(obj).html('<i class="jinsom-icon jinsom-yiguanzhu"></i> 已关');     
 }else if(msg.code==3){//相互关注成功
-$(obj).removeClass('no').addClass('has');  
+$(obj).removeClass('no').addClass('had');  
 $(obj).html('<i class="jinsom-icon jinsom-xianghuguanzhu"></i>互关');    
 }
 }
@@ -1624,80 +1612,25 @@ layer.msg(msg.msg);
 
 
 
-
-
-
-
-
-
-
-
-
-
-//弹窗转发 分享到微信功能
-function jinsom_singe_share_wechat(url){
-layer.open({
-title:'分享到微信',
-btn: false,
-type: 1,
-resize:false,
-area: ['240px', '315px'],
-skin: 'jinsom-pop-share',
-content: '<div id="jinsom-qrcode"></div><p>打开微信“扫一扫”</p>',
-success: function(layero, index){
-jinsom_qrcode('jinsom-qrcode',200,200,url);
+//弹窗扫码分享
+function jinsom_popop_share_code(url,title,tips){
+if(tips){
+tips='<p>'+tips+'</p>';
 }
-});    
-}
-
-function jinsom_singe_share_qq(url){
-layer.open({
-title:'分享到QQ',
-btn: false,
-type: 1,
-resize:false,
-area: ['240px', '315px'],
-skin: 'jinsom-pop-share',
-content: '<div id="jinsom-qrcode"></div><p>打开QQ“扫一扫”</p>',
-success: function(layero, index){
-jinsom_qrcode('jinsom-qrcode',200,200,url);
-}
-});    
-}
-
-
-
-//侧栏小工具 分享到微信功能
-function jinsom_sidebar_share_wechat(title,url){
 layer.open({
 title:title,
 btn: false,
 type: 1,
 resize:false,
-area: ['240px', '315px'],
+area: ['240px'],
 skin: 'jinsom-pop-share',
-content: '<div id="jinsom-qrcode"></div><p>打开微信“扫一扫”</p>',
+content: '<div id="jinsom-qrcode"></div>'+tips,
 success: function(layero, index){
 jinsom_qrcode('jinsom-qrcode',200,200,url);
 }
 });    
 }
 
-function jinsom_sidebar_share_qq(){
-url=$('#jinsom-sidebar-share-link').html();
-layer.open({
-title:'分享到QQ',
-btn: false,
-type: 1,
-resize:false,
-area: ['240px', '315px'],
-skin: 'jinsom-pop-share',
-content: '<div id="jinsom-qrcode"></div><p>打开QQ“扫一扫”</p>',
-success: function(layero, index){
-jinsom_qrcode('jinsom-qrcode',200,200,url);
-}
-});    
-}
 
 //分享到QQ空间
 function jinsom_sidebar_share_qzone(){
@@ -1714,19 +1647,39 @@ window.open(weibo_url+share_url);
 }
 
 
+//个人主页关注页面
+function jinsom_member_follow_page(obj){
+author_id=$(obj).attr('author_id');
+if(!$(obj).attr('type')){
+$('.jinsom-member-menu li[type=follow-page]').addClass('on').siblings().removeClass('on');
+}else{
+$(obj).addClass('on').siblings().removeClass('on');
+}
+$('.jinsom-post-list').prepend(jinsom.loading_post);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/stencil/member-follow.php",
+data: {author_id:author_id},
+success: function(msg){ 
+$('.jinsom-load').remove();
+$('.jinsom-post-list').html(msg);  
+}
+});
+}
 
 
-//ajax获取设置页面
-function jinsom_setting_form(obj){
-user_id=$(obj).attr('author_id');
+
+//个人主页设置页面
+function jinsom_member_setting_page(obj){
+author_id=$(obj).attr('author_id');
 $(obj).addClass('on').siblings().removeClass('on');
 $('.jinsom-post-list').prepend(jinsom.loading_post);
 $.ajax({
 type: "POST",
-url:jinsom.jinsom_ajax_url+"/stencil/profile.php",
-data: {user_id:user_id},
+url:jinsom.jinsom_ajax_url+"/stencil/member-profile.php",
+data: {author_id:author_id},
 success: function(msg){   
-$('.jinsom-post-list').children('.jinsom-load').remove();
+$('.jinsom-load').remove();
 $('.jinsom-post-list').html(msg);
 layui.use(['upload','form','element'], function(){
 var upload = layui.upload;
@@ -2858,11 +2811,11 @@ poster:cover,
 playbackRate: [0.5,1,2,6,8],
 fitVideoSize:'fixWidth',
 autoplay:autoplay,
-// enterLogo:{
-// url: jinsom.video_logo,
-// width: 120,
-// height: 50
-// },
+enterLogo:{
+url: 'https://img.jinsom.cn/user_files/11786/publish/post/97736801_1574039930.jpg?222=222',
+width: 120,
+height: 50
+},
 });
 window['video_'+post_id].on('play',function(){
 if($('.jinsom-video-playing').length>0){

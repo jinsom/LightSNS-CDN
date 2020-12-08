@@ -94,10 +94,7 @@ if($(this).attr('data')==topic_name){
 $(this).remove();
 }
 });
-// number=3;
-// if($('.jinsom-publish-words-form .topic span').length>=number){
-// layer.open({content:'最多只能插入'+number+'个话题！',skin:'msg',time:2});
-// }else{
+
 myApp.showIndicator();
 $.ajax({
 type: "POST",
@@ -115,7 +112,6 @@ layer.open({content:msg.msg,skin:'msg',time:2});
 }
 });
 
-// }
 
 }
 
