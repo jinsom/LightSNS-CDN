@@ -3572,18 +3572,17 @@ img.wp-smiley {
 }
 .jinsom-post-images-list a i {
     width: 35px;
-    height: 18px;
     display: inline-block;
     position: absolute;
-    background: #8BC34A;
-    bottom: 0;
-    right: 1px;
+    background: rgb(0 0 0 / 0.6);
+    bottom: 6px;
+    right: 6px;
     text-align: center;
     color: #fff;
-    line-height: 20px;
     font-size: 12px;
     font-style: normal;
-    border-radius: 0 0 4px 0;
+    border-radius: 2px;
+    padding: 2px 0;
 }
 .jinsom-post-images-list a i.long {
     background-color: #507daf;

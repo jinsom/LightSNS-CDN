@@ -1335,17 +1335,15 @@ display: none !important;
 }
 .jinsom-post-images-list a i {
     width: 10vw;
-    height: 6vw;
-    display: inline-block;
     position: absolute;
-    background: #8BC34A;
-    bottom: 0;
-    right: 0;
+    background: rgb(0 0 0 / 0.6);
+    bottom: 1vw;
+    right: 1vw;
     text-align: center;
     color: #fff;
-    line-height: 7vw;
-    font-size: 4vw;
+    font-size: 3.5vw;
     font-style: normal;
+    border-radius: 1vw;
 }
 .jinsom-post-images-list a i.long {
     background-color: #507daf;
@@ -1495,6 +1493,7 @@ display: none !important;
     color: #999;
     margin-bottom: 2vw;
     margin-left: 4vw;
+    font-size: 4vw;
 }
 .jinsom-city-topic-bar .topic-list a {
     color: #999;
@@ -4308,6 +4307,7 @@ display: none !important;
     padding: 0.5vw 1vw;
     border-radius: 1vw;
     margin-right: 1vw;
+    font-size: 3.5vw;
 }
 .jinsom-bbs-commend-show li a {
     display: inline-block;
@@ -5675,6 +5675,25 @@ h1 .commend:before{
 .jinsom-single-bbs-info .title {
     padding: 3vw 0;
     border-bottom: 1px solid #f1f1f1;
+    line-height: 5vw;
+}
+.jinsom-single-bbs-info .title .left {
+    float: left;
+}
+.jinsom-single-bbs-info .title .right {
+    float: right;
+}
+.jinsom-single-bbs-info .title .right>span {
+    display: none;
+    color: #999;
+}
+.jinsom-single-bbs-info .title .right>span.no {
+    color: #f00;
+    display: inline-block;
+}
+.jinsom-single-bbs-info .title .right>span i {
+    vertical-align: -0.5vw;
+    font-size: 5vw;
 }
 .jinsom-single-bbs-info .content {
     padding: 4vw 0;
@@ -6094,25 +6113,21 @@ h1 .commend:before{
     background-color: #f8f8f8;
     color: #777;
 }
-
 .jinsom-bbs-post-list>.jinsom-post-words:last-child {
     margin-bottom: 0;
 }
-
-.jinsom-bbs-post-list-4,.jinsom-bbs-post-list-2 {
-    padding: 4vw;
+.jinsom-bbs-post-list.jinsom-post-list {
+    min-height: 200vw;
 }
-.jinsom-bbs-post-list .jinsom-load-post {
+.jinsom-bbs-post-list-0,.jinsom-bbs-post-list-1 {
     background-color: #fff;
 }
-.jinsom-bbs-post-list-3 {
+.jinsom-bbs-post-list-2,.jinsom-bbs-post-list-3,.jinsom-bbs-post-list-4 {
     padding: 4vw;
-    background-color: #eee;
 }
-.jinsom-bbs-post-list-3 .jinsom-load-post {
-    background-color: #eee;
+.jinsom-bbs-post-list-0 .jinsom-load-post,.jinsom-bbs-post-list-1 .jinsom-load-post {
+    background-color: #fff;
 }
-
 .jinsom-bbs-list-lattice {
     width: 44vw;
     float: left;
@@ -8743,4 +8758,8 @@ h1 .commend:before{
 }
 .jinsom-publish-select-cat .select-content li.on .img>span {
     display: block;
+}
+
+.jinsom-chat-user-list.blacklist .remove-blacklist {
+    padding: 2vw 3vw;
 }

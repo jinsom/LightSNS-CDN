@@ -166,6 +166,21 @@ layer.open({content:'已开启评论',skin:'msg',time:2});
 }
 }
 
+//发布帖子回复隐私开关
+function jinsom_publish_select_comment_private(obj){
+if($(obj).children('i').hasClass('jinsom-kaisuo')){
+$(obj).children('i').removeClass('jinsom-kaisuo').addClass('jinsom-suo');	
+$('#jinsom-pop-comment-private').val(1);
+// $(obj).children('p').text('已开启回复隐私');
+layer.open({content:'已开启回复隐私',skin:'msg',time:2});
+}else{
+$(obj).children('i').removeClass('jinsom-suo').addClass('jinsom-kaisuo');	
+$('#jinsom-pop-comment-private').val('');	
+// $(obj).children('p').text('已关闭回复隐私');
+layer.open({content:'已关闭回复隐私',skin:'msg',time:2});
+}
+}
+
 
 //设置位置 城市
 function jinsom_publish_city(obj){

@@ -666,7 +666,7 @@ myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){//关注成功
 $(obj).removeClass('no').addClass('had');
-$(obj).html('<i class="jinsom-icon jinsom-yiguanzhu"></i>已关');  
+$(obj).html('<i class="jinsom-icon jinsom-yiguanzhu"></i> 已关');  
 
 html='<li id="jinsom-bbs-like-'+bbs_id+'">\
 <div class="item-content">\
@@ -693,7 +693,7 @@ $('.jinsom-bbs-like-content.publish .jinsom-bbs-like').prepend(html);
 
 }else{//取消关注
 $(obj).removeClass('had').addClass('no');  
-$(obj).html('<i class="jinsom-icon jinsom-guanzhu"></i>关注');  
+$(obj).html('<i class="jinsom-icon jinsom-guanzhu"></i> 关注');  
 
 $('#jinsom-bbs-like-'+bbs_id).remove();//移除我关注的论坛
 
@@ -1834,7 +1834,7 @@ video_loading = true;
 video_list=$(obj+' .jinsom-video-special-list');
 number=video_list.attr('number');
 video_list.after(jinsom.loading_post);
-topic=$(obj+' .jinsom-video-special-menu li.on').attr('data');
+topic=$('.jinsom-video-special-menu li.on').attr('data');
 $.ajax({
 type: "POST",
 url:  jinsom.mobile_ajax_url+"/post/video-special.php",
@@ -2317,6 +2317,7 @@ jinsom_lightbox();//灯箱
 }
 
 
+//iframe弹窗
 function jinsom_popup_iframe(url){
 var popuphtml='<div class="jinsom-iframe-popup popup">'+
 '<div class="navbar">'+
@@ -2332,7 +2333,18 @@ var popuphtml='<div class="jinsom-iframe-popup popup">'+
 myApp.popup(popuphtml);
 }
 
-
+//清除阅读历史记录
+function jinsom_history_single_clear(){
+layer.open({
+content: '你确定要清空吗？'
+,btn: ['确定', '取消']
+,yes: function(index){
+$('.jinsom-history-single-content').html(jinsom.empty);
+layer.open({content:'已经清空！',skin:'msg',time:2});
+DelCookie('history_single');
+}
+});	
+}
 
 //设置cookie
 function SetCookie(name,value){

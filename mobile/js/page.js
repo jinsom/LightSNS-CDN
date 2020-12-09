@@ -706,6 +706,7 @@ this_dom.siblings('.value').html('审核员');
 });
 //---------------------------更多设置页面-----------------
 myApp.onPageInit('setting-more', function (page) {
+
 $('.jinsom-setting-box li.gender select').change(function(event) {//设置性别
 gender=$(this).val();
 author_id=$('.jinsom-setting-content').attr('data');
@@ -719,11 +720,6 @@ myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
 this_dom.siblings('.value').html(gender);
-// if(msg.self){
-// if(gender=='保密'){
-// $('.jinsom-mine-page .jinsom-girl,.jinsom-mine-page .jinsom-boy').remove();	
-// }
-// }
 }
 }
 });
@@ -744,8 +740,6 @@ this_dom.find('.value').html(birthday);
 }
 }
 });
-
-// $(this).find('.value').html($(this).children('input').val());
 });
 
 });
