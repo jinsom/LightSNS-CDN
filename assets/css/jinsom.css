@@ -14297,14 +14297,16 @@ span.aplayer-thumb {
 .jinsom-page-select-header-box .topic label {
     margin-right: 8px;
     height: 28px;
-    margin-left: 20px;
+    margin-left: 10px;
     float: left;
     margin-top: 15px;
     line-height: 28px;
+    min-width: 70px;
+    text-align: right;
 }
 .jinsom-page-select-header-box .topic ul {
     float: left;
-    width: calc(100% - 70px);
+    width: calc(90% - 70px);
 }
 .jinsom-page-select-header-box .topic li {
     display: inline-block;
