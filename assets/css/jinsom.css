@@ -14264,6 +14264,20 @@ span.aplayer-thumb {
     border-radius: 4px;
     margin-bottom: 15px;
     margin-top: 5px;
+    position: relative;
+}
+.jinsom-page-select-header-box .admin {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    color: #999;
+    cursor: pointer;
+}
+.jinsom-page-select-header-box .admin:hover{
+    color: #333;
+}
+.jinsom-page-select-header-box .admin i {
+    font-size: 25px;
 }
 .jinsom-page-select-header-box .bbs {
     padding: 0 10px;
@@ -14355,6 +14369,8 @@ span.aplayer-thumb {
     background-color: #fff;
     border-radius: 4px;
     margin-bottom: 15px;
+    position: relative;
+    overflow: hidden;
 }
 .jinsom-page-select-post-list li:nth-child(4n) {
     margin-right: 0;
@@ -14394,35 +14410,32 @@ span.aplayer-thumb {
 }
 
 /*格子-2*/
-.jinsom-page-select-post-list.lattice_2 li,.jinsom-page-select-post-list.waterfall_2 li {
+.jinsom-page-select-post-list.lattice_2 li {
     padding: 10px;
     box-sizing: border-box;
     border-radius: 0;
 }
-.jinsom-page-select-post-list.lattice_2 li .bg,.jinsom-page-select-post-list.waterfall_2 li .bg {
-    height: 250px;
-}
-.jinsom-page-select-post-list.lattice_2 li .bg img,.jinsom-page-select-post-list.waterfall_2 li .bg img {
+.jinsom-page-select-post-list.lattice_2 li .bg img {
     border-radius: 0;
 }
-.jinsom-page-select-post-list.lattice_2 li .title,.jinsom-page-select-post-list.waterfall_2 li .title {
+.jinsom-page-select-post-list.lattice_2 li .title {
     padding: 15px 0;
 }
-.jinsom-page-select-post-list.lattice_2 li .bar..jinsom-page-select-post-list.waterfall_2 li .bar {
+.jinsom-page-select-post-list.lattice_2 li .bar {
     padding: 15px 0 0;
 }
-.jinsom-page-select-post-list.lattice_2 li .bar, .jinsom-page-select-post-list.waterfall_2 li .bar {
+.jinsom-page-select-post-list.lattice_2 li .bar {
     padding: 15px 0 0;
 }
 
 /*格子-3*/
-.jinsom-page-select-post-list.lattice_3 li,.jinsom-page-select-post-list.waterfall_3 li {
+.jinsom-page-select-post-list.lattice_3 li {
     position: relative;
 }
-.jinsom-page-select-post-list.lattice_3 .bg img,.jinsom-page-select-post-list.waterfall_3 .bg img {
+.jinsom-page-select-post-list.lattice_3 .bg img{
     border-radius: 4px;
 }
-.jinsom-page-select-post-list.lattice_3 li .title,.jinsom-page-select-post-list.waterfall_3 li .title {
+.jinsom-page-select-post-list.lattice_3 li .title {
     position: absolute;
     bottom: 0;
     color: #fff;
@@ -14433,10 +14446,10 @@ span.aplayer-thumb {
     border-radius: 0 0 4px 4px;
     display: none;
 }
-.jinsom-page-select-post-list.lattice_3 li:hover .title,.jinsom-page-select-post-list.waterfall_3 li:hover .title {
+.jinsom-page-select-post-list.lattice_3 li:hover .title {
     display: block;
 }
-.jinsom-page-select-post-list.lattice_3 li .bar,.jinsom-page-select-post-list.waterfall_3 li .bar {
+.jinsom-page-select-post-list.lattice_3 li .bar {
     position: absolute;
     top: 0;
     color: #fff;
@@ -14444,48 +14457,25 @@ span.aplayer-thumb {
     box-sizing: border-box;
     display: none;
 }
-.jinsom-page-select-post-list.lattice_3 li .bar .views,.jinsom-page-select-post-list.waterfall_3 li .bar .views {
+.jinsom-page-select-post-list.lattice_3 li .bar .views {
     display: none;
 }
-.jinsom-page-select-post-list.lattice_3 li:hover .bar,.jinsom-page-select-post-list.waterfall_3 li:hover .bar {
+.jinsom-page-select-post-list.lattice_3 li:hover .bar {
     display: block;
 }
 
-/*瀑布流*/
-.jinsom-page-select-post-list.waterfall_1 li,.jinsom-page-select-post-list.waterfall_2 li,.jinsom-page-select-post-list.waterfall_3 li,.jinsom-page-select-post-list.waterfall_4 li {
-    margin-right: 0;
-}
-.jinsom-page-select-post-list.waterfall_1 li .bg,.jinsom-page-select-post-list.waterfall_2 li .bg,.jinsom-page-select-post-list.waterfall_3 li .bg,.jinsom-page-select-post-list.waterfall_4 li .bg {
-    height: auto;
-}
+
 
 /*格子4*/
-.jinsom-page-select-post-list.lattice_4 li .bg img,.jinsom-page-select-post-list.waterfall_4 li .bg img {
+.jinsom-page-select-post-list.lattice_4 li .bg img {
     border-radius: 4px;
 }
 
 
-/*瀑布流加载动画*/
-.jinsom-page-select-post-list.waterfall_1 .jinsom-load-post,.jinsom-page-select-post-list.waterfall_2 .jinsom-load-post,.jinsom-page-select-post-list.waterfall_3 .jinsom-load-post {
-    position: relative;
-    margin-top: 80px;
-}
-.jinsom-page-select-post-list.waterfall_1 .jinsom-loading-post,.jinsom-page-select-post-list.waterfall_2 .jinsom-loading-post,.jinsom-page-select-post-list.waterfall_3 .jinsom-loading-post {
-    position: absolute;
-    z-index: 1;
-    top: -60px;
-    left: 50%;
-    margin-left: -40px;
-}
+
 
 /*加载更多*/
-.jinsom-page-select-post-list .jinsom-more-posts {
-    bottom: 0;
-    position: absolute;
-    left: 50%;
-    margin-left: -60px;
-    width: 120px;
-}
+
 .jinsom-page-select-post-list .jinsom-more-posts .jinsom-load-post {
     margin: 0;
     height: 40px;
@@ -14495,10 +14485,116 @@ span.aplayer-thumb {
     left: inherit;
     margin-left: 0;
 }
-.lattice_1.jinsom-page-select-post-list .jinsom-more-posts,.lattice_2.jinsom-page-select-post-list .jinsom-more-posts,.lattice_3.jinsom-page-select-post-list .jinsom-more-posts,.lattice_4.jinsom-page-select-post-list .jinsom-more-posts {
+/*格子加载更多*/
+.jinsom-page-select-post-list .jinsom-more-posts{
     position: relative;
     left: inherit;
-    margin-left: inherit;
     bottom: inherit;
     margin: auto;
+    float: left;
+    margin-top: 30px;
+    margin-left: calc(50% - 50px);
+    width: 120px;
+}
+
+
+.jinsom-page-select-post-list li .popup {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.4);
+    transition: all 0.4s;
+    opacity: 0;
+    cursor: pointer;
+}
+.jinsom-page-select-post-list li .popup-btn {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+}
+.jinsom-page-select-post-list li .popup-btn .text {
+    width: 70%;
+    text-align: center;
+    margin: auto;
+    background-color: #17A1FF;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 44px;
+    position: relative;
+}
+.jinsom-page-select-post-list li .popup-btn .text:hover:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transition: background 0.4s;
+    background: rgba(255, 255, 255, 0.2);
+}
+.jinsom-page-select-post-list li .popup-title {
+    position: absolute;
+    color: #fff;
+    padding: 0 24px;
+    line-height: 24px;
+    transition: all 0.4s;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    width: 100%;
+    bottom: -30px;
+}
+.jinsom-page-select-post-list li:hover .popup .popup-title {
+    bottom: 8px;
+}
+.jinsom-page-select-post-list li:hover .popup {
+    opacity: 1;
+}
+
+
+/*下载类*/
+.jinsom-page-select-post-list.lattice_5 li .bg img,.jinsom-page-select-post-list.waterfall_5 li .bg img,.jinsom-page-select-post-list.lattice_6 li .bg img,.jinsom-page-select-post-list.waterfall_6 li .bg img {
+    transition: all 0.4s;
+}
+.jinsom-page-select-post-list.lattice_5 li:hover .bg img,.jinsom-page-select-post-list.waterfall_5 li:hover .bg img,.jinsom-page-select-post-list.lattice_6 li:hover .bg img,.jinsom-page-select-post-list.waterfall_6 li:hover .bg img {
+    transform: scale(1.1);
+}
+.jinsom-page-select-post-list.waterfall_5 li .bg img {
+    min-height: 120px;
+}
+.jinsom-page-select-post-list li .popup-btn .icon {
+    width: 10px;
+    height: 10px;
+    text-align: center;
+    line-height: 10px;
+    color: #ccc;
+    border-radius: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s;
+}
+.jinsom-page-select-post-list li .popup-btn .icon i {
+    font-size: 12px;
+    transition: all 0.4s;
+}
+.jinsom-page-select-post-list li:hover .popup-btn .icon {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+}
+.jinsom-page-select-post-list li:hover .popup-btn .icon i {
+    font-size: 20px;
+}
+.jinsom-page-select-post-list li .popup-btn .icon i.jinsom-sousuo1 {
+    margin-left: 3px;
 }
