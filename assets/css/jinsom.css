@@ -5094,7 +5094,7 @@ figure.effect-ming:hover figcaption::before, figure.effect-ming:hover p {
     float: left;
 }
 .jinsom-bbs-header-info-btn .follow.had {
-    background-color: #888;
+    background-color: #ccc;
 }
 .jinsom-bbs-header-publish-btn {
     float: right;
@@ -14242,4 +14242,261 @@ span.aplayer-thumb {
     color: #fff;
     display: inline-block;
     cursor: pointer;
+}
+
+
+/*筛选页面*/
+.jinsom-page-select-menu {
+    margin-bottom: 15px;
+    color: #999;
+    margin-top: 5px;
+}
+.jinsom-page-select-menu a {
+    color: #999;
+    font-size: 13px;
+}
+.jinsom-page-select-menu a:hover {
+    color: var(--jinsom-color);
+}
+
+.jinsom-page-select-header-box {
+    background-color: #fff;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+.jinsom-page-select-header-box .bbs {
+    padding: 0 10px;
+    border-bottom: 2px solid #f3f4f9;
+    font-size: 15px;
+}
+.jinsom-page-select-header-box .bbs li {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 0 12px;
+    height: 70px;
+    line-height: 70px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.jinsom-page-select-header-box .bbs li.on,.jinsom-page-select-header-box .bbs li:hover {
+    color: var(--jinsom-color);
+    border-bottom: 3px solid;
+}
+
+.jinsom-page-select-header-box .topic {
+    color: #666;
+    padding-bottom: 10px;
+}
+.jinsom-page-select-header-box .topic:first-child {
+    padding-top: 10px;
+}
+.jinsom-page-select-header-box .topic:last-child {
+    padding-bottom: 25px;
+}
+.jinsom-page-select-header-box .topic label {
+    margin-right: 8px;
+    height: 28px;
+    margin-left: 20px;
+    float: left;
+    margin-top: 15px;
+    line-height: 28px;
+}
+.jinsom-page-select-header-box .topic ul {
+    float: left;
+    width: calc(100% - 70px);
+}
+.jinsom-page-select-header-box .topic li {
+    display: inline-block;
+    margin-top: 15px;
+    margin-right: 10px;
+    padding: 0 15px;
+    height: 28px;
+    cursor: pointer;
+    line-height: 28px;
+    border-radius: 4px;
+}
+.jinsom-page-select-header-box .topic li.on, .jinsom-page-select-header-box .topic li:hover {
+    background-color: var(--jinsom-color);
+    color: #fff;
+}
+
+.jinsom-page-select-sort {
+    margin-bottom: 15px;
+}
+.jinsom-page-select-sort li {
+    display: inline-block;
+    margin-right: 20px;
+    width: 80px;
+    height: 32px;
+    line-height: 30px;
+    text-align: center;
+    color: #666;
+    box-sizing: border-box;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.jinsom-page-select-sort li.on, .jinsom-page-select-sort li:hover {
+    border: 1px solid var(--jinsom-color);
+    color: var(--jinsom-color);
+}
+
+
+.jinsom-page-select-post-list {
+    padding-bottom: 60px;
+}
+/*格子-1*/
+.jinsom-page-select-post-list li {
+    width: calc((100% - 45px)/4);
+    float: left;
+    margin-right: 15px;
+    background-color: #fff;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+.jinsom-page-select-post-list li:nth-child(4n) {
+    margin-right: 0;
+}
+.jinsom-page-select-post-list li .bg {
+    height: 320px;
+    max-height: 800px;
+    overflow: hidden;
+}
+.jinsom-page-select-post-list li .bg img {
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+    height: 100%;
+    object-fit: cover;
+}
+.jinsom-page-select-post-list li .title {
+    padding: 15px 10px;
+    font-size: 16px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #333;
+}
+.jinsom-page-select-post-list li .bar {
+    padding: 15px 10px;
+    border-top: 1px solid #ececec;
+    color: #999;
+}
+.jinsom-page-select-post-list li .bar .views {
+    float: left;
+}
+.jinsom-page-select-post-list li .bar .like {
+    float: right;
+}
+.jinsom-page-select-post-list li .bar i {
+    margin-right: 3px;
+}
+
+/*格子-2*/
+.jinsom-page-select-post-list.lattice_2 li,.jinsom-page-select-post-list.waterfall_2 li {
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 0;
+}
+.jinsom-page-select-post-list.lattice_2 li .bg,.jinsom-page-select-post-list.waterfall_2 li .bg {
+    height: 250px;
+}
+.jinsom-page-select-post-list.lattice_2 li .bg img,.jinsom-page-select-post-list.waterfall_2 li .bg img {
+    border-radius: 0;
+}
+.jinsom-page-select-post-list.lattice_2 li .title,.jinsom-page-select-post-list.waterfall_2 li .title {
+    padding: 15px 0;
+}
+.jinsom-page-select-post-list.lattice_2 li .bar..jinsom-page-select-post-list.waterfall_2 li .bar {
+    padding: 15px 0 0;
+}
+.jinsom-page-select-post-list.lattice_2 li .bar, .jinsom-page-select-post-list.waterfall_2 li .bar {
+    padding: 15px 0 0;
+}
+
+/*格子-3*/
+.jinsom-page-select-post-list.lattice_3 li,.jinsom-page-select-post-list.waterfall_3 li {
+    position: relative;
+}
+.jinsom-page-select-post-list.lattice_3 .bg img,.jinsom-page-select-post-list.waterfall_3 .bg img {
+    border-radius: 4px;
+}
+.jinsom-page-select-post-list.lattice_3 li .title,.jinsom-page-select-post-list.waterfall_3 li .title {
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+    text-shadow: 0 2px 2px rgba(11,11,11,.4);
+    background: linear-gradient(to bottom, rgba(6, 6, 8, 0), rgba(6, 6, 8, 0.6));
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 0 0 4px 4px;
+    display: none;
+}
+.jinsom-page-select-post-list.lattice_3 li:hover .title,.jinsom-page-select-post-list.waterfall_3 li:hover .title {
+    display: block;
+}
+.jinsom-page-select-post-list.lattice_3 li .bar,.jinsom-page-select-post-list.waterfall_3 li .bar {
+    position: absolute;
+    top: 0;
+    color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    display: none;
+}
+.jinsom-page-select-post-list.lattice_3 li .bar .views,.jinsom-page-select-post-list.waterfall_3 li .bar .views {
+    display: none;
+}
+.jinsom-page-select-post-list.lattice_3 li:hover .bar,.jinsom-page-select-post-list.waterfall_3 li:hover .bar {
+    display: block;
+}
+
+/*瀑布流*/
+.jinsom-page-select-post-list.waterfall_1 li,.jinsom-page-select-post-list.waterfall_2 li,.jinsom-page-select-post-list.waterfall_3 li,.jinsom-page-select-post-list.waterfall_4 li {
+    margin-right: 0;
+}
+.jinsom-page-select-post-list.waterfall_1 li .bg,.jinsom-page-select-post-list.waterfall_2 li .bg,.jinsom-page-select-post-list.waterfall_3 li .bg,.jinsom-page-select-post-list.waterfall_4 li .bg {
+    height: auto;
+}
+
+/*格子4*/
+.jinsom-page-select-post-list.lattice_4 li .bg img,.jinsom-page-select-post-list.waterfall_4 li .bg img {
+    border-radius: 4px;
+}
+
+
+/*瀑布流加载动画*/
+.jinsom-page-select-post-list.waterfall_1 .jinsom-load-post,.jinsom-page-select-post-list.waterfall_2 .jinsom-load-post,.jinsom-page-select-post-list.waterfall_3 .jinsom-load-post {
+    position: relative;
+    margin-top: 80px;
+}
+.jinsom-page-select-post-list.waterfall_1 .jinsom-loading-post,.jinsom-page-select-post-list.waterfall_2 .jinsom-loading-post,.jinsom-page-select-post-list.waterfall_3 .jinsom-loading-post {
+    position: absolute;
+    z-index: 1;
+    top: -60px;
+    left: 50%;
+    margin-left: -40px;
+}
+
+/*加载更多*/
+.jinsom-page-select-post-list .jinsom-more-posts {
+    bottom: 0;
+    position: absolute;
+    left: 50%;
+    margin-left: -60px;
+    width: 120px;
+}
+.jinsom-page-select-post-list .jinsom-more-posts .jinsom-load-post {
+    margin: 0;
+    height: 40px;
+}
+.jinsom-page-select-post-list .jinsom-more-posts .jinsom-load-post .jinsom-loading-post {
+    top: inherit;
+    left: inherit;
+    margin-left: 0;
+}
+.lattice_1.jinsom-page-select-post-list .jinsom-more-posts,.lattice_2.jinsom-page-select-post-list .jinsom-more-posts,.lattice_3.jinsom-page-select-post-list .jinsom-more-posts,.lattice_4.jinsom-page-select-post-list .jinsom-more-posts {
+    position: relative;
+    left: inherit;
+    margin-left: inherit;
+    bottom: inherit;
+    margin: auto;
 }

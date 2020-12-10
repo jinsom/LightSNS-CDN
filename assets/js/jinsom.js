@@ -3547,6 +3547,10 @@ function c(){window.location.reload();}setTimeout(c,2000);
 
 //申请论坛表单
 function jinsom_apply_bbs_form(){
+if(!jinsom.is_login){
+jinsom_pop_login_style();	
+return false;
+}
 layer.load(1);
 $.ajax({
 type: "POST",
