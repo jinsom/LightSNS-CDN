@@ -14356,10 +14356,27 @@ span.aplayer-thumb {
     border: 1px solid var(--jinsom-color);
     color: var(--jinsom-color);
 }
+.jinsom-page-select-header-box .search.topic li {
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    transition: all 1s;
+    line-height: 27px;
+}
+.jinsom-page-select-header-box .search.topic li:hover {
+    background-color: #fff;
+    border-color: #f44336;
+    color: #F44336;
+}
+.jinsom-page-select-header-box .search.topic li i {
+    font-size: 12px;
+    margin-left: 5px;
+}
+
 
 
 .jinsom-page-select-post-list {
     padding-bottom: 60px;
+    min-height: 400px;
 }
 /*格子-1*/
 .jinsom-page-select-post-list li {
