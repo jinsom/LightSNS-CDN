@@ -80,12 +80,12 @@ $("input[name='jinsom_options[jinsom_panel_name]']").bind("input propertychange"
 $('.jinsom-panel-header-inner h1').html($(this).val());
 });
 
+//获取最新版本提示
 layui.use(['layer'], function() {
 $("#jinsom-get-update-info").click(function() {
 layer.load(1);
-var my_domain = document.domain;
-var url = jinsom.author_update + "/update.php?callback=?&url=123";
-jQuery.getJSON(url, function(data) {
+url=jinsom.update_url+"/update.php?callback=?&url=123";
+jQuery.getJSON(url,function(data) {
 layer.closeAll('loading');
 layer.alert(data.version)
 })
@@ -778,19 +778,7 @@ content: msg.msg
 });
 }
 
-//自助授权
-function jinsom_custom_verify_domain(){
-layer.load(1);
-$.ajax({
-type: "POST",
-url:"https://admin.jinsom.cn/verify.php",
-data:{domain:jinsom.domain,theme:jinsom.theme_name},
-success: function(msg){
-layer.closeAll('loading');
-layer.msg(msg.msg);
-}
-});	
-}
+
 
 //弹出提现记录表单
 function jinsom_admin_cash_form(){

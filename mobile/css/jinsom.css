@@ -1198,7 +1198,7 @@ display: none !important;
     border-radius: 1vw;
     color: #fff;
     margin-left: 2vw;
-    font-size: 3.5vw;
+    font-size: 3.5vw !important;
     vertical-align: 0.3vw;
     word-break: keep-all;
 }
@@ -3604,13 +3604,13 @@ display: none !important;
     border-top: 1px solid #f5f5f5;
     padding-top: 2vw;
 }
-.jinsom-publish-words-form .power-content input {
+.jinsom-publish-words-form .power-content input,.jinsom-publish-words-form .download-box input,.jinsom-publish-words-form .field-box input {
     border: none;
     width: 35vw;
     padding: 2vw 0;
     border-bottom: 1px solid #f1f1f1;
 }
-.jinsom-publish-words-form .power-content textarea {
+.jinsom-publish-words-form .power-content textarea,.jinsom-publish-words-form .field-box textarea {
     border: none;
     height: 25vw;
     width: 100%;
@@ -8762,4 +8762,55 @@ h1 .commend:before{
 
 .jinsom-chat-user-list.blacklist .remove-blacklist {
     padding: 2vw 3vw;
+}
+.jinsom-bbs-single-custom-field {
+    font-size: 4vw;
+    padding: 2vw;
+    background-color: #f5f9f5;
+    margin-bottom: 4vw;
+    color: #666;
+    border-radius: 2vw;
+}
+.jinsom-bbs-single-custom-field li {
+    margin-bottom: 4vw;
+}
+.jinsom-bbs-single-custom-field li.text, .jinsom-bbs-single-custom-field li.number {
+    display: flex;
+    line-height: 8vw;
+}
+.jinsom-bbs-single-custom-field li.text p, .jinsom-bbs-single-custom-field li.number p {
+    flex: 1;
+    text-align: right;
+    color: #2196F3;
+}
+.jinsom-bbs-single-custom-field li.textarea p {
+    margin-top: 2vw;
+    color: #2196F3;
+}
+.jinsom-bbs-download-box {
+    margin-bottom: 6vw;
+}
+.jinsom-bbs-download-box .info {
+    font-size: 3.5vw;
+    color: #999;
+    display: flex;
+}
+.jinsom-bbs-download-box .info span {
+    flex: 1;
+}
+.jinsom-bbs-download-box .btn {
+    background-color: #5fb878;
+    color: #fff;
+    padding: 2.5vw 2vw;
+    border-radius: 1vw;
+    display: block;
+    text-align: center;
+    font-size: 4vw;
+    margin-bottom: 2vw;
+}
+.jinsom-bbs-download-box .tips {
+    margin-bottom: 2vw;
+    color: #999;
+    font-size: 3.5vw;
+    text-align: center;
 }

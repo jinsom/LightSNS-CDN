@@ -454,10 +454,13 @@ return false;
 }
 
 if(post_type=='pay_see'||post_type=='vip_see'||post_type=='login_see'||post_type=='comment_see'){
+
+if($('input[name=download_url]').length==0){
 hide_content=ue_pay.getContent();
 if($.trim(hide_content)==''){
 layer.msg('隐藏内容不能为空！');
 return false; 
+}
 }
 
 if(post_type=='pay_see'){
@@ -562,7 +565,9 @@ $(window).unbind('beforeunload');
 
 ue.execCommand('clearlocaldata');
 if(post_type=='pay_see'||post_type=='vip_see'||post_type=='login_see'||post_type=='comment_see'){
+if($('input[name=download_url]').length==0){
 ue_pay.execCommand('clearlocaldata');
+}
 }
 
 function d(){window.location.href=msg.url;}setTimeout(d,2000);

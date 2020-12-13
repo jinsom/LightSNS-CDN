@@ -36,4 +36,18 @@ $('.jinsom-right-bar').removeClass('right-bar-hidden');
 }
 
 
+//点击底部tab返回顶部
+$(document).on('click','.tabbar a.active',function(){
+console.log('aaa');
+if($('.view.active .page-content').scrollTop()>100){
+$('.view.active .page-content').animate({scrollTop:0},200);	
+if($('.jinsom-home-menu li.on').length>0){
+type=$('.jinsom-home-menu li.on').attr('type');
+jinsom_post(type,'pull',this);
+}
+
+jinsom_index_notice_js_load();
+
+}
+}); 
 });

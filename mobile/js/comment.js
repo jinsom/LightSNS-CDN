@@ -148,6 +148,22 @@ $('.jinsom-tips-'+post_id).removeClass('jinsom-tips').addClass('jinsom-hide-cont
 
 }
 
+if($('.jinsom-bbs-download-box-'+post_id).length>0){//回复可下载
+
+//将列表也同步状态
+$.ajax({
+type: "POST",
+url:jinsom.mobile_ajax_url+"/post/hide-content.php",
+data: {post_id:post_id,type:'download'},
+success: function(msg){
+$('.jinsom-bbs-download-box-'+post_id).html(msg.content);
+}
+});
+
+
+}
+
+
 }else if(msg.code==2){//没有绑定手机号
 layer.open({content:msg.msg,skin:'msg',time:2});
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-phone.php'});

@@ -105,7 +105,7 @@ layer.msg(msg.msg);
 if(msg.code==1){//成功
 comment_dom=$(obj).parent('.jinsom-comment-footer');
 comment_dom.siblings('.jinsom-comment-image-list').remove();
-comment_dom.siblings('.jinsom-comment-content').html('<m class="delete"><i class="fa fa-trash"></i> 该评论内容已被删除。</m>');
+comment_dom.siblings('.jinsom-comment-content').html(msg.delete_content);
 $(obj).remove();
 }
 }

@@ -373,7 +373,7 @@ td, th {
 .jinsom-member-follow-box li:hover {
     background-color: #f2f2f2;
 }
-.jinsom-member-follow-info .follow.has{
+.jinsom-member-follow-info .follow.had{
     background-color: #888;
 }
 .jinsom-member-follow-info .follow.no {
@@ -1243,13 +1243,13 @@ td, th {
     text-align: center;
     background-color: #2eb354;
 }
-.jinsom-sidebar-user-list .follow>span.has,.jinsom-sidebar-user-list .follow>span.had {
+.jinsom-sidebar-user-list .follow>span.had {
     background-color: #bbb;
 }
 .jinsom-sidebar-user-list .follow>span i {
     vertical-align: -2px;
 }
-.jinsom-sidebar-user-list.b .follow>span.has,.jinsom-sidebar-user-list.b .follow>span.had {
+.jinsom-sidebar-user-list.b .follow>span.had {
     color: #bbb;
     border: 1px solid #ccc;
 }
@@ -3472,7 +3472,7 @@ img.wp-smiley {
 .jinsom-info-card .btn .follow {
     background-color: #2eb354;
 }
-.jinsom-info-card .btn .follow.has {
+.jinsom-info-card .btn .follow.had {
     background-color: #999;
 }
 .jinsom-info-card .btn span {
@@ -6602,7 +6602,7 @@ figure.effect-ming:hover figcaption::before, figure.effect-ming:hover p {
     position: relative;
 }
 .jinsom-menu>ul>li>a {
-    padding: 0 15px;
+    padding: 0 14px;
     display: inline-block;
 }
 .jinsom-menu ul li a {
@@ -7508,9 +7508,9 @@ figure.effect-ming:hover figcaption::before, figure.effect-ming:hover p {
 }
 
 /*layui相关*/
-/*.layui-layer-page .layui-layer-content {
-    height: inherit !important;
-}*/
+.layui-form-item .layui-inline {
+    float: left;
+}
 .layui-form-select dl{
     z-index: 10000 !important;
 }
@@ -10655,7 +10655,7 @@ span.aplayer-thumb {
     margin-right: 50px;
     display: inline-block;
 }
-.jinsom-single-video-author-info .follow.has {
+.jinsom-single-video-author-info .follow.had {
     background-color: #aaa;
 }
 .jinsom-single-video-author-info .jinsom-post-setting>i:hover {
@@ -11471,7 +11471,7 @@ span.aplayer-thumb {
 .jinsom-now-content li .follow i {
     vertical-align: -1px;
 }
-.jinsom-now-content li .follow.has {
+.jinsom-now-content li .follow.had {
     color: #999;
 }
 .jinsom-now-content li .content {
@@ -14231,7 +14231,7 @@ span.aplayer-thumb {
     left: 50%;
     margin-left: 12px;
 }
-.jinsom-ranking-page-top li .btn .follow.has {
+.jinsom-ranking-page-top li .btn .follow.had {
     background-color: #999;
 }
 .jinsom-ranking-page-top li .btn .follow {
@@ -14351,6 +14351,7 @@ span.aplayer-thumb {
     box-sizing: border-box;
     border-radius: 4px;
     cursor: pointer;
+    border: 1px solid rgb(0 0 0 / 0%);
 }
 .jinsom-page-select-sort li.on, .jinsom-page-select-sort li:hover {
     border: 1px solid var(--jinsom-color);
@@ -14462,6 +14463,9 @@ span.aplayer-thumb {
     box-sizing: border-box;
     border-radius: 0 0 4px 4px;
     display: none;
+}
+.jinsom-page-select-post-list.lattice_3 li .title a {
+    color: #fff;
 }
 .jinsom-page-select-post-list.lattice_3 li:hover .title {
     display: block;
@@ -14614,4 +14618,18 @@ span.aplayer-thumb {
 }
 .jinsom-page-select-post-list li .popup-btn .icon i.jinsom-sousuo1 {
     margin-left: 3px;
+}
+.jinsom-bbs-single-custom-field {
+    margin-top: 20px;
+}
+.jinsom-bbs-single-custom-field li {
+    margin-bottom: 15px;
+    color: #666;
+}
+.jinsom-bbs-single-custom-field li label {
+    color: var(--jinsom-color);
+}
+.jinsom-bbs-single-custom-field li>p {
+    font-size: 14px;
+    margin-top: 5px;
 }

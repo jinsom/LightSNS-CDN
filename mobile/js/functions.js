@@ -153,7 +153,7 @@ layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){//成功
 comment_dom=$(obj).parent('.footer');
 comment_dom.siblings('.jinsom-comment-image-list').remove();
-comment_dom.siblings('.content').html('<m class="delete"><i class="fa fa-trash"></i> 该评论内容已被删除。</m>');
+comment_dom.siblings('.content').html(msg.delete_content);
 $(obj).remove();
 }
 }
@@ -1550,6 +1550,10 @@ window.location.reload();
 
 //付费访问论坛
 function jinsom_bbs_visit_pay(bbs_id){
+if(!jinsom.is_login){
+myApp.loginScreen();  
+return false;
+}
 layer.open({
 content: '你确定要支付吗？'
 ,btn: ['确定', '取消']
@@ -1997,7 +2001,7 @@ data:{post_id:post_id,type:type,url:url},
 //图片灯箱
 function jinsom_lightbox(){
 $("[data-fancybox]").fancybox({
-loop : true,
+// loop : true,
 arrows : false,
 protect:false,
 buttons : ['collect','download','thumbs','close'],
