@@ -2327,7 +2327,7 @@ secret_loading = false;
 });
 
 
-//树洞-我的
+//匿名-我的
 myApp.onPageBeforeInit('secret-mine',function(page){
 
 //加载更多
@@ -2359,7 +2359,7 @@ secret_mine_loading = false;
 
 });
 
-
+//匿名详情页
 myApp.onPageBeforeInit('post-secret',function(page){
 $('.jinsom-secret-comment-btn .text').click(function(){
 obj=$(this).parent();
@@ -2367,5 +2367,212 @@ obj.html('<textarea id="jinsom-secret-comment-content"></textarea>');
 obj.after('<div class="jinsom-secret-comment-content-btn" onclick="jinsom_secret_comment()">唠叨一下</div>');
 $('#jinsom-secret-comment-content').focus();
 });
+});
+
+
+//筛选页面
+myApp.onPageBeforeInit('select',function(page){
+$('.jinsom-select-subnavbar-list .bbs,.jinsom-select-subnavbar-list .sort').click(function(){
+$(this).siblings().removeClass('on').children('.list').hide().siblings('i').removeClass('jinsom-triangle').addClass('jinsom-lower-triangle');
+$(this).addClass('on').children('.list').show().siblings('i').removeClass('jinsom-lower-triangle').addClass('jinsom-triangle');
+});
+$('.jinsom-select-subnavbar-list .list').click(function(e){
+window.event.stopPropagation();
+$(this).hide().siblings('i').removeClass('jinsom-triangle').addClass('jinsom-lower-triangle');
+$(this).parent().removeClass('on');
+
+select_loading=false;
+$('.jinsom-select-content').attr('page',1);
+$('.jinsom-select-content').animate({scrollTop:0},0);
+jinsom_page_select_submit_form();//筛选数据
+});
+$('.jinsom-select-subnavbar-list>div .list li').click(function(e){
+window.event.stopPropagation();
+$(this).addClass('on').siblings().removeClass('on');
+$(this).parents('.list').hide().siblings('span').text($(this).text());
+$(this).parents('.list').siblings('i').removeClass('jinsom-triangle').addClass('jinsom-lower-triangle');
+$(this).parents('.on').removeClass('on');
+
+select_loading=false;
+$('.jinsom-select-content').attr('page',1);
+$('.jinsom-select-content').animate({scrollTop:0},0);
+jinsom_page_select_submit_form();//筛选数据
+});
+
+$('.jinsom-select-subnavbar-list .more').click(function(){
+$(this).siblings().removeClass('on').children('.list').hide().siblings('i').removeClass('jinsom-triangle').addClass('jinsom-lower-triangle');
+layer.open({
+type: 1,
+className:'jinsom-select-left-more-form',
+content: $('.jinsom-select-more-content').html(),
+anim: 'left',
+});	
+
+
+$('.jinsom-select-left-more-content .topic-list li').click(function(){
+$(this).addClass('on').siblings().removeClass('on');
+$('.jinsom-select-more-content').html($(this).parents('.layui-m-layercont').html());
+layer.closeAll();
+
+select_loading=false;
+$('.jinsom-select-content').animate({scrollTop:0},0);
+$('.jinsom-select-content').attr('page',1);
+jinsom_page_select_submit_form();//筛选数据
+});	
+
+});
+
+
+//获取表单数据
+function jinsom_get_select_data(){
+url='';
+//论坛
+if($('.jinsom-select-subnavbar-list>.bbs .list li.on').length>0){
+url+='bbs_id='+$('.jinsom-select-subnavbar-list>.bbs .list li.on').attr('data');	
+}
+//话题
+if($('.jinsom-select-left-more-content .topic-select').length>0){
+topic_select_i=0;
+topic_str='';
+$('.jinsom-select-left-more-content .topic-select').each(function(){
+topic_id=$(this).find('.on').attr('data');
+if(topic_id==undefined){
+topic_id='all';
+// $('.jinsom-select-left-more-content .topic-select').eq(topic_select_i).find('[data=all]').addClass('on');
+}
+topic_str+=topic_id+',';
+topic_select_i++;
+});
+if(topic_str){
+topic_str=topic_str.substring(0,topic_str.lastIndexOf(','));
+url+='&topic_id='+topic_str;	
+}
+}
+
+//字段
+if($('.jinsom-select-left-more-content .field-select').length>0){
+field_select_i=0;
+field_str='';
+$('.jinsom-select-left-more-content .field-select').each(function(){
+field=$(this).find('.on').attr('data');
+if(field==undefined){
+field='all';
+// $('.jinsom-page-select-header-box .field-select').eq(field_select_i).find('[data=all]').addClass('on');
+}
+field_str+=field+',';
+field_select_i++;
+});
+if(field_str){
+field_str=field_str.substring(0,field_str.lastIndexOf(','));
+url+='&field='+field_str;    
+}
+}
+
+//权限
+if($('.jinsom-select-left-more-content .power li.on').length>0){
+url+='&power='+$('.jinsom-select-left-more-content .power li.on').attr('data');	
+}
+//排序
+if($('.jinsom-select-subnavbar-list>.sort .list li.on').length>0){
+url+='&sort='+$('.jinsom-select-subnavbar-list>.sort .list li.on').attr('data');	
+}
+
+
+//页面ID
+post_id=$('.jinsom-select-content').attr('post_id');
+url+='&post_id='+post_id;
+//页数
+page=$('.jinsom-select-content').attr('page');
+url+='&page='+page;	
+
+keyword=$('#jinsom-select-input').val();
+if(keyword){
+url+='&search='+keyword;	
+}
+return url;
+}
+
+
+//提交筛选表单
+function jinsom_page_select_submit_form(){
+$('.jinsom-page-select-post-list').before(jinsom.loading_post);
+$.ajax({
+type:"POST",
+url:jinsom.jinsom_ajax_url+"/data/select.php",
+data:jinsom_get_select_data(),
+success: function(msg){
+$('.jinsom-load-post').remove();
+$('.jinsom-page-select-post-list').html(msg);
+if($('.jinsom-select-content').hasClass('waterfall')){//渲染瀑布流
+var grid=$('.jinsom-page-select-post-list').masonry({
+itemSelector:'li',
+gutter:11,
+});
+grid.masonry('reloadItems'); 
+grid.imagesLoaded().progress( function() {
+grid.masonry('layout');
+});    
+}
+}//success
+});
+
+
+
+}//jinsom_page_select_submit_form
+
+jinsom_page_select_submit_form();//筛选数据
+
+
+//提交搜索
+$('#jinsom-select-search-form').submit(function (event) {
+event.preventDefault();//动作：阻止表单的默认行为
+
+select_loading=false;
+$('.jinsom-select-content').attr('page',1);
+$('.jinsom-select-content').animate({scrollTop:0},0);
+jinsom_page_select_submit_form();//筛选数据
+})
+
+
+
+
+//加载更多
+select_loading=false;
+select_list=$('.jinsom-page-select-post-list');
+$('.jinsom-select-content.infinite-scroll').on('infinite',function(){
+if(select_loading) return;
+select_page=parseInt($('.jinsom-select-content').attr('page'));
+select_loading=true;
+select_list.after(jinsom.loading_post);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/data/select.php",
+data:jinsom_get_select_data(),
+success: function(msg){
+$('.jinsom-load-post').remove();
+if(msg!=0){
+select_list.append(msg);
+
+if($('.jinsom-select-content').hasClass('waterfall')){//渲染瀑布流
+var grid=$('.jinsom-page-select-post-list').masonry({
+itemSelector:'li',
+gutter:11,
+});
+grid.masonry('reloadItems'); 
+grid.imagesLoaded().progress( function() {
+grid.masonry('layout');
+});
+}
+
+select_loading=false; 
+select_page++;
+$('.jinsom-select-content').attr('page',select_page);
+}else{
+// layer.open({content:'没有更多内容！',skin:'msg',time:2});
+select_loading=true; 
+}
+}
+});
+}); 
 
 });

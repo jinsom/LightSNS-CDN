@@ -14403,6 +14403,7 @@ span.aplayer-thumb {
     border-radius: 4px 4px 0 0;
     height: 100%;
     object-fit: cover;
+    background-color: #f1f1f1;
 }
 .jinsom-page-select-post-list li .title {
     padding: 15px 10px;
@@ -14632,4 +14633,14 @@ span.aplayer-thumb {
 .jinsom-bbs-single-custom-field li>p {
     font-size: 14px;
     margin-top: 5px;
+}
+.jinsom-page-select-post-list li>.price {
+    position: absolute;
+    background-color: #FF9800;
+    color: #fff;
+    padding: 2px 5px;
+    border-radius: 4px;
+    top: 6px;
+    left: 6px;
+    font-size: 12px;
 }

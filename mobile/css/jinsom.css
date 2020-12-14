@@ -4995,7 +4995,7 @@ h1 .commend:before{
 #jinsom-search-form {
     margin-top: 1vw;
 }
-#jinsom-search-form>i {
+#jinsom-search-form>i,.jinsom-select-navbar-center i {
     position: absolute;
     color: #999;
     left: 2vw;
@@ -8813,4 +8813,170 @@ h1 .commend:before{
     color: #999;
     font-size: 3.5vw;
     text-align: center;
+}
+
+
+/*筛选页面*/
+.navbar .center .jinsom-select-input {
+    margin-top: 1vw;
+}
+.jinsom-select-subnavbar-list {
+    display: flex;
+    width: 100%;
+}
+.jinsom-select-subnavbar-list>div {
+    flex: 1;
+    padding: 0 2vw;
+    text-align: center;
+    color: #666;
+    line-height: 9vw;
+}
+.jinsom-select-subnavbar-list>div i {
+    font-size: 5vw;
+    vertical-align: -0.5vw;
+}
+.jinsom-select-subnavbar-list>div .list {
+    position: absolute;
+    left: 0;
+    top: 9vw;
+    z-index: 2;
+    width: 100%;
+    height: 2000%;
+    background: rgba(53, 53, 59, 0.5);
+    display: none;
+}
+.jinsom-select-subnavbar-list>div .list>ul {
+    background-color: #fff;
+    margin: 0;
+    padding: 0vw 4vw 4vw;
+}
+.jinsom-select-subnavbar-list>div .list li {
+    float: left;
+    margin: 4vw 3vw 0 0;
+    background: #F3F3F6;
+    color: #333;
+    padding: 0 2vw;
+    font-size: 3.5vw;
+    border-radius: 1vw;
+    line-height: 8vw;
+}
+.jinsom-select-subnavbar-list>div .list li.on {
+    background-color: var(--jinsom-color);
+    color: #fff;
+}
+.jinsom-select-subnavbar-list>div.on>span {
+    color: var(--jinsom-color);
+}
+.jinsom-select-left-more-form {
+    position: fixed !important;
+    top: 0;
+    right: 0;
+    width: 80%;
+    height: 100%;
+    border: none !important;
+    overflow-y: auto;
+    padding: 8vw 4vw;
+    box-sizing: border-box !important;
+}
+.jinsom-select-left-more-content label {
+    font-size: 4.5vw;
+    margin-bottom: 4vw;
+    display: inline-block;
+}
+.jinsom-select-left-more-content ul {
+    padding: 0;
+    margin: 0 0 8vw;
+}
+.jinsom-select-left-more-content ul li {
+    display: inline-block;
+    background: #F3F3F6;
+    color: #333443;
+    padding: 1vw 4vw;
+    margin-right: 2vw;
+    margin-bottom: 2vw;
+    border-radius: 1vw;
+    font-size: 3.5vw;
+}
+.jinsom-select-left-more-content ul li.on {
+    color: #fff;
+    background-color: var(--jinsom-color);
+}
+.jinsom-select-content {
+    padding: 23vw 3vw 3vw !important;
+    height: inherit !important;
+}
+.jinsom-select-content li {
+    width: calc((100% - 11px)/2);
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 11px;
+    position: relative;
+    border-radius: 1vw;
+}
+.jinsom-select-content.waterfall li {
+    margin-right: 0;
+}
+.jinsom-select-content li:nth-child(2n) {
+    margin-right: 0;
+}
+.jinsom-select-content li .bg img {
+    width: 100%;
+    border-radius: 1vw;
+    display: block;
+    min-height: 50vw;
+    height: 70vw;
+    object-fit: cover;
+    background-color: #f1f1f1;
+}
+.jinsom-select-content.waterfall li .bg img {
+    height: auto;
+}
+.jinsom-select-content li .title {
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+    text-shadow: 0 2px 2px rgba(11,11,11,.4);
+    background: linear-gradient(to bottom, rgba(6, 6, 8, 0), rgba(6, 6, 8, 0.6));
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1vw 2vw;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    border-radius: 1vw;
+    font-size: 3.5vw;
+}
+.jinsom-select-content li .title a {
+    color: #fff;
+}
+.jinsom-select-content li .bar {
+    position: absolute;
+    top: 0;
+    color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+}
+.jinsom-select-content li .bar .views {
+    display: none;
+}
+.jinsom-select-content li .bar .like {
+    float: right;
+    margin-right: 2vw;
+    margin-top: 2vw;
+}
+.jinsom-select-content li .bar .like i {
+    font-size: 4vw;
+}
+.jinsom-select-content li .popup {
+    display: none;
+}
+.jinsom-page-select-post-list li>.price {
+    position: absolute;
+    background-color: #FF9800;
+    color: #fff;
+    padding: 0 1vw;
+    border-radius: 1vw;
+    top: 2vw;
+    left: 2vw;
+    font-size: 3vw;
 }
