@@ -2236,7 +2236,7 @@ if(msg==0){
 collect_loading = true; 
 }else{
 collect_post_list.append(msg);
-jinsom_lightbox()
+jinsom_lightbox();
 collect_page++;
 collect_loading = false;  
 } 
@@ -2251,6 +2251,16 @@ collect_loading = false;
 //收藏-图片
 myApp.onPageBeforeInit('collect-img', function (page){
 jinsom_lightbox();//灯箱
+
+var grid=$('.jinsom-collect-img-content').masonry({//渲染瀑布流
+itemSelector:'li',
+gutter:7.5,
+});
+grid.masonry('reloadItems'); 
+grid.imagesLoaded().progress( function() {
+grid.masonry('layout');
+}); 
+
 //加载更多
 collect_img_loading = false;
 var collect_img_page;
@@ -2274,7 +2284,16 @@ if(msg==0){
 collect_img_loading = true; 
 }else{
 collect_img_post_list.append(msg);
-jinsom_lightbox()
+var grid=$('.jinsom-collect-img-content').masonry({//渲染瀑布流
+itemSelector:'li',
+gutter:7.5,
+});
+grid.masonry('reloadItems'); 
+grid.imagesLoaded().progress( function() {
+grid.masonry('layout');
+}); 
+
+jinsom_lightbox();
 collect_img_page++;
 collect_img_loading = false;  
 } 
@@ -2382,7 +2401,7 @@ $(this).hide().siblings('i').removeClass('jinsom-triangle').addClass('jinsom-low
 $(this).parent().removeClass('on');
 
 select_loading=false;
-$('.jinsom-select-content').attr('page',1);
+$('.jinsom-select-content').attr('page',2);
 $('.jinsom-select-content').animate({scrollTop:0},0);
 jinsom_page_select_submit_form();//筛选数据
 });
@@ -2394,7 +2413,7 @@ $(this).parents('.list').siblings('i').removeClass('jinsom-triangle').addClass('
 $(this).parents('.on').removeClass('on');
 
 select_loading=false;
-$('.jinsom-select-content').attr('page',1);
+$('.jinsom-select-content').attr('page',2);
 $('.jinsom-select-content').animate({scrollTop:0},0);
 jinsom_page_select_submit_form();//筛选数据
 });
@@ -2416,7 +2435,7 @@ layer.closeAll();
 
 select_loading=false;
 $('.jinsom-select-content').animate({scrollTop:0},0);
-$('.jinsom-select-content').attr('page',1);
+$('.jinsom-select-content').attr('page',2);
 jinsom_page_select_submit_form();//筛选数据
 });	
 
@@ -2481,9 +2500,7 @@ url+='&sort='+$('.jinsom-select-subnavbar-list>.sort .list li.on').attr('data');
 //页面ID
 post_id=$('.jinsom-select-content').attr('post_id');
 url+='&post_id='+post_id;
-//页数
-page=$('.jinsom-select-content').attr('page');
-url+='&page='+page;	
+	
 
 keyword=$('#jinsom-select-input').val();
 if(keyword){
@@ -2496,13 +2513,15 @@ return url;
 //提交筛选表单
 function jinsom_page_select_submit_form(){
 $('.jinsom-page-select-post-list').before(jinsom.loading_post);
+url=jinsom_get_select_data()+'&page=1';
 $.ajax({
 type:"POST",
 url:jinsom.jinsom_ajax_url+"/data/select.php",
-data:jinsom_get_select_data(),
+data:url,
 success: function(msg){
 $('.jinsom-load-post').remove();
 $('.jinsom-page-select-post-list').html(msg);
+jinsom_lightbox();
 if($('.jinsom-select-content').hasClass('waterfall')){//渲染瀑布流
 var grid=$('.jinsom-page-select-post-list').masonry({
 itemSelector:'li',
@@ -2513,6 +2532,20 @@ grid.imagesLoaded().progress( function() {
 grid.masonry('layout');
 });    
 }
+
+//喜欢
+$('.jinsom-select-content li .bar .like').click(function(){
+num=parseInt($(this).children('span').text());
+if($(this).children('i').hasClass('had')){
+$(this).children('i').removeClass('jinsom-xihuan1 had').addClass('jinsom-xihuan2');
+$(this).children('span').text(num-1);
+}else{
+$(this).children('i').removeClass('jinsom-xihuan2').addClass('jinsom-xihuan1 had');
+$(this).children('span').text(num+1);	
+}
+}); 
+
+
 }//success
 });
 
@@ -2526,12 +2559,15 @@ jinsom_page_select_submit_form();//筛选数据
 //提交搜索
 $('#jinsom-select-search-form').submit(function (event) {
 event.preventDefault();//动作：阻止表单的默认行为
-
 select_loading=false;
-$('.jinsom-select-content').attr('page',1);
+$('.jinsom-select-content').attr('page',2);
 $('.jinsom-select-content').animate({scrollTop:0},0);
 jinsom_page_select_submit_form();//筛选数据
-})
+});
+$('#jinsom-select-input').focus(function(){
+$(this).parents('.center').siblings('.subnavbar').find('.jinsom-select-subnavbar-list').children().removeClass('on').find('.list').hide();
+$(this).parents('.center').siblings('.subnavbar').find('.jinsom-select-subnavbar-list').children().removeClass('on').find('.jinsom-triangle').addClass('jinsom-lower-triangle').removeClass('jinsom-triangle');
+});
 
 
 
@@ -2540,6 +2576,11 @@ jinsom_page_select_submit_form();//筛选数据
 select_loading=false;
 select_list=$('.jinsom-page-select-post-list');
 $('.jinsom-select-content.infinite-scroll').on('infinite',function(){
+
+//页数
+page=$('.jinsom-select-content').attr('page');
+url=jinsom_get_select_data()+'&page='+page;
+
 if(select_loading) return;
 select_page=parseInt($('.jinsom-select-content').attr('page'));
 select_loading=true;
@@ -2547,12 +2588,12 @@ select_list.after(jinsom.loading_post);
 $.ajax({
 type: "POST",
 url:jinsom.jinsom_ajax_url+"/data/select.php",
-data:jinsom_get_select_data(),
+data:url,
 success: function(msg){
 $('.jinsom-load-post').remove();
 if(msg!=0){
 select_list.append(msg);
-
+jinsom_lightbox();
 if($('.jinsom-select-content').hasClass('waterfall')){//渲染瀑布流
 var grid=$('.jinsom-page-select-post-list').masonry({
 itemSelector:'li',
@@ -2571,6 +2612,20 @@ $('.jinsom-select-content').attr('page',select_page);
 // layer.open({content:'没有更多内容！',skin:'msg',time:2});
 select_loading=true; 
 }
+
+
+//喜欢
+$('.jinsom-select-content li .bar .like').click(function(){
+num=parseInt($(this).children('span').text());
+if($(this).children('i').hasClass('had')){
+$(this).children('i').removeClass('jinsom-xihuan1 had').addClass('jinsom-xihuan2');
+$(this).children('span').text(num-1);
+}else{
+$(this).children('i').removeClass('jinsom-xihuan2').addClass('jinsom-xihuan1 had');
+$(this).children('span').text(num+1);	
+}
+}); 
+
 }
 });
 }); 

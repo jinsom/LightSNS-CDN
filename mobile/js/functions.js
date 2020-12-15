@@ -2350,6 +2350,15 @@ DelCookie('history_single');
 });	
 }
 
+//下载次数
+function jinsom_download_times(post_id){
+$.ajax({   
+url:jinsom.jinsom_ajax_url+"/action/download-times.php",
+type:'POST',   
+data:{post_id:post_id},  
+}); 
+}
+
 //设置cookie
 function SetCookie(name,value){
 var Days = 30*12*10;//十年

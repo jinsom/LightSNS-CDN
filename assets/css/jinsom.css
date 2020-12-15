@@ -14423,6 +14423,7 @@ span.aplayer-thumb {
 }
 .jinsom-page-select-post-list li .bar .like {
     float: right;
+    cursor: pointer;
 }
 .jinsom-page-select-post-list li .bar i {
     margin-right: 3px;
@@ -14583,14 +14584,11 @@ span.aplayer-thumb {
 
 
 /*下载类*/
-.jinsom-page-select-post-list.lattice_5 li .bg img,.jinsom-page-select-post-list.waterfall_5 li .bg img,.jinsom-page-select-post-list.lattice_6 li .bg img,.jinsom-page-select-post-list.waterfall_6 li .bg img {
+.jinsom-page-select-post-list.lattice_5 li .bg img,.jinsom-page-select-post-list.lattice_6 li .bg img {
     transition: all 0.4s;
 }
-.jinsom-page-select-post-list.lattice_5 li:hover .bg img,.jinsom-page-select-post-list.waterfall_5 li:hover .bg img,.jinsom-page-select-post-list.lattice_6 li:hover .bg img,.jinsom-page-select-post-list.waterfall_6 li:hover .bg img {
+.jinsom-page-select-post-list.lattice_5 li:hover .bg img,.jinsom-page-select-post-list.lattice_6 li:hover .bg img {
     transform: scale(1.1);
-}
-.jinsom-page-select-post-list.waterfall_5 li .bg img {
-    min-height: 120px;
 }
 .jinsom-page-select-post-list li .popup-btn .icon {
     width: 10px;
@@ -14643,4 +14641,357 @@ span.aplayer-thumb {
     top: 6px;
     left: 6px;
     font-size: 12px;
+}
+
+.jinsom-page-select-post-list.waterfall li .bg img {
+    min-height: 120px;
+}
+
+/*样式7*/
+.jinsom-page-select-post-list.lattice_7 li:hover .popup-btn .text {
+    bottom: 80px;
+}
+.jinsom-page-select-post-list.lattice_7 li .popup-btn .text {
+    transition: all .3s;
+    position: absolute;
+    bottom: -45px;
+}
+
+
+
+
+/*下载内页*/
+.jinsom-main-content.single-bbs.download .jinsom-bbs-content-header-nav {
+    background-color: inherit;
+    padding: 12px 0;
+    font-size: 12px;
+}
+.jinsom-main-content.single-bbs.download .jinsom-bbs-content-header-nav a {
+    color: #999;
+    font-size: 12px;
+}
+.jinsom-bbs-single-download {
+    background-color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.jinsom-bbs-single-download-title {
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 18px;
+    margin: 12px 0;
+    width: calc(100% - 310px);
+}
+.jinsom-bbs-single-download-title m {
+    margin-right: 5px;
+    font-size: 14px;
+    background-color: #17a1ff;
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 2px;
+    vertical-align: 1px;
+}
+.jinsom-bbs-single-download-title m.ban {
+    border-radius: 6px 2px 6px 2px;
+    background-color: #c69d58;
+}
+.jinsom-bbs-single-download-title .like {
+    float: right;
+    color: #999;
+    cursor: pointer;
+}
+.jinsom-bbs-single-download-title .like i {
+    font-size: 20px;
+}
+.jinsom-bbs-single-download-content {
+    background-color: #fff;
+    padding: 12px;
+    box-sizing: border-box;
+    border-radius: var(--jinsom-border-radius);
+    min-height: 500px;
+    line-height: 1.7;
+    position: relative;
+    color: #333;
+    font-size: 16px;
+}
+.jinsom-bbs-single-download-content img {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto 10px;
+}
+.jinsom-bbs-single-download-content p {
+    line-height: 1.7;
+    display: block;
+    min-height: 27px;
+    word-break: break-word;
+}
+.jinsom-bbs-single-download-content .jinsom-bbs-copyright-info {
+    margin-top: 20px;
+}
+.jinsom-single-download-topic-list {
+    margin-top: 20px;
+}
+.jinsom-single-download-topic-list .title {
+    margin-bottom: 10px;
+}
+.jinsom-single-download-topic-list a {
+    float: left;
+    display: block;
+    overflow: hidden;
+    margin-right: 10px;
+    margin-bottom: 9px;
+    padding: 0 10px;
+    height: 30px;
+    border-radius: 4px;
+    background: #f3f4f9;
+    color: #999;
+    text-align: center;
+    font-size: 13px;
+    line-height: 30px;
+}
+.jinsom-bbs-sidebar-download-box {
+    padding: 15px;
+    background-color: #fff;
+    border-radius: var(--jinsom-border-radius);
+}
+.jinsom-bbs-download-box .download-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.jinsom-bbs-download-box .download-btn a.btn {
+    flex: 1;
+    text-align: center;
+    background-image: linear-gradient(to right,#64c0ff,#17a1ff);
+    color: #fff;
+    height: 56px;
+    line-height: 56px;
+    font-size: 18px;
+    border-radius: 8px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.jinsom-bbs-download-box .download-btn a.collect {
+    width: 56px;
+    text-align: center;
+    border: 1px solid #17a1ff;
+    height: 56px;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    color: #17a1ff;
+    background-color: #ebf7ff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+}
+.jinsom-bbs-download-box .download-btn a.collect i {
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+.jinsom-bbs-download-box .tips {
+    border: 1px solid #ff9b93;
+    color: #F44336;
+    font-size: 12px;
+    margin-bottom: 10px;
+    padding: 4px 10px;
+    text-align: center;
+    border-radius: 4px;
+    background-color: #fff4f4;
+}
+.jinsom-bbs-download-box .tips i {
+    font-size: 12px;
+}
+.jinsom-bbs-download-box .info {
+    border: 1px solid #ccc;
+    color: #666;
+    font-size: 12px;
+    margin-top: 10px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    display: flex;
+}
+.jinsom-bbs-download-box .info span {
+    flex: 1;
+}
+.jinsom-bbs-download-box .info span i {
+    font-style: normal;
+}
+.jinsom-bbs-single-custom-field.download {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+}
+.jinsom-bbs-single-custom-field.download li {
+    display: flex;
+    color: #4da2dd;
+}
+.jinsom-bbs-single-custom-field.download li label {
+    color: #999;
+    flex: 1;
+}
+.jinsom-bbs-single-custom-field.download li p {
+    margin: 0;
+    color: #4da2dd;
+}
+.jinsom-bbs-single-custom-field.download li:last-child {
+    margin-bottom: 0;
+}
+.jinsom-bbs-content-header-fixed {
+    position: fixed;
+    width: 100%;
+    background-color: #fff;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    display: none;
+    padding: 10px 0;
+    box-shadow: 0 0 9px 3px rgba(191,191,191,.5);
+}
+.jinsom-bbs-content-header-fixed-content {
+    width: var(--jinsom-width);
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+.jinsom-bbs-content-header-fixed-content .left {
+    width: calc(100% - 310px);
+    margin-right: 10px;
+}
+.jinsom-bbs-content-header-fixed-content .left>div {
+    width: 100%;
+}
+.jinsom-bbs-content-header-fixed-content .right {
+    width: 300px;
+}
+
+.jinsom-bbs-download-relate li {
+    float: left;
+    width: calc((100% - 60px)/4);
+    margin-right: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.jinsom-bbs-download-relate li:nth-child(4n) {
+    margin-right: 0;
+}
+.jinsom-bbs-download-relate li a {
+    display: block;
+}
+.jinsom-bbs-download-relate li .bg {
+    height: 350px;
+}
+.jinsom-bbs-download-relate li .bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+.jinsom-bbs-download-relate li .title {
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+    text-shadow: 0 2px 2px rgba(11,11,11,.4);
+    background: linear-gradient(to bottom, rgba(6, 6, 8, 0), rgba(6, 6, 8, 0.6));
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 0 0 4px 4px;
+    padding: 15px 10px;
+    font-size: 16px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: all .3s;
+    z-index: 1;
+}
+.jinsom-bbs-download-relate li .btn {
+    transition: all .3s;
+    position: absolute;
+    text-align: center;
+    background-image: linear-gradient(to right,#32e696,#00BE6E);
+    left: calc(50% - 80px);
+    bottom: -42px;
+    width: 160px;
+    height: 42px;
+    line-height: 42px;
+    color: #fff;
+    border-radius: 4px;
+    opacity: 0;
+    z-index: 1;
+}
+.jinsom-bbs-download-relate li:hover .btn {
+    opacity: 1;
+    bottom: 60px;
+}
+.jinsom-bbs-download-relate li .shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0 0 0 / 0.5);
+    top: 0;
+    display: none;
+    border-radius: 4px;
+}
+.jinsom-bbs-download-relate li:hover .shadow {
+    display: block;
+}
+.jinsom-bbs-download-relate li .collect {
+    transition: all .3s;
+    position: absolute;
+    top: -50px;
+    right: 5px;
+    width: 45px;
+    height: 45px;
+    background-color: #fff;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    border-radius: 4px;
+    color: #999;
+    opacity: 0;
+    z-index: 1;
+    cursor: pointer;
+}
+.jinsom-bbs-download-relate li .collect i {
+    font-size: 20px;
+}
+.jinsom-bbs-download-relate li:hover .collect {
+    opacity: 1;
+    top: 5px;
+}
+.jinsom-bbs-download-relate>.title {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #666;
+    margin-top: 15px;
+}
+.jinsom-bbs-download-relate>.title .right {
+    float: right;
+    font-size: 16px;
+}
+.jinsom-bbs-download-relate>.title .right a {
+    color: #999;
+}
+.jinsom-bbs-download-relate>.title .right:hover a {
+    color: #333;
+}
+.jinsom-single-download-admin {
+    margin-top: 20px;
+}
+.jinsom-single-download-admin li {
+    display: inline-block;
+    margin-right: 10px;
+    border: 1px solid #999;
+    font-size: 14px;
+    padding: 2px 10px;
+    border-radius: 4px;
+    cursor: pointer;
 }

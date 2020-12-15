@@ -691,12 +691,21 @@ $("#jinsom-bbs-comment-power-verify").hide();
 }
 });
 
-//布局
+//首页布局
 form.on('select(layout)',function(data){
 if(data.value==0){
 $('#jinsom-layout-sidebar-setting').show();
 }else{
 $('#jinsom-layout-sidebar-setting').hide();
+}
+});
+
+//内页布局
+form.on('select(single_layout)',function(data){
+if(data.value==0){
+$('#jinsom-bbs-single-layout-sidebar-setting').show();
+}else{
+$('#jinsom-bbs-single-layout-sidebar-setting').hide();
 }
 });
 
@@ -4011,6 +4020,40 @@ $(obj).parents('.jinsom-bbs-single-box').siblings().find('.comment-up').text(tit
 }); 
 }
 
+//收藏内容
+function jinsom_collect(post_id,type,obj){
+if(!jinsom.is_login){
+jinsom_pop_login_style();	
+return false;
+}
+if(type=='img'){
+url=$(obj).parent().siblings('.fancybox-stage').find('img').attr('src');
+}else{
+url='';	
+}
+
+if($(obj).children('i').hasClass('jinsom-shoucang')){
+$(obj).children('i').addClass('jinsom-shoucang1').removeClass('jinsom-shoucang').siblings('p').text($(obj).attr('a'));
+}else{
+$(obj).children('i').addClass('jinsom-shoucang').removeClass('jinsom-shoucang1').siblings('p').text($(obj).attr('b'));
+}
+
+
+$.ajax({   
+url:jinsom.jinsom_ajax_url+"/action/collect.php",
+type:'POST',   
+data:{post_id:post_id,type:type,url:url},  
+}); 
+}
+
+//下载次数
+function jinsom_download_times(post_id){
+$.ajax({   
+url:jinsom.jinsom_ajax_url+"/action/download-times.php",
+type:'POST',   
+data:{post_id:post_id},  
+}); 
+}
 
 
 

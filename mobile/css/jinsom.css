@@ -1894,7 +1894,7 @@ display: none !important;
     padding: 3vw;
     margin-top: 5vw;
 }
-.jinsom-post-single .footer a .like.had,.jinsom-post-words .footer a .like.had,.jinsom-single .footer a .like.had {
+.jinsom-post-single .footer a .like.had,.jinsom-post-words .footer a .like.had,.jinsom-single .footer a .like.had,.jinsom-select-content li .bar .like i.had {
     color: #f56b41;
 }
 .jinsom-post-like {
@@ -8230,22 +8230,20 @@ h1 .commend:before{
 }
 .jinsom-collect-img-content {
     padding: 13vw 2vw 2vw 2vw !important;
+    height: inherit !important;
 }
 .jinsom-collect-img-content li {
     float: left;
-    width: calc((100% - 4vw)/3);
-    margin-right: 2vw;
-    height: 40vw;
+    width: calc((100% - (4vw + 7.8px))/2);
     margin-bottom: 2vw;
-}
-.jinsom-collect-img-content li:nth-child(3n) {
-    margin-right: 0;
 }
 .jinsom-collect-img-content li img {
     width: 100%;
     border-radius: 1vw;
-    height: 40vw;
     object-fit: cover;
+    display: block;
+    background-color: #f1f1f1;
+    max-height: 500px;
 }
 .jinsom-post-vote-list .title {
     text-align: center;
@@ -8357,9 +8355,12 @@ h1 .commend:before{
     color: #999;
     margin-top: 3vw;
 }
-.jinsom-mine-user-info-cell .go i {
+.jinsom-mine-user-info-cell .go {
+    font-size: 3.5vw;
     color: #999;
-    font-size: 5vw;
+}
+.jinsom-mine-user-info-cell .go i {
+    font-size: 3vw;
 }
 .jinsom-mine-user-info-cell .number {
     display: flex;
@@ -8774,6 +8775,9 @@ h1 .commend:before{
 .jinsom-bbs-single-custom-field li {
     margin-bottom: 4vw;
 }
+.jinsom-bbs-single-custom-field li:last-child {
+    margin-bottom: 0;
+}
 .jinsom-bbs-single-custom-field li.text, .jinsom-bbs-single-custom-field li.number {
     display: flex;
     line-height: 8vw;
@@ -8874,9 +8878,18 @@ h1 .commend:before{
     width: 80%;
     height: 100%;
     border: none !important;
-    overflow-y: auto;
-    padding: 8vw 4vw;
     box-sizing: border-box !important;
+}
+.jinsom-select-left-more-form .layui-m-layercont {
+    height: 100%;
+}
+.jinsom-select-left-more-content {
+    overflow-y: auto;
+    height: 100%;
+}
+.jinsom-select-left-more-content .topic-list {
+    padding: 8vw 4vw;
+    margin-bottom: 30vw;
 }
 .jinsom-select-left-more-content label {
     font-size: 4.5vw;
@@ -8930,6 +8943,7 @@ h1 .commend:before{
 }
 .jinsom-select-content.waterfall li .bg img {
     height: auto;
+    min-height: 120px;
 }
 .jinsom-select-content li .title {
     position: absolute;
