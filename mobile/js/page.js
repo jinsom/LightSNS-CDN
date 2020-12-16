@@ -2526,6 +2526,7 @@ if($('.jinsom-select-content').hasClass('waterfall')){//渲染瀑布流
 var grid=$('.jinsom-page-select-post-list').masonry({
 itemSelector:'li',
 gutter:11,
+isAnimated:false,
 });
 grid.masonry('reloadItems'); 
 grid.imagesLoaded().progress( function() {
@@ -2598,6 +2599,7 @@ if($('.jinsom-select-content').hasClass('waterfall')){//渲染瀑布流
 var grid=$('.jinsom-page-select-post-list').masonry({
 itemSelector:'li',
 gutter:11,
+isAnimated:false,
 });
 grid.masonry('reloadItems'); 
 grid.imagesLoaded().progress( function() {

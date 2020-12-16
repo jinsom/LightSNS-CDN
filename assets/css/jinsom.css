@@ -14707,11 +14707,13 @@ span.aplayer-thumb {
     padding: 12px;
     box-sizing: border-box;
     border-radius: var(--jinsom-border-radius);
-    min-height: 500px;
     line-height: 1.7;
     position: relative;
     color: #333;
     font-size: 16px;
+}
+.jinsom-bbs-single-download-content>.content {
+    min-height: 300px;
 }
 .jinsom-bbs-single-download-content img {
     width: 100%;
@@ -14834,9 +14836,13 @@ span.aplayer-thumb {
     color: #999;
     flex: 1;
 }
-.jinsom-bbs-single-custom-field.download li p {
+.jinsom-bbs-single-custom-field.download li p,.jinsom-bbs-single-custom-field.download li a {
     margin: 0;
     color: #4da2dd;
+    max-width: 150px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .jinsom-bbs-single-custom-field.download li:last-child {
     margin-bottom: 0;
