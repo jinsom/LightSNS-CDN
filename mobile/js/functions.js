@@ -2359,6 +2359,25 @@ data:{post_id:post_id},
 }); 
 }
 
+//申请论坛
+function jinsom_apply_bbs(){
+title=$('#jinsom-apply-bbs-title').val();
+reason=$('#jinsom-apply-bbs-reason').val();
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/action/apply-bbs.php",
+data:{title:title,reason:reason},
+success: function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+if(msg.code==1){
+$('#jinsom-apply-bbs-title,#jinsom-apply-bbs-reason').val('');
+}
+}
+});
+}
+
 //设置cookie
 function SetCookie(name,value){
 var Days = 30*12*10;//十年

@@ -804,10 +804,6 @@ title= $.trim($('.jinsom-bbs-title').val());
 post_type= $('#jinsom-bbs-type').val();
 content=ue.getContent();
 
-if(title==''){
-layer.msg('标题不能为空！');
-return false;
-}
 
 if($.trim(content)==''){
 layer.msg('内容不能为空！');
@@ -816,7 +812,7 @@ return false;
 
 if(post_type=='pay_see'||post_type=='vip_see'||post_type=='login_see'||post_type=='comment_see'){
 
-if($('input[name=download_url]').length==0){
+if($('.download-url').length==0){
 hide_content=ue_pay.getContent();
 if($.trim(hide_content)==''){
 layer.msg('隐藏内容不能为空！');
@@ -905,6 +901,21 @@ activity_data=activity_arr.join(",");//活动数据
 data=data+'&activity-data='+activity_data;//加上活动数据
 }
 
+
+//下载
+if($('.jinsom-bbs-download-form').length>0){
+download_data='';
+$('.jinsom-bbs-download-form .li').each(function(){
+download_data+=$(this).find('.download-url').val()+'|';
+download_data+=$(this).find('.download-pass-a').val()+'|';
+download_data+=$(this).find('.download-pass-b').val()+',';
+});
+download_data=download_data.substring(0,download_data.length-1);
+data=data+'&download_data='+download_data;
+}
+
+
+
 if($('.jinsom-publish-words-topic.bbs span').length>0){
 topic='&topic=';
 $('.jinsom-publish-words-topic.bbs span').each(function(){
@@ -927,7 +938,7 @@ $('#jinsom-bbs-publish-btn').removeAttr('onclick');
 $(window).unbind('beforeunload');
 ue.execCommand('clearlocaldata');
 if(post_type=='pay_see'||post_type=='vip_see'||post_type=='login_see'||post_type=='comment_see'){
-if($('input[name=download_url]').length==0){
+if($('.download-url').length==0){
 ue_pay.execCommand('clearlocaldata');
 }
 }

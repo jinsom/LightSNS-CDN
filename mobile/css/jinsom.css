@@ -9001,3 +9001,98 @@ h1 .commend:before{
     left: 2vw;
     font-size: 3vw;
 }
+.jinsom-bbs-download-box .download-more {
+    margin-top: 2vw;
+    padding: 4vw 2vw;
+    font-size: 4vw;
+    background-color: #f5f5f5;
+}
+.jinsom-bbs-download-box .download-more li {
+    padding: 2vw;
+    border-bottom: 1px solid #eee;
+}
+.jinsom-bbs-download-box .download-more li:last-child {
+    border-bottom: none;
+}
+.jinsom-bbs-download-box .download-more li .top {
+    display: flex;
+    margin-bottom: 1vw;
+    color: #555;
+}
+.jinsom-bbs-download-box .download-more li .pass {
+    color: #999;
+    font-size: 3.5vw;
+    display: flex;
+}
+.jinsom-bbs-download-box .download-more li .top>div {
+    flex: 1;
+}
+.jinsom-bbs-download-box .download-more li .top .url {
+    text-align: right;
+}
+.jinsom-bbs-download-box .download-more li .top .url a {
+    color: #2196F3;
+}
+.jinsom-bbs-download-box .download-more li .pass span {
+    flex: 1;
+}
+.jinsom-publish-words-form .download-box {
+    padding: 2vw;
+    border: 1px solid #ccc;
+    border-radius: 1vw;
+    margin-bottom: 2vw;
+}
+.jinsom-publish-words-form .download-box .li {
+    padding: 2vw 0;
+    position: relative;
+}
+.jinsom-bbs-download-add {
+    text-align: center;
+    margin-top: 2vw;
+    color: #666;
+}
+.jinsom-bbs-download-add i {
+    font-size: 4vw;
+}
+.jinsom-publish-words-form .download-box .li>i {
+    position: absolute;
+    right: 0;
+    width: 8vw;
+    height: 8vw;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 1vw;
+    color: #999;
+    font-size: 5vw;
+    line-height: 8vw;
+}
+.jinsom-apply-bbs-content {
+    padding: 15vw 4vw !important;
+}
+.jinsom-apply-bbs-content li {
+    margin-bottom: 4vw;
+}
+.jinsom-apply-bbs-content li label {
+    margin-bottom: 2vw;
+    display: block;
+    color: #666;
+}
+.jinsom-apply-bbs-content li input, .jinsom-apply-bbs-content li textarea {
+    width: 100%;
+    border: 1px solid #eee;
+    padding: 2vw;
+    box-sizing: border-box;
+    border-radius: 1vw;
+}
+.jinsom-apply-bbs-content li textarea {
+    resize: none;
+    height: 30vw;
+    font-size: 4vw;
+}
+.jinsom-apply-bbs-content .btn {
+    text-align: center;
+    background-color: var(--jinsom-color);
+    padding: 2.5vw;
+    color: #fff;
+    border-radius: 1vw;
+}

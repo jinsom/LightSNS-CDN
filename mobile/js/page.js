@@ -1209,13 +1209,22 @@ new TencentCaptcha(document.getElementById('publish-'+type),jinsom.machine_verif
 if(res.ret === 0){jinsom_publish_secret(res.ticket,res.randstr);}
 });
 }	
-}else if(type=='bbs'){//帖子类型
+}else if(type=='bbs'){//帖子类型||发布帖子||发表帖子
 if($('#publish-bbs').length>0&&!jinsom.is_admin){
 new TencentCaptcha(document.getElementById('publish-bbs'),jinsom.machine_verify_appid,function(res){
 if(res.ret === 0){jinsom_publish_bbs(res.ticket,res.randstr);}
 });
 }
 
+if($('.jinsom-publish-words-form .download-box').length>0){
+$(".jinsom-bbs-download-add").click(function(){
+add=$('.download-box .li').html();
+$(this).before('<div class="li"><i class="jinsom-icon jinsom-guanbi"></i>'+add+'</div>');
+}); 
+$('.jinsom-publish-words-form .download-box').on('click','.li>i',function(){
+$(this).parent().remove();
+});
+}
 
 //选择子分类
 $('.jinsom-publish-select-cat .select-content li').click(function(){

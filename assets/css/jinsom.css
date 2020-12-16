@@ -15001,3 +15001,99 @@ span.aplayer-thumb {
     border-radius: 4px;
     cursor: pointer;
 }
+.jinsom-bbs-download-form {
+    background-color: #f6f6f6;
+    padding: 0 0 10px;
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+.jinsom-bbs-download-add {
+    width: 620px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.jinsom-bbs-download-add span {
+    width: 120px;
+    text-align: center;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd5d5;
+    padding: 6px 10px;
+    display: block;
+    margin: auto;
+    cursor: pointer;
+    color: #666;
+    border-radius: 2px;
+}
+.jinsom-bbs-download-add span:hover {
+    color: #222;
+    border-color: #999;
+}
+.jinsom-bbs-download-form .li>i {
+    position: absolute;
+    right: 420px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+.jinsom-bbs-download-form .li {
+    padding-top: 15px;
+    border-bottom: 3px solid #fff;
+}
+.jinsom-bbs-download-form .li:nth-last-child(2) {
+    border: none;
+}
+.jinsom-bbs-download-box .download-more {
+    margin-top: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.jinsom-bbs-download-box .download-more .title {
+    padding: 8px;
+    background-color: #eee;
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    cursor: pointer;
+}
+.jinsom-bbs-download-box .download-more .content {
+    padding: 10px;
+    display: none;
+    border-top: 1px solid #ccc;
+}
+.jinsom-bbs-download-box .download-more li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+.jinsom-bbs-download-box .download-more li:last-child {
+    border-bottom: none;
+}
+.jinsom-bbs-download-box .download-more li .top {
+    display: flex;
+    margin-bottom: 5px;
+    color: #333;
+}
+.jinsom-bbs-download-box .download-more li .top>div {
+    flex: 1;
+}
+.jinsom-bbs-download-box .download-more li .top .url {
+    text-align: right;
+}
+.jinsom-bbs-download-box .download-more li .top .url a {
+    color: #2196F3;
+}
+.jinsom-bbs-download-box .download-more li .pass {
+    display: flex;
+    font-size: 12px;
+    color: #999;
+}
+.jinsom-bbs-download-box .download-more li .pass>span {
+    flex: 1;
+}
+.jinsom-bbs-download-box .download-more li .pass i {
+    font-style: normal;
+}

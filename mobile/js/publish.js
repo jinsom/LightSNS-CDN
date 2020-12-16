@@ -474,6 +474,20 @@ img+=$(this).children('a').html()+'</br>';
 data=data+img;
 }
 
+
+//下载
+if($('.jinsom-publish-words-form .download-box').length>0){
+download_data='';
+$('.download-box .li').each(function(){
+download_data+=$(this).find('.download-url').val()+'|';
+download_data+=$(this).find('.download-pass-a').val()+'|';
+download_data+=$(this).find('.download-pass-b').val()+',';
+});
+download_data=download_data.substring(0,download_data.length-1);
+data=data+'&download_data='+download_data;
+}
+
+
 myApp.showIndicator();
 $.ajax({
 type: "POST",
