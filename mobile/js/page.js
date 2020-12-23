@@ -2409,10 +2409,10 @@ window.event.stopPropagation();
 $(this).hide().siblings('i').removeClass('jinsom-triangle').addClass('jinsom-lower-triangle');
 $(this).parent().removeClass('on');
 
-select_loading=false;
-$('.jinsom-select-content').attr('page',2);
-$('.jinsom-select-content').animate({scrollTop:0},0);
-jinsom_page_select_submit_form();//筛选数据
+// select_loading=false;
+// $('.jinsom-select-content').attr('page',2);
+// $('.jinsom-select-content').animate({scrollTop:0},0);
+// jinsom_page_select_submit_form();//筛选数据
 });
 $('.jinsom-select-subnavbar-list>div .list li').click(function(e){
 window.event.stopPropagation();

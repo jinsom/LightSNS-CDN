@@ -769,6 +769,10 @@ h2, h3, h4 {
     border-radius: 100%;
     margin-left: 1vw;
 }
+.jinsom-mine-box li.visitor p>i {
+    position: absolute;
+    margin-top: 1vw;
+}
 .jinsom-mine-page .list-block li .item-media img {
     width: 17vw;
     height: 17vw;
@@ -6146,6 +6150,7 @@ h1 .commend:before{
     background-size: cover;
     box-shadow: 0px 5px 20px -4px rgba(2, 10, 18, 0.22);
     background-color: #ccc;
+    background-position: center;
 }
 .jinsom-bbs-list-lattice .title {
     overflow: hidden;

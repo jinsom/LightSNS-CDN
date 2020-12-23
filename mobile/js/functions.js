@@ -1473,6 +1473,10 @@ function c(){window.location.reload();}setTimeout(c,2000);
 
 //领取任务奖励
 function jinsom_task_finish(task_id,type,obj){
+if(!jinsom.is_login){
+myApp.loginScreen();  
+return false;
+}
 myApp.showIndicator();
 $.ajax({
 type: "POST",
@@ -1894,6 +1898,10 @@ $('.navbar-on-center .center').text('');
 
 //偷宠物
 function jinsom_pet_steal(id,number,obj,ticket,randstr){
+if(!jinsom.is_login){
+myApp.loginScreen();  
+return false;
+}
 myApp.showIndicator();
 $.ajax({   
 url:jinsom.mobile_ajax_url+"/action/pet.php",
@@ -1942,6 +1950,10 @@ $('.jinsom-pet-nest-list.single li').removeClass('gray');
 
 //购买宠物蛋
 function jinsom_pet_buy(number,iiii){
+if(!jinsom.is_login){
+myApp.loginScreen();  
+return false;
+}
 myApp.showIndicator();
 $.ajax({   
 url:jinsom.mobile_ajax_url+"/action/pet.php",

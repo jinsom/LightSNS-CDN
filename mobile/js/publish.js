@@ -535,6 +535,11 @@ success: function(msg){
 myApp.hideIndicator();
 if(msg.code==1){
 myApp.popup('.jinsom-publish-type-form');
+//添加唯一标识
+$('.jinsom-publish-type-form').addClass('topic-publish');
+$('.jinsom-publish-type-form').on('popup:close', function () {
+$('.jinsom-publish-type-form').removeClass('topic-publish');
+});
 }else{
 layer.open({content:msg.msg,skin:'msg',time:2});
 }
