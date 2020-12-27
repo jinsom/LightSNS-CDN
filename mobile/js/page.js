@@ -591,6 +591,9 @@ if(msg.self){//如果是自己操作
 $('.jinsom-mine-user-info img.avatar,.jinsom-setting-box .avatarimg img.avatar,.jinsom-home-navbar img.avatar').attr('src',msg.file_url);
 }
 history.back(-1);//返回上一页
+}else if(msg.code==3){//打开开通会员页面
+layer.open({content:msg.msg,skin:'msg',time:2});
+function c(){myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/mywallet/recharge-vip.php'});}setTimeout(c,1500);
 }else{
 layer.open({content:msg.msg,skin:'msg',time:2});
 avatar.resetImage();
@@ -793,6 +796,7 @@ waterfull_margin=$('#jinsom-waterfull-margin').height();
 var grid=$('.jinsom-bbs-post-list-3').masonry({
 itemSelector:'.grid',
 gutter:waterfull_margin,
+transitionDuration:0
 });
 grid.imagesLoaded().progress( function() {
 grid.masonry('layout');
@@ -1439,6 +1443,16 @@ var sortable = Sortable.create(el);
 
 if(type=='video'){
 document.querySelector('#jinsom-upload-video').addEventListener('change', function () {
+
+//判断后缀
+var location=$(this).val();
+var point=location.lastIndexOf(".");
+type=location.substr(point+1);
+if(jinsom.upload_video_type.indexOf(type)== -1 ){
+layer.open({content:'不支持该文件类型！',skin:'msg',time:2});
+return false;
+}
+
 var percent = $('.jinsom-upload-video-btn .percent');
 var progress = $(".jinsom-upload-video-btn p");
 
@@ -1567,6 +1581,16 @@ return false;
 
 if(type=='music'){//上传音乐
 document.querySelector('#jinsom-upload-music').addEventListener('change', function () {
+
+//判断后缀
+var location=$(this).val();
+var point=location.lastIndexOf(".");
+type=location.substr(point+1);
+if(jinsom.upload_music_type.indexOf(type)== -1 ){
+layer.open({content:'不支持该文件类型！',skin:'msg',time:2});
+return false;
+}
+	
 var percent = $('.jinsom-upload-music-btn .percent');
 var progress = $(".jinsom-upload-music-btn p");
 
@@ -2264,6 +2288,7 @@ jinsom_lightbox();//灯箱
 var grid=$('.jinsom-collect-img-content').masonry({//渲染瀑布流
 itemSelector:'li',
 gutter:7.5,
+// transitionDuration:0
 });
 grid.masonry('reloadItems'); 
 grid.imagesLoaded().progress( function() {
@@ -2296,6 +2321,7 @@ collect_img_post_list.append(msg);
 var grid=$('.jinsom-collect-img-content').masonry({//渲染瀑布流
 itemSelector:'li',
 gutter:7.5,
+transitionDuration:0
 });
 grid.masonry('reloadItems'); 
 grid.imagesLoaded().progress( function() {
@@ -2535,7 +2561,7 @@ if($('.jinsom-select-content').hasClass('waterfall')){//渲染瀑布流
 var grid=$('.jinsom-page-select-post-list').masonry({
 itemSelector:'li',
 gutter:11,
-isAnimated:false,
+// transitionDuration:0
 });
 grid.masonry('reloadItems'); 
 grid.imagesLoaded().progress( function() {
@@ -2608,7 +2634,7 @@ if($('.jinsom-select-content').hasClass('waterfall')){//渲染瀑布流
 var grid=$('.jinsom-page-select-post-list').masonry({
 itemSelector:'li',
 gutter:11,
-isAnimated:false,
+transitionDuration:0
 });
 grid.masonry('reloadItems'); 
 grid.imagesLoaded().progress( function() {

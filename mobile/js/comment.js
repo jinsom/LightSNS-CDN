@@ -63,6 +63,9 @@ jinsom_lightbox();
 }else if(msg.code==2){//没有绑定手机号
 layer.open({content:msg.msg,skin:'msg',time:2});
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-phone.php'});
+}else if(msg.code==3){//打开开通会员页面
+layer.open({content:msg.msg,skin:'msg',time:2});
+function c(){myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/mywallet/recharge-vip.php'});}setTimeout(c,1500);
 }else{
 layer.open({content:msg.msg,skin:'msg',time:2});
 }
@@ -152,6 +155,9 @@ $('.jinsom-tips-'+post_id).removeClass('jinsom-tips').addClass('jinsom-hide-cont
 }else if(msg.code==2){//没有绑定手机号
 layer.open({content:msg.msg,skin:'msg',time:2});
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-phone.php'});
+}else if(msg.code==3){//打开开通会员页面
+layer.open({content:msg.msg,skin:'msg',time:2});
+function c(){myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/mywallet/recharge-vip.php'});}setTimeout(c,1500);
 }else{
 layer.open({content:msg.msg,skin:'msg',time:2});
 }
@@ -218,6 +224,9 @@ comment_list.prepend('\
 }else if(msg.code==2){//没有绑定手机号
 layer.open({content:msg.msg,skin:'msg',time:2});
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-phone.php'});
+}else if(msg.code==3){//打开开通会员页面
+layer.open({content:msg.msg,skin:'msg',time:2});
+function c(){myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/mywallet/recharge-vip.php'});}setTimeout(c,1500);
 }else{
 layer.open({content:msg.msg,skin:'msg',time:2});
 }

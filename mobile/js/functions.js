@@ -24,7 +24,7 @@ myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1||msg.code==2){
 $(obj).html(msg.html);
-}else if(msg.code==5){
+}else if(msg.code==3){//打开开通会员页面
 function c(){myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/mywallet/recharge-vip.php'});}setTimeout(c,1500);
 }
 }
@@ -2350,7 +2350,7 @@ myApp.popup(popuphtml);
 }
 
 //清除阅读历史记录
-function jinsom_history_single_clear(){
+function jinsom_history_single_clear(obj){
 layer.open({
 content: '你确定要清空吗？'
 ,btn: ['确定', '取消']
@@ -2358,6 +2358,7 @@ content: '你确定要清空吗？'
 $('.jinsom-history-single-content').html(jinsom.empty);
 layer.open({content:'已经清空！',skin:'msg',time:2});
 DelCookie('history_single');
+$(obj).text('').removeAttr('onclick');
 }
 });	
 }

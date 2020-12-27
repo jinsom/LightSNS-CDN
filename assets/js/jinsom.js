@@ -23,7 +23,7 @@ layer.closeAll('loading');
 layer.msg(msg.msg);
 if(msg.code==1||msg.code==2){
 $(obj).html(msg.html);
-}else if(msg.code==5){
+}else if(msg.code==3){//弹窗开通会员
 function c(){jinsom_recharge_vip_form();}setTimeout(c,1500);
 }
 }

@@ -20,11 +20,18 @@ type: "POST",
 url:jinsom.module_url+"/chat/msg.php",
 data: {author_id:author_id,content:content},
 success: function(msg){
-if(msg.code==0){
+if(msg.code==0||msg.code==3){
 $('.jinsom-chat-list .myself').last().children('.jinsom-chat-message-list-content').prepend('<i class="jinsom-icon jinsom-shibai error"></i>');
 $('.jinsom-chat-list').append('<p class="jinsom-chat-message-tips error"><span>'+msg.msg+'</span></p>');
 $('.jinsom-chat-list-content').scrollTop($('.jinsom-chat-list-content')[0].scrollHeight);
-
+if(msg.code==3){
+function c(){myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/mywallet/recharge-vip.php'});}setTimeout(c,1500);	
+}
+}else if(msg.code==1){//聊天隐私
+if(msg.im_privacy==1){
+$('.jinsom-chat-list').append('<p class="jinsom-chat-message-tips error"><span>'+msg.im_privacy_tips+'</span></p>');
+$('.jinsom-chat-list-content').scrollTop($('.jinsom-chat-list-content')[0].scrollHeight);
+}
 }
 }
 });
@@ -81,6 +88,12 @@ if(!jinsom.is_login){
 myApp.loginScreen();  
 return false;
 }
+
+if(author_id==jinsom.user_id){
+layer.open({content:'你不能给自己发起聊天！',skin:'msg',time:2});
+return false;	
+}
+
 if($(obj).find('.badge').length>0){
 all_notice=parseInt($('.toolbar .notice .tips').text());
 current_notice=parseInt($(obj).find('.tips').text());
@@ -127,10 +140,13 @@ type: "POST",
 url:jinsom.module_url+"/chat/msg-group.php",
 data: {bbs_id:bbs_id,content:content},
 success: function(msg){
-if(msg.code==0){
+if(msg.code==0||msg.code==3){
 $('.jinsom-chat-group-list .myself').last().children('.jinsom-chat-message-list-content').prepend('<i class="jinsom-icon jinsom-shibai error"></i>');
 $('.jinsom-chat-group-list').append('<p class="jinsom-chat-message-tips error"><span>'+msg.msg+'</span></p>');
 $('.jinsom-chat-group-list-content').scrollTop($('.jinsom-chat-group-list-content')[0].scrollHeight);
+if(msg.code==3){
+function c(){myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/mywallet/recharge-vip.php'});}setTimeout(c,1500);	
+}
 }
 
 }

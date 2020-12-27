@@ -530,6 +530,10 @@ $('.jinsom-publish-words-btn .publish').removeAttr('onclick');
 function d(){window.location.href=msg.url;}setTimeout(d,2000);
 }else if(msg.code==2){
 function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,2000);//弹出绑定手机号
+}else if(msg.code==5){//添加话题窗口
+function c(){jinsom_publish_topic_form();}setTimeout(c,1500);
+}else if(msg.code==3){//弹窗开通会员
+function c(){jinsom_recharge_vip_form();}setTimeout(c,1500);
 }
 
 }
@@ -636,6 +640,10 @@ $('.jinsom-publish-words-btn .publish').removeAttr('onclick');
 function d(){window.location.href=msg.url;}setTimeout(d,2000);
 }else if(msg.code==2){
 function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,2000);//弹出绑定手机号
+}else if(msg.code==5){//添加话题窗口
+function c(){jinsom_publish_topic_form();}setTimeout(c,1500);
+}else if(msg.code==3){//弹窗开通会员
+function c(){jinsom_recharge_vip_form();}setTimeout(c,1500);
 }
 
 }
@@ -713,6 +721,10 @@ $('.jinsom-publish-words-btn .publish').removeAttr('onclick');
 function d(){window.location.href=msg.url;}setTimeout(d,2000);
 }else if(msg.code==2){
 function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,2000);//弹出绑定手机号
+}else if(msg.code==5){//添加话题窗口
+function c(){jinsom_publish_topic_form();}setTimeout(c,1500);
+}else if(msg.code==3){//弹窗开通会员
+function c(){jinsom_recharge_vip_form();}setTimeout(c,1500);
 }
 
 }
@@ -788,6 +800,10 @@ ue_single_pay.execCommand('clearlocaldata');
 function d(){window.location.href=msg.url;}setTimeout(d,2000);
 }else if(msg.code==2){
 function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,2000);//弹出绑定手机号
+}else if(msg.code==5){//添加话题窗口
+function c(){jinsom_publish_topic_form();}setTimeout(c,1500);
+}else if(msg.code==3){//弹窗开通会员
+function c(){jinsom_recharge_vip_form();}setTimeout(c,1500);
 }
 
 }
@@ -944,8 +960,12 @@ ue_pay.execCommand('clearlocaldata');
 }
 
 function d(){window.location.href=msg.url;}setTimeout(d,2000);
-}else if(msg.code==2){
-function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,2000);//弹出绑定手机号
+}else if(msg.code==2){//弹出绑定手机号
+function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,2000);
+}else if(msg.code==5){//添加话题窗口
+function c(){jinsom_publish_topic_form();}setTimeout(c,1500);
+}else if(msg.code==3){//弹窗开通会员
+function c(){jinsom_recharge_vip_form();}setTimeout(c,1500);
 }
 
 }

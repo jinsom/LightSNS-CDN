@@ -14,6 +14,9 @@ $('.jinsom-member-avatar span').html('点击修改头像');
 $('#jinsom-upload-avatar').val('');
 if(data.code == 1){
 $('.jinsom-member-avatar img').attr('src',data.file_url);
+}else if(data.code == 3){
+layer.msg(data.msg);
+function c(){jinsom_recharge_vip_form();}setTimeout(c,1500);
 }else{
 layer.msg(data.msg);
 }
@@ -34,9 +37,18 @@ var bar = $('.jinsom-video-bar');
 var percent = $('.jinsom-video-percent');
 var progress = $(".jinsom-video-progress");
 
+//判断后缀
+var location=$(this).val();
+var point=location.lastIndexOf(".");
+type=location.substr(point+1);
+if(jinsom.upload_video_type.indexOf(type)== -1 ){
+layer.msg('不支持该文件类型！');
+return false;
+}
+
 $("#jinsom-upload-video-form").ajaxSubmit({
 dataType:'json',
-beforeSend: function() {
+beforeSend: function(data) {
 progress.show();
 var percentVal = '0%';
 bar.width(percentVal);
@@ -76,6 +88,16 @@ return false;
 
 //上传本地音乐
 $('body').off('click').on('change','#jinsom-upload-music', function(){
+
+//判断后缀
+var location=$(this).val();
+var point=location.lastIndexOf(".");
+type=location.substr(point+1);
+if(jinsom.upload_music_type.indexOf(type)== -1 ){
+layer.msg('不支持该文件类型！');
+return false;
+}
+
 var bar = $('.jinsom-music-bar');
 var percent = $('.jinsom-music-percent');
 var progress = $(".jinsom-music-progress");
@@ -123,6 +145,16 @@ return false;
 
 //上传背景音乐
 $('.jinsom-member-right').off('click').on('change','#jinsom-upload-user-bg-music', function(){
+
+//判断后缀
+var location=$(this).val();
+var point=location.lastIndexOf(".");
+type=location.substr(point+1);
+if(jinsom.upload_music_type.indexOf(type)== -1 ){
+layer.msg('不支持该文件类型！');
+return false;
+}
+
 var bar = $('.jinsom-bg-music-bar');
 var percent = $('.jinsom-bg-music-percent');
 var progress = $(".jinsom-bg-music-progress");
@@ -167,6 +199,16 @@ return false;
 
 //上传本地附件
 $('body').off('click').on('change','#jinsom-insert-file-input', function(){
+
+//判断后缀
+var location=$(this).val();
+var point=location.lastIndexOf(".");
+type=location.substr(point+1);
+if(jinsom.upload_file_type.indexOf(type)== -1 ){
+layer.msg('不支持该文件类型！');
+return false;
+}
+
 bar=$('.jinsom-file-bar');
 percent=$('.jinsom-file-percent');
 progress=$(".jinsom-file-progress");

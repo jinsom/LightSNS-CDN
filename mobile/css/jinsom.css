@@ -1478,10 +1478,14 @@ display: none !important;
     line-height: 7vw;
 }
 .jinsom-post-city {
-    padding: 0 4vw 2vw;
-    font-size: 4vw;
+    padding: 0 0 2vw 4vw;
+    font-size: 3.5vw;
     color: #808080;
     float: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: calc(50% - 5vw);
 }
 .jinsom-post-city i {
     font-size: 4vw;
@@ -1497,7 +1501,14 @@ display: none !important;
     color: #999;
     margin-bottom: 2vw;
     margin-left: 4vw;
-    font-size: 4vw;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 3.5vw;
+    max-width: calc(50% - 5vw);
+}
+.jinsom-post-single .jinsom-city-topic-bar .topic-list {
+    margin-left: 0;
 }
 .jinsom-city-topic-bar .topic-list a {
     color: #999;
@@ -1972,7 +1983,7 @@ display: none !important;
 }
 .jinsom-single-comment-list>div {
     position: relative;
-    padding: 4vw 4vw 0vw;
+    padding: 4vw;
     overflow: hidden;
 }
 .jinsom-comment-li.current-comment {
@@ -2656,8 +2667,7 @@ display: none !important;
 }
 .jinsom-chat-message-tips span {
     display: inline-block;
-    line-height: 8vw;
-    padding: 0 4vw;
+    padding: 1vw 4vw;
     border-radius: 10vw;
     background-color: #ccc;
     cursor: default;
@@ -8327,7 +8337,7 @@ h1 .commend:before{
     color: #333;
 }
 .jinsom-mine-box.cell li p {
-    font-size: 3.3vw;
+    font-size: 3.2vw;
     margin-top: 1vw;
 }
 
@@ -9100,4 +9110,57 @@ h1 .commend:before{
     padding: 2.5vw;
     color: #fff;
     border-radius: 1vw;
+}
+
+
+.jinsom-post-follow-user-list {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    width: 100%;
+    padding: 4vw 2vw 3vw;
+    background-color: #fff;
+    margin-bottom: 3vw;
+    box-sizing: border-box;
+}
+.jinsom-post-follow-user-list li {
+    display: inline-block;
+    width: 22%;
+    font-size: 3.5vw;
+    text-align: center;
+    position: relative;
+}
+.jinsom-post-follow-user-list li img {
+    width: 12vw;
+    height: 12vw;
+    border-radius: 100%;
+}
+.jinsom-post-follow-user-list li p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #666;
+    margin-top: 2vw;
+}
+.jinsom-post-follow-user-list li .avatarimg {
+    width: 12vw;
+    height: 12vw;
+    margin: auto;
+    position: relative;
+}
+.jinsom-post-follow-user-list li.more {
+    vertical-align: top;
+    border-radius: 100%;
+    color: #999;
+}
+.jinsom-post-follow-user-list li.more i {
+    width: 12vw;
+    height: 12vw;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 100%;
+    line-height: 12vw;
+    box-sizing: border-box;
+    color: #999;
 }

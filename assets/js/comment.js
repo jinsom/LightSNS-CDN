@@ -29,6 +29,8 @@ $(obj).parent('.jinsom-comment-textarea').next('.jinsom-post-comment-list').prep
 </li>');   
 }else if(msg.code==2){//没有绑定手机号
 function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,2000);
+}else if(msg.code==3){//弹窗开通会员
+function c(){jinsom_recharge_vip_form();}setTimeout(c,1500);
 }
 },
 });
@@ -78,6 +80,8 @@ $(".jinsom-bbs-comment-list").append('\
 ue.execCommand('cleardoc');
 }else if(msg.code==2){//没有绑定手机号
 function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,2000);
+}else if(msg.code==3){//弹窗开通会员
+function c(){jinsom_recharge_vip_form();}setTimeout(c,1500);
 }
 
 }
@@ -116,6 +120,8 @@ $(obj).siblings('.jinsom-bbs-comment-floor-list').append('\
 $(obj).siblings('.jinsom-post-comments').val('');
 }else if(msg.code==2){//没有绑定手机号
 function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,2000);
+}else if(msg.code==3){//弹窗开通会员
+function c(){jinsom_recharge_vip_form();}setTimeout(c,1500);
 }
 
 }

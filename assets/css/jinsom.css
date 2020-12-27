@@ -15097,3 +15097,48 @@ span.aplayer-thumb {
 .jinsom-bbs-download-box .download-more li .pass i {
     font-style: normal;
 }
+
+.jinsom-post-follow-user-list {
+    margin-bottom: 15px;
+    text-align: center;
+    margin-top: 5px;
+    background-color: #fff;
+    padding: 12px 10px;
+    border-radius: 4px;
+}
+.jinsom-post-follow-user-list li {
+    float: left;
+    width: 10%;
+}
+.jinsom-post-follow-user-list li .avatarimg {
+    width: 45px;
+    height: 45px;
+    margin: auto;
+    position: relative;
+}
+.jinsom-post-follow-user-list li .avatarimg img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    border: 1px solid #f1f1f1;
+}
+.jinsom-post-follow-user-list li p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #666;
+    margin-top: 5px;
+    font-size: 12px;
+    width: 90%;
+    margin: 5px auto 0;
+}
+.jinsom-post-follow-user-list li.more i {
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 100%;
+    box-sizing: border-box;
+    color: #999;
+}

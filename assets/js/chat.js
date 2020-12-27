@@ -446,10 +446,18 @@ type: "POST",
 url:jinsom.module_url+"/chat/msg.php",
 data: {author_id:author_id,content:content},
 success: function(msg){
-if(msg.code==0){
+if(msg.code==0||msg.code==3){
 $('.jinsom-chat-message-list .myself').last().children('.jinsom-chat-message-list-content').prepend('<i class="jinsom-icon error jinsom-shibai" title="'+msg.msg+'"></i>');
 $('.jinsom-chat-message-list').append('<p class="jinsom-chat-message-list-join error"><span>'+msg.msg+'</span></p>');
 $('.jinsom-chat-message-list').scrollTop($('.jinsom-chat-message-list')[0].scrollHeight);
+if(msg.code==3){//弹窗开通会员
+function c(){jinsom_recharge_vip_form();}setTimeout(c,1500);
+}
+}else if(msg.code==1){//聊天隐私
+if(msg.im_privacy==1){
+$('.jinsom-chat-message-list').append('<p class="jinsom-chat-message-list-join error"><span>'+msg.im_privacy_tips+'</span></p>');
+$('.jinsom-chat-message-list').scrollTop($('.jinsom-chat-message-list')[0].scrollHeight);
+}
 }
 }
 });
@@ -477,10 +485,13 @@ type: "POST",
 url:jinsom.module_url+"/chat/msg-group.php",
 data: {bbs_id:bbs_id,content:content},
 success: function(msg){
-if(msg.code==0){
+if(msg.code==0||msg.code==3){
 $('.jinsom-chat-message-group-list .myself').last().children('.jinsom-chat-message-list-content').prepend('<i class="jinsom-icon error jinsom-shibai" title="'+msg.msg+'"></i>');
 $('.jinsom-chat-message-group-list').append('<p class="jinsom-chat-message-list-join error"><span>'+msg.msg+'</span></p>');
 $('.jinsom-chat-message-group-list').scrollTop($('.jinsom-chat-message-group-list')[0].scrollHeight);
+if(msg.code==3){//弹窗开通会员
+function c(){jinsom_recharge_vip_form();}setTimeout(c,1500);
+}
 }	
 }
 });	
