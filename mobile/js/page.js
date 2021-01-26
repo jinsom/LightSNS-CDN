@@ -523,6 +523,44 @@ qdDay: hadsign,
 
 
 
+//邮件注册
+myApp.onPageBeforeInit('reg-email', function (page) {
+if($('#code-2').length>0&&!jinsom.is_admin){
+new TencentCaptcha(document.getElementById('code-2'),jinsom.machine_verify_appid,function(res){
+if(res.ret === 0){jinsom_get_code(120,'mail',res.ticket,res.randstr);}
+});
+}
+if($('#reg-2').length>0&&!jinsom.is_admin){
+new TencentCaptcha(document.getElementById('reg-2'),jinsom.machine_verify_appid,function(res){
+if(res.ret === 0){jinsom_pop_reg_mail(res.ticket,res.randstr);}
+});
+}
+});
+
+
+//手机号注册
+myApp.onPageBeforeInit('reg-phone', function (page) {
+if($('#code-1').length>0&&!jinsom.is_admin){
+new TencentCaptcha(document.getElementById('code-1'),jinsom.machine_verify_appid,function(res){
+if(res.ret === 0){jinsom_get_code(120,'phone',res.ticket,res.randstr);}
+});
+}
+if($('#reg-1').length>0&&!jinsom.is_admin){
+new TencentCaptcha(document.getElementById('reg-1'),jinsom.machine_verify_appid,function(res){
+if(res.ret === 0){jinsom_pop_reg_phone(res.ticket,res.randstr);}
+});
+}
+});
+
+//邀请注册
+myApp.onPageBeforeInit('reg-invite', function (page) {
+if($('#reg-3').length>0&&!jinsom.is_admin){
+new TencentCaptcha(document.getElementById('reg-3'),jinsom.machine_verify_appid,function(res){
+if(res.ret === 0){jinsom_pop_reg_invite(res.ticket,res.randstr);}
+});
+}
+});
+
 
 //发布红包
 myApp.onPageBeforeInit('publish-redbag', function (page) {
@@ -828,7 +866,7 @@ bbs_loading = true;
 bbs_post_list.after(jinsom.loading_post);
 type=$('.jinsom-bbs-menu-'+bbs_id+' li.on').attr('type');
 topic=$('.jinsom-bbs-menu-'+bbs_id+' li.on').attr('topic');
-if(type==''){type='new';}
+if(type==''||type==undefined){type='new';}
 
 $.ajax({
 type: "POST",

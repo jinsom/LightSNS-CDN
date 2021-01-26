@@ -150,10 +150,10 @@ username=$('.jinsom-reg-phone .name input').val();
 phone=$('.jinsom-reg-phone .phone input').val();
 password=$('.jinsom-reg-phone .pass input').val();
 code=$('.jinsom-reg-phone .code input').val();
-if(username==''){layer.open({content:'用户名不能为空！',skin:'msg',time:2});return false;}
+if(username==''){layer.open({content:'昵称不能为空！',skin:'msg',time:2});return false;}
 if(phone==''){layer.open({content:'手机号不能为空！',skin:'msg',time:2});return false;}
 if(password==''){layer.open({content:'密码不能为空！',skin:'msg',time:2});return false;}
-if(!$('.jinsom-reg-phone .jinsom-reg-doc input').is(':checked')){layer.open({content:'请仔细阅读并勾选用户注册条款！',skin:'msg',time:2});return false;}
+if(!$('.jinsom-reg-doc input').is(':checked')){layer.open({content:'请仔细阅读并勾选用户注册条款！',skin:'msg',time:2});return false;}
 myApp.showIndicator();
 $.ajax({
 type: "POST",
@@ -176,11 +176,11 @@ username=$('.jinsom-reg-mail .name input').val();
 mail=$('.jinsom-reg-mail .mail input').val();
 password=$('.jinsom-reg-mail .pass input').val();
 code=$('.jinsom-reg-mail .code input').val();
-if(username==''){layer.open({content:'用户名不能为空！',skin:'msg',time:2});return false;}
+if(username==''){layer.open({content:'昵称不能为空！',skin:'msg',time:2});return false;}
 if(mail==''){layer.open({content:'邮箱不能为空！',skin:'msg',time:2});return false;}
 if(code==''){layer.open({content:'验证码不能为空！',skin:'msg',time:2});return false;}
 if(password==''){layer.open({content:'密码不能为空！',skin:'msg',time:2});return false;}
-if(!$('.jinsom-reg-mail .jinsom-reg-doc input').is(':checked')){layer.open({content:'请仔细阅读并勾选用户注册条款！',skin:'msg',time:2});return false;}
+if(!$('.jinsom-reg-doc input').is(':checked')){layer.open({content:'请仔细阅读并勾选用户注册条款！',skin:'msg',time:2});return false;}
 myApp.showIndicator();
 $.ajax({
 type: "POST",
@@ -202,10 +202,10 @@ function jinsom_pop_reg_invite(ticket,randstr){
 username=$('.jinsom-reg-invite .name input').val();
 password=$('.jinsom-reg-invite .pass input').val();
 code=$('.jinsom-reg-invite .code input').val();
-if(username==''){layer.open({content:'用户名不能为空！',skin:'msg',time:2});return false;}
+if(username==''){layer.open({content:'昵称不能为空！',skin:'msg',time:2});return false;}
 if(code==''){layer.open({content:'邀请码不能为空！',skin:'msg',time:2});return false;}
 if(password==''){layer.open({content:'密码不能为空！',skin:'msg',time:2});return false;}
-if(!$('.jinsom-reg-invite .jinsom-reg-doc input').is(':checked')){layer.open({content:'请仔细阅读并勾选用户注册条款！',skin:'msg',time:2});return false;}
+if(!$('.jinsom-reg-doc input').is(':checked')){layer.open({content:'请仔细阅读并勾选用户注册条款！',skin:'msg',time:2});return false;}
 myApp.showIndicator();
 $.ajax({
 type: "POST",

@@ -1491,7 +1491,7 @@ display: none !important;
     flex: 2;
 }
 .jinsom-single .jinsom-tips {
-    margin: 0;
+    margin: 0 0 4vw;
 }
 .jinsom-single .jinsom-hide-content {
     margin: 0vw 0 2vw;
@@ -1792,10 +1792,10 @@ display: none !important;
     align-items: center;
 }
 .jinsom-post-words-tool >a:first-child {
-    line-height: 9vw;
+    line-height: 8vw;
     color: #999;
     font-size: 3.5vw;
-    height: 9vw;
+    height: 8vw;
     background-color: #f6f6f6;
     border-radius: 20vw;
     width: 30vw;
