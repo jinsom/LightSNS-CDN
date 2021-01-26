@@ -486,7 +486,12 @@ success:function(msg){
 layer.closeAll('loading');
 layer.msg(msg.msg);
 if(msg.code==1){
-function d(){layer.closeAll();}setTimeout(d,2000);
+function d(){
+layer.closeAll();
+if(msg.post_url){
+window.open(msg.post_url,'_self');
+}
+}setTimeout(d,2000);
 }   
 }
 });
@@ -1563,7 +1568,7 @@ $(obj).removeClass('had').addClass('no');
 $(obj).html('<i class="jinsom-icon jinsom-guanzhu"></i>关注');
 }else if(msg.code==2){//关注成功
 $(obj).removeClass('no').addClass('had'); 
-$(obj).html('<i class="jinsom-icon jinsom-yiguanzhu"></i> 已关');     
+$(obj).html('<i class="jinsom-icon jinsom-yiguanzhu"></i>已关');     
 }else if(msg.code==3){//相互关注成功
 $(obj).removeClass('no').addClass('had');  
 $(obj).html('<i class="jinsom-icon jinsom-xianghuguanzhu"></i>互关');    
@@ -2447,7 +2452,7 @@ $('.jinsom-more-like-content').html(msg);
 function jinsom_emali_notice_form(){
 layer.load(1);
 $.ajax({   
-url:jinsom.jinsom_ajax_url+"/stencil/emali-notice.php",
+url:jinsom.jinsom_ajax_url+"/stencil/email-notice.php",
 type:'POST',      
 success:function(msg){
 layer.closeAll('loading');
@@ -2760,7 +2765,7 @@ layer.closeAll();//关闭插入的表单
 
 
 //赠送礼物表单
-function jinsom_send_gift_form(author_id){
+function jinsom_send_gift_form(author_id,post_id){
 if(!jinsom.is_login){
 jinsom_pop_login_style();	
 return false;
@@ -2769,7 +2774,7 @@ layer.load(1);
 $.ajax({
 type: "POST",
 url:jinsom.jinsom_ajax_url+"/stencil/send-gift.php",
-data:{author_id:author_id},
+data:{author_id:author_id,post_id:post_id},
 success: function(msg){
 layer.closeAll('loading');
 layer.open({
@@ -2786,7 +2791,7 @@ content: msg
 }
 
 //送礼物
-function jinsom_send_gift(author_id){
+function jinsom_send_gift(author_id,post_id){
 if($('.jinsom-send-gift-form li.on').length==0){
 layer.msg('请选择需要赠送的礼物！');	
 return false;
@@ -2797,12 +2802,16 @@ layer.load(1);
 $.ajax({
 type: "POST",
 url:jinsom.jinsom_ajax_url+"/action/send-gift.php",
-data: {name:name,author_id:author_id},
+data: {name:name,author_id:author_id,post_id:post_id},
 success: function(msg){
 layer.closeAll('loading');
 layer.msg(msg.msg);
 if(msg.code==1){
+if(msg.post_url){
+function d(){window.open(msg.post_url,'_self');}setTimeout(d,2000);
+}else{
 function d(){window.location.reload();}setTimeout(d,2000);
+}
 }
 }
 });
@@ -3076,7 +3085,7 @@ layer.open({
 title:'提现',
 skin:'jinsom-cash-form',
 type: 1,
-area: ['380px', '405px'], 
+area: ['380px', 'auto'], 
 content: msg
 });
 }

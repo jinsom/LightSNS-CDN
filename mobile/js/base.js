@@ -38,7 +38,7 @@ $('.jinsom-right-bar').removeClass('right-bar-hidden');
 
 //点击底部tab返回顶部
 $(document).on('click','.tabbar a.active',function(){
-console.log('aaa');
+// console.log('aaa');
 if($('.view.active .page-content').scrollTop()>100){
 $('.view.active .page-content').animate({scrollTop:0},200);	
 if($('.jinsom-home-menu li.on').length>0){
@@ -50,4 +50,19 @@ jinsom_index_notice_js_load();
 
 }
 }); 
+
+
+
+//自动滑动菜单
+$(document).on('click','.jinsom-home-menu li,.jinsom-member-menu li,.jinsom-topic-menu li',function(){
+menu_width=0;
+for(var i=0;i<$(this).index();i++){
+menu_width+=$(this).parent().children('li').eq(i).outerWidth(true);
+}
+$(this).parent().animate({
+scrollLeft:menu_width-$(window).width()/2+$(this).outerWidth()
+});
+});
+
+
 });

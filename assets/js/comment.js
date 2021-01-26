@@ -58,7 +58,6 @@ content = msg.content.replace(/\\/g,'');
 $(".jinsom-bbs-comment-list").append('\
 <div class="jinsom-bbs-single-box clear">\
 <div class="left">\
-<?php echo $landlord;?>\
 <div class="avatar">\
 '+jinsom.vip_icon+'\
 '+jinsom.avatar+'\

@@ -1287,7 +1287,7 @@ $('#jinsom-pop-power').val($(this).attr('data'));
 
 
 if(type=='pay'||type=='password'||type=='vip'||type=='login'){
-$('.power-content textarea,.power-content label').show();
+$('.power-content textarea,.power-content label,.power-content .img-power').show();
 
 if(type=='pay'){
 $('.power-content .price').show();
@@ -1301,7 +1301,7 @@ if(type=='vip'||type=='login'){
 $('.power-content .price,.power-content .password').hide();
 }
 }else if(type=='open'||type=='private'){
-$('.power-content .price,.power-content .password,.power-content textarea,.power-content label').hide();
+$('.power-content .price,.power-content .password,.power-content textarea,.power-content label,.power-content .img-power').hide();
 }
 layer.closeAll();
 });
@@ -1449,7 +1449,7 @@ var location=$(this).val();
 var point=location.lastIndexOf(".");
 type=location.substr(point+1);
 if(jinsom.upload_video_type.indexOf(type)== -1 ){
-layer.open({content:'不支持该文件类型！',skin:'msg',time:2});
+layer.open({content:'不支持该文件类型！'+type,skin:'msg',time:2});
 return false;
 }
 
@@ -1587,7 +1587,7 @@ var location=$(this).val();
 var point=location.lastIndexOf(".");
 type=location.substr(point+1);
 if(jinsom.upload_music_type.indexOf(type)== -1 ){
-layer.open({content:'不支持该文件类型！',skin:'msg',time:2});
+layer.open({content:'不支持该文件类型！'+type,skin:'msg',time:2});
 return false;
 }
 	
@@ -2547,6 +2547,7 @@ return url;
 
 //提交筛选表单
 function jinsom_page_select_submit_form(){
+waterfull_margin=$('#jinsom-waterfull-margin').height();
 $('.jinsom-page-select-post-list').before(jinsom.loading_post);
 url=jinsom_get_select_data()+'&page=1';
 $.ajax({
@@ -2560,7 +2561,7 @@ jinsom_lightbox();
 if($('.jinsom-select-content').hasClass('waterfall')){//渲染瀑布流
 var grid=$('.jinsom-page-select-post-list').masonry({
 itemSelector:'li',
-gutter:11,
+gutter:waterfull_margin,
 // transitionDuration:0
 });
 grid.masonry('reloadItems'); 
@@ -2621,6 +2622,7 @@ if(select_loading) return;
 select_page=parseInt($('.jinsom-select-content').attr('page'));
 select_loading=true;
 select_list.after(jinsom.loading_post);
+waterfull_margin=$('#jinsom-waterfull-margin').height();
 $.ajax({
 type: "POST",
 url:jinsom.jinsom_ajax_url+"/data/select.php",
@@ -2633,7 +2635,7 @@ jinsom_lightbox();
 if($('.jinsom-select-content').hasClass('waterfall')){//渲染瀑布流
 var grid=$('.jinsom-page-select-post-list').masonry({
 itemSelector:'li',
-gutter:11,
+gutter:waterfull_margin,
 transitionDuration:0
 });
 grid.masonry('reloadItems'); 

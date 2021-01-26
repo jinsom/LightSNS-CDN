@@ -40,29 +40,6 @@ data: {login_out:1},
 }
 
 
-//完善用户名
-function jinsom_perfect(){
-username=$('#username').val();
-if(username==''){
-layer.open({content:'请输入用户名！',skin:'msg',time:2});
-return false;
-}
-myApp.showIndicator();
-$.ajax({
-type: "POST",
-dataType:'json',
-url:jinsom.jinsom_ajax_url+"/action/perfect.php",
-data: {username:username},
-success: function(msg){
-myApp.hideIndicator();
-layer.open({content:msg.msg,skin:'msg',time:2});
-if(msg.code==1){
-function a(){window.location.reload();}setTimeout(a,2000);  
-}
-}
-});
-
-}
 
 
 //获取验证码（手机注册、邮箱注册、修改手机号、修改邮箱）
@@ -249,13 +226,7 @@ function a(){window.location.reload();}setTimeout(a,2000);
 
 //解绑QQ登录
 function jinsom_social_login_off(type,author_id,obj){
-if(type=='qq'){
-title='你确定要解除QQ登录吗？';	
-}else if(type=='weibo'){
-title='你确定要解除微博登录吗？';	
-}else if(type=='wechat'){
-title='你确定要解除微信登录吗？';	
-}
+title='你确定要解除绑定'+$(obj).children('.title').text()+'吗？';	
 layer.open({
 content: title
 ,btn: ['确定', '取消']
@@ -271,7 +242,7 @@ myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
 $(obj).children('.title').html('已经解绑QQ登录');
-$(obj).children('.a').remove();
+$(obj).children('.b').remove();
 }
 }
 });  

@@ -21,14 +21,7 @@ $('.page-content').animate({scrollTop: 0 },0);
 data=$(obj).attr('data');
 
 
-//自动滑动菜单
-menu_width=0;
-for(var i=0;i<$(obj).index();i++){
-menu_width+=$(obj).parent().children('li').eq(i).outerWidth(true);
-}
-$(obj).parent().animate({
-scrollLeft:menu_width-$(window).width()/2+$(obj).outerWidth()
-});
+
 
 index=$(obj).index();
 

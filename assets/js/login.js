@@ -649,31 +649,6 @@ layer.msg(msg.msg);
 
 
 
-
-//完善资料后端处理
-function jinsom_perfect(){
-username=$.trim($('#jinsom-pop-username').val());
-if(username==''){layer.msg('请输入你的用户名！');return false;}
-layer.load(1);
-$.ajax({
-type: "POST",
-dataType:'json',
-url:jinsom.jinsom_ajax_url+"/action/perfect.php",
-data: {username:username},
-success: function(msg){
-layer.closeAll('loading');
-layer.msg(msg.msg); 
-if(msg.code==1){
-$('.jinsom-header-menu-avatar p').html(username);
-$('.jinsom-sidebar-user-info-username .name a').html(username);
-layer.closeAll();
-layer.msg(msg.msg); 
-}
-
-}
-});
-}
-
 //修改昵称后端处理
 function jinsom_update_nickname(author_id){
 nickname=$.trim($('#jinsom-pop-username').val());
@@ -748,14 +723,7 @@ function d(){window.location.reload();}setTimeout(d,2500);
 
 //解绑QQ登录
 function jinsom_social_login_off(type,author_id,obj){
-if(type=='qq'){
-title='你确定要解除QQ登录吗？';	
-}else if(type=='weibo'){
-title='你确定要解除微博登录吗？';	
-}else if(type=='wechat'){
-title='你确定要解除微信登录吗？';	
-}
-this_dom=$(obj);
+title='你确定要解绑'+$(obj).parents('.jinsom-binding-social').prev().text()+'吗？';
 layer.confirm(title, {
 title:'解除绑定',
 btnAlign: 'c',
@@ -771,7 +739,7 @@ success: function(msg){
 layer.closeAll('loading');
 layer.msg(msg.msg);
 if(msg.code==1){
-this_dom.parents('.jinsom-binding-social').empty();	
+$(obj).parents('.jinsom-binding-social').empty();	
 }
 }
 });    
