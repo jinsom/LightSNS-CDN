@@ -7744,7 +7744,7 @@ figure.effect-ming:hover figcaption::before, figure.effect-ming:hover p {
 .jinsom-sidebar-login .social li.weibo a {
     color: #e12328;
 }
-.jinsom-sidebar-login .social li.wechat a {
+.jinsom-sidebar-login .social li.wechat_code a,.jinsom-sidebar-login .social li.wechat_follow a {
     color: #25b415;
 }
 

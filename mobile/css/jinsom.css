@@ -954,6 +954,7 @@ h1, h2, h3, h4, h5, h6 {
 .jinsom-login-input-form p {
     position: relative;
     margin: 0 0 5vw;
+    opacity: 0.8;
 }
 .jinsom-mobile-login-form-btn>div {
     position: relative;
@@ -965,6 +966,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 8vw;
     line-height: 11vw;
     border-radius: 10vw;
+    opacity: 0.9;
 }
 .jinsom-mobile-login-form-btn {
     display: flex;
