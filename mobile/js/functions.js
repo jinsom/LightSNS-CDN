@@ -963,7 +963,7 @@ return false;
 }
 type=$('.jinsom-search-post-list').attr('type');
 $('.jinsom-search-tab').show();
-$('.jinsom-search-content').css({'margin-top':'10vw','background-color':'#eeeeee'});
+$('.jinsom-search-content').addClass('result');
 $('.jinsom-search-hot,.jinsom-pop-search-bbs,.jinsom-pop-search-topic').remove();
 $('#jinsom-search').val(keyword);
 jinsom_search_js(keyword,type);
@@ -1276,7 +1276,7 @@ layer.open({
 type: 1,
 content:msg,
 anim: 'up',
-style:'position:fixed;bottom:0;left:0;width: 100%;border:none;box-sizing: border-box;'
+style:'position:fixed;bottom:2vw;left:2vw;width:96vw;border:none;box-sizing:border-box;border-radius:2vw;padding:2vw;'
 });	
 
 //复制侧栏分享链接
@@ -2416,7 +2416,7 @@ type: 1,
 content: $('.jinsom-reg-type-form').html(),
 anim: 'up',
 className:'jinsom-reg-type-form-content',
-style: 'position:fixed;bottom:0;left:0;width:100%;border:none;'
+style: 'position:fixed;bottom:2vw;left:2vw;width:96vw;border:none;box-sizing:border-box;border-radius:2vw;padding:2vw;'
 });	
 }
 

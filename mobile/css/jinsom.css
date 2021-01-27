@@ -1,6 +1,7 @@
 @charset "utf-8"; 
 :root {
     --jinsom-color: #46c47c;
+    --jinsom-content-bg-color: #f8f8f8;
 }
 .jinsom-home-menu::-webkit-scrollbar, .jinsom-video-special-menu::-webkit-scrollbar{
     width:0;
@@ -377,9 +378,6 @@ h1, h2, h3, h4, h5, h6 {
 /*----------------------------------首页---------------------------------*/
 #jinsom-view-home .page-content {
     margin-bottom: 14.5vw;
-}
-.page-content.home {
-    background-color: #f8f8f8;
 }
 .jinsom-refresh-success {
     text-align: center;
@@ -1379,8 +1377,9 @@ display: none !important;
 .jinsom-post-images-list a.blur img {
     filter: blur(15px);
     -webkit-filter: blur(15px);
+    background-color: #888;
 }
-.jinsom-post-images-list a.blur i {
+.jinsom-post-images-list a.blur i.jinsom-icon {
     font-size: 7vw;
     text-align: center;
     position: absolute;
@@ -1390,6 +1389,10 @@ display: none !important;
     right: 0;
     top: 50%;
     margin-top: -3.5vw;
+    opacity: 0.5;
+}
+.jinsom-post-images-list a.blur i.gif {
+    opacity: 0.4;
 }
 
 
@@ -3377,7 +3380,7 @@ display: none !important;
 /*发布动态*/
 .jinsom-publish-words-form {
     background-color: #fff;
-    padding: 4vw;
+    padding: 2vw;
 }
 .jinsom-publish-words-form .title {
     margin-top: 4vw;
@@ -3391,7 +3394,7 @@ display: none !important;
     padding: 0;
 }
 .jinsom-publish-words-form .content {
-    margin-top: 4vw;
+    margin-top: 2vw;
     position: relative;
 }
 .jinsom-publish-words-form .content textarea {
@@ -3400,13 +3403,13 @@ display: none !important;
     height: 40vw;
     border: none;
     resize: none;
-    font-size: 4.5vw;
     background-repeat: no-repeat;
     background-position: right 2vw;
     background-size: 600px;
-    padding: 4vw;
+    padding: 3vw;
     background-color: #f8f8f8;
     border-radius: 1vw;
+    font-size: 4vw;
 }
 .jinsom-publish-words-form .content>.smile {
     position: absolute;
@@ -3724,9 +3727,6 @@ display: none !important;
 }
 
 /*发现页面*/
-.jinsom-find-content {
-    background-color: #f8f8f8;
-}
 .jinsom-find-box {
     margin: 2vw;
     border-radius: 1vw;
@@ -4231,7 +4231,7 @@ display: none !important;
 
 /*论坛页面*/
 .jinsom-bbs-bg {
-    height: 54vw;
+    height: 44vw;
 }
 .jinsom-bbs-content {
     background-position: top;
@@ -4239,7 +4239,6 @@ display: none !important;
     background-size: cover;
 }
 .jinsom-bbs-main-content {
-    background-color: #f8f8f8;
     padding-top: 1px;
     border-radius: 1vw 1vw 0 0;
     padding-bottom: 2vw;
@@ -4306,10 +4305,6 @@ display: none !important;
 }
 .jinsom-bbs-header .name .follow.had {
     background-color: #bbb;
-}
-.jinsom-bbs-content,.jinsom-topic-content {
-    padding-top: 0 !important;
-    background-color: #f8f8f8;
 }
 .jinsom-bbs-header .member li {
     float: left;
@@ -4939,9 +4934,6 @@ h1 .commend:before{
 
 
 /*设置页面*/
-.jinsom-setting-content {
-    background-color: #f8f8f8;
-}
 .jinsom-setting-content.desc {
     background-color: #fff;
 }
@@ -5155,6 +5147,9 @@ h1 .commend:before{
 .jinsom-search-content {
     padding-bottom: 11vw !important;
 }
+.jinsom-search-content.result{
+    margin-top:10vw;
+}
 [data-page=search] .center {
     left: 0 !important;
 }
@@ -5242,7 +5237,6 @@ h1 .commend:before{
     background-size: cover;
     background-position: center;
     margin: 2vw;
-    margin-top: 12vw;
     border-radius: 1vw;
 }
 .jinsom-topic-page-header .shadow {
@@ -5333,9 +5327,6 @@ h1 .commend:before{
 
 
 /*论坛大厅*/
-.jinsom-show-bbs-content{
-    background-color: #f8f8f8;
-}
 .jinsom-bbs-tab-post-header {
     text-align: center;
     overflow-x: scroll;
@@ -5674,8 +5665,8 @@ h1 .commend:before{
 
 /*所属圈子*/
 .jinsom-single-bbs-info {
-    border-top: 2vw solid #eeeeee;
-    border-bottom: 2vw solid #eeeeee;
+    border-top: 2vw solid var(--jinsom-content-bg-color);
+    border-bottom: 2vw solid var(--jinsom-content-bg-color);
     padding: 0 4vw;
 }
 .jinsom-single-bbs-info .title {
@@ -6068,6 +6059,9 @@ h1 .commend:before{
     padding: 4vw 0 0;
     border-bottom: 1px solid #f1f1f1;
 }
+.jinsom-post-more-form .box:nth-last-child(2) {
+    border-bottom: none;
+}
 .jinsom-post-more-form .box:first-child {
     padding-top: 8vw;
 }
@@ -6112,12 +6106,13 @@ h1 .commend:before{
 .jinsom-post-more-form .box.share li i.jinsom-haibao {
     color: #03A9F4;
 }
-.jinsom-post-more-form .cancel,.jinsom-reg-type-form-content .cancel {
+.jinsom-post-more-form .cancel, .jinsom-reg-type-form-content .cancel {
     text-align: center;
     padding: 3vw;
     letter-spacing: 2px;
     background-color: #f8f8f8;
     color: #777;
+    border-radius: 2vw;
 }
 .jinsom-bbs-post-list>.jinsom-post-words:last-child {
     margin-bottom: 0;
@@ -6959,27 +6954,23 @@ h1 .commend:before{
 }
 
 /*案例页面*/
-.jinsom-case-page-content {
-    background: #f8f8f8;
-}
 .jinsom-case-content {
-    padding: 14vw 4vw 4vw 4vw;
+    padding: 2vw !important;
 }
 .jinsom-case-content ul{
     padding: 0;
     margin: 0;
 }
 .jinsom-case-content ul li {
-    width: 44vw;
+    width: 47vw;
     float: left;
-    margin-bottom: 4vw;
+    margin-bottom: 2vw;
     box-sizing: border-box;
     border-radius: 1vw;
     background-color: #fff;
-    box-shadow: 0 5px 10px rgba(0,0,0,.10);
 }
 .jinsom-case-content ul li:nth-child(2n-1) {
-    margin-right: 4vw;
+    margin-right: 2vw;
 }
 .jinsom-case-avatar {
     height: 28vw;
@@ -7247,8 +7238,7 @@ h1 .commend:before{
 
 /*全站通知*/
 .jinsom-site-notice-content {
-    padding: 15vw 4vw !important;
-    background-color: #f8f8f8;
+    padding: 12vw 2vw !important;
 }
 .jinsom-site-notice-content li {
     background-color: #fff;
@@ -7256,17 +7246,19 @@ h1 .commend:before{
     border-radius: 1vw;
     position: relative;
 }
-.jinsom-site-notice-content li .content img {
-    width: 100%;
-}
-.jinsom-site-notice-content li .content img.wp-smiley {
-    width: 6.5vw;
-}
 .jinsom-site-notice-content li .content {
-    padding: 4vw;
+    padding: 2vw;
     line-height: 7vw;
     overflow: hidden;
     min-height: 25vw;
+    font-size: 3.5vw;
+}
+.jinsom-site-notice-content li .content img {
+    width: 100%;
+    border-radius: 1vw;
+}
+.jinsom-site-notice-content li .content img.wp-smiley {
+    width: 6.5vw;
 }
 .jinsom-site-notice-content li i {
     width: 2.5vw;
@@ -7495,9 +7487,6 @@ h1 .commend:before{
 #jinsom-publish-video-demo {
     margin: 0;
     max-height: inherit;
-}
-.jinsom-video-page-content {
-    background: #f8f8f8;
 }
 .jinsom-comment-content-main {
     position: relative;
@@ -8230,7 +8219,6 @@ h1 .commend:before{
 
 /*收藏*/
 .jinsom-collect-content {
-    background-color: #f8f8f8;
     padding-top: 21vw !important;
 }
 .jinsom-collect-img-content {
@@ -8295,9 +8283,6 @@ h1 .commend:before{
 }
 
 
-.jinsom-mine-page {
-    background: #f8f8f8;
-}
 .jinsom-mine-box {
     margin-bottom: 2vw;
 }
@@ -8395,9 +8380,6 @@ h1 .commend:before{
 .right-bar-hidden{
     transition-duration: .2s;
     transform: translate3d(120%,0,0);
-}
-.page{
-    background: #f8f8f8;
 }
 .subnavbar .jinsom-paixu {
     color: #555;
@@ -8940,7 +8922,7 @@ h1 .commend:before{
     width: calc((100% - 2vw)/2);
     float: left;
     margin-right: 10px;
-    margin-bottom: 11px;
+    margin-bottom: 7.8px;
     position: relative;
     border-radius: 1vw;
 }
@@ -9114,11 +9096,12 @@ h1 .commend:before{
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     white-space: nowrap;
-    width: 100%;
     padding: 4vw 2vw 3vw;
     background-color: #fff;
     margin-bottom: 2vw;
     box-sizing: border-box;
+    margin: 2vw;
+    border-radius: 2vw;
 }
 .jinsom-post-follow-user-list li {
     display: inline-block;
@@ -9161,9 +9144,7 @@ h1 .commend:before{
     color: #999;
 }
 
-.jinsom-reg-type-form-content .layui-m-layercont {
-    padding: 4vw !important;
-}
+
 .jinsom-reg-type-form-content li {
     float: left;
     width: 25%;
@@ -9200,4 +9181,8 @@ h1 .commend:before{
     margin: 0 2vw;
     text-align: center;
     color: #666;
+}
+
+.page,.jinsom-find-content,.jinsom-sns-page-content,.jinsom-mine-page,.jinsom-setting-content,.jinsom-show-bbs-content,.jinsom-case-page-content,.jinsom-site-notice-content,.jinsom-search-content.result,.jinsom-video-page-content,.jinsom-bbs-main-content,.jinsom-topic-content,.jinsom-collect-content {
+    background: var(--jinsom-content-bg-color);
 }

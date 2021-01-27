@@ -15068,8 +15068,9 @@ span.aplayer-thumb {
     filter: blur(15px);
     -webkit-filter: blur(15px);
     cursor: default;
+    background-color: #888;
 }
-.jinsom-post-images-list .blur i {
+.jinsom-post-images-list .blur i.jinsom-icon {
     font-size: 30px;
     text-align: center;
     position: absolute;
@@ -15079,4 +15080,8 @@ span.aplayer-thumb {
     right: 0;
     top: 50%;
     margin-top: -15px;
+    opacity: 0.5;
+}
+.jinsom-post-images-list a.blur i.gif {
+    opacity: 0.4;
 }
