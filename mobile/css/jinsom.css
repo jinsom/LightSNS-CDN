@@ -726,7 +726,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /*----------------------------我的-------------------------------*/
 .jinsom-mine-page li i {
-    font-size: 5vw;
+    font-size: 5.5vw;
 }
 .jinsom-mine-page li.profile .item-media i, .jinsom-mine-page li.style .item-media i {
     vertical-align: -2vw;
@@ -3781,9 +3781,10 @@ display: none !important;
     width: 16.8vw;
     text-align: center;
     margin-right: 2vw;
-    margin-top: 5vw;
+    margin-top: 3vw;
+    margin-bottom: 2vw;
 }
-.jinsom-find-box.bbs .content li:nth-child(5n) {
+.jinsom-find-box.bbs.a .content li:nth-child(5n) {
     margin-right: 0;
 }
 .jinsom-find-box.bbs .content li .img {
@@ -3803,6 +3804,106 @@ display: none !important;
     white-space: nowrap;
     font-size: 3.5vw;
 }
+
+.jinsom-find-box.bbs.b .content li {
+    width: calc((100% - 2vw)/2);
+    text-align: left;
+    margin-top: 2vw;
+}
+.jinsom-find-box.bbs.b .content li:nth-child(2n) {
+    margin-right: 0;
+}
+.jinsom-find-box.bbs.b .content li a {
+    display: flex;
+    align-items: center;
+}
+.jinsom-find-box.bbs.b .content li .img {
+    float: left;
+    margin-right: 2vw;
+}
+.jinsom-find-box.bbs.b .content li .name {
+    margin: 0;
+    font-size: 4vw;
+}
+
+.jinsom-find-box.bbs.c .content li {
+    width: 100%;
+    text-align: left;
+    position: relative;
+    margin-top: 4vw;
+    margin-bottom: 3vw;
+}
+.jinsom-find-box.bbs.c .content li .img {
+    float: left;
+    margin-right: 2vw;
+}
+.jinsom-find-box.bbs.c .content li .name {
+    margin-top: 0;
+    width: calc(100% - 36vw);
+    float: left;
+}
+.jinsom-find-box.bbs.c .content li .name p:first-child {
+    font-size: 4vw;
+}
+.jinsom-find-box.bbs.c .content li .name p:last-child {
+    color: #999;
+    margin-top: 2vw;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.jinsom-find-box.bbs.c .content li .follow,.jinsom-find-box.bbs.d .content li .follow {
+    position: absolute;
+    right: 0;
+    color: #ffffff;
+    border-radius: 1vw;
+    font-size: 3vw;
+    background-color: #46c47c;
+    display: inline-block;
+    padding: 0vw 2vw;
+    top: 2vw;
+}
+.jinsom-find-box.bbs.c .content li .follow.had,.jinsom-find-box.bbs.d .content li .follow.had {
+    background-color: #bbb;
+}
+.jinsom-find-box.bbs.c .content li .follow i,.jinsom-find-box.bbs.d .content li .follow i {
+    vertical-align: -0.6vw;
+    font-size: 5.5vw;
+}
+
+.jinsom-find-box.bbs.d .content {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    width: 100%;
+}
+.jinsom-find-box.bbs.d .content li {
+    float: inherit;
+    display: inline-block;
+    width: 30vw;
+    padding: 4vw 2vw;
+    background-color: #f8f8f8;
+    margin-bottom: 2vw;
+    border-radius: 2vw;
+    height: 30vw;
+    vertical-align: bottom;
+}
+.jinsom-find-box.bbs.d .content li .name {
+    font-size: 3.5vw;
+}
+.jinsom-find-box.bbs.d .content li .name p:last-child {
+    display: none;
+}
+.jinsom-find-box.bbs.d .content li .follow {
+    position: inherit;
+    margin-top: 4vw;
+    padding: 0vw 3vw;
+}
+.jinsom-find-box.bbs.d .content li .follow i {
+    font-size: 5vw;
+}
+
 .jinsom-find-box.topic .content li {
     float: left;
     margin-right: 5vw;
@@ -3885,6 +3986,114 @@ display: none !important;
     min-height: 100%;
     max-height: 100%;
 }
+
+
+.jinsom-find-box.user.b .content li,.jinsom-find-box.user.c .content li {
+    width: calc((100% - 2vw)/2);
+    margin-right: 0;
+    height: 12vw;
+    margin-bottom: 1vw;
+    margin-top: 3vw;
+}
+.jinsom-find-box.user.c .content li {
+    width: 100%;
+    margin-bottom: 2vw;
+}
+.jinsom-find-box.user.b .content li:nth-child(2n-1) {
+    margin-right: 2vw;
+}
+.jinsom-find-box.user.b .content li .img,.jinsom-find-box.user.c .content li .img {
+    width: 12vw;
+    height: 12vw;
+    float: left;
+    margin-right: 2vw;
+    position: relative;
+}
+.jinsom-find-box.user.b .content li .img img,.jinsom-find-box.user.c .content li .img img {
+    width: 12vw;
+    height: 12vw;
+    box-sizing: border-box;
+}
+.jinsom-find-box.user.b .content li .info,.jinsom-find-box.user.c .content li .info {
+    float: left;
+    width: 30vw;
+}
+.jinsom-find-box.user.b .content li .info .name,.jinsom-find-box.user.c .content li .info .name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.jinsom-find-box.user.b .content li .info .desc,.jinsom-find-box.user.c .content li .info .desc {
+    font-size: 3vw;
+    color: #999;
+    margin-top: 2vw;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+.jinsom-find-box.user.c .content li .follow,.jinsom-find-box.user.d .content li .follow {
+    position: absolute;
+    right: 0;
+    color: #ffffff;
+    border-radius: 1vw;
+    font-size: 3vw;
+    background-color: #46c47c;
+    display: inline-block;
+    padding: 0vw 2vw;
+    top: 2vw;
+}
+.jinsom-find-box.user.c .content li .follow.had,.jinsom-find-box.user.d .content li .follow.had {
+    background-color: #bbb;
+}
+.jinsom-find-box.user.c .content li .follow i,.jinsom-find-box.user.d .content li .follow i {
+    vertical-align: -0.6vw;
+    font-size: 5.5vw;
+}
+
+
+.jinsom-find-box.user.d .content {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    width: 100%;
+}
+.jinsom-find-box.user.d .content li {
+    float: inherit;
+    display: inline-block;
+    width: 30vw;
+    padding: 4vw 2vw;
+    background-color: #f8f8f8;
+    border-radius: 2vw;
+    height: 30vw;
+    vertical-align: bottom;
+    text-align: center;
+}
+.jinsom-find-box.user.d .content li img {
+    width: 12vw;
+    height: 12vw;
+    border-radius: 100%;
+}
+.jinsom-find-box.user.d .content li .info .desc {
+    display: none;
+}
+.jinsom-find-box.user.d .content li .info .name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 3.5vw;
+}
+.jinsom-find-box.user.d .content li .follow {
+    position: inherit;
+    margin-top: 2vw;
+    padding: 0 3vw;
+}
+.jinsom-find-box.user.d .content li .follow i {
+    font-size: 5vw;
+}
+
 
 
 /*我的钱包*/
