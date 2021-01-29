@@ -1359,6 +1359,7 @@ display: none !important;
     height: 100%;
     border-radius: 1vw;
     min-height: 100%;
+    object-fit: cover;
 }
 .jinsom-post-images-list a.one img{
     min-height: initial;
@@ -1762,6 +1763,7 @@ display: none !important;
     width: 100%;
     height: 100%;
     z-index: 1;
+    border-radius: 2vw;
 }
 .jinsom-video-tips-content {
     text-shadow: 0 0 4px rgba(0,0,0,0.5);
@@ -1919,7 +1921,7 @@ display: none !important;
 .jinsom-post-single-content p {
     line-height: 6vw;
     display: block;
-    /*min-height: 8vw;*/
+    min-height: 6vw;
     font-size: 4vw;
 }
 .jinsom-single-author-info {
@@ -3380,7 +3382,7 @@ display: none !important;
 /*发布动态*/
 .jinsom-publish-words-form {
     background-color: #fff;
-    padding: 2vw;
+    padding: 4vw;
 }
 .jinsom-publish-words-form .title {
     margin-top: 4vw;
@@ -3394,7 +3396,7 @@ display: none !important;
     padding: 0;
 }
 .jinsom-publish-words-form .content {
-    margin-top: 2vw;
+    margin-top: 4vw;
     position: relative;
 }
 .jinsom-publish-words-form .content textarea {
@@ -3778,7 +3780,7 @@ display: none !important;
 }
 .jinsom-find-box.bbs .content li {
     float: left;
-    width: 16.8vw;
+    width: calc((100% - 8vw)/5);
     text-align: center;
     margin-right: 2vw;
     margin-top: 3vw;
@@ -4070,6 +4072,13 @@ display: none !important;
     height: 30vw;
     vertical-align: bottom;
     text-align: center;
+}
+.jinsom-find-box.user.d .content li .img {
+    width: 12vw;
+    height: 12vw;
+    margin: auto;
+    position: relative;
+    margin-bottom: 2vw;
 }
 .jinsom-find-box.user.d .content li img {
     width: 12vw;
@@ -4447,10 +4456,14 @@ display: none !important;
     background-repeat: no-repeat;
     background-size: cover;
 }
+.jinsom-bbs-content.no-power {
+    padding: 0;
+    background: none;
+}
 .jinsom-bbs-main-content {
     padding-top: 1px;
     border-radius: 1vw 1vw 0 0;
-    padding-bottom: 2vw;
+    padding-bottom: 10vw;
 }
 .jinsom-bbs-header {
     margin: 0 2vw 2vw;
@@ -6520,24 +6533,29 @@ h1 .commend:before{
 }
 .jinsom-black-house-box li {
     float: left;
-    width: 48%;
+    width: calc((100% - 4vw)/3);
     text-align: center;
-    margin-right: 4%;
-    margin-bottom: 4%;
+    margin-right: 2vw;
+    margin-bottom: 4vw;
 }
-.jinsom-black-house-box li:nth-child(2n) {
+.jinsom-black-house-box li:nth-child(3n) {
     margin-right: 0;
 }
+.jinsom-black-house-box li .name {
+    font-size: 3.5vw;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
 .jinsom-black-house-box li img {
-    width: 18vw;
-    height: 18vw;
+    width: 12vw;
+    height: 12vw;
     border-radius: 100%;
 }
 .jinsom-black-house-box .content li .name a, .jinsom-black-house-box .content li .name a font {
     color: #aaa !important;
 }
 .jinsom-black-house-box li .time {
-    margin: 2vw;
     color: #FF5722;
     font-size: 3vw;
 }
@@ -6602,18 +6620,7 @@ h1 .commend:before{
     border-radius: 4px;
     display: block;
 }
-.jinsom-luck-draw-btn>span:hover {
-    opacity: .8;
-}
-.jinsom-luck-draw-btn>span:nth-child(2) {
-    background-color: #3498db;
-}
-.jinsom-luck-draw-btn>span:nth-child(3) {
-    background-color: #9b59b6;
-}
-.jinsom-luck-draw-btn>span:nth-child(4) {
-    background-color: #e74c3c;
-}
+
 .jinsom-luck-draw-list {
     background-color: rgba(255,255,255,.2);
     padding: 4vw 0;
@@ -6720,6 +6727,7 @@ h1 .commend:before{
     color: #555;
 }
 .jinsom-black-house-header-html h1 {
+    margin-bottom: 4vw;
     text-align: center;
     font-size: 8vw;
 }
@@ -7622,7 +7630,10 @@ h1 .commend:before{
 .jinsom-sign-add-form-content .btn.no {
     background-color: #ccc;
 }
-
+.jinsom-sign-add-form-content .btn m {
+    font-size: 3.5vw;
+    margin-left: 2vw;
+}
 .jinsom-single-comment .xgplayer {
     width: 100% !important;
 }

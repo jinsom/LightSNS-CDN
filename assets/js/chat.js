@@ -17,12 +17,13 @@ if($('.jinsom-chat-windows-loading').length>0){
 return false;
 }
 $(obj).children('.jinsom-chat-list-tips').remove();//移除提醒
-
+layer.load(1);
 $.ajax({
 type: "POST",
 url:jinsom.module_url+"/chat/chat-info.php",
 data: {author_id:user_id,type:'one'},
 success: function(msg){
+layer.closeAll('loading');
 if(msg.code==1){
 count=msg.count;
 status=msg.status;	
@@ -179,12 +180,13 @@ if($('.jinsom-chat-windows-group-loading').length>0){
 return false;
 }
 
-
+layer.load(1);
 $.ajax({
 type: "POST",
 url:jinsom.module_url+"/chat/chat-info.php",
 data: {bbs_id:bbs_id,type:'group'},
 success: function(msg){
+layer.closeAll('loading');
 if(msg.code==1){
 notice=msg.notice;
 name=msg.name;

@@ -13727,6 +13727,10 @@ span.aplayer-thumb {
 .jinsom-sign-add-form-content .btn.no {
     background-color: #ccc;
 }
+.jinsom-sign-add-form-content .btn m {
+    font-size: 12px;
+    margin-left: 4px;
+}
 .jinsom-sign-add-form-content .no-reward {
     color: #999;
     margin: 20px;

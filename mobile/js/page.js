@@ -499,9 +499,15 @@ $('.jinsom-cash-form-content .number n').text(number+'元');
 //签到
 myApp.onPageBeforeInit('sign', function (page) {
 if($('#sign-1').length>0&&!jinsom.is_admin){
+if(jinsom.is_login){
 new TencentCaptcha(document.getElementById('sign-1'),jinsom.machine_verify_appid,function(res){
 if(res.ret === 0){jinsom_sign(document.getElementById('sign-1'),res.ticket,res.randstr);}
 });
+}else{
+$('#sign-1').click(function(){
+myApp.loginScreen();
+});
+}
 }
 
 var hadsign = new Array(); //已签到的数组
@@ -886,7 +892,7 @@ grid.masonry('layout');
 bbs_loading = false; 
 bbs_page++;
 }else{
-layer.open({content:'没有更多内容！',skin:'msg',time:2});
+// layer.open({content:'没有更多内容！',skin:'msg',time:2});
 bbs_loading = true; 
 }
 $('.jinsom-load-post').remove();
@@ -894,7 +900,7 @@ $('.jinsom-load-post').remove();
 });
 
 
-}); 
+}); //滚动事件
 
 
 

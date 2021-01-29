@@ -330,6 +330,11 @@ content:'<div class="jinsom-sign-add-form">'+msg+'</div>'
 
 //补签
 function jinsom_sign_add(day){
+if(!jinsom.is_login){
+layer.closeAll();
+myApp.loginScreen();  
+return false;
+}
 myApp.showIndicator();
 $.ajax({
 type: "POST",
@@ -377,6 +382,10 @@ content:'<div class="jinsom-sign-treasure-form">'+msg+'</div>'
 
 //领取宝箱奖励
 function jinsom_sign_treasure(number,obj){
+if(!jinsom.is_login){
+myApp.loginScreen();  
+return false;
+}
 myApp.showIndicator();
 $.ajax({
 type: "POST",
@@ -1338,6 +1347,10 @@ $(obj).parents('li').remove();
 
 //幸运抽奖
 function jinsom_luck_start(text,obj){
+if(!jinsom.is_login){
+myApp.loginScreen();  
+return false;
+}
 $(obj).text('抽奖中...');
 $.ajax({
 type: "POST",
@@ -1507,6 +1520,10 @@ myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page
 
 //打开宝箱任务
 function jinsom_task_treasure(task_id,obj){
+if(!jinsom.is_login){
+myApp.loginScreen();  
+return false;
+}
 myApp.showIndicator();
 $.ajax({
 type: "POST",
