@@ -483,6 +483,27 @@ layer.msg(msg.msg); //失败
 }
 }
 }); 	
+}else if(type=='phone-login'){//手机号登录
+phone=$('#jinsom-pop-phone').val();
+layer.load(1);
+$.ajax({
+type: "POST",
+dataType:'json',
+url:jinsom.jinsom_ajax_url+"/action/get-code.php",
+data: {phone:phone,type:'phone-login',ticket:ticket,randstr:randstr},
+success: function(msg){
+layer.closeAll('loading');
+if(msg.code==1){//成功
+layer.msg(msg.msg);  
+$('.jinsom-get-code').attr("disabled",true); 
+for(i=1;i<=t;i++) {
+window.setTimeout("jinsom_reg_update_time(" + i + ","+t+")", i * 1000);
+}    
+}else{
+layer.msg(msg.msg); //失败
+}
+}
+}); 	
 }
 }
 

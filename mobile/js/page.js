@@ -585,6 +585,21 @@ if(res.ret === 0){jinsom_get_code(120,'pass-email',res.ticket,res.randstr);}
 }
 });
 
+//手机号登录
+myApp.onPageBeforeInit('login-phone', function (page) {
+if($('#code-5').length>0&&!jinsom.is_admin){
+new TencentCaptcha(document.getElementById('code-5'),jinsom.machine_verify_appid,function(res){
+if(res.ret === 0){jinsom_get_code(120,'phone-login',res.ticket,res.randstr);}
+});
+}
+if($('#reg-5').length>0&&!jinsom.is_admin){
+new TencentCaptcha(document.getElementById('reg-5'),jinsom.machine_verify_appid,function(res){
+if(res.ret === 0){jinsom_login_phone(res.ticket,res.randstr);}
+});
+}
+});
+
+
 
 //发布红包
 myApp.onPageBeforeInit('publish-redbag', function (page) {
