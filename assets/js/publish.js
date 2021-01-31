@@ -468,10 +468,10 @@ return false;
 }
 }
 
-if($.trim($(obj).parent().siblings('.content').children('#jinsom-pop-content').val())==''){
-layer.msg('请输入内容！');
-return false;	
-}
+// if($.trim($(obj).parent().siblings('.content').children('#jinsom-pop-content').val())==''){
+// layer.msg('请输入内容！');
+// return false;	
+// }
 
 power=$(obj).parent().siblings('#jinsom-pop-power').val();
 if(power==1||power==2||power==4||power==5){

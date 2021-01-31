@@ -2,16 +2,30 @@
 function jinsom_login(ticket,randstr){
 username=$('#jinsom-pop-username').val();
 password=$('#jinsom-pop-password').val();
-if(username==''||password==''){
-layer.open({content:'帐号或者密码不能为空！',skin:'msg',time:2});
-return false;
-}
-
 myApp.showIndicator();
 $.ajax({
 type: "POST",
 url:  jinsom.jinsom_ajax_url+"/action/login.php",
 data: {username:username,password:password,ticket:ticket,randstr:randstr},
+success: function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+if(msg.code==1){
+function d(){window.location.reload();}setTimeout(d,2000);
+}
+}
+});
+}
+
+//手机号登录
+function jinsom_login_phone(ticket,randstr){
+phone=$('.jinsom-login-phone .phone input').val();
+code=$('.jinsom-login-phone .code input').val();
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+url:  jinsom.jinsom_ajax_url+"/action/login.php",
+data: {phone:phone,code:code,ticket:ticket,randstr:randstr},
 success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
@@ -84,45 +98,60 @@ window.setTimeout("jinsom_reg_update_time('"+type+"',"+i+","+t+")",i*1000);
 }
 }
 }); 	
-}else if(type=='pass-mail'){
-user_id=$('#jinsom-pop-password-id').val();
-layer.load(1);
+}else if(type=='pass-email'){
+user_id=$('.jinsom-forget-password-email').attr('user_id');
+myApp.showIndicator();
 $.ajax({
 type: "POST",
 dataType:'json',
 url:jinsom.jinsom_ajax_url+"/action/get-code.php",
-data: {user_id:user_id,type:'pass-mail',ticket:ticket,randstr:randstr},
+data: {user_id:user_id,type:'pass-email',ticket:ticket,randstr:randstr},
 success: function(msg){
-layer.closeAll('loading');
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){//成功
-layer.msg(msg.msg);  
 $('.jinsom-get-code').attr("disabled",true); 
 for(i=1;i<=t;i++) {
 window.setTimeout("jinsom_reg_update_time('"+type+"',"+i+","+t+")",i*1000);
 }    
-}else{
-layer.msg(msg.msg); //失败
 }
 }
 }); 	
-}else if(type=='pass-phone'){
-user_id=$('#jinsom-pop-password-id').val();
-layer.load(1);
+}else if(type=='pass-phone'){//忘记密码-手机号
+user_id=$('.jinsom-forget-password-phone').attr('user_id');
+myApp.showIndicator();
 $.ajax({
 type: "POST",
 dataType:'json',
 url:jinsom.jinsom_ajax_url+"/action/get-code.php",
-data: {user_id:user_id,type:'pass-phone',ticket:ticket,randstr:randstr},
+data:{user_id:user_id,type:'pass-phone',ticket:ticket,randstr:randstr},
 success: function(msg){
-layer.closeAll('loading');
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){//成功
-layer.msg(msg.msg);  
 $('.jinsom-get-code').attr("disabled",true); 
 for(i=1;i<=t;i++) {
 window.setTimeout("jinsom_reg_update_time('"+type+"',"+i+","+t+")",i*1000);
 }    
-}else{
-layer.msg(msg.msg); //失败
+}
+}
+}); 	
+}else if(type=='phone-login'){//手机号登录
+phone=$('.jinsom-login-phone .phone input').val();
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+dataType:'json',
+url:jinsom.jinsom_ajax_url+"/action/get-code.php",
+data: {phone:phone,type:'phone-login',ticket:ticket,randstr:randstr},
+success: function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+if(msg.code==1){//成功
+$('.jinsom-get-code').attr("disabled",true); 
+for(i=1;i<=t;i++) {
+window.setTimeout("jinsom_reg_update_time('"+type+"',"+i+","+t+")",i*1000);
+}    
 }
 }
 }); 	
@@ -143,6 +172,26 @@ $('.jinsom-get-code-'+type).addClass('no');
 }
 
 
+//提交简单注册
+function jinsom_pop_reg_simple(ticket,randstr){
+username=$('.jinsom-reg-simple .name input').val();
+password=$('.jinsom-reg-simple .pass input').val();
+if(!$('.jinsom-reg-doc input').is(':checked')){layer.open({content:'请仔细阅读并勾选用户注册条款！',skin:'msg',time:2});return false;}
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+dataType:'json',
+url:jinsom.jinsom_ajax_url+"/action/reg.php",
+data: {username:username,password:password,type:'simple',ticket:ticket,randstr:randstr},
+success: function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+if(msg.code==1){
+function a(){window.location.reload();}setTimeout(a,2000);  
+}
+}
+}); 
+}
 
 //提交手机号注册
 function jinsom_pop_reg_phone(ticket,randstr){
@@ -150,9 +199,6 @@ username=$('.jinsom-reg-phone .name input').val();
 phone=$('.jinsom-reg-phone .phone input').val();
 password=$('.jinsom-reg-phone .pass input').val();
 code=$('.jinsom-reg-phone .code input').val();
-if(username==''){layer.open({content:'昵称不能为空！',skin:'msg',time:2});return false;}
-if(phone==''){layer.open({content:'手机号不能为空！',skin:'msg',time:2});return false;}
-if(password==''){layer.open({content:'密码不能为空！',skin:'msg',time:2});return false;}
 if(!$('.jinsom-reg-doc input').is(':checked')){layer.open({content:'请仔细阅读并勾选用户注册条款！',skin:'msg',time:2});return false;}
 myApp.showIndicator();
 $.ajax({
@@ -176,10 +222,6 @@ username=$('.jinsom-reg-mail .name input').val();
 mail=$('.jinsom-reg-mail .mail input').val();
 password=$('.jinsom-reg-mail .pass input').val();
 code=$('.jinsom-reg-mail .code input').val();
-if(username==''){layer.open({content:'昵称不能为空！',skin:'msg',time:2});return false;}
-if(mail==''){layer.open({content:'邮箱不能为空！',skin:'msg',time:2});return false;}
-if(code==''){layer.open({content:'验证码不能为空！',skin:'msg',time:2});return false;}
-if(password==''){layer.open({content:'密码不能为空！',skin:'msg',time:2});return false;}
 if(!$('.jinsom-reg-doc input').is(':checked')){layer.open({content:'请仔细阅读并勾选用户注册条款！',skin:'msg',time:2});return false;}
 myApp.showIndicator();
 $.ajax({
@@ -202,9 +244,6 @@ function jinsom_pop_reg_invite(ticket,randstr){
 username=$('.jinsom-reg-invite .name input').val();
 password=$('.jinsom-reg-invite .pass input').val();
 code=$('.jinsom-reg-invite .code input').val();
-if(username==''){layer.open({content:'昵称不能为空！',skin:'msg',time:2});return false;}
-if(code==''){layer.open({content:'邀请码不能为空！',skin:'msg',time:2});return false;}
-if(password==''){layer.open({content:'密码不能为空！',skin:'msg',time:2});return false;}
 if(!$('.jinsom-reg-doc input').is(':checked')){layer.open({content:'请仔细阅读并勾选用户注册条款！',skin:'msg',time:2});return false;}
 myApp.showIndicator();
 $.ajax({
@@ -319,8 +358,8 @@ function c(){history.back(-1);}setTimeout(c,2000);
 
 //修改安全问题
 function jinsom_update_question(user_id){
-var question= $.trim($('#jinsom-mobile-update-question').val());
-var answer= $.trim($('#jinsom-mobile-update-answer').val());
+question= $.trim($('#jinsom-mobile-update-question').val());
+answer= $.trim($('#jinsom-mobile-update-answer').val());
 myApp.showIndicator();
 $.ajax({
 type: "POST",
@@ -336,4 +375,56 @@ function c(){history.back(-1);}setTimeout(c,2000);
 }
 
 });     
+}
+
+
+
+//忘记密码-找回类型
+function jinsom_forget_password_type_form(){
+username=$('.jinsom-forget-password .name input').val();
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+url:jinsom.mobile_ajax_url+"/stencil/forget-password.php",
+data: {type:'get-type',username:username},
+success: function(msg){
+myApp.hideIndicator();
+if(msg.code==1){
+$('.jinsom-forget-password').html(msg.html);
+}else{
+layer.open({content:msg.msg,skin:'msg',time:2});
+}
+}
+}); 
+}
+
+// 忘记密码-最后一步表单
+function jinsom_forget_password_last_form(user_id,username){
+type=$('.jinsom-forget-password-type input[name=style]:radio:checked').val();
+if(type==''||type==undefined){
+layer.open({content:'请选择找回类型！',skin:'msg',time:2});	
+return false;
+}
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/login/forget-password-'+type+'.php?user_id='+user_id+'&username='+username});
+
+}
+
+//忘记密码-提交
+function jinsom_forget_password_last(type,user_id){
+code=$('.jinsom-forget-password-'+type+' .code input').val();
+password=$('.jinsom-forget-password-'+type+' .pass input').val();
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+dataType:'json',
+url:jinsom.jinsom_ajax_url+"/action/password.php",
+data: {style:type,code:code,password:password,user_id:user_id},
+success: function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+if(msg.code==1){
+function d(){window.location.reload();}setTimeout(d,2000);
+}
+}
+}); 
 }

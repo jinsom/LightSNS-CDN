@@ -948,6 +948,7 @@ h1, h2, h3, h4, h5, h6 {
     border: none;
     font-size: 4vw;
     height: 11vw;
+    background-color: #fff;
 }
 .jinsom-login-input-form p {
     position: relative;
@@ -9405,4 +9406,35 @@ h1 .commend:before{
 
 .page,.jinsom-find-content,.jinsom-sns-page-content,.jinsom-mine-page,.jinsom-setting-content,.jinsom-show-bbs-content,.jinsom-case-page-content,.jinsom-site-notice-content,.jinsom-search-content.result,.jinsom-video-page-content,.jinsom-bbs-main-content,.jinsom-topic-content,.jinsom-collect-content {
     background: var(--jinsom-content-bg-color);
+}
+
+
+.jinsom-forget-password-type {
+    padding: 2vw 4vw 2vw;
+    background-color: rgb(255 255 255 / 0.8);
+    border-radius: 1vw;
+    margin-bottom: 4vw;
+}
+.jinsom-forget-password-type li.no, .jinsom-forget-password-type li.no .icon-form-radio {
+    border-color: #bbb;
+    color: #aaa;
+}
+.jinsom-forget-password-type li, .jinsom-forget-password-type ul {
+    background: rgb(0 0 0 / 0%);
+}
+.jinsom-forget-password-type li .item-inner:after {
+    display: none;
+}
+.jinsom-forget-password-type li .item-inner {
+    display: flex;
+    align-items: center;
+}
+.jinsom-get-password-tips {
+    text-align: center;
+    font-size: 3.5vw;
+    opacity: 0.6;
+    margin: 2vw 0;
+}
+.jinsom-forget-password-type li {
+    margin: 2vw 0;
 }

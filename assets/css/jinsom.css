@@ -7097,9 +7097,9 @@ figure.effect-ming:hover figcaption::before, figure.effect-ming:hover p {
 .jinsom-login-form .layui-layer-content {
     height: inherit !important;
 }
-.jinsom-login-form.login .layui-layer-content,.jinsom-login-form.reg .layui-layer-content {
+/*.jinsom-login-form.login .layui-layer-content,.jinsom-login-form.reg .layui-layer-content {
     padding: 12px 20px 0 !important;
-}
+}*/
 .jinsom-pop-login-form {
     padding: 10px 20px 20px;
 }
@@ -7214,6 +7214,9 @@ figure.effect-ming:hover figcaption::before, figure.effect-ming:hover p {
     color: #999;
     text-align: center;
     margin: 10px 0 15px;
+}
+.jinsom-login-type{
+    padding: 10px;
 }
 .jinsom-login-type li {
     width: 25%;

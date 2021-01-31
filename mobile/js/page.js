@@ -533,7 +533,7 @@ qdDay: hadsign,
 myApp.onPageBeforeInit('reg-email', function (page) {
 if($('#code-2').length>0&&!jinsom.is_admin){
 new TencentCaptcha(document.getElementById('code-2'),jinsom.machine_verify_appid,function(res){
-if(res.ret === 0){jinsom_get_code(120,'mail',res.ticket,res.randstr);}
+if(res.ret === 0){jinsom_get_code(120,'email',res.ticket,res.randstr);}
 });
 }
 if($('#reg-2').length>0&&!jinsom.is_admin){
@@ -563,6 +563,24 @@ myApp.onPageBeforeInit('reg-invite', function (page) {
 if($('#reg-3').length>0&&!jinsom.is_admin){
 new TencentCaptcha(document.getElementById('reg-3'),jinsom.machine_verify_appid,function(res){
 if(res.ret === 0){jinsom_pop_reg_invite(res.ticket,res.randstr);}
+});
+}
+});
+
+//忘记密码-手机号
+myApp.onPageBeforeInit('forget-password-phone', function (page){
+if($('#code-8').length>0&&!jinsom.is_admin){
+new TencentCaptcha(document.getElementById('code-8'),jinsom.machine_verify_appid,function(res){
+if(res.ret === 0){jinsom_get_code(120,'pass-phone',res.ticket,res.randstr);}
+});
+}
+});
+
+//忘记密码-邮箱
+myApp.onPageBeforeInit('forget-password-email', function (page){
+if($('#code-9').length>0&&!jinsom.is_admin){
+new TencentCaptcha(document.getElementById('code-9'),jinsom.machine_verify_appid,function(res){
+if(res.ret === 0){jinsom_get_code(120,'pass-email',res.ticket,res.randstr);}
 });
 }
 });

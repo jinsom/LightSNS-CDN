@@ -1,19 +1,37 @@
-//===================================登录注册表单、忘记密码、修改邮箱、修改手机号相关的js==================
-
-//弹窗选择登录方式
-function jinsom_pop_login_style(){
-if(!jinsom.qq_login&&!jinsom.weibo_login&&!jinsom.wechat_login){
-jinsom_pop_login_form();
-}else{//QQ和微博登录都没有开启时，直接弹出正常登录
+//登录类表单
+function jinsom_login_form(title,type,width){
 layer.load(1);
 $.ajax({
 type: "POST",
-url:jinsom.jinsom_ajax_url+"/stencil/login-style.php",
+url:jinsom.jinsom_ajax_url+"/stencil/login/"+type+".php",
+success: function(msg){
+layer.closeAll(); 
+layer.open({
+title:title,
+btn:false,
+type: 1,
+area:[width+'px','auto'],
+skin:'jinsom-login-form '+type,
+content:msg
+})
+}
+});  
+}
+
+
+
+//弹窗选择登录方式
+function jinsom_pop_login_style(){
+layer.load(1);
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/stencil/login/login-style.php",
 success: function(msg){
 layer.closeAll(); 
 layer.open({
 title:'登录帐号',
 btn: false,
+type: 1,
 area: ['400px','auto'],
 skin: 'jinsom-login-form login',
 content: msg
@@ -21,118 +39,9 @@ content: msg
 }
 });  
 } 
-}
-
-//弹窗选择注册方式
-function jinsom_pop_reg_style(){
-layer.load(1);
-$.ajax({
-type: "POST",
-url:jinsom.jinsom_ajax_url+"/stencil/reg-style.php",
-success: function(msg){
-layer.closeAll(); 
-layer.open({
-title:'注册帐号',
-btn: false,
-area: ['400px','auto'],
-skin: 'jinsom-login-form reg',
-content: msg
-})
-}
-});   
-}
 
 
-//弹窗弹出登录框
-function jinsom_pop_login_form(){
-layer.load(1);
-$.ajax({
-type: "POST",
-url:jinsom.jinsom_ajax_url+"/stencil/login.php",
-success: function(msg){
-layer.closeAll();
-layer.open({
-title:'欢迎回来',
-btn: false,
-type: 1,
-resize:false,
-area: ['350px','auto'],
-skin: 'jinsom-login-form',
-content: msg
-})
-//弹窗回车登录
-// $("#jinsom-pop-password").keypress(function(e) {  
-// if(e.which == 13) {  
-// jinsom_pop_login(); 
-// }  
-// }); 
-}
-});   
-} 
 
-//弹窗弹出邮箱注册
-function jinsom_pop_reg_mail_form(){
-layer.load(1);
-$.ajax({
-type: "POST",
-url:jinsom.jinsom_ajax_url+"/stencil/reg-mail.php",
-success: function(msg){
-layer.closeAll(); 
-layer.open({
-title:'邮箱注册',
-btn: false,
-type: 1,
-resize:false,
-area: ['350px','auto'],
-skin: 'jinsom-login-form',
-content: msg
-})
-}
-});   
-} 
-
-//弹窗手机注册表单
-function jinsom_pop_reg_phone_form(){
-layer.load(1);
-$.ajax({
-type: "POST",
-url:jinsom.jinsom_ajax_url+"/stencil/reg-phone.php",
-success: function(msg){
-layer.closeAll(); 
-layer.open({
-title:'手机号注册',
-btn: false,
-area: ['350px','auto'],
-type: 1,
-resize:false,
-skin: 'jinsom-login-form',
-content: msg
-})
-}
-});   
-} 
-
-//弹出邀请注册界面
-function jinsom_pop_reg_invite_form(){
-layer.load(1);
-$.ajax({
-type: "POST",
-url:jinsom.jinsom_ajax_url+"/stencil/reg-invite.php",
-success: function(msg){
-layer.closeAll(); 
-layer.open({
-title:'邀请码注册',
-btn: false,
-type: 1,
-resize:false,
-area: ['350px'],
-skin: 'jinsom-login-form',
-content: msg
-})
-
-}
-});   
-} 
 
 
 //修改手机号表单
@@ -209,7 +118,6 @@ content: msg
 //忘记密码 第二步
 function jinsom_get_password_two_form(){
 username= $('#jinsom-pop-username').val();
-if($.trim(username)==''){layer.msg('请输入手机号/邮箱！');return false;}
 layer.load(1);
 $.ajax({
 type: "POST",
@@ -331,8 +239,6 @@ content: '\
 function jinsom_pop_login(ticket,randstr){
 username=$("#jinsom-pop-username").val();
 password=$("#jinsom-pop-password").val();
-if(username==''){layer.msg('请输入帐号！');return false;}
-if(password==''){layer.msg('请输入密码！');return false;}
 layer.load(1);
 $.ajax({
 type: "POST",
@@ -354,10 +260,8 @@ layer.msg(msg.msg);
 
 //侧栏提交登录
 function jinsom_sidebar_login(ticket,randstr){
-var username=$("#jinsom-sidebar-username").val();
-var password=$("#jinsom-sidebar-password").val();
-if(username==''){layer.msg('请输入帐号！');return false;}
-if(password==''){layer.msg('请输入密码！');return false;}
+username=$("#jinsom-sidebar-username").val();
+password=$("#jinsom-sidebar-password").val();
 layer.load(1);
 $.ajax({
 type: "POST",
@@ -376,22 +280,63 @@ layer.msg(msg.msg);
 });
 }
 
-//提交邮箱注册
-function jinsom_pop_reg_mail(ticket,randstr){
+//手机号登录
+function jinsom_pop_login_phone(ticket,randstr){
+phone=$("#jinsom-pop-phone").val();
+code=$("#jinsom-pop-code").val();
+layer.load(1);
+$.ajax({
+type: "POST",
+dataType:'json',
+url:  jinsom.jinsom_ajax_url+"/action/login.php",
+data: {phone:phone,code:code,ticket:ticket,randstr:randstr},
+success: function(msg){
+layer.closeAll('loading');
+if(msg.code==1){
+layer.closeAll();//关闭弹窗
+layer.msg(msg.msg);
+function d(){window.location.reload();}setTimeout(d,2000);
+}else{
+layer.msg(msg.msg);
+}
+}
+});
+}
+
+//提交简单注册
+function jinsom_pop_reg_simple(ticket,randstr){
 username=$('#jinsom-pop-username').val();
-mail=$('#jinsom-pop-mail').val();
 password=$('#jinsom-pop-password').val();
-code=$.trim($('#jinsom-pop-code').val());
-if(username==''){layer.msg('用户名不能为空！');return false;}
-if(mail==''){layer.msg('邮箱不能为空！');return false;}
-if(password==''){layer.msg('密码不能为空！');return false;}
 if(!$('#jinsom-reg-doc').is(':checked')){layer.msg('请仔细阅读用户注册条款！');return false;}
 layer.load(1);
 $.ajax({
 type: "POST",
 dataType:'json',
 url:jinsom.jinsom_ajax_url+"/action/reg.php",
-data: {username:username,mail:mail,password:password,code:code,type:'mail',ticket:ticket,randstr:randstr},
+data: {username:username,password:password,type:'simple',ticket:ticket,randstr:randstr},
+success: function(msg){
+layer.closeAll('loading');
+layer.msg(msg.msg);  
+if(msg.code==1){ 
+function a(){window.location.reload();}setTimeout(a,2000); 
+}
+}
+}); 
+}
+
+//提交邮箱注册
+function jinsom_pop_reg_mail(ticket,randstr){
+username=$('#jinsom-pop-username').val();
+mail=$('#jinsom-pop-mail').val();
+password=$('#jinsom-pop-password').val();
+code=$.trim($('#jinsom-pop-code').val());
+if(!$('#jinsom-reg-doc').is(':checked')){layer.msg('请仔细阅读用户注册条款！');return false;}
+layer.load(1);
+$.ajax({
+type: "POST",
+dataType:'json',
+url:jinsom.jinsom_ajax_url+"/action/reg.php",
+data: {username:username,mail:mail,password:password,code:code,type:'email',ticket:ticket,randstr:randstr},
 success: function(msg){
 layer.closeAll('loading');
 layer.msg(msg.msg);  
@@ -408,10 +353,6 @@ username=$('#jinsom-pop-username').val();
 phone=$('#jinsom-pop-phone').val();
 password=$('#jinsom-pop-password').val();
 code=$('#jinsom-pop-code').val();
-if(username==''){layer.msg('用户名不能为空！');return false;}
-if(phone==''){layer.msg('手机号不能为空！');return false;}
-if(code==''){layer.msg('验证码不能为空！');return false;}
-if(password==''){layer.msg('密码不能为空！');return false;}
 if(!$('#jinsom-reg-doc').is(':checked')){layer.msg('请仔细阅读用户注册条款！');return false;}
 layer.load(1);
 $.ajax({
@@ -434,9 +375,7 @@ function jinsom_pop_reg_invite(ticket,randstr){
 username=$('#jinsom-pop-username').val();
 code=$('#jinsom-pop-code').val();
 password=$('#jinsom-pop-password').val();
-if(username==''){layer.msg('请输入用户名！');return false;}
-if(code==''){layer.msg('请输入邀请码！');return false;}
-if(password==''){layer.msg('请输入密码！');	return false;}
+
 if(!$('#jinsom-reg-doc').is(':checked')){layer.msg('请仔细阅读用户注册条款！');return false;}
 layer.load(1);
 $.ajax({
@@ -480,7 +419,7 @@ layer.msg(msg.msg); //失败
 }
 }
 }); 
-}else if(type=='mail'){
+}else if(type=='email'){
 mail=$('#jinsom-pop-mail').val();
 if(mail==''){layer.msg('邮箱号不能为空！');return false;}
 layer.load(1);
@@ -488,7 +427,7 @@ $.ajax({
 type: "POST",
 dataType:'json',
 url:jinsom.jinsom_ajax_url+"/action/get-code.php",
-data: {mail:mail,type:'reg-mail',ticket:ticket,randstr:randstr},
+data: {mail:mail,type:'reg-email',ticket:ticket,randstr:randstr},
 success: function(msg){
 layer.closeAll('loading');
 if(msg.code==1){//成功
@@ -502,14 +441,14 @@ layer.msg(msg.msg); //失败
 }
 }
 }); 	
-}else if(type=='pass-mail'){
+}else if(type=='pass-email'){
 user_id=$('#jinsom-pop-password-id').val();
 layer.load(1);
 $.ajax({
 type: "POST",
 dataType:'json',
 url:jinsom.jinsom_ajax_url+"/action/get-code.php",
-data: {user_id:user_id,type:'pass-mail',ticket:ticket,randstr:randstr},
+data: {user_id:user_id,type:'pass-email',ticket:ticket,randstr:randstr},
 success: function(msg){
 layer.closeAll('loading');
 if(msg.code==1){//成功
@@ -615,15 +554,11 @@ layer.msg(msg.msg);
 
 
 
-//提交修复忘记密码 最后一步
+//提交-忘记密码 最后一步
 function jinsom_get_password_finish_form(user_id){
 style=$('#jinsom-pop-password-style').val();
 code=$('#jinsom-pop-code').val();
 password=$('#jinsom-pop-password').val();
-
-if($.trim(code)==''){layer.msg('请输入验证项！');return false;	}
-if($.trim(password)==''){layer.msg('请设置你的新密码！');return false;	}
-
 layer.load(1);
 $.ajax({
 type: "POST",
