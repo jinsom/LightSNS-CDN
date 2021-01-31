@@ -254,6 +254,7 @@ success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
+$('[data-page="publish"] .right a').removeAttr('onclick');
 type=$('.jinsom-home-menu li.on').attr('data');
 jinsom_post(type,'reload',this);//重新加载内容
 function d(){myApp.getCurrentView().router.back();}setTimeout(d,2500);
