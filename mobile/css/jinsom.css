@@ -4074,6 +4074,9 @@ display: none !important;
     vertical-align: bottom;
     text-align: center;
 }
+.jinsom-find-box.user.d .content li:nth-child(6n) {
+    margin-right: 1.6vw;
+}
 .jinsom-find-box.user.d .content li .img {
     width: 12vw;
     height: 12vw;
@@ -4160,10 +4163,10 @@ display: none !important;
     margin-right: 0;
 }
 .jinsom-mywallet-box .content li i {
-    font-size: 10vw;
+    font-size: 8vw;
 }
 .jinsom-mywallet-box .content li p {
-    font-size: 4vw;
+    font-size: 3.5vw;
 }
 .jinsom-mywallet-box .content li.recharge-credit i {
     color: #56abe4;
@@ -4199,23 +4202,23 @@ display: none !important;
 
 .jinsom-mywallet-box .content li.income i {
     color: #4CAF50;
-    font-size: 11.5vw;
+    font-size: 9.5vw;
 }
 .jinsom-mywallet-box .content li.outlay i {
     color: #f98966;
-    font-size: 11.5vw;
+    font-size: 9.5vw;
 }
 .jinsom-mywallet-box .content li.recharge-note i {
-    font-size: 11vw;
+    font-size: 9.5vw;
     color: #009688;
 }
 .jinsom-mywallet-box .content li.withdrawals-note i {
-    font-size: 11.5vw;
+    font-size: 9vw;
     color: #56abe4;
 }
 .jinsom-mywallet-box .content li.exp-note i {
     color: #aa7fff;
-    font-size: 11vw;
+    font-size: 9vw;
 }
 .jinsom-mywallet-form .hr {
     height: 2vw;
@@ -7456,7 +7459,7 @@ h1 .commend:before{
 
 /*全站通知*/
 .jinsom-site-notice-content {
-    padding: 12vw 2vw !important;
+    padding: 14vw 4vw !important;
 }
 .jinsom-site-notice-content li {
     background-color: #fff;
@@ -7573,6 +7576,12 @@ h1 .commend:before{
     border-radius: 1vw;
     margin-right: 2vw;
     font-size: 3vw;
+}
+.jinsom-post-list-comment-content .jinsom-post-link {
+    vertical-align: 2px;
+}
+.jinsom-post-list-comment-content .jinsom-post-link i:before {
+    vertical-align: -2px;
 }
 
 /*签到*/

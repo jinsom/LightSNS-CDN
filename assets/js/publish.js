@@ -377,7 +377,7 @@ $('#jinsom-bbs-publish-hide-content').show();
 }else if(type=='music'){
 $('.jinsom-publish-words-power').html('<div class="jinsom-publish-words-power-content"><span><input type="checkbox" lay-skin="switch" lay-text="开|关" name="power-download"><i>开启后，音频允许下载</i></span></div>');
 }else{
-$('.jinsom-publish-words-power').html('<div class="jinsom-publish-words-power-content"><span class="img-power"><i>前</i><input type="number" class="price" name="power-see-img" value="0"><i>张图片免费</i></span><textarea placeholder="请输入隐藏内容" name="hide-content"></textarea></div>');
+$('.jinsom-publish-words-power').html('<div class="jinsom-publish-words-power-content"><span class="img-power"><i>前</i><input type="number" class="number" name="power-see-img" value="0"><i>张图片免费</i></span><textarea placeholder="请输入隐藏内容" name="hide-content"></textarea></div>');
 }
 
 

@@ -73,6 +73,12 @@ comment_loading = false;
 jinsom_lightbox();//灯箱
 }
 });
+});//加载更多评论
+
+
+//点击滑动到评论区域
+$('.toolbar a.comment').click(function(){
+$('.page-content').animate({scrollTop:$(".jinsom-single-comment-"+post_id).offset().top},500);
 });
 
 
@@ -2647,17 +2653,6 @@ grid.masonry('layout');
 });    
 }
 
-//喜欢
-$('.jinsom-select-content li .bar .like').click(function(){
-num=parseInt($(this).children('span').text());
-if($(this).children('i').hasClass('had')){
-$(this).children('i').removeClass('jinsom-xihuan1 had').addClass('jinsom-xihuan2');
-$(this).children('span').text(num-1);
-}else{
-$(this).children('i').removeClass('jinsom-xihuan2').addClass('jinsom-xihuan1 had');
-$(this).children('span').text(num+1);	
-}
-}); 
 
 
 }//success

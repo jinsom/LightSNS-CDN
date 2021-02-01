@@ -8815,7 +8815,7 @@ figure.effect-ming:hover figcaption::before, figure.effect-ming:hover p {
 .jinsom-publish-words-power.single textarea {
     height: 200px;
 }
-.jinsom-publish-words-power .price, .jinsom-publish-words-power .password {
+.jinsom-publish-words-power .price, .jinsom-publish-words-power .password, .jinsom-publish-words-power .number {
     padding: 8px;
     border: 1px solid #e1e1e1;
     border-radius: 2px;

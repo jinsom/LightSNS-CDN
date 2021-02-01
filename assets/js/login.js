@@ -592,7 +592,7 @@ layer.closeAll('loading');
 if(msg.code==1){
 layer.closeAll();
 layer.msg(msg.msg);	
-function d(){jinsom_pop_login_form();}
+function d(){jinsom_login_form('密码登录','login-password',350);}
 setTimeout(d,2000);
 }else{
 layer.msg(msg.msg);	

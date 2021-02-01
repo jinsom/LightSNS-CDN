@@ -225,6 +225,30 @@ data:{post_id:post_id},
 }
 
 
+function jinsom_select_like(post_id,obj){
+if(!jinsom.is_login){
+myApp.loginScreen();  
+return false;
+}
+
+like_num=$(obj).children('span');
+if($(obj).children('i').hasClass('had')){
+like_num.text(parseInt(like_num.text())-1); 
+$(obj).children('i').removeClass('jinsom-xihuan1 had').addClass('jinsom-xihuan2'); 
+}else{
+like_num.text(parseInt(like_num.text())+1); 
+$(obj).children('i').removeClass('jinsom-xihuan2').addClass('jinsom-xihuan1 had');
+}
+
+$.ajax({   
+url:jinsom.jinsom_ajax_url+"/action/like-post.php",
+type:'POST',   
+data:{post_id:post_id},
+});
+
+}
+
+
 
 
 //打开@链接
@@ -2356,19 +2380,8 @@ jinsom_lightbox();//灯箱
 
 
 //iframe弹窗
-function jinsom_popup_iframe(url){
-var popuphtml='<div class="jinsom-iframe-popup popup">'+
-'<div class="navbar">'+
-'<div class="navbar-inner">'+
-'<div class="left">'+
-'<a href="#" class="link icon-only close-popup"><i class="jinsom-icon jinsom-xiangxia2"></i></a></div>'+
-'<div class="center"></div>'+
-'<div class="right"><a href="#" class="link icon-only"></a></div>'+
-'</div>'+
-'</div>'+
-'<iframe src='+url+' style="width:100%;height:100vh;border:none;"></iframe>'+
-'</div>'
-myApp.popup(popuphtml);
+function jinsom_iframe(url){
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/url.php?link='+url});
 }
 
 function jinsom_popup(e){
