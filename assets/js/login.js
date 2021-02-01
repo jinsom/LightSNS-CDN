@@ -648,7 +648,7 @@ success: function(msg){
 layer.closeAll('loading');
 layer.msg(msg.msg); 
 if(msg.code==1){
-layer.closeAll();
+function d(){layer.closeAll();}setTimeout(d,2000);
 }
 }
 
