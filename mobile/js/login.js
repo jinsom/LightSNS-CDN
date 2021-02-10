@@ -78,7 +78,7 @@ window.setTimeout("jinsom_reg_update_time('"+type+"',"+i+","+t+")",i*1000);
 }
 }
 }); 
-}else if(type=='mail'){
+}else if(type=='email'){
 mail=$('.jinsom-reg-mail .mail input').val();
 if(mail==''){layer.open({content:'邮箱不能为空！',skin:'msg',time:2});return false;}
 myApp.showIndicator();

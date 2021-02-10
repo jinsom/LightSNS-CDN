@@ -863,7 +863,7 @@ if(res.ret === 0){jinsom_get_code(120,'phone',res.ticket,res.randstr);}
 myApp.onPageAfterAnimation('setting-email', function (page) {
 if($('#code-4').length>0){
 new TencentCaptcha(document.getElementById('code-4'),jinsom.machine_verify_appid,function(res){
-if(res.ret === 0){jinsom_get_code(120,'mail',res.ticket,res.randstr);}
+if(res.ret === 0){jinsom_get_code(120,'email',res.ticket,res.randstr);}
 });
 }
 
