@@ -280,7 +280,7 @@ success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
-$(obj).children('.title').html('已经解绑QQ登录');
+$(obj).children('.title').html('已经解绑'+title);
 $(obj).children('.b').remove();
 }
 }

@@ -563,11 +563,12 @@ credit=$('#jinsom-publish-redbag-credit').val();
 number=$('#jinsom-publish-redbag-number').val();
 type=$('.jinsom-publish-redbag-form .type>li.on').attr('data');
 content=$('#jinsom-publish-redbag-content').val();
+redbag_cover=$('.jinsom-publish-redbag-form .img-list li.on').index();
 myApp.showIndicator();
 $.ajax({
 type: "POST",
 url:jinsom.jinsom_ajax_url+"/publish/redbag.php",
-data:{credit:credit,number:number,type:type,content:content},
+data:{credit:credit,number:number,type:type,content:content,redbag_cover:redbag_cover},
 success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});

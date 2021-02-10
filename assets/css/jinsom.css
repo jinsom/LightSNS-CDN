@@ -1894,6 +1894,9 @@ td, th {
 .xgplayer-error{
     z-index: 99;
 }
+.xgplayer-skin-default video,.xgplayer-skin-default .xgplayer-controls,.xgplayer-skin-default .xgplayer-enter,.jinsom-post-video .xgplayer,.xgplayer-skin-default .xgplayer-poster{
+    border-radius: 6px;
+}
 
 /*金币图标*/
 .jinsom-jinbi{
@@ -11863,7 +11866,7 @@ span.aplayer-thumb {
     font-size: 16px;
 }
 .jinsom-publish-redbag-form .credit {
-    margin: 20px;
+    margin: 10px;
 }
 .jinsom-publish-redbag-form .credit label {
     margin-bottom: 8px;
@@ -11878,11 +11881,11 @@ span.aplayer-thumb {
     box-sizing: border-box;
 }
 .jinsom-publish-redbag-form .type {
-    margin: 20px 20px 0;
+    margin: 10px 10px 0;
     display: flex;
 }
 .jinsom-publish-redbag-form .tips {
-    margin: 15px 20px;
+    margin: 15px 10px;
     border: 1px solid #ecd2ad;
     background-color: #fff6e9;
     padding: 8px;
@@ -11910,7 +11913,7 @@ span.aplayer-thumb {
     color: #fbe044;
 }
 .jinsom-publish-redbag-form textarea {
-    margin: 0 20px 20px;
+    margin: 0 10px 10px;
     width: calc(100% - 40px);
     box-sizing: border-box;
     padding: 10px;
@@ -11919,7 +11922,7 @@ span.aplayer-thumb {
     border: 1px solid #f1f1f1;
 }
 .jinsom-publish-redbag-form .btn {
-    margin: 0 20px 20px;
+    margin: 0 10px 10px;
     text-align: center;
     background-color: #e94658;
     color: #fff;
@@ -11929,16 +11932,61 @@ span.aplayer-thumb {
 }
 
 
+.jinsom-publish-redbag-form .img-list {
+    margin: 0 10px 10px;
+}
+.jinsom-publish-redbag-form .img-list li {
+    width: calc((100% - 30px)/4);
+    height: 90px;
+    margin-right: 10px;
+    background-color: #e94658;
+    margin-bottom: 26px;
+    border-radius: 4px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    position: relative;
+    float: left;
+    cursor: pointer;
+}
+.jinsom-publish-redbag-form .img-list li:nth-child(4n) {
+    margin-right: 0;
+}
+.jinsom-publish-redbag-form .img-list li.on,.jinsom-publish-redbag-form .img-list li:hover {
+    opacity: 1;
+}
+.jinsom-publish-redbag-form .img-list li p {
+    margin-top: 92px;
+    font-size: 12px;
+    text-align: center;
+    color: #555;
+}
+.jinsom-publish-redbag-form .img-list li span {
+    position: absolute;
+    font-size: 12px;
+    background-color: #ffffff;
+    color: #e94658;
+    left: 4px;
+    top: 4px;
+    padding: 0 2px;
+    border-radius: 20px;
+}
+
+
+
 .jinsom-post-redbag-content {
-    width: 180px;
-    height: 240px;
+    width: 170px;
+    height: 220px;
     background-color: #e94658;
     border-radius: 10px;
     margin-top: 10px;
+    background-size: cover;
+    background-position: center;
 }
 .jinsom-post-redbag-content .avatarimg {
     height: 80px;
-    background: #c73444;
+    background: rgb(199 52 68 / 60%);
     border-radius: 20px 20px 100% 100%;
     position: relative;
 }
@@ -11954,13 +12002,14 @@ span.aplayer-thumb {
     box-sizing: border-box;
 }
 .jinsom-post-redbag-content .content {
-    margin: 35px 20px 15px;
+    margin: 35px 10px 15px;
     text-align: center;
     color: #fff;
     line-height: 20px;
-    height: 40px;
-    overflow: hidden;
     font-size: 13px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .jinsom-post-redbag-content .content p {
     line-height: 20px;
@@ -11980,7 +12029,6 @@ span.aplayer-thumb {
 }
 .jinsom-post-redbag-content .had {
     text-align: center;
-    text-decoration: underline;
     color: #f3ac38;
     cursor: pointer;
 }

@@ -613,6 +613,10 @@ $('.jinsom-publish-redbag-form .type li').click(function(){
 $(this).addClass('on').siblings().removeClass('on');
 $('.jinsom-publish-redbag-form .tips').html($(this).attr('title'));
 });
+
+$('.jinsom-publish-redbag-form .img-list li').click(function(){
+$(this).addClass('on').siblings().removeClass('on');
+});
 });
 
 //幸运抽奖

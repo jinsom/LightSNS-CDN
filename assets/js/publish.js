@@ -81,10 +81,17 @@ btn: false,
 fixed: false,
 resize:false,
 shade:0.4,
-area: ['300px'],
+area: ['360px'],
+offset: '50px',
 skin: 'jinsom-publish-redbag-form',
 content: msg
-})
+});
+$('.jinsom-publish-redbag-form .img-list li').click(function(){
+$(this).addClass('on').siblings().removeClass('on');
+});
+
+
+
 }else{
 
 jinsom_publish_form=layer.open({
@@ -981,12 +988,12 @@ credit=$('#jinsom-publish-redbag-credit').val();
 number=$('#jinsom-publish-redbag-number').val();
 type=$('.jinsom-publish-redbag-form .type>li.on').attr('data');
 content=$('#jinsom-publish-redbag-content').val();
-
+redbag_cover=$('.jinsom-publish-redbag-form .img-list li.on').index();
 layer.load(1);
 $.ajax({
 type: "POST",
 url:jinsom.jinsom_ajax_url+"/publish/redbag.php",
-data:{credit:credit,number:number,type:type,content:content},
+data:{credit:credit,number:number,type:type,content:content,redbag_cover:redbag_cover},
 success: function(msg){
 layer.closeAll('loading');
 layer.msg(msg.msg);

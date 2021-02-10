@@ -20,7 +20,7 @@ $('.jinsom-mobile-home-sns-top').hide();
 
 
 //与我相关-消除红点
-$("body").on("click",'.jinsom-chat .jinsom-chat-user-list li', function(e){
+$("body").on("click",'.jinsom-chat .jinsom-chat-user-list li,.jinsom-notice-tips-content .jinsom-chat-user-list li', function(e){
 $(this).find('.item-media').find('span').remove();
 });
 
