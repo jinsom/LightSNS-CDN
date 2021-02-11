@@ -86,7 +86,7 @@ $.ajax({
 type: "POST",
 dataType:'json',
 url:jinsom.jinsom_ajax_url+"/action/get-code.php",
-data: {mail:mail,type:'reg-mail',ticket:ticket,randstr:randstr},
+data: {mail:mail,type:'reg-email',ticket:ticket,randstr:randstr},
 success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
