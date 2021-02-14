@@ -1490,8 +1490,8 @@ myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page
 //抢红包
 function jinsom_get_redbag(post_id,obj){
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/get-redbag.php?post_id='+post_id});
-if($(obj).text()=='打开'){
-$(obj).addClass('had').removeClass('open').text('红包已打开');
+if($(obj).text()=='开'){
+$(obj).addClass('had').removeClass('open').text('已领取');
 }
 }
 
@@ -2403,6 +2403,19 @@ $(obj).text('').removeAttr('onclick');
 });	
 }
 
+//清除历史搜索
+function jinsom_history_search_clear(){
+layer.open({
+content: '你确定要清除历史搜索吗？'
+,btn: ['确定', '取消']
+,yes: function(index){
+$('.jinsom-search-hot.history').remove();
+layer.open({content:'已经清除！',skin:'msg',time:2});
+DelCookie('history-search');
+}
+});	
+}
+
 //下载次数
 function jinsom_download_times(post_id){
 $.ajax({   
@@ -2448,6 +2461,12 @@ anim: 'up',
 className:'jinsom-reg-type-form-content',
 style: 'position:fixed;bottom:2vw;left:2vw;width:96vw;border:none;box-sizing:border-box;border-radius:2vw;padding:2vw;'
 });	
+}
+
+//记录社交登录 返回地址 登录返回 登录回调
+function jinsom_login_back_url(){
+url=window.location.href;
+document.cookie="login_back="+url;
 }
 
 

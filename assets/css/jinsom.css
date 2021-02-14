@@ -769,16 +769,13 @@ td, th {
     opacity: 0;
     visibility: hidden;
     background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .jinsom-pop-search-container {
-    position: relative;
     width: 90%;
     max-width: 600px;
     border-radius: 2px;
     text-align: center;
+    margin: 100px auto;
 }
 
 .jinsom-pop-search-content {
@@ -808,9 +805,16 @@ td, th {
     visibility: visible;
     z-index: 9999999;
     background-color: #f5f5f5;
+    overflow-y: auto;
 }
 .jinsom-pop-search-hot {
     text-align: left;
+}
+.jinsom-pop-search-hot p .right {
+    float: right;
+}
+.jinsom-pop-search-hot p .right i {
+    cursor: pointer;
 }
 .jinsom-pop-search-hot p,.jinsom-pop-search-bbs .title,.jinsom-pop-search-topic .title {
     font-size: 16px;
@@ -832,7 +836,7 @@ td, th {
     color: #fff;
 }
 .jinsom-pop-search .close {
-    position: absolute;
+    position: fixed;
     right: 0px;
     top: 0px;
     font-size: 28px;
@@ -6025,10 +6029,6 @@ figure.effect-ming:hover figcaption::before, figure.effect-ming:hover p {
     word-break: break-all;
     overflow: hidden;
     flex: 1;
-}
-.jinsom-bbs-single-content a {
-    color: #3F51B5;
-    text-decoration: underline;
 }
 .jinsom-bbs-comment-list .jinsom-pop-video {
     max-width: 80%;

@@ -633,12 +633,8 @@ $('.jinsom-bbs-child-setting-avatar span').show().html(jinsom.loading);
 done: function(res, index, upload){
 $('.jinsom-bbs-child-setting-avatar span').hide().html('点击上传头像');
 if(res.code == 1){
-if($('.jinsom-bbs-child-setting-avatar img').length>0){
 $('.jinsom-bbs-child-setting-avatar img').attr('src',res.file_url);
-}else{
-$('.jinsom-bbs-child-setting-avatar no-img').remove();
-$('.jinsom-bbs-child-setting-avatar').prepend('<img src="'+res.file_url+'" class="avatar opacity">');
-}
+$('.jinsom-bbs-avatar-input').val(res.file_url);
 }else{
 layer.msg(res.msg);	
 }
@@ -794,12 +790,8 @@ $('.jinsom-bbs-child-setting-avatar span').show().html(jinsom.loading);
 done: function(res, index, upload){
 $('.jinsom-bbs-child-setting-avatar span').hide().html('点击上传头像');
 if(res.code == 1){
-if($('.jinsom-bbs-child-setting-avatar img').length>0){
 $('.jinsom-bbs-child-setting-avatar img').attr('src',res.file_url);
-}else{
-$('.jinsom-bbs-child-setting-avatar no-img').remove();
-$('.jinsom-bbs-child-setting-avatar').prepend('<img src="'+res.file_url+'" class="avatar opacity">');
-}
+$('.jinsom-bbs-avatar-input').val(res.file_url);
 }else{
 layer.msg(res.msg);	
 }
@@ -855,12 +847,8 @@ $('.jinsom-topic-setting-avatar span').show().html(jinsom.loading);
 done: function(res, index, upload){
 $('.jinsom-topic-setting-avatar span').hide().html('点击上传头像');
 if(res.code == 1){
-if($('.jinsom-topic-setting-avatar img').length>0){
 $('.jinsom-topic-setting-avatar img').attr('src',res.file_url);
-}else{
-$('.jinsom-topic-setting-avatar no-img').remove();
-$('.jinsom-topic-setting-avatar').prepend('<img src="'+res.file_url+'" class="avatar opacity">');
-}
+$('.jinsom-bbs-avatar-input').val(res.file_url);
 }else{
 layer.msg(res.msg);	
 }
@@ -3319,11 +3307,11 @@ area: ['300px'],
 content: msg
 });
 
-if($(obj).text()=='打开'){
+if($(obj).text()=='开'){
 if($('.jinsom-get-redbag-my-credit').text()=='红包被领完了'){
-$(obj).addClass('had').removeClass('open').text('红包被领完');
+$(obj).addClass('had').removeClass('open').text('已领完');
 }else{
-$(obj).addClass('had').removeClass('open').text('红包已打开');
+$(obj).addClass('had').removeClass('open').text('已领取');
 }
 }
 
@@ -4062,6 +4050,26 @@ url:jinsom.jinsom_ajax_url+"/action/download-times.php",
 type:'POST',   
 data:{post_id:post_id},  
 }); 
+}
+
+
+
+//记录社交登录 返回地址 登录返回 登录回调
+function jinsom_login_back_url(){
+url=window.location.href;
+document.cookie="login_back="+url;
+}
+
+
+//清除历史搜索
+function jinsom_history_search_clear(){
+layer.confirm('你确定要清除历史搜索吗？',{
+btnAlign: 'c',
+}, function(){
+$('.jinsom-pop-search-hot.history').remove();
+layer.msg('已经清除！'); 
+DelCookie('history-search');
+});	
 }
 
 

@@ -424,15 +424,6 @@ h1, h2, h3, h4, h5, h6 {
 .jinsom-bbs-menu li {
     line-height: 12vw;
 }
-.jinsom-home-menu li.on:after, .jinsom-video-special-menu li.on:after, .jinsom-bbs-menu li.on:after {
-    position: absolute;
-    left: 25%;
-    bottom: 0;
-    content: '';
-    width: 50%;
-    box-sizing: border-box;
-    border-bottom: 2px solid #46c47c;
-}
 .jinsom-home-menu li.on, .jinsom-video-special-menu li.on, .jinsom-bbs-menu li.on{
     color: #46c47c;
     font-size: 4.5vw;
@@ -1298,12 +1289,12 @@ display: none !important;
 .jinsom-post-single-content li {
     list-style: inherit;
 }
-.jinsom-post-single-content a {
-    color: #3F51B5;
-    text-decoration: underline;
-}
 .jinsom-post-single-content .jinsom-post-link {
     vertical-align: 2vw;
+}
+.jinsom-post-single-content .jinsom-post-link i:before {
+    vertical-align: sub;
+    margin-right: 1vw;
 }
 .jinsom-post-words .footer {
     padding: 3vw 0vw 3vw;
@@ -4462,7 +4453,7 @@ display: none !important;
 .jinsom-bbs-content {
     background-position: top;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
 }
 .jinsom-bbs-content.no-power {
     padding: 0;
@@ -4497,17 +4488,18 @@ display: none !important;
     margin-left: 4vw;
 }
 .jinsom-bbs-header .top .number span {
-    margin-top: 4vw;
+    margin-top: 3vw;
     display: inline-block;
     margin-right: 4vw;
-    color: #555;
+    color: #666;
+    font-size: 3.5vw;
 }
 .jinsom-bbs-header .top .number span:last-child {
     margin-right: 0;
 }
 .jinsom-bbs-header .name {
     font-size: 5vw;
-    margin: 2vw;
+    margin: 3vw 2vw 2vw;
     display: flex;
     align-items: center;
 }
@@ -5297,6 +5289,13 @@ h1 .commend:before{
     color: #999;
     margin-bottom: 3vw;
 }
+.jinsom-search-hot .title .right {
+    float: right;
+}
+.jinsom-search-hot .title .right i {
+    font-size: 4vw;
+}
+
 .jinsom-search-hot li {
     background-color: #f1f1f1;
     float: left;
@@ -7506,7 +7505,7 @@ h1 .commend:before{
 
 .navbar,[data-page=member-mine] .navbar.color,[data-page=member-other] .navbar.color,[data-page=bbs] .navbar.color,[data-page=topic] .navbar.color,.jinsom-reward-bg,.jinsom-mobile-login-form-btn .jinsom-login-btn,.jinsom-login-input-form p.code .jinsom-get-code,.jinsom-login-input-form p.code a,.jinsom-recharge-btn,.jinsom-cash-btn,li.jinsom-mine-no-login{background:var(--jinsom-color);}
 .jinsom-home-menu li.on,.jinsom-video-special-menu li.on,.jinsom-member-menu li.on,.jinsom-topic-menu li.on,.jinsom-chat-tab a.active,.tabbar a.active,.jinsom-footer-toolbar .publish i,.jinsom-bbs-publish-icon i,.jinsom-refresh-success,.toolbar-inner .right a,.jinsom-publish-power-form li .select,.jinsom-bbs-menu li.on,.jinsom-bbs-tab-post-header>li.on,.jinsom-single-comment>.header li.on{color:var(--jinsom-color);}
-.jinsom-home-menu li.on:after,.jinsom-video-special-menu li.on:after,.jinsom-member-menu li.on:after,.jinsom-chat-tab a.active:after,.jinsom-topic-menu li.on:after,.jinsom-find-box .header>span,.jinsom-single-comment>.header li.on:after,.jinsom-bbs-menu li.on:after{border-color:var(--jinsom-color);}
+.jinsom-home-menu li.on:after,.jinsom-video-special-menu li.on:after,.jinsom-member-menu li.on:after,.jinsom-chat-tab a.active:after,.jinsom-topic-menu li.on:after,.jinsom-find-box .header>span,.jinsom-single-comment>.header li.on:after{border-color:var(--jinsom-color);}
 
 
 
