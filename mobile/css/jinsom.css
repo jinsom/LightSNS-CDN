@@ -1290,7 +1290,7 @@ display: none !important;
     list-style: inherit;
 }
 .jinsom-post-single-content .jinsom-post-link {
-    vertical-align: 2vw;
+    vertical-align: 1vw;
 }
 .jinsom-post-single-content .jinsom-post-link i:before {
     vertical-align: sub;
@@ -1401,7 +1401,7 @@ display: none !important;
     overflow: hidden;
 }
 .jinsom-post-link {
-    vertical-align: 1vw;
+    vertical-align: 0.8vw;
 }
 .jinsom-post-words .follow {
     position: absolute;
@@ -4454,6 +4454,7 @@ display: none !important;
     background-position: top;
     background-repeat: no-repeat;
     background-size: contain;
+    background-color: #a5c1ec;
 }
 .jinsom-bbs-content.no-power {
     padding: 0;
@@ -7228,7 +7229,7 @@ h1 .commend:before{
 
 /*案例页面*/
 .jinsom-case-content {
-    padding: 2vw !important;
+    padding: 12vw 2vw 2vw !important;
 }
 .jinsom-case-content ul{
     padding: 0;

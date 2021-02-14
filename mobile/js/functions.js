@@ -2470,6 +2470,18 @@ document.cookie="login_back="+url;
 }
 
 
+//获取get参数
+function jinsom_get_para(name){
+var query = window.location.search.substring(1);
+var vars = query.split("&");
+for (var i=0;i<vars.length;i++) {
+var pair = vars[i].split("=");
+if(pair[0] == name){return pair[1];}
+}
+return(false);
+}
+
+
 //设置cookie
 function SetCookie(name,value){
 var Days = 30*12*10;//十年

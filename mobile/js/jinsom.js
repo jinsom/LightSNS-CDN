@@ -66,9 +66,14 @@ myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page
 }
 
 if(jinsom.is_page){
+search_para=jinsom_get_para('search');
 window.history.pushState(null,null,'/');
 function e(){
-myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/post-page.php?post_id='+jinsom.post_id+'&page_template='+jinsom.page_template+'&url='+jinsom.post_url});	
+if(jinsom.page_template=='page/select.php'){//筛选
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/post-page.php?post_id='+jinsom.post_id+'&page_template='+jinsom.page_template+'&url='+jinsom.post_url+'&search='+search_para});
+}else{
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/post-page.php?post_id='+jinsom.post_id+'&page_template='+jinsom.page_template+'&url='+jinsom.post_url});
+}	
 }setTimeout(e,500);	
 }
 
