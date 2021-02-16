@@ -469,7 +469,7 @@ this_dom.removeClass('on').html('修改金额');
 $('.jinsom-reward-money span').html('<input type="hidden" id="jinsom-reward-number" value="'+number+'"><m>'+number+'</m>');
 }else{
 this_dom.addClass('on').html('取消');
-$('.jinsom-reward-money span').html('<input type="text"  maxlength="4"  id="jinsom-reward-number">');
+$('.jinsom-reward-money span').html('<input type="text"  maxlength="6"  id="jinsom-reward-number">');
 $('#jinsom-reward-number').focus();
 }
 }
@@ -1673,6 +1673,9 @@ $('.jinsom-post-list').html(msg);
 
 //个人主页设置页面
 function jinsom_member_setting_page(obj){
+if($('.jinsom-load-post').length>0){
+return false;	
+}
 author_id=$(obj).attr('author_id');
 $(obj).addClass('on').siblings().removeClass('on');
 $('.jinsom-post-list').prepend(jinsom.loading_post);

@@ -6669,6 +6669,12 @@ h1 .commend:before{
     color: #555;
     padding: 3vw 0;
 }
+.jinsom-luck-draw-list ul li .right {
+    flex: 1;
+    text-align: right;
+    font-size: 3.5vw;
+    color: #999;
+}
 .jinsom-luck-draw-list ul li .img {
     background-position: center;
     background-size: cover;
@@ -9222,7 +9228,7 @@ h1 .commend:before{
 .jinsom-select-content li {
     width: calc((100% - 2vw)/2);
     float: left;
-    margin-right: 10px;
+    margin-right: 2vw;
     margin-bottom: 7.8px;
     position: relative;
     border-radius: 1vw;

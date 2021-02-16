@@ -2482,6 +2482,27 @@ return(false);
 }
 
 
+//第三方地址的更多功能
+function jinsom_url_page_more(url){
+var buttons1 = [{text: '新窗口打开',onClick:function(){
+window.open(url);
+}},
+{text: '复制地址',onClick:function(){
+var clipboard = new ClipboardJS('.actions-modal-button:last-child');
+clipboard.on('success', function(e) {
+e.clearSelection();
+layer.open({content:'复制成功！',skin:'msg',time:2});
+});
+
+}}];
+var buttons2 = [{text: '取消',color:'red'}
+];
+var groups = [buttons1, buttons2];
+myApp.actions(groups);
+$('.actions-modal-button:last-child').attr('data-clipboard-text',url);
+}
+
+
 //设置cookie
 function SetCookie(name,value){
 var Days = 30*12*10;//十年

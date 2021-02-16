@@ -797,25 +797,28 @@ this_dom.siblings('.value').html('审核员');
 //---------------------------更多设置页面-----------------
 myApp.onPageInit('setting-more', function (page) {
 
-$('.jinsom-setting-box li.gender select').change(function(event) {//设置性别
-gender=$(this).val();
+//下拉选择器
+$('.jinsom-setting-box li.select select').change(function(event) {
+value=$(this).val();
 author_id=$('.jinsom-setting-content').attr('data');
 this_dom=$(this);
 $.ajax({
 type:"POST",
 url:jinsom.mobile_ajax_url+"/setting/profile.php",
-data:{value:gender,author_id:author_id,type:'gender'},
+data:{value:value,author_id:author_id,type:this_dom.parents('li').attr('data')},
 success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
-this_dom.siblings('.value').html(gender);
+this_dom.siblings('.value').html(this_dom.children('option:selected').text());
 }
 }
 });
 });
 
-$('.jinsom-setting-box li.birthday').change(function(event) {//设置生日
+
+//设置生日
+$('.jinsom-setting-box li.birthday').change(function(event) {
 birthday=$(this).children('input').val();
 author_id=$('.jinsom-setting-content').attr('data');
 this_dom=$(this);

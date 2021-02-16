@@ -3778,7 +3778,7 @@ img.wp-smiley {
     position: absolute;
     left: -60px;
     padding: 60px 0 0;
-    z-index: 2;
+    z-index: 1004;
 }
 .jinsom-single-left-bar>li {
     width: 40px;
@@ -7100,9 +7100,6 @@ figure.effect-ming:hover figcaption::before, figure.effect-ming:hover p {
 .jinsom-login-form .layui-layer-content {
     height: inherit !important;
 }
-/*.jinsom-login-form.login .layui-layer-content,.jinsom-login-form.reg .layui-layer-content {
-    padding: 12px 20px 0 !important;
-}*/
 .jinsom-pop-login-form {
     padding: 10px 20px 20px;
 }
@@ -7119,13 +7116,17 @@ figure.effect-ming:hover figcaption::before, figure.effect-ming:hover p {
     border: 1px solid #f1f1f1;
     box-sizing: border-box;
 }
-.jinsom-pop-login-form li.code input.jinsom-get-code {
+.jinsom-pop-login-form li.code .jinsom-get-code {
     background-color: var(--jinsom-color);
     border: none;
     padding: 0;
     color: #fff;
     margin-left: 10px;
     cursor: pointer;
+    width: 100%;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 2px;
 }
 .jinsom-pop-login-form li.code input.jinsom-get-code.no {
     background-color: #ccc;
@@ -8436,7 +8437,7 @@ figure.effect-ming:hover figcaption::before, figure.effect-ming:hover p {
 }
 .jinsom-reward-money m {
     color: #FBD776;
-    font-size: 60px;
+    font-size: 44px;
 }
 .jinsom-reward-money i {
     color: #FBD776;
@@ -8470,7 +8471,7 @@ figure.effect-ming:hover figcaption::before, figure.effect-ming:hover p {
     background: 0;
     border: 0;
     color: #FBD776;
-    font-size: 60px;
+    font-size: 44px;
     text-align: center;
     width: 155px;
 }

@@ -437,7 +437,7 @@ function d(){window.location.href=msg.url;}setTimeout(d,2000);
 
 
 
-//发布帖子
+//编辑帖子
 function jinsom_editor_bbs_post(post_id){
 title= $.trim($('.jinsom-bbs-title').val());
 post_type= $('#jinsom-bbs-type').val();

@@ -193,3 +193,32 @@ jinsom_ajax_get_messages_group(bbs_id);
 function jinsom_stop_group_Ajax(){   
 if(jinsom_user_chat_group_ajax) {jinsom_user_chat_group_ajax.abort();}  
 }  
+
+
+
+
+//加入群聊
+function jinsom_join_group_chat(bbs_id,obj){
+if(!jinsom.is_login){
+myApp.loginScreen();  
+return false;
+}
+if(jinsom.is_black){
+layer.open({content:'你是黑名单用户，禁止互动操作！',skin:'msg',time:2});
+return false;
+}
+$.ajax({
+type: "POST",
+url:jinsom.module_url+"/jinsom-join-group-chat.php",
+data: {bbs_id:bbs_id},
+success: function(msg){
+if(msg==1){
+jinsom_open_group_chat(bbs_id);
+}else if(msg==2){
+layer.open({content:'请先关注'+jinsom.bbs_name+'才允许加入群聊！',skin:'msg',time:2});
+}else if(msg==3){
+myApp.loginScreen();
+}
+}
+});	
+}

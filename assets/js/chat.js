@@ -402,18 +402,21 @@ return false;
 
 //加入群聊
 function jinsom_join_group_chat(bbs_id,obj){
+if(!jinsom.is_login){
+jinsom_pop_login_style();	
+return false;
+}
 if(jinsom.is_black){
 layer.msg('你是黑名单用户，禁止互动操作！');	
 return false;
 }
-this_dom=obj;
-$(this_dom).html('<i class="fa fa-spinner fa-spin"></i> 进入中...');
+$(obj).html('<i class="fa fa-spinner fa-spin"></i> 进入中...');
 $.ajax({
 type: "POST",
 url:jinsom.module_url+"/jinsom-join-group-chat.php",
 data: {bbs_id:bbs_id},
 success: function(msg){
-$(this_dom).html('加入群聊');
+$(obj).html('加入群聊');
 if(msg==1){
 jinsom_open_group_chat(bbs_id);
 }else if(msg==2){
