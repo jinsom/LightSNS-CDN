@@ -7785,6 +7785,17 @@ h1 .commend:before{
     display: none;
 }
 
+#jinsom-video-live.xgplayer-skin-default .xgplayer-start .xgplayer-icon-play:before {
+    display: none;
+}
+#jinsom-video-live.xgplayer-skin-default .xgplayer-start .xgplayer-icon-play {
+    animation: none;
+}
+#jinsom-video-live.xgplayer-skin-default .xgplayer-start .xgplayer-icon-play svg {
+    display: block;
+}
+
+
 
 
 #jinsom-publish-video-demo {

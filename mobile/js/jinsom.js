@@ -22,9 +22,8 @@ myApp.hideIndicator();
 //强制登录
 if(jinsom.login_on_off&&!jinsom.is_login){
 myApp.loginScreen();
-}
-
-
+myApp.addView('#jinsom-view-sns-0',{dynamicNavbar:true,domCache:true});
+}else{
 
 mobile_tab=$.parseJSON(jinsom.mobile_tab);//获取移动端开启的页面类型
 if(mobile_tab){
@@ -41,6 +40,9 @@ myApp.addView('#jinsom-view-'+mobile_tab_type+'-'+i,{dynamicNavbar:true,domCache
 }
 }//for
 }//if
+
+
+}
 
 
 //判断页面属性

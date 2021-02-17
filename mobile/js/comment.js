@@ -35,7 +35,7 @@ comment_list.html('');
 
 comment_num=$('.jinsom-post-'+post_id+' .footer .comment_number');
 comment_num.html(parseInt(comment_num.html())+1); 
-$('.jinsom-post-'+post_id).next('.jinsom-single-comment').children('.header').find('span').html(parseInt(comment_num.html()));
+//$('.jinsom-post-'+post_id).next('.jinsom-single-comment').children('.header').find('span').html(parseInt(comment_num.html()));
 $('.jinsom-post-'+post_id).parent().prev().find('.number').html(parseInt(comment_num.html())+'条评论');
 
 comment_list.prepend('\

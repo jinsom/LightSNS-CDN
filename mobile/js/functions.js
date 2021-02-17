@@ -1207,7 +1207,7 @@ success:function(msg){
 myApp.hideIndicator();
 if(msg.code==1){
 $('.jinsom-setting-box li.honor .value').text(msg.honor);
-history.back(-1);//返回上一页
+function d(){window.location.reload();}setTimeout(d,1500);
 layer.open({content:msg.msg,skin:'msg',time:2});	
 }else{
 layer.open({content:msg.msg,skin:'msg',time:2});	

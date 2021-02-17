@@ -228,7 +228,7 @@ $.ajax({
 type: "POST",
 dataType:'json',
 url:jinsom.jinsom_ajax_url+"/action/reg.php",
-data: {username:username,mail:mail,password:password,code:code,type:'mail',ticket:ticket,randstr:randstr},
+data: {username:username,mail:mail,password:password,code:code,type:'email',ticket:ticket,randstr:randstr},
 success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});

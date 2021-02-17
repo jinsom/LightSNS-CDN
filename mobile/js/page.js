@@ -534,6 +534,15 @@ qdDay: hadsign,
 });
 
 
+//简单注册
+myApp.onPageBeforeInit('reg-simple', function (page) {
+if($('#reg-2').length>0&&!jinsom.is_admin){
+new TencentCaptcha(document.getElementById('reg-2'),jinsom.machine_verify_appid,function(res){
+if(res.ret === 0){jinsom_pop_reg_simple(res.ticket,res.randstr);}
+});
+}
+});
+
 
 //邮件注册
 myApp.onPageBeforeInit('reg-email', function (page) {
