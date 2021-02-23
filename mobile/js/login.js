@@ -280,8 +280,7 @@ success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
-$(obj).children('.title').html('已经解绑'+title);
-$(obj).children('.b').remove();
+$(obj).removeAttr('onclick').find('n').text('未绑定').parent().removeClass('b').addClass('a');
 }
 }
 });  

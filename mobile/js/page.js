@@ -235,6 +235,9 @@ var el = document.getElementById('jinsom-publish-images-list');
 var sortable = Sortable.create(el);
 
 
+jinsom_comment_aite_user_js();//评论@好友
+
+
 });
 
 
@@ -372,6 +375,9 @@ $('.jinsom-publish-words-form .add span').hide();	//关闭loading动画
 var el = document.getElementById('jinsom-publish-images-list');
 var sortable = Sortable.create(el);
 
+jinsom_comment_aite_user_js();//评论@好友
+
+
 });
 
 //--------------------------- 二级回帖-----------------
@@ -390,6 +396,10 @@ new TencentCaptcha(document.getElementById('comment-3'),jinsom.machine_verify_ap
 if(res.ret === 0){jinsom_bbs_comment_floor(comment_id,post_id,bbs_id,res.ticket,res.randstr);}
 });
 }
+
+
+
+jinsom_comment_aite_user_js();//评论@好友
 
 
 });
@@ -1581,7 +1591,7 @@ id: 'jinsom-publish-video-demo',
 url:msg.file_url,
 'x5-video-player-type': 'h5',
 'x5-video-player-fullscreen': false,
-playbackRate: [0.5,1,2,6,8],
+playbackRate: [0.5,1,1.5,2,6],
 fitVideoSize:'fixWidth',
 playsinline: true,
 videoInit: true,

@@ -41,7 +41,20 @@ myApp.addView('#jinsom-view-'+mobile_tab_type+'-'+i,{dynamicNavbar:true,domCache
 }//for
 }//if
 
+}
 
+//通过外链打开首页tab
+if(jinsom_get_para('tab')!=''){
+myApp.showTab('#'+jinsom_get_para('tab'));
+window.history.pushState(null,null,'/');
+}
+
+
+if(jinsom.is_login&&jinsom.phone_on_off&&!jinsom.is_phone){
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-phone.php?author_id='+jinsom.user_id});
+}
+if(jinsom.is_login&&jinsom.email_on_off&&!jinsom.is_email){
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-email.php?author_id='+jinsom.user_id});
 }
 
 

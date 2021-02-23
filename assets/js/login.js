@@ -9,6 +9,7 @@ layer.closeAll();
 layer.open({
 title:title,
 btn:false,
+closeBtn:2,
 type: 1,
 area:[width+'px','auto'],
 skin:'jinsom-login-form '+type,
@@ -31,6 +32,7 @@ layer.closeAll();
 layer.open({
 title:'登录帐号',
 btn: false,
+closeBtn:2,
 type: 1,
 area: ['400px','auto'],
 skin: 'jinsom-login-form login',
@@ -45,7 +47,7 @@ content: msg
 
 
 //修改手机号表单
-function jinsom_update_phone_form(author_id){
+function jinsom_update_phone_form(author_id,close){
 phone=$('#jinsom-profile-phone').val();
 layer.load(1);
 $.ajax({
@@ -59,6 +61,7 @@ title:'绑定手机号',
 btn: false,
 type: 1,
 resize:false,
+closeBtn:close,
 area: '350px',
 skin: 'jinsom-login-form',
 content: msg
@@ -68,7 +71,7 @@ content: msg
 }
 
 //修改邮箱表单
-function jinsom_update_mail_form(author_id){
+function jinsom_update_mail_form(author_id,close){
 email=$('#jinsom-profile-mail').val();
 layer.load(1);
 $.ajax({
@@ -82,6 +85,7 @@ title:'绑定邮箱',
 btn: false,
 type: 1,
 resize:false,
+closeBtn:close,
 area: '350px',
 skin: 'jinsom-login-form',
 content: msg
@@ -105,6 +109,7 @@ title:'重置密码',
 btn: false,
 type: 1,
 resize:false,
+closeBtn:2,
 area: ['350px'],
 skin: 'jinsom-login-form',
 content: msg
@@ -140,6 +145,7 @@ title:'重置密码',
 btn: false,
 type: 1,
 resize:false,
+closeBtn:2,
 area: ['350px','190px'],
 skin: 'jinsom-login-form',
 content: msg
@@ -172,6 +178,7 @@ title:'重置密码',
 btn: false,
 type: 1,
 resize:false,
+closeBtn:2,
 area: ['350px','280px'],
 skin: 'jinsom-login-form',
 content: msg
@@ -193,6 +200,7 @@ title:'用户ID：'+user_id+' - 修改密码',
 btn: false,
 type: 1,
 resize:false,
+closeBtn:2,
 area: ['350px'],
 skin: 'jinsom-login-form',
 content: '\

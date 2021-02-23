@@ -81,7 +81,12 @@ $('.jinsom-publish-aite-form .list.aite').html(msg.content);
 //发布 搜索@用户  选择用户
 function jinsom_aite_selete_user(obj){
 myApp.closeModal();
-textarea=$('.jinsom-publish-words-form .content textarea');
+if($('.jinsom-publish-words-form .content textarea').length>0){
+textarea=$('.jinsom-publish-words-form .content textarea');	//发表
+}else{
+textarea=$('.jinsom-comment-content-main textarea');//评论
+}
+
 textarea.val(textarea.val()+' @'+$(obj).attr('data')+' ');
 }
 

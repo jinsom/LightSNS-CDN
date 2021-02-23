@@ -5,6 +5,17 @@ var form = layui.form;
 var element = layui.element;
 // var laydate = layui.laydate;
 var layer = layui.layer;
+
+if(jinsom.is_login&&jinsom.phone_on_off&&!jinsom.is_phone){
+jinsom_update_phone_form(jinsom.user_id,0);
+}
+
+if(jinsom.is_login&&jinsom.email_on_off&&!jinsom.is_email){
+if(!jinsom.phone_on_off||jinsom.is_phone){
+jinsom_update_mail_form(jinsom.user_id,0);
+}
+}
+
 });
 
 var header_height=$('.jinsom-header').height();

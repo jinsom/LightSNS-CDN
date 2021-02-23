@@ -479,7 +479,7 @@ id:'jinsom-video-'+post_id,
 url:video_url,
 'x5-video-player-type': 'h5',
 'x5-video-player-fullscreen': false,
-playbackRate: [0.5,1,2,6,8],
+playbackRate: [0.5,1,1.5,2,6],
 fitVideoSize:'fixWidth',
 playsinline: true,
 autoplay:true,
@@ -766,12 +766,11 @@ comment_list.prepend('\
 <div class="avatarimg">'+jinsom.avatar+jinsom.verify+'</div>\
 <div class="info">\
 <div class="name">'+jinsom.nickname+jinsom.lv+jinsom.vip+'</div>\
-<div class="from"><span>手机端</span></div>\
+<div class="from"><span class="time">刚刚</span><span>手机端</span></div>\
 </div>\
 </div>\
 <div class="content"><m class="reward"><span class="jinsom-redbag-icon"></span>打赏了'+number+jinsom.credit_name+'。</m></div>\
-<div class="footer">\
-<span class="time">刚刚</span>\
+<div class="footer clear">\
 <span class="comment">\
 <a href="'+jinsom.theme_url+'/mobile/templates/page/comment.php?post_id='+post_id+'&name='+jinsom.nickname_base+'" class="link">回复</a>\
 </span>\
@@ -1378,6 +1377,7 @@ return false;
 $(obj).text('抽奖中...');
 $.ajax({
 type: "POST",
+dataType:'json',
 url:jinsom.jinsom_ajax_url+"/action/luck-draw.php",
 success: function(msg){
 layer.open({content:msg.msg,skin:'msg',time:2});
@@ -2052,6 +2052,9 @@ $.ajax({
 url:jinsom.jinsom_ajax_url+"/action/collect.php",
 type:'POST',   
 data:{post_id:post_id,type:type,url:url},  
+success:function(msg){
+layer.open({content:msg.msg,skin:'msg',time:2});
+}
 }); 
 }
 
@@ -2158,6 +2161,9 @@ style: 'position:fixed;bottom:0;left:0;width:100%;border:none;'
 function jinsom_sort(){
 type=$('.jinsom-home-menu li.on').attr('type');//当前内容的类型
 sort_type=GetCookie('sort');
+if(!sort_type){
+sort_type=jinsom.sort;
+}
 buttons=[
 {text:'最新发布',onClick:function(){SetCookie('sort','normal');jinsom_post(type,'reload',this);}},
 {text:'最新回复',onClick:function(){SetCookie('sort','comment');jinsom_post(type,'reload',this);}},
@@ -2502,6 +2508,32 @@ myApp.actions(groups);
 $('.actions-modal-button:last-child').attr('data-clipboard-text',url);
 }
 
+
+
+//评论艾特aite@好友
+function jinsom_comment_aite_user_js(){
+$('.jinsom-publish-aite-popup').on('opened',function (){//打开
+if($('.jinsom-publish-aite-form .list.aite li').length==0){
+$('.jinsom-publish-aite-form .list.aite').prepend(jinsom.loading_post);
+$.ajax({
+type: "POST",
+url: jinsom.mobile_ajax_url+"/user/following.php",
+success: function(msg){
+html='';
+for (var i = msg.data.length - 1; i >= 0; i--){
+html+='\
+<li onclick="jinsom_aite_selete_user(this)" data="'+msg.data[i].nickname+'">\
+<div class="avatarimg">'+msg.data[i].avatar+msg.data[i].verify+'</div>\
+<div class="name">'+msg.data[i].name+msg.data[i].vip+'</div>\
+</li>';
+}
+$('.jinsom-publish-aite-form .list.aite').html(html);
+}
+}); 
+
+}
+});
+}
 
 //设置cookie
 function SetCookie(name,value){

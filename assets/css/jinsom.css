@@ -1115,7 +1115,7 @@ td, th {
     vertical-align: 0px;
 }
 .jinsom-member-top:before{
-    content: '主页置顶';
+    content: '置顶';
 }
 
 /*侧栏小工具*/
@@ -1382,7 +1382,6 @@ td, th {
     text-align: center;
 }
 .jinsom-sidebar-user-info .info .name {
-    font-weight: bold;
     overflow: hidden;
     display: inline-flex;
 }
@@ -7745,6 +7744,9 @@ figure.effect-ming:hover figcaption::before, figure.effect-ming:hover p {
 .jinsom-sidebar-login .social>li i {
     font-size: 26px;
 }
+.jinsom-sidebar-login .social li.phone a {
+    color: #107cd2;
+}
 .jinsom-sidebar-login .social li.qq a {
     color: #4487c6;
 }
@@ -13925,9 +13927,9 @@ span.aplayer-thumb {
 .jinsom-post-video .xgplayer-nostart,.jinsom-post-video .xgplayer-is-enter{
     height: 225px !important;
 }
-.single .jinsom-post-video .xgplayer {
+/*.single .jinsom-post-video .xgplayer {
     width: 600px !important;
-}
+}*/
 .single .jinsom-post-video .xgplayer-nostart,.single .jinsom-post-video .xgplayer-is-enter{
     height: 320px !important;
 }

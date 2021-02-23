@@ -1189,7 +1189,7 @@ display: none !important;
     vertical-align: 0.6vw !important;
 }
 .jinsom-post-words .content h1 .sticky-member:before,.jinsom-post-single h1 .sticky-member:before{
-    content: '主页置顶';
+    content: '置顶';
 }
 .jinsom-post-words .content h1 .type,.jinsom-single h1 .type {
     padding: 0.5vw 1.5vw;
@@ -1797,8 +1797,8 @@ display: none !important;
     height: 8vw;
     background-color: #f6f6f6;
     border-radius: 20vw;
-    width: 30vw;
     padding-left: 4vw;
+    flex: 1;
 }
 .jinsom-post-words-tool >a:first-child i {
     font-size: 4vw;
@@ -1822,7 +1822,6 @@ display: none !important;
     left: 3vw;
 }
 .jinsom-post-words-tool>span {
-    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1831,6 +1830,7 @@ display: none !important;
     text-align: center;
     flex: 1;
     overflow: inherit;
+    width: 12vw;
 }
 #jinsom-comment-page textarea {
     border: none;
@@ -2071,11 +2071,11 @@ display: none !important;
     width: 70vw;
 }
 .jinsom-single-comment-list>div .info .name {
-    margin-bottom: 1vw;
     width: 98%;
     overflow: hidden;
     white-space: nowrap;
     font-size: 3.8vw;
+    padding: 0.5vw 0;
 }
 .jinsom-single-comment-list>div .info .from {
     font-size: 3vw;
@@ -7785,13 +7785,14 @@ h1 .commend:before{
     display: none;
 }
 
-#jinsom-video-live.xgplayer-skin-default .xgplayer-start .xgplayer-icon-play:before {
+#jinsom-video-live.xgplayer-skin-default .xgplayer-start .xgplayer-icon-play:before,#jinsom-publish-video-demo.xgplayer-skin-default .xgplayer-start .xgplayer-icon-play:before {
     display: none;
 }
-#jinsom-video-live.xgplayer-skin-default .xgplayer-start .xgplayer-icon-play {
+#jinsom-video-live.xgplayer-skin-default .xgplayer-start .xgplayer-icon-play,#jinsom-publish-video-demo.xgplayer-skin-default .xgplayer-start .xgplayer-icon-play {
     animation: none;
+    margin-left: 0;
 }
-#jinsom-video-live.xgplayer-skin-default .xgplayer-start .xgplayer-icon-play svg {
+#jinsom-video-live.xgplayer-skin-default .xgplayer-start .xgplayer-icon-play svg,#jinsom-publish-video-demo.xgplayer-skin-default .xgplayer-start .xgplayer-icon-play svg {
     display: block;
 }
 
@@ -7814,6 +7815,9 @@ h1 .commend:before{
     text-align: center;
     height: 10vw;
     line-height: 10vw;
+}
+.jinsom-comment-content-main>i.aite {
+    right: 15vw;
 }
 .jinsom-smile-form {
     height: 50vh;
