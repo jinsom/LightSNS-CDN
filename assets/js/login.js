@@ -563,7 +563,7 @@ layer.load(1);
 $.ajax({
 type: "POST",
 dataType:'json',
-url:jinsom.jinsom_ajax_url+"/update/mail.php",
+url:jinsom.jinsom_ajax_url+"/update/email.php",
 data: {author_id:author_id,mail:mail,code:code},
 success: function(msg){
 layer.closeAll('loading');

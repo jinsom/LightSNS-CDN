@@ -51,7 +51,7 @@ jinsom_lightbox();
 var aite_user_search=null;
 function jinsom_pop_aite_user_search(){
 if(aite_user_search){aite_user_search.abort();}//终止事件
-key=$.trim($('.jinsom-publish-aite-form .search.aite input').val());
+key=$.trim($('#jinsom-aite-user-input').val());
 if(key==''){
 return false;
 }
@@ -94,7 +94,7 @@ textarea.val(textarea.val()+' @'+$(obj).attr('data')+' ');
 function jinsom_publish_topic_selete(obj){
 topic_name=$(obj).attr('data');
 //判断插入的话题是否和已经选择的话题一样
-$('.jinsom-publish-words-form .topic span').each(function(){
+$('#jinsom-search-topic-input').each(function(){
 if($(this).attr('data')==topic_name){
 $(this).remove();
 }

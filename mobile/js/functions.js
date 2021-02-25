@@ -2513,6 +2513,9 @@ $('.actions-modal-button:last-child').attr('data-clipboard-text',url);
 //评论艾特aite@好友
 function jinsom_comment_aite_user_js(){
 $('.jinsom-publish-aite-popup').on('opened',function (){//打开
+if($('.jinsom-load-post').length>0){
+return false;	
+}
 if($('.jinsom-publish-aite-form .list.aite li').length==0){
 $('.jinsom-publish-aite-form .list.aite').prepend(jinsom.loading_post);
 $.ajax({

@@ -50,8 +50,8 @@ body{background:#fff}a:focus{outline:0!important;box-shadow:0 0 0!important}.jin
     height: 30px;
 }
 .wp-color-result-text {
-    height: 30px;
-    line-height: 30px;
+    height: 27px;
+    line-height: 27px;
 }
 .wp-picker-container input[type=text].wp-color-picker {
     width: 200px;

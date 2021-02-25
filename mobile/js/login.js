@@ -312,7 +312,7 @@ $('.jinsom-setting-box .phone .value').html(phone);
 }
 
 //修改邮箱号
-function jinsom_update_email(user_id){
+function jinsom_update_email(author_id){
 email=$('#jinsom-mobile-update-email').val();
 code=$('#jinsom-mobile-update-code').val();
 if(email==''){layer.open({content:'请输入邮箱号！',skin:'msg',time:2});return false;}
@@ -320,8 +320,8 @@ myApp.showIndicator();
 $.ajax({
 type: "POST",
 dataType:'json',
-url:jinsom.jinsom_ajax_url+"/update/mail.php",
-data: {user_id:user_id,mail:email,code:code},
+url:jinsom.jinsom_ajax_url+"/update/email.php",
+data: {author_id:author_id,mail:email,code:code},
 success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});

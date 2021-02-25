@@ -1744,28 +1744,8 @@ return false;
 
 
 if(type!='select'){
-//发布@好友
-$('.jinsom-publish-aite-popup').on('opened',function (){//打开
-if($('.jinsom-publish-aite-form .list.aite li').length==0){
-$('.jinsom-publish-aite-form .list.aite').prepend(jinsom.loading_post);
-$.ajax({
-type: "POST",
-url: jinsom.mobile_ajax_url+"/user/following.php",
-success: function(msg){
-html='';
-for (var i = msg.data.length - 1; i >= 0; i--){
-html+='\
-<li onclick="jinsom_aite_selete_user(this)" data="'+msg.data[i].nickname+'">\
-<div class="avatarimg">'+msg.data[i].avatar+msg.data[i].verify+'</div>\
-<div class="name">'+msg.data[i].name+msg.data[i].vip+'</div>\
-</li>';
-}
-$('.jinsom-publish-aite-form .list.aite').html(html);
-}
-}); 
 
-}
-});
+jinsom_comment_aite_user_js();//发布@好友
 
 //选择话题
 $('.jinsom-publish-topic-popup').on('opened',function (){//打开
@@ -2768,3 +2748,13 @@ $(this).children('span').text(num+1);
 }); 
 
 });
+
+
+
+// myApp.onPageBeforeInit('url',function(page){
+// console.log(1);
+// $("#jinsom-iframe-url").load(function(){
+// $(this).contents().find("img").css('display','none');
+// $(window.frames["jinsom-iframe-url"].document).find("img").css('display','none');
+// });
+// });

@@ -3,7 +3,7 @@
 
 //pull和ajax
 function jinsom_post(type,load_type,obj){
-if($('.jinsom-load-post').length>0){//防止多次点击
+if($('.jinsom-load-post').length>0){
 return false;	
 }
 author_id=$(obj).attr('author_id');

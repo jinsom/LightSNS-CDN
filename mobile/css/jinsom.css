@@ -1464,28 +1464,29 @@ display: none !important;
 .jinsom-post-password:before {
     content: "\f023";
     position: absolute;
-    top: 2.5vw;
+    top: 2vw;
     left: 2vw;
     font-family: FontAwesome;
-    font-size: 5vw;
+    font-size: 4.5vw;
     margin-left: 4px;
     color: #949494;
 }
 .jinsom-post-password input {
-    line-height: 9vw;
-    padding: 1vw 1vw 1vw 10vw;
-    border-radius: 2px;
-    flex: 5;
+    line-height: 10vw;
     border: none;
+    padding-left: 10vw;
+    border-radius: 1vw 0 0 1vw;
+    padding: 0 0 0 10vw;
 }
 .jinsom-post-password span {
     background-color: #5FB878;
-    border-radius: 1px;
     color: #fff;
     cursor: pointer;
-    line-height: 11vw;
+    line-height: 10vw;
     display: inline-block;
-    flex: 2;
+    width: 15vw;
+    font-size: 3.5vw;
+    border-radius: 0 1vw 1vw 0;
 }
 .jinsom-single .jinsom-tips {
     margin: 0 0 4vw;
@@ -8533,6 +8534,12 @@ h1 .commend:before{
     right: 6vw;
     top: 5vw;
 }
+.jinsom-pet-user-list .jinsom-empty-page {
+    padding-top: 20vw;
+}
+.jinsom-pet-user-list .jinsom-empty-page .title p {
+    line-height: 8vw;
+}
 
 
 /*收藏*/
@@ -9538,4 +9545,15 @@ h1 .commend:before{
 }
 .jinsom-forget-password-type li {
     margin: 2vw 0;
+}
+
+#jinsom-aite-user-input,#jinsom-search-topic-input{
+    background-color: #f5f5f5;
+    border: none;
+    width: 100%;
+    padding: 3vw;
+    border-radius: 1vw;
+    font-size: 3.5vw;
+    height: 10vw;
+    margin-top: 2vw;
 }

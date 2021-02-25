@@ -3795,6 +3795,20 @@ img.wp-smiley {
 .jinsom-single-left-bar>li:hover {
     transform: translateY(-6px);
 }
+.jinsom-single-left-bar>li.comment i{
+    position: relative;
+}
+.jinsom-single-left-bar>li.comment i span{
+    position: absolute;
+    font-size: 12px;
+    padding: 0 6px;
+    color: #fff;
+    background-color: #f56b41;
+    line-height: initial;
+    border-radius: 20px;
+    top: -12px;
+    left: 14px;
+}
 .jinsom-single-left-bar li.bbs-avatar {
     background-color: initial;
 }
@@ -13927,9 +13941,9 @@ span.aplayer-thumb {
 .jinsom-post-video .xgplayer-nostart,.jinsom-post-video .xgplayer-is-enter{
     height: 225px !important;
 }
-/*.single .jinsom-post-video .xgplayer {
+.single .jinsom-post-video .xgplayer {
     width: 600px !important;
-}*/
+}
 .single .jinsom-post-video .xgplayer-nostart,.single .jinsom-post-video .xgplayer-is-enter{
     height: 320px !important;
 }
