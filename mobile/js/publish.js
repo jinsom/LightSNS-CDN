@@ -260,8 +260,7 @@ myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
 $('[data-page="publish"] .right a').removeAttr('onclick');
-type=$('.jinsom-home-menu li.on').attr('data');
-jinsom_post(type,'reload',this);//重新加载内容
+$('.jinsom-home-menu li.on').click();//重新加载内容
 function d(){myApp.getCurrentView().router.back();}setTimeout(d,2500);
 }else if(msg.code==5){
 function a(){myApp.popup('.jinsom-publish-topic-popup');}setTimeout(a,1500);
@@ -332,8 +331,7 @@ success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
-type=$('.jinsom-home-menu li.on').attr('data');
-jinsom_post(type,'reload',this);//重新加载内容
+$('.jinsom-home-menu li.on').click();//重新加载内容
 function d(){myApp.getCurrentView().router.back();}
 setTimeout(d,2500);
 }else if(msg.code==5){
@@ -400,8 +398,7 @@ success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
-type=$('.jinsom-home-menu li.on').attr('data');
-jinsom_post(type,'reload',this);//重新加载内容
+$('.jinsom-home-menu li.on').click();//重新加载内容
 function d(){myApp.getCurrentView().router.back();}setTimeout(d,2500);
 }else if(msg.code==5){
 function a(){myApp.popup('.jinsom-publish-topic-popup');}setTimeout(a,1500);
@@ -515,8 +512,7 @@ myApp.getCurrentView().router.back();
 function e(){myApp.getCurrentView().router.refreshPage();}setTimeout(e,800);
 }else{//在首页
 function d(){myApp.getCurrentView().router.back();}setTimeout(d,2000);
-type=$('.jinsom-home-menu li.on').attr('data');
-jinsom_post(type,'reload',this);//重新加载内容
+$('.jinsom-home-menu li.on').click();//重新加载内容
 }
 }else if(msg.code==5){
 function a(){myApp.popup('.jinsom-publish-topic-popup');}setTimeout(a,1500);
@@ -578,8 +574,7 @@ success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
-type=$('.jinsom-home-menu li.on').attr('data');
-jinsom_post(type,'reload',this);//重新加载内容
+$('.jinsom-home-menu li.on').click();//重新加载内容
 function d(){myApp.getCurrentView().router.back();}
 setTimeout(d,2500);
 }
@@ -617,7 +612,7 @@ myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
 $('.jinsom-publish-words-form .content textarea').val('');
-type=$('.jinsom-secret-menu li.on').attr('data');
+type=$('.jinsom-secret-menu li.on').attr('type');
 jinsom_secret_post(type,'reload',this);
 function d(){myApp.getCurrentView().router.back();}setTimeout(d,1800);
 }else if(msg.code==2){

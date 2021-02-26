@@ -46,7 +46,7 @@ myApp.addView('#jinsom-view-'+mobile_tab_type+'-'+i,{dynamicNavbar:true,domCache
 //通过外链打开首页tab
 if(jinsom_get_para('tab')!=''){
 myApp.showTab('#'+jinsom_get_para('tab'));
-window.history.pushState(null,null,'/');
+// window.history.pushState(null,null,'/');
 }
 
 

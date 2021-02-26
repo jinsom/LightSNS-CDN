@@ -1825,7 +1825,7 @@ data=$('.jinsom-home-menu li.on').attr('data');
 $.ajax({
 type: "POST",
 url:  jinsom.mobile_ajax_url+"/post/data.php",
-data: {page:sns_page,type:type,load_type:'more',data:data},
+data: {page:sns_page,type:type,load_type:'more',data:data,index:$('.jinsom-home-menu li.on').index()},
 success: function(msg){
 $('.jinsom-load-post').remove();
 if(msg==0){
@@ -1835,6 +1835,20 @@ index_post_list.append(msg);
 jinsom_lightbox()
 sns_page++;
 sns_loading = false;  
+
+if($('.jinsom-home-menu li.on').attr('waterfall')){//瀑布流渲染
+var grid=$('.jinsom-post-list-sns').masonry({
+itemSelector:'li',
+gutter:0,
+transitionDuration:0
+});
+grid.masonry('reloadItems'); 
+grid.imagesLoaded().progress( function() {
+grid.masonry('layout');
+});
+}
+
+
 } 
 }
 });
@@ -2159,17 +2173,16 @@ style: 'position:fixed;bottom:0;left:0;width:100%;border:none;'
 
 //排序
 function jinsom_sort(){
-type=$('.jinsom-home-menu li.on').attr('type');//当前内容的类型
 sort_type=GetCookie('sort');
 if(!sort_type){
 sort_type=jinsom.sort;
 }
 buttons=[
-{text:'最新发布',onClick:function(){SetCookie('sort','normal');jinsom_post(type,'reload',this);}},
-{text:'最新回复',onClick:function(){SetCookie('sort','comment');jinsom_post(type,'reload',this);}},
-{text:'随机内容',onClick:function(){SetCookie('sort','rand');jinsom_post(type,'reload',this);}},
-{text:'本月热门',onClick:function(){SetCookie('sort','comment_count_month');jinsom_post(type,'reload',this);}},
-{text:'所有热门',onClick:function(){SetCookie('sort','comment_count');jinsom_post(type,'reload',this);}},
+{text:'最新发布',onClick:function(){SetCookie('sort','normal');$('.jinsom-home-menu li.on').click();}},
+{text:'最新回复',onClick:function(){SetCookie('sort','comment');$('.jinsom-home-menu li.on').click();}},
+{text:'随机内容',onClick:function(){SetCookie('sort','rand');$('.jinsom-home-menu li.on').click();}},
+{text:'本月热门',onClick:function(){SetCookie('sort','comment_count_month');$('.jinsom-home-menu li.on').click();}},
+{text:'所有热门',onClick:function(){SetCookie('sort','comment_count');$('.jinsom-home-menu li.on').click();}},
 {text:'取消',color: 'red'},
 ];
 if(sort_type=='comment'){
@@ -2522,6 +2535,7 @@ $.ajax({
 type: "POST",
 url: jinsom.mobile_ajax_url+"/user/following.php",
 success: function(msg){
+if(msg.code==1){
 html='';
 for (var i = msg.data.length - 1; i >= 0; i--){
 html+='\
@@ -2529,6 +2543,9 @@ html+='\
 <div class="avatarimg">'+msg.data[i].avatar+msg.data[i].verify+'</div>\
 <div class="name">'+msg.data[i].name+msg.data[i].vip+'</div>\
 </li>';
+}
+}else{
+html=jinsom.empty;
 }
 $('.jinsom-publish-aite-form .list.aite').html(html);
 }
