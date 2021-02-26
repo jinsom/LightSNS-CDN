@@ -94,7 +94,7 @@ textarea.val(textarea.val()+' @'+$(obj).attr('data')+' ');
 function jinsom_publish_topic_selete(obj){
 topic_name=$(obj).attr('data');
 //判断插入的话题是否和已经选择的话题一样
-$('#jinsom-search-topic-input').each(function(){
+$('.jinsom-publish-words-form .topic span').each(function(){
 if($(this).attr('data')==topic_name){
 $(this).remove();
 }
@@ -126,7 +126,7 @@ layer.open({content:msg.msg,skin:'msg',time:2});
 var topic_search=null;
 function jinsom_pop_topic_search(){
 if(topic_search){topic_search.abort();}//终止事件
-key=$.trim($('.jinsom-publish-aite-form .search.topic input').val());
+key=$.trim($('#jinsom-search-topic-input').val());
 if(key==''){
 return false;
 }

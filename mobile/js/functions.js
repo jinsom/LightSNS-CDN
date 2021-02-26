@@ -1831,17 +1831,15 @@ $('.jinsom-load-post').remove();
 if(msg==0){
 sns_loading = true; 
 }else{
+
 index_post_list.append(msg);
+
+
 jinsom_lightbox()
 sns_page++;
 sns_loading = false;  
 
 if($('.jinsom-home-menu li.on').attr('waterfall')){//瀑布流渲染
-var grid=$('.jinsom-post-list-sns').masonry({
-itemSelector:'li',
-gutter:0,
-transitionDuration:0
-});
 grid.masonry('reloadItems'); 
 grid.imagesLoaded().progress( function() {
 grid.masonry('layout');
