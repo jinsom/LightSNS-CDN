@@ -1840,6 +1840,11 @@ sns_page++;
 sns_loading = false;  
 
 if($('.jinsom-home-menu li.on').attr('waterfall')){//瀑布流渲染
+var grid=$('.jinsom-post-list-sns').masonry({
+itemSelector:'li',
+gutter:0,
+transitionDuration:0
+});
 grid.masonry('reloadItems'); 
 grid.imagesLoaded().progress( function() {
 grid.masonry('layout');
