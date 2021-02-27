@@ -11,6 +11,9 @@ window['video_'+current_post_id].pause();
 
 jinsom_lightbox();//灯箱
 
+
+$('.jinsom-single.video .jinsom-video-img').click();
+
 //音乐模块
 play_post_id=$('.jinsom-player-footer-btn .play').attr('post_id');
 if(play_post_id==post_id&&!player.paused){//正在播放的文章id和点击查看的文章id是一致，并且播放器是在播放的状态
@@ -2278,6 +2281,7 @@ innerRotate: true, //只旋转内部video
 clockwise: false // 旋转方向是否为顺时针
 }
 });
+// $('#jinsom-video-live .xgplayer-start').click();
 }
 
 

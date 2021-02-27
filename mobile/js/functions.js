@@ -1788,8 +1788,7 @@ jinsom_lightbox();//图片灯箱
 var ptrContent = $('.jinsom-sns-page-content.pull-to-refresh-content');
 ptrContent.on('refresh', function (e) {
 myApp.pullToRefreshDone();
-type=$('.jinsom-home-menu li.on').attr('type');
-jinsom_post(type,'pull',this);
+$('.jinsom-home-menu li.on').click();
 if($('[id^=jinsom-view-notice]').length>0&&jinsom.is_login){
 jinsom_index_notice_js_load();//加载消息页面
 }
@@ -1839,7 +1838,7 @@ jinsom_lightbox()
 sns_page++;
 sns_loading = false;  
 
-if($('.jinsom-home-menu li.on').attr('waterfall')){//瀑布流渲染
+if($('.jinsom-home-menu li.on').attr('waterfall')==1){//瀑布流渲染
 var grid=$('.jinsom-post-list-sns').masonry({
 itemSelector:'li',
 gutter:0,
