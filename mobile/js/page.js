@@ -12,8 +12,8 @@ window['video_'+current_post_id].pause();
 jinsom_lightbox();//灯箱
 
 
-$('.jinsom-single.video .jinsom-video-img').click();
-$('jinsom-video-'+post_id+'-single .xgplayer-start').click();
+$('.jinsom-single.video .jinsom-video-img').trigger("click");
+// $('jinsom-video-'+post_id+'-single .xgplayer-start').click();
 
 //音乐模块
 play_post_id=$('.jinsom-player-footer-btn .play').attr('post_id');
