@@ -2475,6 +2475,7 @@ img.wp-smiley {
     height: 250px;
     overflow-x: hidden;
     overflow-y: auto;
+    position:relative;
 }
 .jinsom-chat-message-list li.myself,.jinsom-chat-message-group-list li.myself {
     text-align: right;
@@ -14614,10 +14615,18 @@ span.aplayer-thumb {
 }
 .jinsom-bbs-single-custom-field {
     margin-top: 20px;
+    padding: 20px;
+    background-color: #f6f6f6;
+    border-radius: 4px;
 }
 .jinsom-bbs-single-custom-field li {
     margin-bottom: 15px;
     color: #666;
+    width: 50%;
+    float: left;
+}
+.jinsom-bbs-single-custom-field li:last-child {
+    margin-bottom: 0;
 }
 .jinsom-bbs-single-custom-field li label {
     color: var(--jinsom-color);
@@ -14625,6 +14634,7 @@ span.aplayer-thumb {
 .jinsom-bbs-single-custom-field li>p {
     font-size: 14px;
     margin-top: 5px;
+    display: inline-block;
 }
 .jinsom-page-select-post-list li>.price {
     position: absolute;
@@ -15156,4 +15166,32 @@ span.aplayer-thumb {
 }
 .jinsom-post-images-list a.blur i.gif {
     opacity: 0.4;
+}
+.jinsom-chat-windows-footer {
+    position: relative;
+}
+.jinsom-msg-tips {
+    position: absolute;
+    right: 15px;
+    background-color: #46c47c;
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 100%;
+    top: -45px;
+    text-align: center;
+    cursor: pointer;
+    display:none;
+}
+.jinsom-msg-tips:after {
+    left: 15px;
+    bottom: -2px;
+    transform: rotate(45deg);
+    background: #46c47c;
+    content: "";
+    height: 8px;
+    position: absolute;
+    width: 8px;
+    z-index: -1;
 }

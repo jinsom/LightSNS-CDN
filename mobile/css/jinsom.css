@@ -3707,6 +3707,16 @@ display: none !important;
     box-sizing: border-box;
     border-radius: 1vw;
 }
+.jinsom-publish-words-form .field-box select {
+    width: 100%;
+    height: 10vw;
+    border-color: #f1f1f1;
+    border-radius: 1vw;
+    margin-top: 2vw;
+}
+.jinsom-publish-words-form .field-box input {
+    margin-top: 2vw;
+}
 .jinsom-publish-bg-popup {
     overflow-y: hidden;
 }
@@ -7714,6 +7724,7 @@ h1 .commend:before{
 }
 .jinsom-single .xgplayer{
     max-height: 160vw;
+    border-radius: 3vw;
 }
 .jinsom-post-words .xgplayer {
     width: calc(100% - 8vw) !important;
@@ -7776,8 +7787,8 @@ h1 .commend:before{
     font-style: normal;
     color: #fff;
     margin-left: 4vw;
-    -webkit-animation: fa-spin 2s infinite linear;
-    animation: fa-spin 2s infinite linear;
+    -webkit-animation: fa-spin 1s infinite linear;
+    animation: fa-spin 1s infinite linear;
 }
 .xgplayer-skin-default .xgplayer-start .xgplayer-icon-play:before {
     content: "\e6d2";
@@ -8363,6 +8374,8 @@ h1 .commend:before{
 }
 .jinsom-pet-nest-list li .nest img {
     width: 100%;
+    max-height: 40vw;
+    object-fit: contain;
 }
 .jinsom-pet-nest-list li .animal {
     height: 20vw;
@@ -9098,17 +9111,17 @@ h1 .commend:before{
     color: #666;
     border-radius: 2vw;
 }
-.jinsom-bbs-single-custom-field li {
-    margin-bottom: 4vw;
+.jinsom-bbs-single-custom-field li.textarea {
+    margin-top: 2vw;
 }
 .jinsom-bbs-single-custom-field li:last-child {
     margin-bottom: 0;
 }
-.jinsom-bbs-single-custom-field li.text, .jinsom-bbs-single-custom-field li.number, .jinsom-bbs-single-custom-field li.link {
+.jinsom-bbs-single-custom-field li.text, .jinsom-bbs-single-custom-field li.number, .jinsom-bbs-single-custom-field li.link, .jinsom-bbs-single-custom-field li.select {
     display: flex;
-    line-height: 8vw;
+    line-height: 10vw;
 }
-.jinsom-bbs-single-custom-field li.text p, .jinsom-bbs-single-custom-field li.number p, .jinsom-bbs-single-custom-field li.link a {
+.jinsom-bbs-single-custom-field li.text p, .jinsom-bbs-single-custom-field li.number p, .jinsom-bbs-single-custom-field li.link a, .jinsom-bbs-single-custom-field li.select p {
     flex: 1;
     text-align: right;
     color: #2196F3;
