@@ -64,7 +64,7 @@ jinsom_stop_user_Ajax();//关闭窗口时，终止前一个ajax；
 },
 content: 
 '<div class="jinsom-chat-message-list" data-no-instant></div>'+
-'<div class="jinsom-chat-windows-footer"><div class="jinsom-msg-tips" onclick=\'jinsom_im_tips("one")\'>底部</div>'+
+'<div class="jinsom-chat-windows-footer"><div class="jinsom-msg-tips" onclick=\'jinsom_im_tips(this,"one")\'>底部</div>'+
 '<div class="jinsom-chat-windows-footer-bar one clear">'+
 '<span onclick=\'jinsom_smile(this,"im","")\' class="jinsom-icon smile jinsom-weixiao-"></span>'+
 '<span class="image jinsom-icon jinsom-tupian1"></span>'+
@@ -111,7 +111,8 @@ $('.jinsom-chat-message-list').scrollTop($('.jinsom-chat-message-list')[0].scrol
 $('.jinsom-chat-message-list').scroll(function(){
 contentH =$(this).get(0).scrollHeight;//内容高度
 scrollTop =$(this).scrollTop();//滚动高度
-if(contentH-scrollTop>295){//到达底部时,加载新内容
+// console.log(contentH-scrollTop);
+if(contentH-scrollTop>300){//到达底部时,加载新内容
 $('.jinsom-msg-tips').show();
 }else{
 $('.jinsom-msg-tips').hide();	
@@ -157,7 +158,7 @@ audio = document.getElementById('jinsom-im-music');
 audio.play();
 $('.jinsom-chat-user-window .jinsom-chat-windows-user-header').attr('count',msg.count);
 $('.jinsom-chat-content-recent-user').children('li[data-id="'+user_id+'"]').attr('data-count',msg.count);
-$('.jinsom-chat-user-window .jinsom-msg-tips').show();
+$('.jinsom-chat-user-window .jinsom-msg-tips').show().html('新消息');
 jinsom_ajax_get_messages();
 }else if(msg.code==3){//超时
 }else if(msg.code==5){
@@ -247,7 +248,7 @@ jinsom_stop_group_Ajax();//关闭窗口时，终止前一个ajax；
 content: 
 '<div class="jinsom-chat-windows-left">'+
 '<div class="jinsom-chat-message-group-list" data-no-instant></div>'+
-'<div class="jinsom-chat-windows-footer"><div class="jinsom-msg-tips" onclick=\'jinsom_im_tips("group")\'>底部</div>'+
+'<div class="jinsom-chat-windows-footer"><div class="jinsom-msg-tips" onclick=\'jinsom_im_tips(this,"group")\'>底部</div>'+
 '<div class="jinsom-chat-windows-footer-bar group clear">'+
 '<span onclick=\'jinsom_smile(this,"im","")\' class="jinsom-icon smile jinsom-weixiao-"></span>'+
 '<span class="image jinsom-icon jinsom-tupian1"></span>'+
@@ -313,7 +314,8 @@ $('.jinsom-chat-message-group-list').scrollTop($('.jinsom-chat-message-group-lis
 $('.jinsom-chat-message-group-list').scroll(function(){
 contentH =$(this).get(0).scrollHeight;//内容高度
 scrollTop =$(this).scrollTop();//滚动高度
-if(contentH-scrollTop>295){//到达底部时,加载新内容
+// console.log(contentH-scrollTop);
+if(contentH-scrollTop>300){//到达底部时,加载新内容
 $('.jinsom-msg-tips').show();
 }else{
 $('.jinsom-msg-tips').hide();	
@@ -367,7 +369,7 @@ $('.jinsom-chat-message-group-list').append(msg.msg);
 // audio = document.getElementById('audio');
 // audio.play();
 $('.jinsom-chat-group-window .jinsom-chat-windows-user-header').attr('count',msg.count);
-$('.jinsom-chat-group-window .jinsom-msg-tips').show();
+$('.jinsom-chat-group-window .jinsom-msg-tips').show().html('新消息');
 jinsom_ajax_get_messages_group();
 }else if(msg.code==3){//不存在参数
 }else{
@@ -593,7 +595,8 @@ layer.closeAll('loading');
 
 
 //下拉
-function jinsom_im_tips(type){
+function jinsom_im_tips(obj,type){
+$(obj).html('底部');
 if(type=='one'){
 $('.jinsom-chat-message-list').scrollTop($('.jinsom-chat-message-list')[0].scrollHeight);
 }else{
