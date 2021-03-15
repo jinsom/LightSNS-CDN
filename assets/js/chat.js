@@ -315,7 +315,7 @@ $('.jinsom-chat-message-group-list').scroll(function(){
 contentH =$(this).get(0).scrollHeight;//内容高度
 scrollTop =$(this).scrollTop();//滚动高度
 // console.log(contentH-scrollTop);
-if(contentH-scrollTop>300){//到达底部时,加载新内容
+if(contentH-scrollTop>320){//到达底部时,加载新内容
 $('.jinsom-msg-tips').show();
 }else{
 $('.jinsom-msg-tips').hide();	
@@ -596,7 +596,7 @@ layer.closeAll('loading');
 
 //下拉
 function jinsom_im_tips(obj,type){
-$(obj).html('底部');
+$(obj).hide().html('底部');
 if(type=='one'){
 $('.jinsom-chat-message-list').scrollTop($('.jinsom-chat-message-list')[0].scrollHeight);
 }else{

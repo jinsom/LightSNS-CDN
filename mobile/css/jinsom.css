@@ -1477,6 +1477,8 @@ display: none !important;
     padding-left: 10vw;
     border-radius: 1vw 0 0 1vw;
     padding: 0 0 0 10vw;
+    flex: 1;
+    width: 30vw;
 }
 .jinsom-post-password span {
     background-color: #5FB878;

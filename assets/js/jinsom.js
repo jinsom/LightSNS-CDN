@@ -2639,7 +2639,7 @@ layer.msg(msg.msg);
 if(msg.code==1){
 function c(){window.location.reload();}setTimeout(c,2000);
 }else if(msg.code==2){
-function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,2000);
+function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,1000);
 }
 }
 });

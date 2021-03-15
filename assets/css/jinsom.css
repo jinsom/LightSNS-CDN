@@ -4672,10 +4672,6 @@ jin.jinsom-post-at img.emoji {
     padding-bottom: 5px;
     padding: 0 10px;
 }
-.jinsom-reprint .jinsom-post-images-list a {
-    margin-top: 10px;
-    margin-right: 10px;
-}
 .jinsom-reprint .jinsom-post-images-list a.one {
     margin-top: 0;
     max-width: 20%;
@@ -13068,6 +13064,9 @@ span.aplayer-thumb {
     font-size: 16px;
     color: #333;
     word-break: break-all;
+}
+.jinsom-goods-single-content .content .has-text-align-center {
+    text-align: center;
 }
 .jinsom-goods-single-content .content img.aligncenter {
     display: block;
