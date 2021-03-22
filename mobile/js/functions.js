@@ -2573,6 +2573,8 @@ data:{type:type,value:value,price:price,desc:desc},
 success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
+type=$('.jinsom-challenge-menu li.on').attr('type');
+jinsom_challenge_data(type,this);
 if(msg.code==1){
 function d(){history.back(-1);}setTimeout(d,1500);
 }
