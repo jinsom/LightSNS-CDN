@@ -1789,7 +1789,9 @@ jinsom_lightbox();//图片灯箱
 var ptrContent = $('.jinsom-sns-page-content.pull-to-refresh-content');
 ptrContent.on('refresh', function (e) {
 myApp.pullToRefreshDone();
-$('.jinsom-home-menu li.on').click();
+// $('.jinsom-home-menu li.on').click();
+type=$('.jinsom-home-menu li.on').attr('type');
+jinsom_post(type,'pull','.jinsom-home-menu li.on');
 if($('[id^=jinsom-view-notice]').length>0&&jinsom.is_login){
 jinsom_index_notice_js_load();//加载消息页面
 }
@@ -2595,7 +2597,7 @@ myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code!=0){
 $('.jinsom-challenge-content.join .price').after(msg.html);
-$('.jinsom-challenge-content.join .btn,.jinsom-challenge-content.join .shitou').remove();
+$('.jinsom-challenge-content.join .btn,.jinsom-challenge-content.join .shitou,.jinsom-challenge-content.join .tips').remove();
 $('#jinsom-challenge-'+id).find('.btn').children('a').addClass('no').text('已结束');
 }
 }
@@ -2605,8 +2607,9 @@ $('#jinsom-challenge-'+id).find('.btn').children('a').addClass('no').text('已�
 //切换挑战数据
 function jinsom_challenge_data(type,obj){
 $(obj).addClass('on').siblings().removeClass('on');
+$('.jinsom-challenge-content').animate({scrollTop: 0 },0);
 challenge_post_list=$('.jinsom-challenge-post-list');
-challenge_loading=true;
+challenge_loading=false;
 challenge_page=2;
 challenge_post_list.before(jinsom.loading_post);
 $.ajax({
