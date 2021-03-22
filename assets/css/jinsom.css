@@ -14635,6 +14635,12 @@ span.aplayer-thumb {
     margin-top: 5px;
     display: inline-block;
 }
+.jinsom-bbs-sidebar-download-box .jinsom-bbs-single-custom-field.download li {
+    float: inherit;
+    width: 100%;
+}
+
+
 .jinsom-page-select-post-list li>.price {
     position: absolute;
     background-color: #FF9800;

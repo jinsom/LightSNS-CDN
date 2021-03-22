@@ -8826,7 +8826,7 @@ h1 .commend:before{
 [data-page="secret"] .page {
     background-color: #fff;
 }
-.jinsom-secret-menu {
+.jinsom-secret-menu,.jinsom-challenge-menu {
     width: 60%;
     margin: auto;
     display: flex;
@@ -9658,4 +9658,272 @@ h1 .commend:before{
     top: 2vw;
     right: 2vw;
     font-size: 3vw;
+}
+.jinsom-bbs-notice-bar {
+    background-color: #fff;
+    padding: 2vw;
+    margin: 2vw;
+    border-radius: 1vw;
+    color: #333;
+    font-size: 3.5vw;
+}
+
+
+/*发起挑战*/
+.jinsom-challenge-content {
+    background-color: var(--jinsom-content-bg-color);
+    padding: 23vw 3vw 3vw !important;
+}
+.jinsom-challenge-content.mine {
+    padding-top: 13vw !important;
+}
+.jinsom-publish-challenge-box {
+    border-radius: 2vw;
+    padding: 4vw;
+    box-sizing: border-box;
+    position: relative;
+    background: linear-gradient(to right, #4e54c8, #8f94fb);
+    margin-bottom: 3vw;
+}
+.jinsom-publish-challenge-box>a{
+    color: #fff;
+}
+.jinsom-publish-challenge-box>a>i {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 13vw;
+}
+.jinsom-publish-challenge-box .title {
+    font-size: 5vw;
+}
+.jinsom-publish-challenge-box .desc {
+    font-size: 3vw;
+}
+.jinsom-challenge-post-list li {
+    background-color: #fff;
+    padding: 3vw 2vw;
+    border-radius: 2vw;
+    display: flex;
+    align-items: center;
+    margin-bottom: 3vw;
+}
+.jinsom-challenge-post-list li .avatarimg {
+    width: 12vw;
+    height: 12vw;
+    margin-right: 2vw;
+    position: relative;
+}
+.jinsom-challenge-post-list li .avatarimg img {
+    width: 12vw;
+    height: 12vw;
+    border-radius: 100%;
+}
+.jinsom-challenge-post-list li .info {
+    flex: 1;
+    margin-right: 2vw;
+}
+.jinsom-challenge-post-list li .info .name {
+    margin-bottom: 1vw;
+}
+.jinsom-challenge-post-list li .info .name span {
+    color: #2196f3;
+}
+.jinsom-challenge-post-list li .info .desc {
+    color: #999;
+    font-size: 3.5vw;
+}
+.jinsom-challenge-post-list li .number {
+    width: 25vw;
+    text-align: center;
+}
+.jinsom-challenge-post-list li .number .price {
+    margin-bottom: 2vw;
+    font-size: 4.5vw;
+    color: #FF5722;
+}
+.jinsom-challenge-post-list li .number .btn {
+    text-align: center;
+    border-radius: 0.5vw;
+    width: 20vw;
+    margin: auto;
+}
+.jinsom-challenge-post-list li .number .btn a {
+    color: #fff;
+    display: inline-block;
+    width: 100%;
+    padding: 2vw 0vw;
+    background-color: var(--jinsom-color);
+}
+.jinsom-challenge-post-list li .number .btn a.no {
+    background-color: #ccc;
+}
+.jinsom-publish-challenge-content {
+    padding: 14vw 4vw !important;
+}
+.jinsom-publish-challenge-content>div,.jinsom-challenge-content>div {
+    margin-bottom: 4vw;
+}
+.jinsom-publish-challenge-content .type>li {
+    width: 25%;
+    text-align: center;
+    padding: 2vw 2vw;
+    margin-right: 4vw;
+    border-radius: 1vw;
+    background-color: #fff;
+    color: #999;
+    border: 1px solid #f1f1f1;
+    cursor: pointer;
+    float: left;
+}
+.jinsom-publish-challenge-content .type>li.on {
+    background-color: #dff1ff;
+    color: #359aeb;
+    border: 1px solid #3ea4f5;
+
+}
+.jinsom-publish-challenge-content .tips,.jinsom-challenge-content .tips {
+    border: 1px solid #ecd2ad;
+    background-color: #fff6e9;
+    padding: 2.5vw;
+    color: #b89c72;
+    font-size: 3vw;
+    border-radius: 1vw;
+}
+.jinsom-publish-challenge-content .tips .b {
+    display: none;
+}
+.jinsom-publish-challenge-content .shitou,.jinsom-challenge-content .shitou {
+    display: flex;
+}
+.jinsom-publish-challenge-content .shitou li,.jinsom-challenge-content .shitou li {
+    flex: 1;
+    text-align: center;
+    padding: 2vw;
+    border: 1px solid #f1f1f1;
+    margin-right: 2vw;
+    border-radius: 2vw;
+    color: #aaa;
+}
+.jinsom-publish-challenge-content .shitou li i,.jinsom-challenge-content .shitou li i {
+    font-size: 10vw;
+    opacity: 0.7;
+}
+.jinsom-publish-challenge-content .shitou li:last-child,.jinsom-challenge-content .shitou li:last-child {
+    margin-right: 0;
+}
+.jinsom-publish-challenge-content .shitou li.on,.jinsom-challenge-content .shitou li.on {
+    border-color: #2196f3;
+    color: #2196f3;
+}
+.jinsom-publish-challenge-content .shitou li.on i,.jinsom-challenge-content .shitou li.on i {
+    opacity: 1;
+}
+.jinsom-publish-challenge-content .price li {
+    text-align: center;
+    padding: 2vw 2vw;
+    margin-right: 2vw;
+    border-radius: 1vw;
+    width: calc((100% - 6vw)/4);
+    float: left;
+    background-color: #fff;
+    color: #999;
+    border: 1px solid #f1f1f1;
+    margin-bottom: 2vw;
+    box-sizing: border-box;
+    font-size: 3.5vw;
+}
+.jinsom-publish-challenge-content .price li.on {
+    background-color: #dff1ff;
+    color: #359aeb;
+    border: 1px solid #2196f3;
+}
+.jinsom-publish-challenge-content .price li:nth-child(4n) {
+    margin-right: 0;
+}
+.jinsom-publish-challenge-content>.btn,.jinsom-challenge-content>.btn {
+    padding: 3vw;
+    background-color: var(--jinsom-color);
+    text-align: center;
+    color: #fff;
+    border-radius: 2vw;
+}
+.jinsom-publish-challenge-content .desc textarea {
+    padding: 2vw;
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid #ddd;
+    resize: none;
+    border-radius: 2vw;
+    height: 20vw;
+}
+.jinsom-challenge-content.join {
+    background-color: #fff;
+}
+.jinsom-challenge-content .user-info .avatarimg {
+    width: 18vw;
+    height: 18vw;
+    margin: auto;
+    position: relative;
+}
+.jinsom-challenge-content .user-info .avatarimg img {
+    width: 18vw;
+    height: 18vw;
+    border-radius: 100%;
+}
+.jinsom-challenge-content .type-desc {
+    text-align: center;
+    color: #333;
+}
+.jinsom-challenge-content .type-desc p {
+    color: #2196f3;
+    margin-top: 1vw;
+}
+.jinsom-challenge-content>.price {
+    text-align: center;
+    color: #f44336;
+}
+.jinsom-challenge-content>.price m {
+    font-size: 10vw;
+    margin-right: 2vw;
+}
+.jinsom-challenge-content .description {
+    text-align: center;
+    color: #999;
+}
+.jinsom-challenge-content>.result {
+    display: flex;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 2vw;
+    align-items: center;
+}
+.jinsom-challenge-content>.result>div {
+    flex: 1;
+}
+.jinsom-challenge-content>.result>div>a {
+    width: 12vw;
+    height: 12vw;
+    position: relative;
+    display: inline-block;
+}
+.jinsom-challenge-content>.result>div img {
+    width: 12vw;
+    height: 12vw;
+    border-radius: 100%;
+}
+.jinsom-challenge-content>.result>.vs i {
+    font-size: 10vw;
+    color: #f44336;
+}
+.jinsom-challenge-content>.result>div>p {
+    color: #999;
+}
+.jinsom-challenge-menu li {
+    flex: 1;
+    text-align: center;
+    line-height: 10vw;
+    color: #333;
+    margin: 0;
 }

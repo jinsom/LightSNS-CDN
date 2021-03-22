@@ -2755,10 +2755,60 @@ $(this).children('span').text(num+1);
 
 
 
-// myApp.onPageBeforeInit('url',function(page){
-// console.log(1);
-// $("#jinsom-iframe-url").load(function(){
-// $(this).contents().find("img").css('display','none');
-// $(window.frames["jinsom-iframe-url"].document).find("img").css('display','none');
-// });
-// });
+
+//挑战列表页面
+myApp.onPageBeforeInit('challenge',function(page){
+
+//加载更多
+challenge_loading=false;
+challenge_page=2;
+$('.jinsom-challenge-content.infinite-scroll').on('infinite',function(){
+if(challenge_loading) return;
+challenge_post_list=$('.jinsom-challenge-post-list');
+challenge_loading=true;
+type=$('.jinsom-challenge-menu li.on').attr('type');
+challenge_post_list.after(jinsom.loading_post);
+$.ajax({
+type: "POST",
+url:  jinsom.mobile_ajax_url+"/post/challenge.php",
+data: {page:challenge_page,type:type},
+success: function(msg){
+$('.jinsom-load-post').remove();
+if(msg==0){
+challenge_loading=true; 
+}else{
+challenge_post_list.append(msg);
+challenge_page++;
+challenge_loading=false;  
+} 
+}
+});
+});
+
+});
+
+//发起挑战
+myApp.onPageBeforeInit('challenge-publish',function(page){
+$('.jinsom-publish-challenge-content .type li').click(function(){
+$(this).addClass('on').siblings().removeClass('on');
+$(this).parent().next().children('div').hide().eq($(this).index()).show();
+if($(this).hasClass('a')){
+$(this).parent().siblings('.shitou').show();
+}else{
+$(this).parent().siblings('.shitou').hide();
+}
+}); 
+$('.jinsom-publish-challenge-content .shitou li,.jinsom-publish-challenge-content .price li').click(function(){
+$(this).addClass('on').siblings().removeClass('on');
+}); 
+});
+
+
+//参与挑战
+myApp.onPageBeforeInit('challenge-join',function(page){
+$('.jinsom-challenge-content .shitou li').click(function(){
+$(this).addClass('on').siblings().removeClass('on');
+});
+});
+
+

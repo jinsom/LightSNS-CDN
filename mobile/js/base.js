@@ -42,8 +42,10 @@ $(document).on('click','.tabbar a.active',function(){
 if($('.view.active .page-content').scrollTop()>100){
 $('.view.active .page-content').animate({scrollTop:0},200);	
 if($('.jinsom-home-menu li.on').length>0){
+if($('.jinsom-home-menu li.on').attr('waterfall')!=1){
 type=$('.jinsom-home-menu li.on').attr('type');
-jinsom_post(type,'pull',this);
+jinsom_post(type,'pull','.jinsom-home-menu li.on');
+}
 }
 
 jinsom_index_notice_js_load();

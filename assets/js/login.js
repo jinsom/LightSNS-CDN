@@ -676,11 +676,10 @@ $.ajax({
 type: "POST",
 url:jinsom.jinsom_ajax_url+"/update/profile.php",
 data: {login_out:1},
-success: function(msg){}
-});
-
+success: function(msg){
 function d(){window.location.reload();}setTimeout(d,2500);
-
+}
+});
 });
 }
 

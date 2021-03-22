@@ -471,6 +471,7 @@ follow_dom.html('<i class="jinsom-icon jinsom-xianghuguanzhu"></i>互关');
 
 //动态播放视频
 function jinsom_play_video(post_id,video_url,obj){
+post_id=parseInt(Math.random() * (999999 - 9999 + 1) + 9999);
 $(obj).before('<div id="jinsom-video-'+post_id+'" post_id="'+post_id+'"></div>');
 $(obj).remove();
 video_type=jinsom_video_type(video_url);
@@ -2556,6 +2557,67 @@ $('.jinsom-publish-aite-form .list.aite').html(html);
 }
 });
 }
+
+
+//发起挑战
+function jinsom_challenge(){
+type=$('.jinsom-publish-challenge-content .type>li.on').attr('data');
+value=$('.jinsom-publish-challenge-content .shitou li.on').index();
+price=$('.jinsom-publish-challenge-content .price li.on').index();
+desc=$('.jinsom-publish-challenge-content .desc textarea').val();
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+url: jinsom.mobile_ajax_url+"/action/challenge.php",
+data:{type:type,value:value,price:price,desc:desc},
+success: function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+if(msg.code==1){
+function d(){history.back(-1);}setTimeout(d,1500);
+}
+}
+}); 	
+}
+
+//参与挑战
+function jinsom_challenge_join(id){
+value=$('.jinsom-challenge-content.join .shitou li.on').index();
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+url: jinsom.mobile_ajax_url+"/action/challenge-join.php",
+data:{id:id,value:value},
+success: function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+if(msg.code!=0){
+$('.jinsom-challenge-content.join .price').after(msg.html);
+$('.jinsom-challenge-content.join .btn,.jinsom-challenge-content.join .shitou').remove();
+$('#jinsom-challenge-'+id).find('.btn').children('a').addClass('no').text('已结束');
+}
+}
+}); 	
+}
+
+//切换挑战数据
+function jinsom_challenge_data(type,obj){
+$(obj).addClass('on').siblings().removeClass('on');
+challenge_post_list=$('.jinsom-challenge-post-list');
+challenge_loading=true;
+challenge_page=2;
+challenge_post_list.before(jinsom.loading_post);
+$.ajax({
+type: "POST",
+url:  jinsom.mobile_ajax_url+"/post/challenge.php",
+data: {page:1,type:type},
+success: function(msg){
+$('.jinsom-load-post').remove();
+challenge_post_list.html(msg);
+}
+});
+}
+
 
 //设置cookie
 function SetCookie(name,value){
