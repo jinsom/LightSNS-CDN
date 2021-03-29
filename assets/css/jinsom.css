@@ -14260,6 +14260,9 @@ span.aplayer-thumb {
     margin-top: 5px;
     position: relative;
 }
+.jinsom-page-select-header-box .bbs-topic-hidden {
+    display: none;
+}
 .jinsom-page-select-header-box .admin {
     position: absolute;
     right: 2px;

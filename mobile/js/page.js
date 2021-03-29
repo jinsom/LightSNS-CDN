@@ -2519,6 +2519,13 @@ $('#jinsom-secret-comment-content').focus();
 
 //筛选页面
 myApp.onPageBeforeInit('select',function(page){
+
+//点击论坛板块切换
+$('.jinsom-select-subnavbar-list>div .list li').click(function(){
+$('.topic-list .bbs-topic').remove();
+$('.jinsom-select-left-more-content .topic-list').prepend($('.bbs-topic-hidden').children('yyy').eq($(this).index()).html());
+});
+	
 $('.jinsom-select-subnavbar-list .bbs,.jinsom-select-subnavbar-list .sort').click(function(){
 $(this).siblings().removeClass('on').children('.list').hide().siblings('i').removeClass('jinsom-triangle').addClass('jinsom-lower-triangle');
 $(this).addClass('on').children('.list').show().siblings('i').removeClass('jinsom-lower-triangle').addClass('jinsom-triangle');
@@ -2766,7 +2773,14 @@ $('.jinsom-challenge-content.infinite-scroll').on('infinite',function(){
 if(challenge_loading) return;
 challenge_post_list=$('.jinsom-challenge-post-list');
 challenge_loading=true;
+if($('.jinsom-challenge-post-list.mine-join').length>0){
+type=$('.jinsom-challenge-post-list.mine-join').attr('type');
+}else if($('.jinsom-challenge-post-list.mine').length>0){
+type=$('.jinsom-challenge-post-list.mine').attr('type');
+}else{
 type=$('.jinsom-challenge-menu li.on').attr('type');
+}
+
 challenge_post_list.after(jinsom.loading_post);
 $.ajax({
 type: "POST",

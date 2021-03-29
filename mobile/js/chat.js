@@ -7,7 +7,7 @@ if($.trim(content)==''){
 $('#jinsom-msg-content').val('');
 return false;  
 }
-$('.jinsom-chat-list').append('<li class="myself"><div class="jinsom-chat-message-list-user-info">'+jinsom.avatar+'</div><div class="jinsom-chat-message-list-content">'+content+'</div></li>');
+$('.jinsom-chat-list').append('<li class="myself"><div class="jinsom-chat-message-list-user-info avatarimg-'+jinsom.user_id+'">'+jinsom.avatar+'</div><div class="jinsom-chat-message-list-content">'+content+'</div></li>');
 $('#jinsom-msg-content').val('');
 $('.jinsom-chat-list-content').scrollTop($('.jinsom-chat-list-content')[0].scrollHeight);
 
@@ -127,7 +127,7 @@ if($.trim(content)==''){
 $('#jinsom-msg-group-content').val('');
 return false;  
 }
-$('.jinsom-chat-group-list').append('<li class="myself"><div class="jinsom-chat-message-list-user-info">'+jinsom.avatar+'</div><div class="jinsom-chat-message-list-content">'+content+'</div></li>');
+$('.jinsom-chat-group-list').append('<li class="myself"><div class="jinsom-chat-message-list-user-info avatarimg-'+jinsom.user_id+'">'+jinsom.avatar+'</div><div class="jinsom-chat-message-list-content">'+content+'</div></li>');
 $('#jinsom-msg-group-content').val('');
 $('.jinsom-chat-group-list-content').scrollTop($('.jinsom-chat-group-list-content')[0].scrollHeight);
 

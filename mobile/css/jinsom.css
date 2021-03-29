@@ -1331,6 +1331,9 @@ display: none !important;
     height: 30vw;
     border-radius: 1vw;
 }
+.full .jinsom-post-images-list a {
+    height: 180px;
+}
 .jinsom-post-images-list a i.gif {
     width: 10vw;
     position: absolute;
@@ -7540,15 +7543,17 @@ h1 .commend:before{
     position: relative;
 }
 .jinsom-site-notice-content li .content {
-    padding: 2vw;
+    padding: 3vw;
     line-height: 7vw;
     overflow: hidden;
     min-height: 25vw;
-    font-size: 3.5vw;
+    font-size: 4vw;
 }
 .jinsom-site-notice-content li .content img {
     width: 100%;
     border-radius: 1vw;
+    margin: 2vw 0;
+    box-sizing: border-box;
 }
 .jinsom-site-notice-content li .content img.wp-smiley {
     width: 6.5vw;
@@ -9172,6 +9177,9 @@ h1 .commend:before{
     display: flex;
     width: 100%;
 }
+.jinsom-select-subnavbar-list .bbs-topic-hidden {
+    display: none;
+}
 .jinsom-select-subnavbar-list>div {
     flex: 1;
     padding: 0 2vw;
@@ -9856,6 +9864,8 @@ h1 .commend:before{
     resize: none;
     border-radius: 2vw;
     height: 20vw;
+    -webkit-appearance: none;
+    font-size: 4vw;
 }
 .jinsom-challenge-content.join {
     background-color: #fff;
@@ -9926,4 +9936,31 @@ h1 .commend:before{
     line-height: 10vw;
     color: #333;
     margin: 0;
+}
+
+.jinsom-post-images-list a .more-img {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    font-size: 6vw;
+    color: #fff;
+}
+.jinsom-post-images-list a .more-img .shade {
+    background-color: rgb(0 0 0 / 50%);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.jinsom-post-images-list a .more-img .text {
+    position: absolute;
+}
+.jinsom-post-images-list a.blur .more-img .text {
+    z-index: 1;
+    right: 2vw;
+    top: 2vw;
+    font-size: 5vw;
+    opacity: 0.5;
 }
