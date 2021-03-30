@@ -1737,24 +1737,23 @@ element.progress('jinsom-bg-music', percent*100+'%');
 
 //论坛列表加载更多
 function jinsom_ajax_bbs(obj,type){
+$(obj).before(jinsom.loading_post);
+$(obj).hide();
 page=$(obj).attr('data');
 bbs_id=$('.jinsom-bbs-header').attr('data');
 topic=$('.jinsom-bbs-box-header .left li.on').attr('topic');
-$(obj).html(jinsom.loading);
-ajax_obj=obj;
 $.ajax({
 type: "POST",
 url:jinsom.jinsom_ajax_url+"/ajax/bbs.php",
 data: {page:page,bbs_id:bbs_id,type:type,topic:topic},
 success: function(msg){   
-$(ajax_obj).html('加载更多');
+$('.jinsom-load-post').remove();
+$(obj).show();
 if(msg==0){
 layer.msg('没有更多内容！');
-$(ajax_obj).remove();
+$(obj).remove();
 }else{
-
-$(ajax_obj).before(msg);//追加内容
-
+$(obj).before(msg);//追加内容
 
 //瀑布流渲染
 if($(obj).parent().hasClass('jinsom-bbs-list-4')){
@@ -1764,11 +1763,9 @@ grid.masonry('layout');
 }); 
 }
 
-
 paged=parseInt(page)+1;
 $(ajax_obj).attr('data',paged);	
 }
-
 
 }
 });
@@ -1791,17 +1788,16 @@ $(ajax_obj).attr('data',paged);
 //new:按最新发表排序
 //nice:精品帖子
 function jinsom_ajax_bbs_menu(type,obj){
+if($('.jinsom-load').length==0){
 $(obj).addClass('on').siblings().removeClass('on');
 var bbs_id=$('.jinsom-bbs-header').attr('data');
-$('.jinsom-bbs-list-box').html(jinsom.loading);
+$('.jinsom-bbs-list-box').prepend(jinsom.loading_post);
 topic=$(obj).attr('topic');
 $.ajax({
 type: "POST",
 url:jinsom.jinsom_ajax_url+"/ajax/bbs.php",
 data: {page:1,bbs_id:bbs_id,type:type,topic:topic},
 success: function(msg){   
-
-
 $('.jinsom-bbs-list-box').html(msg);//追加内容	
 
 //瀑布流渲染
@@ -1812,9 +1808,9 @@ grid.masonry('layout');
 }); 
 }
 
-
 }
 });
+}
 }
 
 

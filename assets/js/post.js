@@ -21,11 +21,18 @@ data=menu_list.attr('data');
 index=menu_list.index();
 
 }else{//ajax切换
+
+
+
 page=1;
 $(obj).addClass('on').siblings().removeClass('on');//菜单切换效果
 $('.jinsom-post-list').prepend(jinsom.loading_post);//加载动画
 data=$(obj).attr('data');
 index=$(obj).index();
+
+if(!author_id&&jinsom.sns_home_load_type=='page'){//首页显示
+history.pushState('','','?type='+type+'&index='+index+'&page=1');
+}
 }
 
 
@@ -47,6 +54,26 @@ $(obj).attr('page',page);
 }
 }else{//ajax切换
 $('.jinsom-post-list').html(msg);
+}
+
+if(!author_id&&$('#jinsom-sns-home-ajax-page').length>0){//分页
+layui.use('laypage', function(){
+var laypage = layui.laypage;
+laypage.render({
+elem:'jinsom-sns-home-ajax-page',
+count:$('#jinsom-sns-home-ajax-page').attr('count'),
+limit:$('#jinsom-sns-home-ajax-page').attr('number'),
+theme:'var(--jinsom-color)',
+jump:function(obj,first){
+type=$('.jinsom-index-menu li.on').attr('type');
+index=$('.jinsom-index-menu li.on').index();
+page=obj.curr;
+if(!first){
+window.open('/?type='+type+'&index='+index+'&page='+page,'_self');
+}
+}
+});
+});
 }
 
 

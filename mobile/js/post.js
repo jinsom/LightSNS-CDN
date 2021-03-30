@@ -66,7 +66,7 @@ jinsom_lightbox();//图片灯箱
 if(load_type=='pull'){
 layer.open({content:'刷新成功',skin:'msg',time:2});
 }
-if($(obj).attr('waterfall')!=0){//瀑布流渲染
+if($(obj).attr('waterfall')!=0&&!author_id){//瀑布流渲染
 var grid=$('.jinsom-post-list-sns').masonry({
 itemSelector:'li',
 gutter:0,

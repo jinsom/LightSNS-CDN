@@ -18,17 +18,7 @@ jinsom_update_mail_form(jinsom.user_id,0);
 
 });
 
-var header_height=$('.jinsom-header').height();
 
-
-//全站滚动条事件
-$(window).scroll(function(){
-if($(window).scrollTop()>=header_height){
-$('.jinsom-header').addClass('fixed');
-}else{
-$('.jinsom-header').removeClass('fixed');
-}
-});
 
 //右侧、个人主页左侧工具悬浮
 if($('.jinsom-bbs-content-header-fixed').length==0){
@@ -453,9 +443,22 @@ $('html,body').animate({scrollTop:$('.jinsom-bottom').offset().top},500);
 
 //滚动事件
 $(window).scroll(function(){
-all_height=$(document).height();
-height =$(document).scrollTop();//滚动条高度
-if(height > 500){$(".totop").show()}else{$(".totop").hide();};
+all_height=$(document).height();//文档高度
+height=$(document).scrollTop();//滚动条高度
+header_height=$('.jinsom-header').height();//头部高度
+
+//头部滚动事件
+if(height>=header_height){
+$('.jinsom-header').addClass('fixed');
+}else{
+$('.jinsom-header').removeClass('fixed');
+}
+
+
+if(height>500){$(".totop").show()}else{$(".totop").hide();};
+if((all_height-$(window).height()-height)<500&&jinsom.sns_home_load_type=='scroll'){
+$('.jinsom-more-posts').click();
+}
 if((all_height-$(window).height()-height)<300){$(".tobottom").hide();}else{$(".tobottom").show();}
 });
 

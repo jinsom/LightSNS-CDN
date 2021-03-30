@@ -1353,7 +1353,11 @@ layer.closeAll();
 }
 
 //保释黑名单用户
-function jinsom_blacklist_bail(author_id,obj){
+function jinsom_blacklist_bail(author_id,credit,obj){
+layer.open({
+content: '你确定要花费'+credit+'保释吗？'
+,btn: ['确定', '取消']
+,yes: function(index){
 myApp.showIndicator();
 $.ajax({
 type: "POST",
@@ -1366,11 +1370,14 @@ if(msg.code==1){
 $(obj).parents('li').remove();
 }
 }
-}); 	
+}); 
+layer.close(index);
+}
+});	
 }
 
 //幸运抽奖
-function jinsom_luck_start(text,obj){
+function jinsom_luck_start(post_id,text,obj){
 if(!jinsom.is_login){
 myApp.loginScreen();  
 return false;
@@ -1380,6 +1387,7 @@ $.ajax({
 type: "POST",
 dataType:'json',
 url:jinsom.jinsom_ajax_url+"/action/luck-draw.php",
+data:{post_id:post_id},
 success: function(msg){
 layer.open({content:msg.msg,skin:'msg',time:2});
 $(obj).text('开始抽奖 ('+text+')');
@@ -2564,9 +2572,14 @@ $('.jinsom-publish-aite-form .list.aite').html(html);
 //发起挑战
 function jinsom_challenge(){
 type=$('.jinsom-publish-challenge-content .type>li.on').attr('data');
-value=$('.jinsom-publish-challenge-content .shitou li.on').index();
+value=$('.jinsom-publish-challenge-content .shitou li.on p').text();
 price=$('.jinsom-publish-challenge-content .price li.on').index();
 desc=$('.jinsom-publish-challenge-content .desc textarea').val();
+if(!value){
+layer.open({content:'请选择你要出的！',skin:'msg',time:2});
+return false;
+}
+
 myApp.showIndicator();
 $.ajax({
 type: "POST",
@@ -2586,7 +2599,11 @@ function d(){history.back(-1);}setTimeout(d,1500);
 
 //参与挑战
 function jinsom_challenge_join(id){
-value=$('.jinsom-challenge-content.join .shitou li.on').index();
+value=$('.jinsom-challenge-content.join .shitou li.on p').text();
+if(!value&&$('.jinsom-challenge-content .shitou').length>0){
+layer.open({content:'请选择你要出的！',skin:'msg',time:2});
+return false;
+}
 myApp.showIndicator();
 $.ajax({
 type: "POST",

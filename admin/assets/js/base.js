@@ -156,19 +156,29 @@ function c(){window.location.reload();}setTimeout(c,2000);
 //metabox导出备份
 function jinsom_amdin_backup_metabox(){
 post_id=jinsom_getUrlParam('post');
-window.open(jinsom.theme_url+"/module/admin/action/admin-setting-metabox-back.php?download&post_id="+post_id);
+if(!post_id){
+alert('请新建页面之后再进行导出数据操作！');
+return false;
+}
+type=$('.components-select-control__input').val();
+window.open(jinsom.theme_url+"/module/admin/action/admin-setting-metabox-back.php?download&post_id="+post_id+"&type="+type);
 }
 
 
 //metabox导入备份
 function jinsom_amdin_backup_metabox_import(){
+post_id=jinsom_getUrlParam('post');
+if(!post_id){
+alert('请新建页面之后再进行导入数据操作！');
+return false;
+}
+
 backup=$('#jinsom-admin-backup-metabox-val').val();
 if(backup=='delete'){
 title='你要确定要清空所有的设置选项吗？清空之后将恢复默认设置！';
 }else{
 title='你确定要导入备份设置吗？你之前的设置选项会被覆盖！';
 }
-post_id=jinsom_getUrlParam('post');
 layer.confirm(title,{
 btnAlign: 'c',
 }, function(){

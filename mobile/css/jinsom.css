@@ -1331,9 +1331,6 @@ display: none !important;
     height: 30vw;
     border-radius: 1vw;
 }
-.full .jinsom-post-images-list a {
-    height: 180px;
-}
 .jinsom-post-images-list a i.gif {
     width: 10vw;
     position: absolute;
@@ -4434,7 +4431,7 @@ display: none !important;
 .jinsom-chat-user-list a{
     padding: 0;
 }
-.jinsom-topic-page-header .follow,.jinsom-topic-rank-list li .follow,.jinsom-chat-user-list li .follow{
+.jinsom-topic-page-header .follow,.jinsom-topic-rank-list li .follow,.jinsom-chat-user-list li .follow,.jinsom-search-user-list li .follow{
     color: #ffffff;
     border-radius: 1vw;
     font-size: 3vw;
@@ -4445,10 +4442,10 @@ display: none !important;
     right: 4vw;
     top: 6.3vw;
 }
-.jinsom-topic-page-header .follow.had,.jinsom-topic-rank-list li .follow.had,.jinsom-chat-user-list li .follow.had{
+.jinsom-topic-page-header .follow.had, .jinsom-topic-rank-list li .follow.had, .jinsom-chat-user-list li .follow.had, .jinsom-search-user-list li .follow.had{
     background-color: #bbb;
 }
-.jinsom-topic-page-header .follow i,.jinsom-topic-rank-list li .follow i,.jinsom-chat-user-list li .follow i{
+.jinsom-topic-page-header .follow i,.jinsom-topic-rank-list li .follow i,.jinsom-chat-user-list li .follow i,.jinsom-search-user-list li .follow i{
     vertical-align: -0.6vw;
     font-size: 5.5vw;
 }
@@ -5405,6 +5402,7 @@ h1 .commend:before{
 .jinsom-search-user-list li {
     background-color: #fff;
     padding: 2vw;
+    position: relative;
 }
 .jinsom-search-user-list li a {
     display: flex;
@@ -6595,7 +6593,7 @@ h1 .commend:before{
     padding: 1.6vw;
     border-radius: 1vw;
     font-size: 3.5vw;
-    margin: 0 2vw;
+    margin: 1vw 2vw 0;
 }
 
 
@@ -9450,10 +9448,15 @@ h1 .commend:before{
     white-space: nowrap;
     padding: 4vw 2vw 3vw;
     background-color: #fff;
-    margin-bottom: 2vw;
     box-sizing: border-box;
     margin: 2vw;
     border-radius: 2vw;
+}
+.jinsom-post-follow-user-list .title {
+    padding: 0 2vw 0;
+    background-color: #fff;
+    border-left: 3px solid var(--jinsom-color);
+    margin: 0 2vw 4vw;
 }
 .jinsom-post-follow-user-list li {
     display: inline-block;
@@ -9516,7 +9519,13 @@ h1 .commend:before{
 .jinsom-reg-type-form-content li i {
     font-size: 10vw;
 }
-.jinsom-search-post-list .jinsom-search-user-list {
+/*.jinsom-search-post-list .jinsom-search-user-list {
+    background-color: #fff;
+    margin: 2vw;
+    border-radius: 2vw;
+    padding: 2vw;
+}*/
+.jinsom-search-user-list {
     background-color: #fff;
     margin: 2vw;
     border-radius: 2vw;
@@ -9963,4 +9972,12 @@ h1 .commend:before{
     top: 2vw;
     font-size: 5vw;
     opacity: 0.5;
+}
+
+.jinsom-member-content .jinsom-empty-page {
+    padding: 4vw 2vw 3vw;
+    background-color: #fff;
+    box-sizing: border-box;
+    margin: 2vw;
+    border-radius: 2vw;
 }
