@@ -1,6 +1,6 @@
 
 //评论内容
-function jinsom_comment(post_id,ticket,randstr){
+function jinsom_comment(post_id,reload,ticket,randstr){
 content=$('#jinsom-comment-content-'+post_id).val();
 img='';
 img_html='';
@@ -25,6 +25,11 @@ comment_list=$('.jinsom-single-comment-list-'+post_id);
 
 
 if(msg.code==1){//成功
+
+if(reload){
+layer.open({content:msg.msg,skin:'msg',time:2});
+function d(){window.open(msg.url,'_self');}setTimeout(d,1500);
+}else{
 $('#jinsom-comment-content-'+post_id).val('');//清空内容
 history.back(-1);
 function c(){layer.open({content:msg.msg,skin:'msg',time:2});}setTimeout(c,300);
@@ -59,6 +64,7 @@ comment_list.prepend('\
 </div>\
 ');
 jinsom_lightbox();
+}
 
 }else if(msg.code==2){//没有绑定手机号
 layer.open({content:msg.msg,skin:'msg',time:2});

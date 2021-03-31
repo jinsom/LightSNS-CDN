@@ -14,6 +14,10 @@ layer.closeAll('loading');
 layer.msg(msg.msg);
 if(msg.code==1){//成功
 $(obj).siblings('.jinsom-post-comments').val('');
+
+if($(obj).parents('.jinsom-comment-form').siblings('.comment-see').length>0||$(obj).parents('.jinsom-comment-form').siblings('.jinsom-single-content').children('.comment-see').length>0||$(obj).parents('.jinsom-comment-form').siblings('.jinsom-post-video').find('.comment-see').length>0){//如果是回复可见直接刷新
+function d(){window.open(msg.url,'_self');}setTimeout(d,1500);
+}else{
 $(obj).parent('.jinsom-comment-textarea').next('.jinsom-post-comment-list').prepend('\
 <li>\
 <div class="jinsom-comment-avatar">'+jinsom.avatar+jinsom.verify+'</div>\
@@ -27,6 +31,8 @@ $(obj).parent('.jinsom-comment-textarea').next('.jinsom-post-comment-list').prep
 <div class="jinsom-comment-content">'+msg.content+'</div>\
 <div class="jinsom-comment-footer"></div>\
 </li>');   
+}
+
 }else if(msg.code==2){//没有绑定手机号
 function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,2000);
 }else if(msg.code==3){//弹窗开通会员
@@ -131,7 +137,9 @@ function c(){jinsom_recharge_vip_form();}setTimeout(c,1500);
 
 //评论表单toggle
 function jinsom_comment_toggle(boj){
-$(boj).parent().siblings('.jinsom-comment-form').toggle();
+$(boj).parent().siblings('.jinsom-comment-form').toggle().find('textarea').focus();//动态回复可见
+$(boj).parents('.jinsom-single-content').siblings('.jinsom-comment-form').find('textarea').focus();//文章回复可见
+$(boj).parents('.jinsom-post-video').siblings('.jinsom-comment-form').toggle().find('textarea').focus();//视频回复可见
 }
 
 

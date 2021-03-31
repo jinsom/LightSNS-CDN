@@ -1840,6 +1840,9 @@ td, th {
     border-radius: 4px;
     cursor: pointer;
 }
+.jinsom-video-tips .btn.had {
+    background-color: #bbb;
+}
 .jinsom-video-tips .text i {
     font-size: 24px;
     vertical-align: -2px;
@@ -4141,7 +4144,7 @@ blockquote {
     line-height: 1.7;
     font-size: 14px;
 }
-.jinsom-btn.no {
+.jinsom-btn.no,.jinsom-btn.had {
     background-color: #ccc;
 }
 .jinsom-tips {
@@ -8822,30 +8825,32 @@ figure.effect-ming:hover figcaption::before, figure.effect-ming:hover p {
 }
 
 /*选择权限表单*/
+.jinsom-publish-power-content {
+    padding: 10px;
+}
 .jinsom-publish-power-content li {
-    padding: 10px 15px;
+    padding: 10px 20px;
     cursor: pointer;
+    color: #666;
+    font-size: 16px;
+    float: left;
+    width: 33.33%;
+    box-sizing: border-box;
+    margin: 10px 0;
+    border-radius: 4px;
+    text-align: center;
 }
 .jinsom-publish-power-content li:hover {
     background-color: #ededed;
 }
-.jinsom-publish-power-content li .left {
-    float: left;
+.jinsom-publish-power-content li i {
+    font-size: 24px;
     margin-right: 10px;
 }
-.jinsom-publish-power-content li .left i {
-    font-size: 43px;
-    color: #777;
+.jinsom-publish-power-content li span {
+    vertical-align: 3px;
 }
-.jinsom-publish-power-content li .right {
-    float: left;
-}
-.jinsom-publish-power-content li .right .name {
-    font-size: 18px;
-}
-.jinsom-publish-power-content li .right .desc {
-    color: #999;
-}
+
 
 .jinsom-publish-words-power-content {
     margin-top: 10px;
@@ -12587,17 +12592,17 @@ span.aplayer-thumb {
 /*自营商城*/
 .jinsom-shop-main .jinsom-content-left {
     width: calc(100% - 315px);
-    margin-top: 30px;
 }
 .jinsom-shop-main .full .jinsom-content-left {
     width: 100%;
+    margin-top: 30px;
 }
 .jinsom-shop-main.taxonomy .jinsom-main-content {
     margin-top: 20px;
 }
 .jinsom-shop-content li {
     float: left;
-    width: calc((100% - 30px)/3);
+    width: calc((100% - 45px)/4);
     background-color: #fff;
     box-shadow: 0 0 3px #ddd;
     border-bottom: 1px solid #ddd;
@@ -12607,19 +12612,19 @@ span.aplayer-thumb {
     border-radius: 4px;
 }
 .jinsom-shop-main .full .jinsom-shop-content li {
-    width: calc((100% - 45px)/4);
+    width: calc((100% - 60px)/5);
 }
-.jinsom-shop-content li:nth-child(3n) {
+.jinsom-shop-content li:nth-child(4n) {
     margin-right: 0;
 }
-.jinsom-shop-main .full .jinsom-shop-content li:nth-child(3n) {
+.jinsom-shop-main .full .jinsom-shop-content li:nth-child(4n) {
     margin-right: 15px;
 }
-.jinsom-shop-main .full .jinsom-shop-content li:nth-child(4n) {
+.jinsom-shop-main .full .jinsom-shop-content li:nth-child(5n) {
     margin-right: 0;
 }
 .jinsom-shop-content li .bg {
-    height: 220px;
+    height: 200px;
     background-size: cover;
     background-position: center;
     border-radius: 4px 4px 0 0;
@@ -12685,7 +12690,7 @@ span.aplayer-thumb {
 
 /*样式二*/
 .jinsom-shop-content li.two {
-    padding: 15px;
+    padding: 6px;
     box-sizing: border-box;
     text-align: center;
     border-radius: 0;
@@ -12713,6 +12718,9 @@ span.aplayer-thumb {
 }
 .jinsom-shop-header.two li {
     border-radius: 0;
+}
+.jinsom-shop-content li.two .bg {
+    height: 180px;
 }
 
 
@@ -12775,7 +12783,7 @@ span.aplayer-thumb {
 .jinsom-shop-header .subtitle {
     color: #999;
 }
-.box .jinsom-shop-content {
+.jinsom-shop-goods-box {
     min-height: 340px;
     margin-bottom: 40px;
 }
@@ -13240,6 +13248,7 @@ span.aplayer-thumb {
 /*商城四个格子推荐*/
 .jinsom-shop-commend-ad {
     margin-top: 40px;
+    margin-bottom: 20px;
 }
 .jinsom-shop-commend-ad li {
     float: left;

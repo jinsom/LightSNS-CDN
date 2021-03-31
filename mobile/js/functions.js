@@ -454,13 +454,18 @@ myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 follow_dom=$('.jinsom-follow-'+author_id);
 if(msg.code==1){//取消关注
-follow_dom.removeClass('had').addClass('no');  
+follow_dom.removeClass('had');  
 follow_dom.html('<i class="jinsom-icon jinsom-guanzhu"></i>关注');
 }else if(msg.code==2){//关注成功
-follow_dom.removeClass('no').addClass('had');
-follow_dom.html('<i class="jinsom-icon jinsom-yiguanzhu"></i>已关');     
+follow_dom.addClass('had');
+follow_dom.html('<i class="jinsom-icon jinsom-yiguanzhu"></i>已关');
+
+if($(obj).hasClass('follow-see')){
+function d(){window.open($(obj).attr('data'),'_self');}setTimeout(d,1000);
+}
+
 }else if(msg.code==3){//相互关注成功
-follow_dom.removeClass('no').addClass('had');
+follow_dom.addClass('had');
 follow_dom.html('<i class="jinsom-icon jinsom-xianghuguanzhu"></i>互关');    
 }
 }
@@ -2068,19 +2073,23 @@ url=$(obj).parent().siblings('.fancybox-stage').find('img').attr('src');
 url='';	
 }
 
-if($(obj).children('i').hasClass('jinsom-shoucang')){
-$(obj).children('i').addClass('jinsom-shoucang1').removeClass('jinsom-shoucang');
-$(obj).children('p').text($(obj).attr('a'));
-}else{
-$(obj).children('i').addClass('jinsom-shoucang').removeClass('jinsom-shoucang1');
-$(obj).children('p').text($(obj).attr('b'));
-}
+
 $.ajax({   
 url:jinsom.jinsom_ajax_url+"/action/collect.php",
 type:'POST',   
 data:{post_id:post_id,type:type,url:url},  
 success:function(msg){
 layer.open({content:msg.msg,skin:'msg',time:2});
+
+if(msg.code==2){
+$('.collect-post-'+post_id).children('i').addClass('jinsom-shoucang1').removeClass('jinsom-shoucang');
+$('.collect-post-'+post_id).children('p').text(msg.text);
+}else{
+$('.collect-post-'+post_id).children('i').addClass('jinsom-shoucang').removeClass('jinsom-shoucang1');
+$('.collect-post-'+post_id).children('p').text(msg.text);
+}
+
+
 }
 }); 
 }

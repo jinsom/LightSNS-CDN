@@ -1388,7 +1388,9 @@ display: none !important;
 .jinsom-post-images-list a.blur i.gif {
     opacity: 0.4;
 }
-
+.jinsom-page-single-content .jinsom-post-images-list a.blur .more-img {
+    display: none;
+}
 
 .jinsom-post-words .content .topic {
     color: #46c47c;
@@ -1779,8 +1781,22 @@ display: none !important;
     margin: 3vw auto 0;
     color: #fff;
 }
+.jinsom-video-tips .btn a {
+    color: #fff;
+}
 .jinsom-video-tips .text i {
     vertical-align: -0.5vw;
+}
+.jinsom-video-tips .btn i {
+    vertical-align: -0.5vw;
+    font-size: 5vw;
+}
+.jinsom-video-tips .btn.had {
+    background-color: #bbb;
+    text-shadow: none;
+}
+.jinsom-video-tips .btn.follow-see {
+    padding: 1vw;
 }
 
 
@@ -2039,8 +2055,7 @@ display: none !important;
     overflow: hidden;
 }
 .jinsom-comment-li.current-comment {
-    background-color: #fff9f9;
-    border: 1px solid #e2dada;
+    background-color: #f8f8f8;
 }
 .jinsom-single-comment-list .jinsom-empty-page {
     padding: 10vw 0;
@@ -3229,8 +3244,11 @@ display: none !important;
     cursor: pointer;
     border-radius: 1vw;
 }
-.jinsom-bbs-activity-btn.no,.jinsom-btn.no {
+.jinsom-bbs-activity-btn.no, .jinsom-btn.no, .jinsom-btn.had {
     background-color: #ccc;
+}
+.jinsom-btn.follow-see {
+    padding: 0.5vw 0;
 }
 .jinsom-bbs-comment-activity li {
     margin-bottom: 3vw;

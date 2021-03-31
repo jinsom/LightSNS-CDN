@@ -110,7 +110,7 @@ $('#jinsom-comment-content-'+post_id).val('@'+name+' ');
 
 if($('#comment-1').length>0&&!jinsom.is_admin){
 new TencentCaptcha(document.getElementById('comment-1'),jinsom.machine_verify_appid,function(res){
-if(res.ret === 0){jinsom_comment(post_id,res.ticket,res.randstr);}
+if(res.ret === 0){jinsom_comment(post_id,$('#comment-1').attr('reload'),res.ticket,res.randstr);}
 });
 }
 
@@ -1398,7 +1398,7 @@ type=$(this).attr('type');
 $('#jinsom-pop-power').val($(this).attr('data'));
 
 
-if(type=='pay'||type=='password'||type=='vip'||type=='login'){
+if(type=='pay'||type=='password'||type=='vip'||type=='login'||type=='comment'||type=='verify'||type=='follow'){
 $('.power-content textarea,.power-content label,.power-content .img-power').show();
 
 if(type=='pay'){

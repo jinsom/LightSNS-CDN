@@ -360,7 +360,7 @@ btn: false,
 resize:false,
 closeBtn: 0,
 shade:0.4,
-area: ['280px'],
+area: ['500px'],
 skin: 'jinsom-publish-power-form',
 content: msg
 })
@@ -368,8 +368,8 @@ content: msg
 
 //移除已经选择的话题
 $(".jinsom-publish-power-content li").click(function(){
-power_text=$(this).children('.left').html();
-power=$(this).children('.left').find('i').attr('data');
+power_text=$(this).children('i');
+power=$(this).attr('data');
 if(type=='single'){
 $('.jinsom-single-edior-footer-bar .power').html(power_text);
 }else{
@@ -377,7 +377,7 @@ $('.jinsom-publish-words-bar .power').html(power_text);
 }
 $('#jinsom-pop-power').val(power);//设置权限
 if(type!='video'){
-if(power==1||power==2||power==4||power==5){
+if(power==1||power==2||power==4||power==5||power==6||power==7||power==8){
 if(type=='single'){
 $('.jinsom-publish-words-power').html('<div class="jinsom-publish-words-power-content"></div>');
 $('#jinsom-bbs-publish-hide-content').show();

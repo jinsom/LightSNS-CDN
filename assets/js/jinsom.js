@@ -692,24 +692,6 @@ $("#jinsom-bbs-comment-power-verify").hide();
 }
 });
 
-//首页布局
-form.on('select(layout)',function(data){
-if(data.value==0){
-$('#jinsom-layout-sidebar-setting').show();
-}else{
-$('#jinsom-layout-sidebar-setting').hide();
-}
-});
-
-//内页布局
-form.on('select(single_layout)',function(data){
-if(data.value==0){
-$('#jinsom-bbs-single-layout-sidebar-setting').show();
-}else{
-$('#jinsom-bbs-single-layout-sidebar-setting').hide();
-}
-});
-
 //访问
 form.on('select(visit_power_form)',function(data){
 $select_value=parseInt($("#visit_power_form").val());
@@ -1561,6 +1543,11 @@ $(obj).html('<i class="jinsom-icon jinsom-yiguanzhu"></i>已关');
 $(obj).removeClass('no').addClass('had');  
 $(obj).html('<i class="jinsom-icon jinsom-xianghuguanzhu"></i>互关');    
 }
+if(msg.code==2||msg.code==3){
+if($(obj).parent().hasClass('follow-see')){
+function d(){window.open($(obj).parent().attr('data'),'_self');}setTimeout(d,500);
+}
+}
 }
 }); 
 }
@@ -1764,7 +1751,7 @@ grid.masonry('layout');
 }
 
 paged=parseInt(page)+1;
-$(ajax_obj).attr('data',paged);	
+$(obj).attr('data',paged);	
 }
 
 }
