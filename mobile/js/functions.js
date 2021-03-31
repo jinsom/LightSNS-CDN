@@ -2182,15 +2182,6 @@ $(this).parent().next().children('ul').eq($(this).index()).show().siblings().hid
 });
 }
 
-//发布权限
-function jinsom_publish_power_form(){
-layer.open({
-type: 1,
-content: $('.jinsom-publish-power-list-form').html(),
-anim: 'up',
-style: 'position:fixed;bottom:0;left:0;width:100%;border:none;'
-});	
-}
 
 
 //排序
@@ -2647,6 +2638,64 @@ $('.jinsom-load-post').remove();
 challenge_post_list.html(msg);
 }
 });
+}
+
+//我的订单数据
+function jinsom_order_data(type,link_type,obj){
+$(obj).addClass('on').siblings().removeClass('on');
+$('.jinsom-shop-order-mine-content').animate({scrollTop: 0 },0);
+order_list=$('.jinsom-shop-order-mine-list');
+order_loading=false;
+order_page=2;
+order_list.before(jinsom.loading_post);
+$.ajax({
+type: "POST",
+url:  jinsom.mobile_ajax_url+"/post/order.php",
+data: {page:1,type:type,link_type:link_type},
+success: function(msg){
+$('.jinsom-load-post').remove();
+order_list.html(msg);
+}
+});
+}
+
+//插入商品应用
+function jinsom_publish_add_application_shop(obj){
+post_id=$(obj).parent().attr('data');
+title=$(obj).find('.title').text();
+history.back(-1);
+$('.jinsom-publish-words-form .add-application .left span').text(title);
+$('.jinsom-publish-words-form .add-application .left i').removeAttr('class').addClass('jinsom-icon jinsom-shangcheng');
+$('#jinsom-publish-application-type').val('shop');
+$('#jinsom-publish-application-value').val(post_id);
+}
+
+//插入网址链接
+function jinsom_publish_add_application_link(){
+layer.closeAll();
+myApp.prompt('', function (value) {
+
+var RegUrl = new RegExp(); 
+RegUrl.compile("^((https|http|ftp|rtsp|mms){1}://)?[A-Za-z0-9-_]+\\.[A-Za-z0-9-_%&\?\/.=]+$"); 
+if (!RegUrl.test(value)) { 
+layer.open({content:'请输入一个合法的url链接！',skin:'msg',time:2});
+return false; 
+} 
+
+$('.jinsom-publish-words-form .add-application .left span').text(value);
+$('.jinsom-publish-words-form .add-application .left i').removeAttr('class').addClass('jinsom-icon jinsom-tuiguang');
+$('#jinsom-publish-application-type').val('url');
+$('#jinsom-publish-application-value').val(value);
+});
+$('.modal-text-input').focus();
+}
+
+//插入我的挑战
+function jinsom_publish_add_application_challenge(){
+layer.closeAll();
+$('.jinsom-publish-words-form .add-application .left span').text('我的挑战');
+$('.jinsom-publish-words-form .add-application .left i').removeAttr('class').addClass('jinsom-icon jinsom-jirou');
+$('#jinsom-publish-application-type').val('challenge');
 }
 
 

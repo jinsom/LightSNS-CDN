@@ -3576,6 +3576,34 @@ display: none !important;
     padding: 0 2vw;
     border-radius: 1vw;
 }
+.jinsom-publish-words-form .add-application {
+    display: flex;
+    margin: 0vw 0 4vw;
+    padding: 2vw;
+    background-color: #f1f1f1;
+    border-radius: 2vw;
+    align-items: center;
+}
+.jinsom-publish-words-form .add-application .left {
+    flex: 1;
+    color: #666;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.jinsom-publish-words-form .add-application .left i {
+    margin-right: 1vw;
+    vertical-align: -0.6vw;
+}
+.jinsom-publish-words-form .add-application .right {
+    color: #999;
+}
+.jinsom-publish-words-form .add-application .right i {
+    font-size: 4vw;
+}
+
+
+
 
 /*发布艾特*/
 .jinsom-publish-aite-popup,.jinsom-publish-power-popup,.jinsom-publish-topic-popup,.jinsom-publish-bg-popup {
@@ -9998,4 +10026,161 @@ h1 .commend:before{
     box-sizing: border-box;
     margin: 2vw;
     border-radius: 2vw;
+}
+
+.jinsom-popup-half-header {
+    text-align: center;
+    position: relative;
+    padding: 4vw;
+    font-size: 4.5vw;
+    font-weight: 500;
+}
+.jinsom-popup-half-header .title {
+    color: #333;
+}
+.jinsom-popup-half-header .close {
+    right: 4vw;
+    position: absolute;
+    top: 4vw;
+}
+.jinsom-popup-half-header .close i {
+    font-size: 4.5vw;
+    font-weight: bold;
+    color: #333;
+}
+.jinsom-publish-add-application-form-list {
+    padding: 4vw 4vw 16vw;
+}
+.jinsom-publish-add-application-form-list li {
+    padding: 4vw;
+    border-bottom: 1px solid #f2f2f2;
+}
+.jinsom-publish-add-application-form-list li i {
+    margin-right: 2vw;
+    vertical-align: -0.5vw;
+}
+.jinsom-publish-add-application-form-list li.url i {
+    color: #666;
+}
+.jinsom-publish-add-application-form-list li.goods i {
+    color: #ff9800;
+}
+.jinsom-publish-add-application-form-list li.challenge i {
+    color: #2196f3;
+}
+
+.jinsom-shop-order-mine-content {
+    padding: 22vw 3vw 2vw !important;
+}
+.jinsom-shop-order-mine-list li {
+    margin-bottom: 2vw;
+    border-bottom: 1px solid #f1f1f1;
+    padding: 2vw 0;
+}
+.jinsom-shop-order-mine-list li>a{
+    display: flex;
+    align-items: center;
+}
+.jinsom-shop-order-mine-list li .img {
+    width: 16vw;
+    height: 16vw;
+    margin-right: 2vw;
+}
+.jinsom-shop-order-mine-list li .img img {
+    width: 16vw;
+    height: 16vw;
+    object-fit: cover;
+    border-radius: 1vw;
+}
+.jinsom-shop-order-mine-list li .info {
+    font-size: 3.5vw;
+    width: 58vw;
+}
+.jinsom-shop-order-mine-list li .info .title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+}
+.jinsom-shop-order-mine-list li .info .desc {
+    color: #999;
+}
+.jinsom-shop-order-mine-list li .info>div {
+    margin-top: 1vw;
+}
+.jinsom-shop-order-mine-list li .price {
+    font-size: 6vw;
+    color: #c00000;
+    flex: 1;
+    text-align: center;
+}
+.jinsom-shop-order-mine-list li .price t {
+    font-size: 3.5vw;
+    vertical-align: 0.5vw;
+}
+.jinsom-shop-order-mine-list li .price>span>m {
+    font-size: 5vw;
+    margin-right: 1vw;
+    vertical-align: 0.2vw;
+}
+.jinsom-post-application-show {
+    background-color: #f1f1f1;
+    margin: 0 2vw 2vw;
+    border-radius: 1vw;
+}
+.jinsom-post-application-show>a {
+    padding: 2vw;
+    display: inherit;
+    font-size: 4vw;
+}
+.jinsom-post-application-show .url {
+    color: #777;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.jinsom-post-application-show i {
+    margin-right: 2vw;
+    vertical-align: -0.8vw;
+    color: #666;
+}
+.jinsom-post-application-show>a.challenge i {
+    color: #2b8edc;
+}
+.jinsom-post-application-show .shop {
+    display: flex;
+    align-items: center;
+}
+.jinsom-post-application-show .shop img {
+    width: 12vw;
+    height: 12vw;
+    border-radius: 1vw;
+    margin-right: 2vw;
+}
+.jinsom-post-application-show .shop .title {
+    width: 60vw;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 4vw;
+}
+.jinsom-post-application-show .shop .price {
+    flex: 1;
+    text-align: center;
+    color: #c00000;
+    font-size: 4.5vw;
+}
+.jinsom-post-application-show .shop .price t {
+    font-size: 3vw;
+}
+.jinsom-post-application-show .shop .price m {
+    font-size: 4vw;
+    margin-right: 1vw;
+    vertical-align: 0.2vw;
+}
+.jinsom-page-single-content .jinsom-post-application-show,.jinsom-post-single .jinsom-post-application-show {
+    margin: 0;
+}
+.jinsom-post-list .jinsom-post-single{
+    padding: 2vw 2vw 3vw;
 }

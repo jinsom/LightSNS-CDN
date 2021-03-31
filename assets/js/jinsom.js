@@ -341,27 +341,6 @@ data:{post_id:post_id},
 }
 
 
-//收藏商品
-function jinsom_like_goods(post_id,obj){
-if(!jinsom.is_login){
-jinsom_pop_login_style();	
-return false;
-}
-if($(obj).hasClass('had')){
-$(obj).removeClass('had').children('i').removeClass('jinsom-shoucang').addClass('jinsom-shoucang1');	
-$(obj).children('span').text('收藏');
-}else{
-$(obj).addClass('had').children('i').removeClass('jinsom-shoucang1').addClass('jinsom-shoucang');	
-$(obj).children('span').text('已收藏');	
-}
-
-$.ajax({   
-url:jinsom.jinsom_ajax_url+"/action/like-post.php",
-type:'POST',   
-data:{post_id:post_id},    
-});	
-}
-
 
 
 //关注论坛
@@ -4014,18 +3993,19 @@ url=$(obj).parent().siblings('.fancybox-stage').find('img').attr('src');
 }else{
 url='';	
 }
-
-if($(obj).children('i').hasClass('jinsom-shoucang')){
-$(obj).children('i').addClass('jinsom-shoucang1').removeClass('jinsom-shoucang').siblings('p').text($(obj).attr('a'));
-}else{
-$(obj).children('i').addClass('jinsom-shoucang').removeClass('jinsom-shoucang1').siblings('p').text($(obj).attr('b'));
-}
-
-
+layer.load(1);
 $.ajax({   
 url:jinsom.jinsom_ajax_url+"/action/collect.php",
 type:'POST',   
 data:{post_id:post_id,type:type,url:url},  
+success: function(msg){
+layer.closeAll('loading');
+if(msg.code==2){
+$(obj).children('i').addClass('jinsom-shoucang1').removeClass('jinsom-shoucang').siblings('p').text(msg.text);
+}else{
+$(obj).children('i').addClass('jinsom-shoucang').removeClass('jinsom-shoucang1').siblings('p').text(msg.text);
+}	
+}
 }); 
 }
 

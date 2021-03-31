@@ -166,7 +166,7 @@ layer.open({content:'已关闭评论',skin:'msg',time:2});
 }else{
 $(obj).children('i').removeClass('jinsom-jinzhipinglun-').addClass('jinsom-quxiaojinzhi-');	
 $('#jinsom-pop-comment-status').val('open');	
-$(obj).children('p').text('允许评论');
+$(obj).children('p').text('评论');
 layer.open({content:'已开启评论',skin:'msg',time:2});
 }
 }
@@ -624,4 +624,26 @@ function c(){myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/t
 }
 });  
 
+}
+
+
+
+//发布权限
+function jinsom_publish_power_form(){
+layer.open({
+type: 1,
+content: $('.jinsom-publish-power-list-form').html(),
+anim: 'up',
+style: 'position:fixed;bottom:0;left:0;width:100%;border:none;border-radius: 2vw 2vw 0 0;'
+});	
+}
+
+//添加应用
+function jinsom_publish_add_application(){
+layer.open({
+type: 1,
+content: $('.jinsom-publish-add-application-form').html(),
+anim: 'up',
+style: 'position:fixed;bottom:0;left:0;width:100%;border:none;border-radius: 2vw 2vw 0 0;'
+});	
 }

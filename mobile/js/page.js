@@ -2826,3 +2826,34 @@ $(this).addClass('on').siblings().removeClass('on');
 });
 
 
+//我的订单页面
+myApp.onPageBeforeInit('order-mine',function(page){
+
+//加载更多
+order_loading=false;
+order_page=2;
+$('.jinsom-shop-order-mine-content').on('infinite',function(){
+if(order_loading) return;
+order_list=$('.jinsom-shop-order-mine-list');
+order_loading=true;
+type=$('.jinsom-shop-menu li.on').attr('type');
+
+order_list.after(jinsom.loading_post);
+$.ajax({
+type: "POST",
+url:  jinsom.mobile_ajax_url+"/post/order.php",
+data: {page:order_page,type:type},
+success: function(msg){
+$('.jinsom-load-post').remove();
+if(msg==0){
+order_loading=true; 
+}else{
+order_list.append(msg);
+order_page++;
+order_loading=false;  
+} 
+}
+});
+});
+
+});

@@ -12624,10 +12624,13 @@ span.aplayer-thumb {
     margin-right: 0;
 }
 .jinsom-shop-content li .bg {
-    height: 200px;
+    height: 180px;
     background-size: cover;
     background-position: center;
     border-radius: 4px 4px 0 0;
+}
+.full .jinsom-shop-content li .bg {
+    height: 200px;
 }
 .jinsom-shop-content li h2 {
     font-size: 16px;
