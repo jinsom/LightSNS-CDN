@@ -501,7 +501,7 @@ if($('.jinsom-video-playing').length>0){
 current_post_id=$('.jinsom-video-playing').attr('post_id');
 window['video_'+current_post_id].pause();
 }
-	
+
 $('#jinsom-video-'+post_id).addClass('jinsom-video-playing');
 })
 window['video_'+post_id].on('pause',function(){
@@ -1241,7 +1241,7 @@ $('.jinsom-vip-page-header-card .info span m').text(new_number);
 }
 }   
 });
-	
+
 }
 
 
@@ -2347,7 +2347,7 @@ layer.open({
 content: '你确定要删除吗？'
 ,btn: ['确定', '取消']
 ,yes: function(index){
-	
+
 post_id=$('.jinsom-post-secret-list.single').attr('data');
 myApp.showIndicator();
 $.ajax({
@@ -2389,7 +2389,7 @@ post_id：文章id
 type：如果是帖子填：bbs，否则留空
 bbs_id：论坛ID
 dom：列表dom
- */
+*/
 function jinsom_comment_data(page,post_id,type,bbs_id,dom){
 $(dom).prepend(jinsom.loading_post);
 comment_loading=false;
@@ -2675,9 +2675,11 @@ function jinsom_publish_add_application_link(){
 layer.closeAll();
 myApp.prompt('', function (value) {
 
-var RegUrl = new RegExp(); 
-RegUrl.compile("^((https|http|ftp|rtsp|mms){1}://)?[A-Za-z0-9-_]+\\.[A-Za-z0-9-_%&\?\/.=]+$"); 
-if (!RegUrl.test(value)) { 
+var Expression =/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/; 
+
+var objExp=new RegExp(Expression);
+
+if(objExp.test(value) != true){
 layer.open({content:'请输入一个合法的url链接！',skin:'msg',time:2});
 return false; 
 } 
@@ -2697,7 +2699,16 @@ $('.jinsom-publish-words-form .add-application .left span').text('我的挑战')
 $('.jinsom-publish-words-form .add-application .left i').removeAttr('class').addClass('jinsom-icon jinsom-jirou');
 $('#jinsom-publish-application-type').val('challenge');
 }
-
+//插入我的宠物
+function jinsom_publish_add_application_pet(obj){
+name=$(obj).children('p').text();
+img=$(obj).children('img').attr('src');
+history.back(-1);
+$('.jinsom-publish-words-form .add-application .left span').text('我的宠物-['+name+']');
+$('.jinsom-publish-words-form .add-application .left i').removeAttr('class').addClass('jinsom-icon jinsom-chongwu');
+$('#jinsom-publish-application-type').val('pet');
+$('#jinsom-publish-application-value').val(name+','+img);
+}
 
 //设置cookie
 function SetCookie(name,value){

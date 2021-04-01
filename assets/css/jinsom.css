@@ -15246,3 +15246,52 @@ span.aplayer-thumb {
     width: 8px;
     z-index: -1;
 }
+
+.jinsom-post-application-show {
+    margin: 10px 20px 0;
+    background-color: #f1f1f1;
+    width: 50%;
+    border-radius: 4px;
+}
+.jinsom-post-application-show>a {
+    display: flex;
+    padding: 8px;
+    align-items: center;
+}
+.jinsom-post-application-show .shop img {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+.jinsom-post-application-show .shop .title {
+    width: calc(100% - 160px);
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.jinsom-post-application-show .shop .price {
+    width: 100px;
+    text-align: center;
+    color: #c00000;
+    display: inline-block;
+    font-size: 18px;
+}
+.jinsom-post-application-show .shop .price t {
+    font-size: 14px;
+}
+.jinsom-post-application-show .url i {
+    margin-right: 10px;
+}
+.jinsom-post-application-show .url>span {
+    width: calc(100% - 30px);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #666;
+}
+.jinsom-post-application-show .shop .price m {
+    margin-right: 2px;
+    font-size: 18px;
+}

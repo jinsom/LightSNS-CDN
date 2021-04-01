@@ -61,8 +61,7 @@ type:'GET',
 data:data,
 success:function(msg){   
 myApp.hideIndicator();
-window.location.href=msg;
-
+window.open(msg);
 // html='<div class="popup jinsom-publish-type-form profile-qrcode"><div class="page-content"><div class="jinsom-alipay-qrcode-pay"><div id="jinsom-qrcode"></div><p class="tips">请用支付宝扫码支付</p></div><div class="close"><a href="#" class="link icon-only close-popup" onclick="jinsom_cancel_alipay_qrcode()"><i class="jinsom-icon jinsom-xiangxia2"></i></a></div>';
 // myApp.popup(html);
 // jinsom_qrcode('jinsom-qrcode',200,200,msg);
@@ -95,7 +94,7 @@ url:jinsom.mobile_ajax_url+"/pay/wechat-h5.php",
 type:'POST',   
 data:{number:number,type:'credit',WIDout_trade_no:WIDout_trade_no,WIDsubject:WIDsubject,openid:openid},    
 success:function(msg){
-window.location.href=msg.url; 
+window.open(msg.url);
 // console.log(msg.url);
 }   
 }); 	
@@ -106,8 +105,7 @@ url:jinsom.jinsom_ajax_url+"/stencil/wechatpay-xunhu-code.php",
 type:'POST',   
 data:data,    
 success:function(msg){
-window.location.href=msg; 
-// console.log(msg.url);
+window.open(msg);
 }   
 }); 	
 }

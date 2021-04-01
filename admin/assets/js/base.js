@@ -172,7 +172,7 @@ if(!post_id){
 alert('请新建页面之后再进行导入数据操作！');
 return false;
 }
-
+type=$('.components-select-control__input').val();
 backup=$('#jinsom-admin-backup-metabox-val').val();
 if(backup=='delete'){
 title='你要确定要清空所有的设置选项吗？清空之后将恢复默认设置！';
@@ -186,7 +186,7 @@ layer.load(1);
 $.ajax({
 type:"POST",
 url: jinsom.jinsom_ajax_url+"/admin/action/admin-setting-metabox-back.php",
-data:{backup:backup,post_id:post_id},
+data:{backup:backup,post_id:post_id,type:type},
 success: function(msg){
 layer.closeAll('loading');
 layer.msg(msg.msg);

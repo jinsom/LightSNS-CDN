@@ -10059,15 +10059,6 @@ h1 .commend:before{
     margin-right: 2vw;
     vertical-align: -0.5vw;
 }
-.jinsom-publish-add-application-form-list li.url i {
-    color: #666;
-}
-.jinsom-publish-add-application-form-list li.goods i {
-    color: #ff9800;
-}
-.jinsom-publish-add-application-form-list li.challenge i {
-    color: #2196f3;
-}
 
 .jinsom-shop-order-mine-content {
     padding: 22vw 3vw 2vw !important;
@@ -10147,7 +10138,7 @@ h1 .commend:before{
 .jinsom-post-application-show>a.challenge i {
     color: #2b8edc;
 }
-.jinsom-post-application-show .shop {
+.jinsom-post-application-show .shop, .jinsom-post-application-show .pet {
     display: flex;
     align-items: center;
 }
@@ -10181,6 +10172,43 @@ h1 .commend:before{
 .jinsom-page-single-content .jinsom-post-application-show,.jinsom-post-single .jinsom-post-application-show {
     margin: 0;
 }
+.jinsom-post-single .jinsom-post-application-show {
+    margin-bottom: 2vw;
+}
 .jinsom-post-list .jinsom-post-single{
     padding: 2vw 2vw 3vw;
+}
+
+.jinsom-publish-select-pet {
+    padding: 14vw 4vw 4vw !important;
+}
+.jinsom-publish-select-pet li {
+    margin-right: 2vw;
+    float: left;
+    width: calc((100% - 4vw)/3);
+    text-align: center;
+    padding: 2vw;
+    box-sizing: border-box;
+    border: 1px solid #f1f1f1;
+    margin-bottom: 4vw;
+    border-radius: 2vw;
+    color: #555;
+}
+.jinsom-publish-select-pet li img {
+    width: 80%;
+    height: 30vw;
+    object-fit: contain;
+}
+.jinsom-publish-select-pet li:nth-child(3n) {
+    margin-right: 0;
+}
+.jinsom-post-application-show .pet img {
+    width: 12vw;
+    height: 12vw;
+    object-fit: contain;
+    margin-right: 2vw;
+    background-color: #fff;
+    padding: 1vw;
+    box-sizing: border-box;
+    border-radius: 1vw;
 }
