@@ -15295,3 +15295,9 @@ span.aplayer-thumb {
     margin-right: 2px;
     font-size: 18px;
 }
+.jinsom-posts-list.single .jinsom-post-application-show {
+    margin: 10px 0 0;
+}
+.single .jinsom-posts-list.single .jinsom-post-application-show {
+    margin-left:20px;
+}
