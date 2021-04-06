@@ -4454,10 +4454,14 @@ blockquote {
 }
 
 /*评论*/
-.jinsom-comment-form{
+.jinsom-comment-form {
     font-size: 12px;
     line-height: 18px;
     padding: 0 20px;
+    display: none;
+}
+.page-template-default .jinsom-comment-form,.single .jinsom-comment-form{
+    display: block;
 }
 .jinsom-comment-textarea{
     margin-bottom: 10px;
@@ -15281,8 +15285,11 @@ span.aplayer-thumb {
 .jinsom-post-application-show .shop .price t {
     font-size: 14px;
 }
-.jinsom-post-application-show .url i {
+.jinsom-post-application-show>a i {
     margin-right: 10px;
+}
+.jinsom-post-application-show .challenge i {
+    color: #2b8edc;
 }
 .jinsom-post-application-show .url>span {
     width: calc(100% - 30px);
@@ -15300,4 +15307,21 @@ span.aplayer-thumb {
 }
 .single .jinsom-posts-list.single .jinsom-post-application-show {
     margin-left:20px;
+}
+
+.jinsom-posts-list.single .jinsom-post-application-show {
+    width: calc(50% + 20px );
+}
+.jinsom-post-application-show>a.pet {
+    padding: 4px;
+    font-size: 13px;
+}
+.jinsom-post-application-show .pet img {
+    background-color: #fff;
+    padding: 4px;
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 4px;
 }

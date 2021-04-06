@@ -24,8 +24,8 @@ pay_type='alipay';
 }
 
 
-//金币支付
-if(type=='creditpay'){
+
+if(type=='creditpay'){//金币支付
 data=$('#jinsom-credit-recharge-form').serialize();
 data=data+'&type=creditpay';
 myApp.showIndicator();
@@ -45,13 +45,13 @@ function d(){window.location.reload();}setTimeout(d,1500);//刷新页面
 });
 }
 
-//卡密支付
-if(type=='keypay'){
+
+if(type=='keypay'){//卡密支付
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/mywallet/key.php'});
 }
 
-//当面付
-if(type=='qrcode'){
+
+if(type=='qrcode'){//当面付
 data=$('#jinsom-credit-recharge-form').serialize();
 data=data+'&type=qrcode';
 myApp.showIndicator();
@@ -61,13 +61,11 @@ type:'GET',
 data:data,
 success:function(msg){   
 myApp.hideIndicator();
-window.open(msg);
-// html='<div class="popup jinsom-publish-type-form profile-qrcode"><div class="page-content"><div class="jinsom-alipay-qrcode-pay"><div id="jinsom-qrcode"></div><p class="tips">请用支付宝扫码支付</p></div><div class="close"><a href="#" class="link icon-only close-popup" onclick="jinsom_cancel_alipay_qrcode()"><i class="jinsom-icon jinsom-xiangxia2"></i></a></div>';
-// myApp.popup(html);
-// jinsom_qrcode('jinsom-qrcode',200,200,msg);
-
-// myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/mywallet/alipay-qrcode.php?url='+msg});
-// jinsom_check_order_wechatpay(data);
+if(myApp.device.os=='ios'){
+window.open(msg);	
+}else{
+window.location.href=msg;	
+}
 }   
 });
 
@@ -84,28 +82,35 @@ url:jinsom.jinsom_ajax_url+"/action/create-trade-no.php",
 data:data,
 success:function(aa){
 
-if(type=='alipay'){
+if(type=='alipay'){//支付宝手机支付
 $('#jinsom-credit-recharge-form').submit();
-}else if(type=='wechat-jsapi'){
+}else if(type=='wechat-jsapi'){//微信公众号支付
 $('#jinsom-credit-recharge-form').submit();
-}else if(type=='wechat-h5'){
+}else if(type=='wechat-h5'){//微信H5支付
 $.ajax({   
 url:jinsom.mobile_ajax_url+"/pay/wechat-h5.php",
 type:'POST',   
 data:{number:number,type:'credit',WIDout_trade_no:WIDout_trade_no,WIDsubject:WIDsubject,openid:openid},    
 success:function(msg){
-window.open(msg.url);
-// console.log(msg.url);
+if(myApp.device.os=='ios'){
+window.open(msg.url);	
+}else{
+window.location.href=msg.url;	
+}
 }   
 }); 	
-}else if(type=='xunhu-wechat'){
+}else if(type=='xunhu-wechat'){//迅虎微信支付
 data=$('#jinsom-credit-recharge-form').serialize();
 $.ajax({   
 url:jinsom.jinsom_ajax_url+"/stencil/wechatpay-xunhu-code.php",
 type:'POST',   
 data:data,    
 success:function(msg){
-window.open(msg);
+if(myApp.device.os=='ios'){
+window.open(msg);	
+}else{
+window.location.href=msg;	
+}
 }   
 }); 	
 }
