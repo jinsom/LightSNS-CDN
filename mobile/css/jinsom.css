@@ -1908,6 +1908,11 @@ display: none !important;
     display: inline-flex;
     overflow: hidden;
 }
+.jinsom-reprint-content .jinsom-reprint-more {
+    color: #1e73be;
+    margin-bottom: 1vw;
+    display: inline-block;
+}
 
 
 
@@ -9156,33 +9161,38 @@ h1 .commend:before{
 }
 .jinsom-bbs-single-custom-field {
     font-size: 4vw;
-    padding: 2vw;
-    background-color: #f5f9f5;
+    padding: 2vw 2vw 4vw;
+    background-color: #f5f5f5;
     margin-bottom: 4vw;
     color: #666;
     border-radius: 2vw;
 }
 .jinsom-bbs-single-custom-field li.textarea {
-    margin-top: 2vw;
+    margin-top: 3vw;
+    margin-bottom: 3vw;
 }
 .jinsom-bbs-single-custom-field li:last-child {
     margin-bottom: 0;
 }
 .jinsom-bbs-single-custom-field li.text, .jinsom-bbs-single-custom-field li.number, .jinsom-bbs-single-custom-field li.link, .jinsom-bbs-single-custom-field li.select {
     display: flex;
-    line-height: 10vw;
+    line-height: 12vw;
 }
 .jinsom-bbs-single-custom-field li.text p, .jinsom-bbs-single-custom-field li.number p, .jinsom-bbs-single-custom-field li.link a, .jinsom-bbs-single-custom-field li.select p {
     flex: 1;
     text-align: right;
-    color: #2196F3;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
 }
+.jinsom-bbs-single-custom-field li label {
+    color: var(--jinsom-color);
+}
 .jinsom-bbs-single-custom-field li.textarea p {
     margin-top: 2vw;
-    color: #2196F3;
+    background-color: #fff;
+    border-radius: 1vw;
+    padding: 2vw;
 }
 .jinsom-bbs-download-box {
     margin-bottom: 6vw;

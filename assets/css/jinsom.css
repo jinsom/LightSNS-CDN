@@ -14683,7 +14683,7 @@ span.aplayer-thumb {
 .jinsom-bbs-single-custom-field li>p {
     font-size: 14px;
     margin-top: 5px;
-    display: inline-block;
+    display: initial;
 }
 .jinsom-bbs-sidebar-download-box .jinsom-bbs-single-custom-field.download li {
     float: inherit;
