@@ -6369,7 +6369,7 @@ h1 .commend:before{
 .jinsom-post-more-form .box li i {
     color: #555;
 }
-.jinsom-post-more-form .box li i.jinsom-shoucang {
+.jinsom-shoucang,.jinsom-post-more-form .box li i.jinsom-shoucang {
     color: #FF9800;
 }
 .jinsom-post-more-form .box li p {

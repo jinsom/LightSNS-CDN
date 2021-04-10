@@ -71,7 +71,7 @@ myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page
 }setTimeout(b,500);
 }else if(jinsom.wp_post_type=='goods'){
 function b(){
-myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/post-goods.php?post_id='+jinsom.post_id+'&url='+jinsom.post_url});
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/post-goods.php?post_id='+jinsom.post_id+'&url='+jinsom.post_url+'&rand='+Math.random().toString(36).substr(2,5)});
 }setTimeout(b,500);
 }else if(jinsom.post_type){
 function c(){
