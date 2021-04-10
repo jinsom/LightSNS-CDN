@@ -2861,8 +2861,10 @@ order_loading=false;
 
 //商品详情页面
 myApp.onPageBeforeInit('post-goods',function(page){
+$('.navbar-inner').removeClass('color');
+rand=page.query['rand'];
 jinsom_lightbox();
-var owlCar=$('#jinsom-goods-slider').owlCarousel({
+var owlCar=$('#jinsom-goods-slider-'+rand).owlCarousel({
 items: 1,
 loop: true,
 autoHeight: true,

@@ -10509,3 +10509,6 @@ h1 .commend:before{
 .jinsom-goods-single-box.related {
     padding-bottom: 0;
 }
+.jinsom-goods-single-box.related .content li .info {
+    height: 6vw;
+}
