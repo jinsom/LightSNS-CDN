@@ -921,9 +921,9 @@ $('.jinsom-bbs-content').scroll(function(){
 scrollTop =$(this).scrollTop();//滚动高度
 
 if(scrollTop>50){
-$('[data-page=bbs] .navbar').addClass('color');
+$('[data-page=bbs] .navbar-inner.navbar-on-center').addClass('color');
 }else{
-$('[data-page=bbs] .navbar').removeClass('color');
+$('[data-page=bbs] .navbar-inner.navbar-on-center').removeClass('color');
 };
 
 });
@@ -976,7 +976,6 @@ $('.jinsom-load-post').remove();
 
 //---------------------------话题页面-----------------
 myApp.onPageBeforeInit('topic',function(page){
-$('[data-page=topic] .navbar').removeClass('color');//移除color
 topic_id=page.query.topic_id;
 
 
@@ -990,9 +989,9 @@ contentH =$(this).get(0).scrollHeight,//内容高度
 scrollTop =$(this).scrollTop();//滚动高度
 
 if(scrollTop>30){
-$('[data-page=topic] .navbar').addClass('color');
+$('[data-page=topic] .navbar-inner.navbar-on-center').addClass('color');
 }else{
-$('[data-page=topic] .navbar').removeClass('color');
+$('[data-page=topic] .navbar-inner.navbar-on-center').removeClass('color');
 };
 
 
@@ -1089,9 +1088,9 @@ mine_loading = false;
 $('.page-on-center #jinsom-member-mine-page').scroll(function(){
 scrollTop=$(this).scrollTop();//滚动高度
 if(scrollTop>200){
-$('[data-page=member-mine] .navbar').addClass('color');
+$('[data-page=member-mine] .navbar-inner.navbar-on-center').addClass('color');
 }else{
-$('[data-page=member-mine] .navbar').removeClass('color');
+$('[data-page=member-mine] .navbar-inner.navbar-on-center').removeClass('color');
 };
 });
 
@@ -1157,9 +1156,9 @@ other_loading = false;
 $('.page-on-center #jinsom-member-other-page').scroll(function(){
 scrollTop =$(this).scrollTop();//滚动高度
 if(scrollTop>200){
-$('[data-page=member-other] .navbar').addClass('color');
+$('[data-page=member-other] .navbar-inner.navbar-on-center').addClass('color');
 }else{
-$('[data-page=member-other] .navbar').removeClass('color');
+$('[data-page=member-other] .navbar-inner.navbar-on-center').removeClass('color');
 };
 });
 
@@ -2854,6 +2853,52 @@ order_loading=false;
 } 
 }
 });
+});
+
+});
+
+
+
+//商品详情页面
+myApp.onPageBeforeInit('post-goods',function(page){
+jinsom_lightbox();
+var owlCar=$('#jinsom-goods-slider').owlCarousel({
+items: 1,
+loop: true,
+autoHeight: true,
+dots:false,
+onInitialized: counter,
+onChanged: counter,
+});
+
+var carTimer = setInterval(function() {
+if(owlCar.height() > 1) clearInterval(carTimer);
+owlCar.trigger('refresh.owl.carousel', [100]);
+}, 300);
+
+function counter(event) {
+  if (!event.namespace) {
+    return;
+  }
+  var slides = event.relatedTarget;
+  $('.slider-counter').text(slides.relative(slides.current()) + 1 + '/' + slides.items().length);
+}
+
+
+$('.jinsom-page-goods-content').scroll(function(){
+scrollTop=$(this).scrollTop();//滚动高度
+if(scrollTop>100){
+$('[data-page=post-goods] .navbar-inner.navbar-on-center').addClass('color');
+}else{
+$('[data-page=post-goods] .navbar-inner.navbar-on-center').removeClass('color');
+};
+});
+
+
+//菜单点击
+$('.jinsom-goods-single-box .title>li').click(function(){
+$(this).addClass('on').siblings().removeClass('on');
+$(this).parent().next().children('ul').hide().eq($(this).index()).show();
 });
 
 });

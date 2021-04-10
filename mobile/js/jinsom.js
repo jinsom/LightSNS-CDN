@@ -69,6 +69,10 @@ myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page
 function b(){
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/post-words.php?post_id='+jinsom.post_id+'&url='+jinsom.post_url});
 }setTimeout(b,500);
+}else if(jinsom.wp_post_type=='goods'){
+function b(){
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/post-goods.php?post_id='+jinsom.post_id+'&url='+jinsom.post_url});
+}setTimeout(b,500);
 }else if(jinsom.post_type){
 function c(){
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/post-'+jinsom.post_type+'.php?post_id='+jinsom.post_id+'&url='+jinsom.post_url});
