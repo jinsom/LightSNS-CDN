@@ -1352,7 +1352,11 @@ content.val(content.val()+a);
 
 //快捷插入表情
 function jinsom_add_smile(a,type,obj){//普通
-content=$('.jinsom-smile-textarea');
+if(type==1){//IM
+content=$('#jinsom-msg-content');
+}else{
+content=$('.jinsom-smile-textarea');	
+}
 content.val(content.val()+a);
 layer.closeAll();
 }

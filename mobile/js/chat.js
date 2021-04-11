@@ -7,12 +7,21 @@ if($.trim(content)==''){
 $('#jinsom-msg-content').val('');
 return false;  
 }
-$('.jinsom-chat-list').append('<li class="myself"><div class="jinsom-chat-message-list-user-info avatarimg-'+jinsom.user_id+'">'+jinsom.avatar+'</div><div class="jinsom-chat-message-list-content">'+content+'</div></li>');
+
+smile_add_arr=$.parseJSON(jinsom.smile_add);
+if(smile_add_arr){
+content_a=content.replace(/\[s\-(\d+)\]/g,'<img src="'+jinsom.smile_url+smile_add_arr[0]['smile_url']+'/$1.png" class="wp-smiley">');
+content_a=content_a.replace(/\[s\-(\d+)\-(\d+)\]/g,function(){var args=arguments;return '<img src="'+jinsom.smile_url+smile_add_arr[(args[1]-1)]['smile_url']+'/'+args[2]+'.png" class="wp-smiley">'});
+}
+
+content_a=content_a.replace(/\n/g,"<br/>");
+
+$('.jinsom-chat-list').append('<li class="myself"><div class="jinsom-chat-message-list-user-info avatarimg-'+jinsom.user_id+'">'+jinsom.avatar+'</div><div class="jinsom-chat-message-list-content">'+content_a+'</div></li>');
 $('#jinsom-msg-content').val('');
 $('.jinsom-chat-list-content').scrollTop($('.jinsom-chat-list-content')[0].scrollHeight);
 
 $('.messagebar.messagebar-init').css('height','12vw');
-$('#jinsom-msg-content').css('height','11vw');
+$('#jinsom-msg-content').css('height','8vw');
 $('.jinsom-msg-tips').hide();
 
 $.ajax({
@@ -94,6 +103,9 @@ layer.open({content:'你不能给自己发起聊天！',skin:'msg',time:2});
 return false;	
 }
 
+
+
+
 if($(obj).find('.badge').length>0){
 all_notice=parseInt($('.toolbar .notice .tips').text());
 current_notice=parseInt($(obj).find('.tips').text());
@@ -104,7 +116,12 @@ $('.toolbar .notice .tips').html(number);
 $('.toolbar .notice .tips').remove();
 }
 }
+
+if($(obj).attr('goods')){
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/chat-one.php?author_id='+author_id+'&goods='+$(obj).attr('goods')});
+}else{
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/chat-one.php?author_id='+author_id});
+}
 }
 
 //打开群聊
@@ -122,17 +139,25 @@ myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page
 
 //点击发送消息-群聊
 function jinsom_send_msg_group(bbs_id){
-content= $('#jinsom-msg-group-content').val();
+content= $('#jinsom-msg-content').val();
 if($.trim(content)==''){
-$('#jinsom-msg-group-content').val('');
+$('#jinsom-msg-content').val('');
 return false;  
 }
-$('.jinsom-chat-group-list').append('<li class="myself"><div class="jinsom-chat-message-list-user-info avatarimg-'+jinsom.user_id+'">'+jinsom.avatar+'</div><div class="jinsom-chat-message-list-content">'+content+'</div></li>');
-$('#jinsom-msg-group-content').val('');
+
+smile_add_arr=$.parseJSON(jinsom.smile_add);
+if(smile_add_arr){
+content_a=content.replace(/\[s\-(\d+)\]/g,'<img src="'+jinsom.smile_url+smile_add_arr[0]['smile_url']+'/$1.png" class="wp-smiley">');
+content_a=content_a.replace(/\[s\-(\d+)\-(\d+)\]/g,function(){var args=arguments;return '<img src="'+jinsom.smile_url+smile_add_arr[(args[1]-1)]['smile_url']+'/'+args[2]+'.png" class="wp-smiley">'});
+}
+content_a=content_a.replace(/\n/g,"<br/>");//换行
+
+$('.jinsom-chat-group-list').append('<li class="myself"><div class="jinsom-chat-message-list-user-info avatarimg-'+jinsom.user_id+'">'+jinsom.avatar+'</div><div class="jinsom-chat-message-list-content">'+content_a+'</div></li>');
+$('#jinsom-msg-content').val('');
 $('.jinsom-chat-group-list-content').scrollTop($('.jinsom-chat-group-list-content')[0].scrollHeight);
 
 $('.messagebar.messagebar-init').css('height','12vw');
-$('#jinsom-msg-group-content').css('height','11vw');
+$('#jinsom-msg-content').css('height','8vw');
 $('.jinsom-msg-tips').hide();
 
 $.ajax({
@@ -221,4 +246,36 @@ myApp.loginScreen();
 }
 }
 });	
+}
+
+
+
+//发送商品消息
+function jinsom_send_msg_goods(post_id,author_id,obj){
+if(!$(obj).hasClass('had')){
+$(obj).addClass('had').text('已发送');
+content_a='商品：<a class="back">'+$(obj).prev().children('.title').text()+'</a>';
+$('.jinsom-chat-list').append('<li class="myself"><div class="jinsom-chat-message-list-user-info avatarimg-'+jinsom.user_id+'">'+jinsom.avatar+'</div><div class="jinsom-chat-message-list-content">'+content_a+'</div></li>');
+$('.jinsom-chat-list-content').scrollTop($('.jinsom-chat-list-content')[0].scrollHeight);
+$.ajax({
+type: "POST",
+url:jinsom.module_url+"/chat/msg.php",
+data: {post_id:post_id,author_id:author_id},
+success: function(msg){
+if(msg.code==0||msg.code==3){
+$('.jinsom-chat-list .myself').last().children('.jinsom-chat-message-list-content').prepend('<i class="jinsom-icon jinsom-shibai error"></i>');
+$('.jinsom-chat-list').append('<p class="jinsom-chat-message-tips error"><span>'+msg.msg+'</span></p>');
+$('.jinsom-chat-list-content').scrollTop($('.jinsom-chat-list-content')[0].scrollHeight);
+if(msg.code==3){
+function c(){myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/mywallet/recharge-vip.php'});}setTimeout(c,1500);	
+}
+}else if(msg.code==1){//聊天隐私
+if(msg.im_privacy==1){
+$('.jinsom-chat-list').append('<p class="jinsom-chat-message-tips error"><span>'+msg.im_privacy_tips+'</span></p>');
+$('.jinsom-chat-list-content').scrollTop($('.jinsom-chat-list-content')[0].scrollHeight);
+}
+}
+}
+});
+}
 }

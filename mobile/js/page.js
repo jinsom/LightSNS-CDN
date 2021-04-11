@@ -1229,7 +1229,7 @@ navbarH=$('.navbar').height();
 viewH =Math.round($(this).height()),//可见高度
 contentH =$(this).get(0).scrollHeight,//内容高度
 scrollTop =$(this).scrollTop();//滚动高度
-if(contentH - viewH - scrollTop-navbarH*2 >20){ //到达底部时,加载新内容
+if(contentH - viewH - scrollTop-navbarH*2 >200){ //到达底部时,加载新内容
 $('.jinsom-msg-tips').show();
 }else{
 $('.jinsom-msg-tips').hide().html('底部');	
@@ -1271,7 +1271,7 @@ viewH =Math.round($(this).height()),//可见高度
 contentH =$(this).get(0).scrollHeight,//内容高度
 scrollTop =$(this).scrollTop();//滚动高度
 console.log(navbarH);
-if(contentH - viewH - scrollTop-navbarH*2 >20){ //到达底部时,加载新内容
+if(contentH - viewH - scrollTop-navbarH*2 >200){ //到达底部时,加载新内容
 $('.jinsom-msg-tips').show();
 }else{
 $('.jinsom-msg-tips').hide().html('底部');	
