@@ -25,7 +25,7 @@ comment_list=$('.jinsom-single-comment-list-'+post_id);
 
 
 if(msg.code==1){//成功
-
+reload=parseInt(reload);
 if(reload){
 layer.open({content:msg.msg,skin:'msg',time:2});
 function d(){window.open(msg.url,'_self');}setTimeout(d,1500);
