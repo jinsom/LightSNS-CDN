@@ -2626,6 +2626,9 @@ img.wp-smiley {
     font-size: 14px;
     margin-right: 10px;
 }
+.jinsom-chat-message-list-content a {
+    text-decoration: underline;
+}
 .jinsom-chat-message-list-content i.error {/*错误消息*/
     position: absolute;
     color: #F44336;
@@ -4728,8 +4731,8 @@ jin.jinsom-post-at img.emoji {
 }
 .jinsom-media-show li {
     float: left;
-    height: 200px;
-    width: calc((100% - 30px)/4);
+    height: 180px;
+    width: calc((100% - 40px)/5);
     box-sizing: border-box;
     cursor: pointer;
     position: relative;
@@ -4804,7 +4807,7 @@ figure figcaption, figure figcaption > a {
 figure.effect-apollo h2 {
     text-align: center;
     margin: 20px 0 10px 0;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: normal;
 }
 figure.effect-apollo p {
@@ -4822,7 +4825,7 @@ figure.effect-apollo p {
 }
 figure.effect-ming h2 {
     margin: 20px 0 10px 0;
-    font-size: 20px;
+    font-size: 15px;
     -webkit-transition: -webkit-transform 0.35s;
     transition: transform 0.35s;
     font-weight: normal;
@@ -4899,7 +4902,7 @@ figure.effect-ming:hover figcaption::before, figure.effect-ming:hover p {
     transform: scale3d(1,1,1);
 }
 
-.jinsom-media-show li:nth-child(4n) {
+.jinsom-media-show li:nth-child(5n) {
     margin-right: 0;
 }
 .jinsom-media-show li a span {

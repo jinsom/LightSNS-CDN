@@ -53,6 +53,7 @@ SetCookie('history_single',post_id);
 //加载更多评论
 comment_loading = false;
 comment_page = 2;
+post_id=page.query['post_id'];
 comment_list=$('.jinsom-single-comment-list-'+post_id);
 $('.jinsom-page-single-content-'+post_id+'.infinite-scroll').on('infinite',function(){
 if(comment_loading) return;
@@ -1237,6 +1238,33 @@ $('.jinsom-msg-tips').hide().html('底部');
 });
 
 
+document.querySelector('#im-file').addEventListener('change',function(){
+myApp.showPreloader('上传中...');
+data=new FormData($("#jinsom-im-upload-form")[0]);
+$.ajax({
+type: "POST",
+dataType:'json',
+contentType: false,
+processData: false, 
+url:jinsom.jinsom_ajax_url+"/upload/im-one.php",
+data:data,
+success: function(msg){
+myApp.hidePreloader();
+$('#im-file').val('');
+if(msg.code==1){
+$('.jinsom-chat-list').append('<li class="myself"><div class="jinsom-chat-message-list-user-info avatarimg-'+jinsom.user_id+'">'+jinsom.avatar+'</div><div class="jinsom-chat-message-list-content"><img src="'+msg.file_url+'"></div></li>');
+$('.jinsom-chat-list-content').scrollTop($('.jinsom-chat-list-content')[0].scrollHeight);
+$(".jinsom-chat-message-list-content img").on('load',function(){
+$('.jinsom-chat-list-content').scrollTop($('.jinsom-chat-list-content')[0].scrollHeight);
+});
+}else{
+layer.open({content:msg.msg,skin:'msg',time:2});	
+}
+}
+});
+});
+
+
 });
 
 //关闭聊天
@@ -1276,6 +1304,33 @@ $('.jinsom-msg-tips').show();
 }else{
 $('.jinsom-msg-tips').hide().html('底部');	
 }
+});
+
+
+document.querySelector('#im-file').addEventListener('change',function(){
+myApp.showPreloader('上传中...');
+data=new FormData($("#jinsom-im-upload-form")[0]);
+$.ajax({
+type: "POST",
+dataType:'json',
+contentType: false,
+processData: false, 
+url:jinsom.jinsom_ajax_url+"/upload/im-group.php",
+data:data,
+success: function(msg){
+myApp.hidePreloader();
+$('#im-file').val('');
+if(msg.code==1){
+$('.jinsom-chat-group-list').append('<li class="myself"><div class="jinsom-chat-message-list-user-info avatarimg-'+jinsom.user_id+'">'+jinsom.avatar+'</div><div class="jinsom-chat-message-list-content"><img src="'+msg.file_url+'"></div></li>');
+$('.jinsom-chat-group-list-content').scrollTop($('.jinsom-chat-group-list-content')[0].scrollHeight);
+$(".jinsom-chat-message-list-content img").on('load',function(){
+$('.jinsom-chat-group-list-content').scrollTop($('.jinsom-chat-group-list-content')[0].scrollHeight);
+});
+}else{
+layer.open({content:msg.msg,skin:'msg',time:2});	
+}
+}
+});
 });
 
 });
