@@ -1252,7 +1252,7 @@ success: function(msg){
 myApp.hidePreloader();
 $('#im-file').val('');
 if(msg.code==1){
-$('.jinsom-chat-list').append('<li class="myself"><div class="jinsom-chat-message-list-user-info avatarimg-'+jinsom.user_id+'">'+jinsom.avatar+'</div><div class="jinsom-chat-message-list-content"><img src="'+msg.file_url+'"></div></li>');
+$('.jinsom-chat-list').append('<li class="myself"><div class="jinsom-chat-message-list-user-info avatarimg-'+jinsom.user_id+'">'+jinsom.avatar+'</div><div class="jinsom-chat-message-list-content"><a href="'+msg.file_url+'" data-fancybox="gallery"><img src="'+msg.file_url+'"></a></div></li>');
 $('.jinsom-chat-list-content').scrollTop($('.jinsom-chat-list-content')[0].scrollHeight);
 $(".jinsom-chat-message-list-content img").on('load',function(){
 $('.jinsom-chat-list-content').scrollTop($('.jinsom-chat-list-content')[0].scrollHeight);
@@ -1321,7 +1321,7 @@ success: function(msg){
 myApp.hidePreloader();
 $('#im-file').val('');
 if(msg.code==1){
-$('.jinsom-chat-group-list').append('<li class="myself"><div class="jinsom-chat-message-list-user-info avatarimg-'+jinsom.user_id+'">'+jinsom.avatar+'</div><div class="jinsom-chat-message-list-content"><img src="'+msg.file_url+'"></div></li>');
+$('.jinsom-chat-group-list').append('<li class="myself"><div class="jinsom-chat-message-list-user-info avatarimg-'+jinsom.user_id+'">'+jinsom.avatar+'</div><div class="jinsom-chat-message-list-content"><a href="'+msg.file_url+'" data-fancybox="gallery"><img src="'+msg.file_url+'"></a></div></li>');
 $('.jinsom-chat-group-list-content').scrollTop($('.jinsom-chat-group-list-content')[0].scrollHeight);
 $(".jinsom-chat-message-list-content img").on('load',function(){
 $('.jinsom-chat-group-list-content').scrollTop($('.jinsom-chat-group-list-content')[0].scrollHeight);

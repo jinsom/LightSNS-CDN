@@ -1661,6 +1661,8 @@ display: none !important;
     background-size: cover;
     background-position: center;
     border-radius: 1vw;
+    border: 1px solid #f1f1f1;
+    box-sizing: border-box;
 }
 .jinsom-post-single-content .right {
     margin-left: 35%;
@@ -2631,10 +2633,10 @@ display: none !important;
 
 
 /*聊天界面*/
-/*.jinsom-chat-toolbar .toolbar-inner {
-    height: 10vw;
-    box-sizing: border-box;
-}*/
+.jinsom-chat-toolbar li.smile {
+    padding-left: 2vw;
+    padding-right: 2vw;
+}
 .jinsom-chat-toolbar li.input {
     border: 1px solid #eee;
     margin: 0;
@@ -2645,7 +2647,6 @@ display: none !important;
     width: 75%;
     display: flex;
     background-color: #fff;
-    margin-left: 2vw;
 }
 .jinsom-chat-toolbar li.input textarea {
     border: none;
@@ -2726,7 +2727,7 @@ display: none !important;
     box-sizing: border-box;
 }
 .myself .jinsom-chat-message-list-content a {
-    color: #fff;
+    color: #fff !important;
 }
 .jinsom-chat-message-list-content a {
     text-decoration: underline;
@@ -8803,8 +8804,8 @@ h1 .commend:before{
     transition-duration: .2s;
     transform: translate3d(120%,0,0);
 }
-.subnavbar .jinsom-paixu {
-    color: #555;
+.subnavbar>.jinsom-icon {
+    color: #666;
     font-size: 5vw;
     margin-left: 2vw;
 }
