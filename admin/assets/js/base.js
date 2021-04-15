@@ -94,18 +94,32 @@ layer.alert(data.version)
 
 
 
-// 回车搜索
+//设置页回车搜索
 $(".jinsom-panel-search input").keypress(function(e) {  
 if(e.which == 13) {  
 return false;
 }  
 }); 
 
-
-layui.use('element', function() {
-var element = layui.element
+//layui模块引入
+layui.use('element',function(){
+var element=layui.element
 })
+
+//用户列表筛选
+jinsom_user_type_el=$('[name="jinsom_user_type"]');
+jinsom_user_type_el.change(function(){
+jinsom_user_type_el.val(jQuery(this).val());
 });
+
+});//ready
+
+
+
+
+// =================================函数开始
+
+
 
 //退出登录
 function jinsom_login_out(){
@@ -1345,9 +1359,11 @@ layer.msg("还没有写好啦！预留接口");
 }
 
 
-
+//获取get参数
 function jinsom_getUrlParam(name){
 var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
 var r = window.location.search.substr(1).match(reg);
 if(r!=null)return  unescape(r[2]); return null;
 }
+
+

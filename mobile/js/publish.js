@@ -202,11 +202,6 @@ $('#jinsom-pop-city').val('');
 //发布动态
 function jinsom_publish_words(ticket,randstr){
 
-// if($.trim($(".jinsom-publish-words-form .content textarea").val())==''){
-// layer.open({content:'请输入内容！',skin:'msg',time:2});
-// return false;	
-// }
-
 power=$('#jinsom-pop-power').val();
 if(power==1||power==2||power==4||power==5){
 if(power==1){
@@ -349,10 +344,7 @@ function c(){myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/t
 
 //发布视频 | 音乐
 function jinsom_publish_music_video(publish_type,ticket,randstr){
-if($.trim($(".jinsom-publish-words-form .content textarea").val())==''){
-layer.open({content:'请输入内容！',skin:'msg',time:2});
-return false;	
-}
+
 power=$('#jinsom-pop-power').val();
 if(power==1||power==2||power==4||power==5){
 if(power==1){

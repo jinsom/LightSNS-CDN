@@ -890,28 +890,10 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /*-----------------------------登录注册表单--------------------*/
-[data-page="reg-email"] .navbar,[data-page="reg-phone"] .navbar,[data-page="reg-invite"] .navbar,[data-page="login-phone"] .navbar,[data-page="reg-simple"] .navbar {
+.jinsom-login-navbar .navbar-inner,[data-page="reg-email"] .navbar-inner,[data-page="reg-phone"] .navbar-inner,[data-page="reg-invite"] .navbar-inner,[data-page="login-phone"] .navbar-inner,[data-page="reg-simple"] .navbar-inner {
     background-color: rgb(255 0 0 / 0);
-}
-.jinsom-login-navbar.navbar {
-    background: rgba(70, 196, 124, 0);
     position: absolute;
 }
-/*.jinsom-login-form-opacity {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-color: #89a6c6;
-    background: linear-gradient(to right,#89a6c6, rgb(160, 191, 225));
-    background-size: cover;
-    background-position: center;
-    z-index: -1;
-}
-.jinsom-login-form-opacity .shade {
-    background-color: rgb(0 0 0 / 0.2);
-    width: 100%;
-    height: 100%;
-}*/
 .jinsom-login-form {
     background-size: cover;
     background-repeat: no-repeat;

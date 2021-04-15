@@ -468,17 +468,6 @@ $('#jinsom-pop-city').val('');
 
 //发布动态
 function jinsom_publish_words(obj,ticket,randstr){
-if($(obj).parent().siblings('#jinsom-pop-title').length>0){
-if($.trim($(obj).parent().siblings('#jinsom-pop-title').val())==''){
-layer.msg('请输入标题！');
-return false;
-}
-}
-
-// if($.trim($(obj).parent().siblings('.content').children('#jinsom-pop-content').val())==''){
-// layer.msg('请输入内容！');
-// return false;	
-// }
 
 power=$(obj).parent().siblings('#jinsom-pop-power').val();
 if(power==1||power==2||power==4||power==5){
@@ -584,17 +573,6 @@ obj_li.insertAfter(obj_next);
 //===================发表音乐======================
 function jinsom_publish_music(ticket,randstr){
 
-if($('#jinsom-pop-title').length>0){
-if($.trim($('#jinsom-pop-title').val())==''){
-layer.msg('请输入标题！');
-return false;
-}
-}
-
-if($.trim($("#jinsom-pop-content").val())==''){
-layer.msg('请输入内容！');
-return false;	
-}
 
 power=$('#jinsom-pop-power').val();
 if(power==1){
@@ -665,17 +643,7 @@ function c(){jinsom_recharge_vip_form();}setTimeout(c,1500);
 
 //发布视频
 function jinsom_publish_video(ticket,randstr){
-if($('#jinsom-pop-title').length>0){
-if($.trim($('#jinsom-pop-title').val())==''){
-layer.msg('请输入标题！');
-return false;
-}
-}
 
-if($.trim($("#jinsom-pop-content").val())==''){
-layer.msg('请输入内容！');
-return false;	
-}
 
 power=$('#jinsom-pop-power').val();
 if(power==1){

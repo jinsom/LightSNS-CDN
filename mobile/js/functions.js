@@ -2603,6 +2603,10 @@ function d(){history.back(-1);}setTimeout(d,1500);
 
 //参与挑战
 function jinsom_challenge_join(id){
+if(!jinsom.is_login){
+myApp.loginScreen();  
+return false;
+}
 value=$('.jinsom-challenge-content.join .shitou li.on p').text();
 if(!value&&$('.jinsom-challenge-content .shitou').length>0){
 layer.open({content:'请选择你要出的！',skin:'msg',time:2});
@@ -2713,6 +2717,7 @@ $('.jinsom-publish-words-form .add-application .left i').removeAttr('class').add
 $('#jinsom-publish-application-type').val('pet');
 $('#jinsom-publish-application-value').val(name+','+img);
 }
+
 
 //设置cookie
 function SetCookie(name,value){
