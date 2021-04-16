@@ -63,6 +63,28 @@ window.location.href=msg;
 }else{
 window.open(msg);	
 }
+
+layer.open({
+content: '是否已经充值完成？'
+,btn: ['已充值', '已取消']
+,yes: function(index){
+myApp.showIndicator();
+$.ajax({   
+url:jinsom.jinsom_ajax_url+"/action/check-trade.php",
+type:'POST',   
+data:data,
+success:function(msg){   
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+if(msg.code==1){
+function c(){window.location.reload();}setTimeout(c,2000);
+}
+}   
+}); 
+layer.close(index);
+}
+});
+
 }   
 });
 
