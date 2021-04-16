@@ -3770,13 +3770,13 @@ window.location.href=jinsom.home_url+'/Extend/pay/alipay/alipay.php?trade_no='+t
 }else if(pay_type=='alipay_code'||pay_type=='wechatpay_pc'||pay_type=='xunhupay_wechat_pc'){
 ajax_type='POST';
 pay_tips='<p><i class="jinsom-icon jinsom-weixinzhifu"></i> 微信扫码支付</p>';
-if(pay_type=='qrcode'){
+if(pay_type=='alipay_code'){
 ajax_type='GET';
 pay_tips='<p style="color: #00a7ff;"><i class="jinsom-icon jinsom-zhifubaozhifu" style="color: #00a7ff;font-size: 24px;vertical-align: -3px;"></i> 支付宝扫码支付</p>';
 pay_url=jinsom.home_url+'/Extend/pay/alipay/qrcode.php';
-}else if(pay_type=='wechat'){
+}else if(pay_type=='wechatpay_pc'){
 pay_url=jinsom.home_url+"/Extend/pay/wechatpay/wechatpay-code.php";
-}else if(pay_type=='xunhu-wechat'){
+}else if(pay_type=='xunhupay_wechat_pc'){
 pay_url=jinsom.home_url+"/Extend/pay/xunhupay/wechatpay-xunhu-code.php";
 }
 	
