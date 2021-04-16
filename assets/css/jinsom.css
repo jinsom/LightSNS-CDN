@@ -1218,6 +1218,14 @@ td, th {
 .jinsom-sidebar-user-list.bbs-admin-list,.jinsom-sidebar-user-list.bbs-commend-list {
     padding-top: 10px;
 }
+.jinsom-widget-sign-ranking .more-sign {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #f1f1f1;
+    color: #999;
+}
 
 /*侧栏关注按钮*/
 .jinsom-sidebar-user-list .follow>span {
@@ -8749,9 +8757,9 @@ figure.effect-ming:hover figcaption::before, figure.effect-ming:hover p {
     height: 36px;
     line-height: 36px;
     box-sizing: border-box;
-    border: 1px solid #e1e1e1;
+    border: 1px solid #e3e3e3;
     padding: 10px;
-    font-size: 16px;
+    border-radius: 4px;
 }
 .jinsom-publish-topic-content {
     margin-top: 10px;
@@ -9508,6 +9516,9 @@ span.aplayer-thumb {
     margin-top: 10px;
     border-radius: 2px;
     height: 45px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .jinsom-credit-recharge-type li.on {
     border-color: var(--jinsom-color);
@@ -9533,9 +9544,6 @@ span.aplayer-thumb {
     top: -25px;
     right: 0;
     color: #ffffff;
-}
-.jinsom-credit-recharge-type li>span {
-    font-size: 16px;
 }
 .jinsom-credit-recharge-type li>i {
     font-size: 24px;
@@ -11601,12 +11609,8 @@ span.aplayer-thumb {
 .jinsom-black-house-header-html, .jinsom-black-house-footer-html {
     color: #fff;
 }
-/*
-提现*/
-.jinsom-cash-form-content {
-    overflow: hidden;
-    white-space: nowrap;
-}
+
+/*提现*/
 .jinsom-cash-form .layui-layer-content {
     padding: 20px;
 }
@@ -11616,11 +11620,6 @@ span.aplayer-thumb {
 }
 .jinsom-cash-form-content>div {
     margin-bottom: 25px;
-}
-.jinsom-cash-form-content .tips {
-    font-size: 12px;
-    color: #f00;
-    text-align: center;
 }
 .jinsom-cash-form-content>div input {
     border: 1px solid #e3e3e3;

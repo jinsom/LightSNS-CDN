@@ -15,9 +15,9 @@ if(number==''&&type!='keypay'){
 layer.open({content:'请选择充值金额！',skin:'msg',time:2});
 return false;		
 }
-if(type=='wechat-h5'||type=='wechat-jsapi'||type=='xunhu-wechat'){
+if(type=='wechatpay_mobile'||type=='wechatpay_mp'||type=='xunhupay_wechat_mobile'||type=='epay_wechatpay'||type=='mapay_wechatpay'){
 pay_type='wechatpay';
-}else if(type=='qrcode'){
+}else if(type=='alipay_code'){
 pay_type='qrcode';
 }else{
 pay_type='alipay';
@@ -46,25 +46,20 @@ function d(){window.location.reload();}setTimeout(d,1500);//刷新页面
 }
 
 
-if(type=='keypay'){//卡密支付
-myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/mywallet/key.php'});
-}
-
-
-if(type=='qrcode'){//当面付
+if(type=='alipay_code'){//当面付
 data=$('#jinsom-credit-recharge-form').serialize();
 data=data+'&type=qrcode';
 myApp.showIndicator();
 $.ajax({   
-url:jinsom.theme_url+'/extend/alipay/qrcode.php',
+url:jinsom.home_url+'/Extend/pay/alipay/qrcode.php',
 type:'GET',   
 data:data,
 success:function(msg){   
 myApp.hideIndicator();
 if(myApp.device.os=='ios'){
-window.open(msg);	
-}else{
 window.location.href=msg;	
+}else{
+window.open(msg);	
 }
 }   
 });
@@ -73,7 +68,7 @@ window.location.href=msg;
 
 
 //创建订单
-if(type!='keypay'&&type!='creditpay'){
+if(type!='creditpay'){
 data=$('#jinsom-credit-recharge-form').serialize();
 data=data+'&type='+pay_type;
 $.ajax({
@@ -82,37 +77,39 @@ url:jinsom.jinsom_ajax_url+"/action/create-trade-no.php",
 data:data,
 success:function(aa){
 
-if(type=='alipay'){//支付宝手机支付
+if(type=='alipay_mobile'||type=='wechatpay_mp'||type=='epay_wechatpay'||type=='epay_alipay'){//提交表单
 $('#jinsom-credit-recharge-form').submit();
-}else if(type=='wechat-jsapi'){//微信公众号支付
+}else if(type=='wechatpay_mp'){//微信公众号支付
 $('#jinsom-credit-recharge-form').submit();
-}else if(type=='wechat-h5'){//微信H5支付
+}else if(type=='wechatpay_mp'){//微信H5支付
 $.ajax({   
-url:jinsom.mobile_ajax_url+"/pay/wechat-h5.php",
+url:jinsom.home_url+"/Extend/pay/wechatpay/wechat-h5.php",
 type:'POST',   
 data:{number:number,type:'credit',WIDout_trade_no:WIDout_trade_no,WIDsubject:WIDsubject,openid:openid},    
 success:function(msg){
 if(myApp.device.os=='ios'){
-window.open(msg.url);	
+window.location.href=msg.url;
 }else{
-window.location.href=msg.url;	
+window.open(msg.url);	
 }
 }   
 }); 	
-}else if(type=='xunhu-wechat'){//迅虎微信支付
+}else if(type=='xunhupay_wechat_mobile'){//迅虎微信支付
 data=$('#jinsom-credit-recharge-form').serialize();
 $.ajax({   
-url:jinsom.jinsom_ajax_url+"/stencil/wechatpay-xunhu-code.php",
+url:jinsom.home_url+"/Extend/pay/xunhupay/wechatpay-xunhu-code.php",
 type:'POST',   
 data:data,    
 success:function(msg){
 if(myApp.device.os=='ios'){
-window.open(msg);	
+window.location.href=msg;
 }else{
-window.location.href=msg;	
+window.open(msg);		
 }
 }   
 }); 	
+}else{
+layer.open({content:'暂未开启！',skin:'msg',time:2});
 }
 
 
@@ -130,35 +127,3 @@ return false;
 }
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/mywallet/recharge-vip.php'});	
 }
-
-
-// function jinsom_check_order_wechatpay(data){
-// //长轮询付款
-// jinsom_check_order_wechatpay_ajax=$.ajax({
-// type: "POST",
-// url:jinsom.jinsom_ajax_url+"/action/check-trade.php",
-// data:data,
-// success: function(msg){
-// if(msg.code==0){
-// jinsom_check_order_wechatpay(data);
-// }else if(msg.code==1){
-// $('.jinsom-alipay-qrcode-pay').html(msg.msg);
-// // if(msg.type=='credit'){
-// // credit=parseInt($('.jinsom-mycredit-credit-info .credit i').html());
-// // recharge_number=parseInt(msg.recharge_number);
-// // count=credit+recharge_number;
-// // $('.jinsom-mycredit-credit-info .credit i').html(count);
-// // }else{//开通会员
-// // $('.jinsom-mycredit-user-info .vip m').html(msg.content);
-// // }
-// }else{
-// jinsom_check_order_wechatpay(data);	
-// }
-// }
-// });	
-// }
-
-// //取消支付 取消长轮询
-// function jinsom_cancel_alipay_qrcode(){
-// jinsom_check_order_wechatpay_ajax.abort();
-// }

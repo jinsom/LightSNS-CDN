@@ -861,6 +861,32 @@ this_dom.find('.value').html(birthday);
 });
 
 
+//---------------------------更多设置页面-----------------
+myApp.onPageInit('setting-email-notice', function (page) {
+
+//下拉选择器
+$('.jinsom-setting-box li.select select').change(function(event) {
+value=$(this).val();
+author_id=$('.jinsom-setting-content').attr('data');
+this_dom=$(this);
+$.ajax({
+type:"POST",
+url:jinsom.mobile_ajax_url+"/setting/profile.php",
+data:{value:value,author_id:author_id,type:this_dom.parents('li').attr('data')},
+success: function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+if(msg.code==1){
+this_dom.siblings('.value').html(this_dom.children('option:selected').text());
+}
+}
+});
+});
+
+
+});
+
+
 //---------------------------更多个人说明页面-----------------
 myApp.onPageAfterAnimation('setting-desc', function (page) {
 t=$('#jinsom-setting-desc').val(); 
@@ -1858,10 +1884,13 @@ $('.jinsom-recharge-type li').click(function() {
 $(this).addClass('on').siblings().removeClass('on');
 type=$(this).attr('data');
 $('#jinsom-recharge-type').val(type);
-if(type=='alipay'){
-$('#jinsom-credit-recharge-form').attr('action',jinsom.theme_url+'/mobile/module/pay/alipay-h5.php');	
-}else if(type=='wechat-jsapi'){
-$('#jinsom-credit-recharge-form').attr('action',jinsom.home_url+'/pay/wechat/wechat-mp.php');	
+if(type=='alipay_mobile'){
+$('#jinsom-credit-recharge-form').attr('action',jinsom.home_url+'/Extend/pay/alipay/alipay-h5.php');	
+}else if(type=='wechatpay_mp'){
+$('#jinsom-credit-recharge-form').attr('action',jinsom.home_url+'/Extend/pay/wechatpay/wechat-mp.php');	
+}else if(type=='epay_alipay'||type=='epay_wechatpay'){
+$('#jinsom-credit-recharge-form').append('<input type="hidden" name="pay_type" value="'+type+'">');
+$('#jinsom-credit-recharge-form').attr('action',jinsom.home_url+'/Extend/pay/epay/index.php');	
 }
 });
 });
@@ -1900,10 +1929,13 @@ $(".jinsom-recharge-number li").each(function(){
 $(this).children('.bottom').find('m').html($(this).children('.bottom').attr('rmb_price'));
 });
 $('.jinsom-recharge-number li .bottom i').html('元');
-if(type=='alipay'){
-$('#jinsom-credit-recharge-form').attr('action',jinsom.theme_url+'/mobile/module/pay/alipay-h5.php');	
-}else if(type=='wechat-jsapi'){
-$('#jinsom-credit-recharge-form').attr('action',jinsom.home_url+'/pay/wechat/wechat-mp.php');	
+if(type=='alipay_mobile'){
+$('#jinsom-credit-recharge-form').attr('action',jinsom.home_url+'/Extend/pay/alipay/alipay-h5.php');	
+}else if(type=='wechatpay_mp'){
+$('#jinsom-credit-recharge-form').attr('action',jinsom.home_url+'/Extend/pay/wechatpay/wechat-mp.php');	
+}else if(type=='epay_alipay'||type=='epay_wechatpay'){
+$('#jinsom-credit-recharge-form').append('<input type="hidden" name="pay_type" value="'+type+'">');
+$('#jinsom-credit-recharge-form').attr('action',jinsom.home_url+'/Extend/pay/epay/index.php');	
 }	
 }
 

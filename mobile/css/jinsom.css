@@ -4180,8 +4180,8 @@ display: none !important;
 
 
 /*我的钱包*/
-[data-page="mywallet"] .navbar {
-    background: #393f4d;
+[data-page="mywallet"] .navbar-inner {
+    background-color: #393f4d;
 }
 
 
@@ -4828,20 +4828,21 @@ display: none !important;
 .jinsom-key-recharge-content input {
     box-sizing: border-box;
     width: 100%;
-    padding: 4vw;
+    padding: 2vw;
     border-radius: 1vw;
     border: 1px solid #f1f1f1;
     font-size: 4vw;
+    line-height: 7vw;
 }
 .jinsom-key-recharge-content .info {
     margin-top: 4vw;
     color: #999;
 }
 .jinsom-key-recharge-content .btn {
-    background-color: #46c47c;
+    background-color: var(--jinsom-color);
     text-align: center;
     color: #fff;
-    padding: 3vw;
+    padding: 2.5vw;
     border-radius: 1vw;
     margin-top: 4vw;
 }
@@ -5578,12 +5579,13 @@ h1 .commend:before{
 }
 .jinsom-topic-page-header .info .name {
     font-size: 4vw;
-    text-shadow: 0 0 4px rgba(0,0,0,0.5);
+    text-shadow: 0 0 4px rgb(0 0 0 / 50%);
     width: 46vw;
-    word-wrap: break-word;
     line-height: 7vw;
     height: 14vw;
+    text-overflow: ellipsis;
     overflow: hidden;
+    white-space: nowrap;
 }
 .jinsom-topic-page-header .info .number {
     position: absolute;

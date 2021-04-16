@@ -959,7 +959,7 @@ content: msg
 
 
 //卡密兑换表单
-function jinsom_keypay_form(){
+function jinsom_keypay_form(title){
 if(!jinsom.is_login){
 jinsom_pop_login_style();	
 return false;
@@ -972,7 +972,7 @@ success: function(msg){
 layer.closeAll('loading');
 layer.open({
 type:1,
-title:'卡密兑换',
+title:title,
 btn: false,
 resize:false,
 area: '350px',
@@ -1065,6 +1065,12 @@ content: msg
 function jinsom_recharge_alipay(type){
 number=$('#jinsom-credit-recharge-number').val();
 data=$('#jinsom-credit-recharge-form').serialize();
+if(type=='alipay_pc'){
+type='alipay';
+}else if(type=='alipay_code'){
+type='qrcode';
+}
+
 data=data+'&type='+type;
 
 //创建订单
@@ -1076,7 +1082,7 @@ success: function(msg){}
 });
 
 if(type=='alipay'){
-$('#jinsom-credit-recharge-form').attr('action',jinsom.theme_url+'/extend/alipay/'+type+'.php').submit();
+$('#jinsom-credit-recharge-form').attr('action',jinsom.home_url+'/Extend/pay/alipay/alipay.php').submit();
 
 layer.confirm(
 '<p style="text-align:center;">请您在新窗口完成付款操作！</p>', 
@@ -1115,7 +1121,7 @@ layer.close(index);
 //生成当面付二维码
 layer.load(1);
 $.ajax({   
-url:jinsom.theme_url+'/extend/alipay/'+type+'.php',
+url:jinsom.home_url+'/Extend/pay/alipay/'+type+'.php',
 type:'GET',   
 data:data,
 success:function(msg){   
@@ -1145,8 +1151,6 @@ jinsom_check_order_wechatpay(data);
 
 }
 
-
-
 }
 
 
@@ -1158,10 +1162,10 @@ layer.msg('充值的金额不合法！');
 return false;
 }
 
-if(type=='wechat'){
-ajax_url=jinsom.jinsom_ajax_url+"/stencil/wechatpay-code.php";
+if(type=='wechatpay_pc'){
+ajax_url=jinsom.home_url+"/Extend/pay/wechatpay/wechatpay-code.php";
 }else{
-ajax_url=jinsom.jinsom_ajax_url+"/stencil/wechatpay-xunhu-code.php";	
+ajax_url=jinsom.home_url+"/Extend/pay/xunhupay/wechatpay-xunhu-code.php";	
 }
 
 data=$('#jinsom-credit-recharge-form').serialize();
@@ -1239,23 +1243,43 @@ jinsom_check_order_wechatpay(data);
 }
 
 
+//易支付
+function jinsom_recharge_other_pay(type){
+if(type=='epay_alipay'||type=='epay_wechatpay'){
+data=$('#jinsom-credit-recharge-form').serialize();
+data=data+'&type='+type;
+
+//创建订单
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/action/create-trade-no.php",
+data:data,
+});
+
+$('#jinsom-credit-recharge-form').append('<input type="hidden" name="pay_type" value="'+type+'">');
+$('#jinsom-credit-recharge-form').attr('action',jinsom.home_url+'/Extend/pay/epay/index.php').submit();
+}else{
+layer.msg('码支付暂未开启！');	
+}
+}
 
 
 function jinsom_recharge_credit(){
 if($('.jinsom-credit-recharge-type li.on').length>0){
 type=$('.jinsom-credit-recharge-type li.on').attr('data');
-if(type=='alipay'||type=='qrcode'){
+if(type=='alipay_pc'||type=='alipay_code'){
 jinsom_recharge_alipay(type);
-}else if(type=='wechat'){
+}else if(type=='wechatpay_pc'){
 jinsom_recharge_wechatpay('wechat');
-}else if(type=='keypay'){
-jinsom_keypay_form();	
-}else if(type=='xunhu-wechat'){
+}else if(type=='xunhupay_wechat_pc'){
 jinsom_recharge_wechatpay('xunhu');
+}else if(type=='epay_alipay'||type=='epay_wechatpay'||type=='mapay_alipay'||type=='mapay_wechatpay'){
+jinsom_recharge_other_pay(type);
 }else if(type=='creditpay'){
 jinsom_recharge_vip_credit();
+}else{
+layer.msg('暂未开启！');	
 }
-
 }else{
 layer.msg('请选择充值类型！');
 }	
@@ -3630,7 +3654,7 @@ type: 1,
 fixed: false,
 offset: '100px',
 skin:'jinsom-goods-order-confirmation-form',
-area: ['500px','auto'],
+area: ['550px','auto'],
 resize:false,
 content: msg
 });
@@ -3728,19 +3752,19 @@ layer.msg(msg.msg);
 
 //商品订单支付
 function jinsom_goods_order_pay(pay_type,trade_no){
-if(pay_type=='alipay'){
-window.location.href=jinsom.theme_url+'/extend/alipay/alipay.php?trade_no='+trade_no;
-}else if(pay_type=='qrcode'||pay_type=='wechat'||pay_type=='xunhu-wechat'){
+if(pay_type=='alipay_pc'){
+window.location.href=jinsom.home_url+'/Extend/pay/alipay/alipay.php?trade_no='+trade_no;
+}else if(pay_type=='alipay_code'||pay_type=='wechatpay_pc'||pay_type=='xunhupay_wechat_pc'){
 ajax_type='POST';
 pay_tips='<p><i class="jinsom-icon jinsom-weixinzhifu"></i> 微信扫码支付</p>';
 if(pay_type=='qrcode'){
 ajax_type='GET';
 pay_tips='<p style="color: #00a7ff;"><i class="jinsom-icon jinsom-zhifubaozhifu" style="color: #00a7ff;font-size: 24px;vertical-align: -3px;"></i> 支付宝扫码支付</p>';
-pay_url=jinsom.theme_url+'/extend/alipay/qrcode.php';
+pay_url=jinsom.home_url+'/Extend/pay/alipay/qrcode.php';
 }else if(pay_type=='wechat'){
-pay_url=jinsom.jinsom_ajax_url+"/stencil/wechatpay-code.php";
+pay_url=jinsom.home_url+"/Extend/pay/wechatpay/wechatpay-code.php";
 }else if(pay_type=='xunhu-wechat'){
-pay_url=jinsom.jinsom_ajax_url+"/stencil/wechatpay-xunhu-code.php";
+pay_url=jinsom.home_url+"/Extend/pay/xunhupay/wechatpay-xunhu-code.php";
 }
 	
 
@@ -3783,6 +3807,8 @@ jinsom_check_goods_order(trade_no);//发起长轮询
 });
 
 
+}else if(pay_type=='epay_alipay'||pay_type=='epay_wechatpay'){//易支付
+window.location.href=jinsom.home_url+'/Extend/pay/epay/index.php?trade_no='+trade_no+'&pay_type='+pay_type;
 }
 }
 
@@ -3847,7 +3873,7 @@ type: 1,
 fixed: false,
 offset: '100px',
 skin:'jinsom-goods-order-confirmation-form',
-area: ['500px','auto'],
+area: ['550px','auto'],
 resize:false,
 content: msg
 });
