@@ -82,7 +82,7 @@ success:function(aa){
 if(type=='alipay_mobile'||type=='wechatpay_mp'||type=='epay_wechatpay'||type=='epay_alipay'){//提交表单
 $('#jinsom-credit-recharge-form').submit();
 $('#jinsom-credit-recharge-form input[name="WIDout_trade_no"]').val(new Date().getTime());
-}else if(type=='wechatpay_mp'){//微信H5支付
+}else if(type=='wechatpay_mobile'){//微信H5支付
 $.ajax({   
 url:jinsom.home_url+"/Extend/pay/wechatpay/wechat-h5.php",
 type:'POST',   
@@ -109,8 +109,6 @@ window.open(msg);
 }
 }   
 }); 	
-}else{
-layer.open({content:'暂未开启！',skin:'msg',time:2});
 }
 
 
