@@ -77,7 +77,10 @@ success:function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
-function c(){window.location.reload();}setTimeout(c,2000);
+if(msg.type=='credit'){
+$('.jinsom-mywallet-header .number span,.jinsom-mine-list-credit').text(msg.credit);
+}
+function c(){history.back(-1);}setTimeout(c,2000);
 }
 }   
 }); 
