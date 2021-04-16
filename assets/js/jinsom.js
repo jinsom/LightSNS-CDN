@@ -1172,7 +1172,7 @@ success: function(msg){}
 
 
 //生成二维码
-if(type=='wechat'){
+if(type=='wechatpay_pc'){
 layer.load(1);
 $.ajax({   
 url:ajax_url,
