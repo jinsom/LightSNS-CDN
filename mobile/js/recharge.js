@@ -15,10 +15,12 @@ if(number==''&&type!='keypay'){
 layer.open({content:'请选择充值金额！',skin:'msg',time:2});
 return false;		
 }
-if(type=='wechatpay_mobile'||type=='wechatpay_mp'||type=='xunhupay_wechat_mobile'||type=='epay_wechatpay'||type=='mapay_wechatpay'){
+if(type=='wechatpay_mobile'||type=='wechatpay_mp'||type=='xunhupay_wechat_mobile'){
 pay_type='wechatpay';
 }else if(type=='alipay_code'){
 pay_type='qrcode';
+}else if(type=='epay_wechatpay'||type=='epay_alipay'||type=='mapay_alipay'||type=='mapay_wechatpay'){
+pay_type=type;
 }else{
 pay_type='alipay';
 }
@@ -117,6 +119,8 @@ layer.open({content:'暂未开启！',skin:'msg',time:2});
 });
 }
 
+
+$('#jinsom-credit-recharge-form input[name="WIDout_trade_no"]').val(new Date().getTime());
 }
 
 //打开充值界面

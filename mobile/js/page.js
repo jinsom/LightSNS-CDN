@@ -1881,6 +1881,7 @@ $(this).addClass('on').siblings().removeClass('on');
 $('#jinsom-credit-recharge-number').val($(this).children('.bottom').attr('data'));
 });
 $('.jinsom-recharge-type li').click(function() {
+$('#jinsom-credit-recharge-form input[name="WIDout_trade_no"]').val(new Date().getTime());
 $(this).addClass('on').siblings().removeClass('on');
 type=$(this).attr('data');
 $('#jinsom-recharge-type').val(type);
@@ -1912,6 +1913,7 @@ $('#jinsom-credit-recharge-number').val($(this).children('.bottom').attr('rmb_pr
 
 
 $('.jinsom-recharge-type li').click(function() {
+$('#jinsom-credit-recharge-form input[name="WIDout_trade_no"]').val(new Date().getTime());
 $(this).addClass('on').siblings().removeClass('on');
 type=$(this).attr('data');
 $('#jinsom-recharge-type').val(type);

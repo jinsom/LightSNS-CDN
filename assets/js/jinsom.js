@@ -1078,10 +1078,10 @@ $.ajax({
 type: "POST",
 url:jinsom.jinsom_ajax_url+"/action/create-trade-no.php",
 data:data,
-success: function(msg){}
 });
 
 if(type=='alipay'){
+$('#jinsom-credit-recharge-form input[name="WIDout_trade_no"]').val(new Date().getTime());
 $('#jinsom-credit-recharge-form').attr('action',jinsom.home_url+'/Extend/pay/alipay/alipay.php').submit();
 
 layer.confirm(
@@ -1099,15 +1099,6 @@ layer.closeAll('loading');
 layer.msg(msg.msg);
 if(msg.code==1){
 function c(){window.location.reload();}setTimeout(c,2000);
-// if(msg.type=='credit'){//充值金币
-// layer.close(recharge_credit_form);//关闭充值窗口
-// credit=parseInt($('.jinsom-mycredit-credit-info .credit i').html());
-// recharge_number=parseInt(msg.recharge_number);
-// count=credit+recharge_number;
-// $('.jinsom-mycredit-credit-info .credit i').html(count);
-// }else{
-// $('.jinsom-mycredit-user-info .vip m').html(msg.content);//开通会员
-// }
 }else{
 layer.close(index);
 }
@@ -1255,9 +1246,32 @@ type: "POST",
 url:jinsom.jinsom_ajax_url+"/action/create-trade-no.php",
 data:data,
 });
-
+$('#jinsom-credit-recharge-form input[name="WIDout_trade_no"]').val(new Date().getTime());
 $('#jinsom-credit-recharge-form').append('<input type="hidden" name="pay_type" value="'+type+'">');
 $('#jinsom-credit-recharge-form').attr('action',jinsom.home_url+'/Extend/pay/epay/index.php').submit();
+layer.confirm(
+'<p style="text-align:center;">请您在新窗口完成付款操作！</p>', 
+{title:false,btn:['已支付完成','支付失败'],btnAlign: 'c'}, 
+function(index){
+layer.close(index);
+layer.load(1);
+$.ajax({   
+url:jinsom.jinsom_ajax_url+"/action/check-trade.php",
+type:'POST',   
+data:data,
+success:function(msg){   
+layer.closeAll('loading');
+layer.msg(msg.msg);
+if(msg.code==1){
+function c(){window.location.reload();}setTimeout(c,2000);
+}else{
+layer.close(index);
+}
+}   
+}); 
+}
+); 
+
 }else{
 layer.msg('码支付暂未开启！');	
 }
@@ -1269,10 +1283,8 @@ if($('.jinsom-credit-recharge-type li.on').length>0){
 type=$('.jinsom-credit-recharge-type li.on').attr('data');
 if(type=='alipay_pc'||type=='alipay_code'){
 jinsom_recharge_alipay(type);
-}else if(type=='wechatpay_pc'){
-jinsom_recharge_wechatpay('wechat');
-}else if(type=='xunhupay_wechat_pc'){
-jinsom_recharge_wechatpay('xunhu');
+}else if(type=='wechatpay_pc'||type=='xunhupay_wechat_pc'){
+jinsom_recharge_wechatpay(type);
 }else if(type=='epay_alipay'||type=='epay_wechatpay'||type=='mapay_alipay'||type=='mapay_wechatpay'){
 jinsom_recharge_other_pay(type);
 }else if(type=='creditpay'){
