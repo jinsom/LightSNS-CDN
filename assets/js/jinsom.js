@@ -1081,7 +1081,6 @@ data:data,
 });
 
 if(type=='alipay'){
-$('#jinsom-credit-recharge-form input[name="WIDout_trade_no"]').val(new Date().getTime());
 $('#jinsom-credit-recharge-form').attr('action',jinsom.home_url+'/Extend/pay/alipay/alipay.php').submit();
 
 layer.confirm(
@@ -1106,6 +1105,8 @@ layer.close(index);
 }); 
 }
 ); 
+
+$('#jinsom-credit-recharge-form input[name="WIDout_trade_no"]').val(new Date().getTime());
 }else{//当面付
 
 
@@ -1246,7 +1247,6 @@ type: "POST",
 url:jinsom.jinsom_ajax_url+"/action/create-trade-no.php",
 data:data,
 });
-$('#jinsom-credit-recharge-form input[name="WIDout_trade_no"]').val(new Date().getTime());
 $('#jinsom-credit-recharge-form').append('<input type="hidden" name="pay_type" value="'+type+'">');
 $('#jinsom-credit-recharge-form').attr('action',jinsom.home_url+'/Extend/pay/epay/index.php').submit();
 layer.confirm(
@@ -1275,6 +1275,7 @@ layer.close(index);
 }else{
 layer.msg('码支付暂未开启！');	
 }
+$('#jinsom-credit-recharge-form input[name="WIDout_trade_no"]').val(new Date().getTime());
 }
 
 
