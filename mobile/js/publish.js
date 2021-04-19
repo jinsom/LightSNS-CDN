@@ -277,10 +277,7 @@ if($.trim($(".jinsom-publish-words-form .title input").val())==''){
 layer.open({content:'请输入标题！',skin:'msg',time:2});
 return false;	
 }
-if($.trim($(".jinsom-publish-words-form .content textarea").val())==''){
-layer.open({content:'请输入内容！',skin:'msg',time:2});
-return false;	
-}
+
 power=$('#jinsom-pop-power').val();
 if(power==1||power==2||power==4||power==5){
 if(power==1){
@@ -423,10 +420,6 @@ return false;
 
 content=$(".jinsom-publish-words-form .content textarea").val();
 
-if($.trim(content)==''){
-layer.open({content:'请输入内容！',skin:'msg',time:2});
-return false;	
-}
 
 if($('.jinsom-publish-select-cat').length>0&&$('input[name="bbs_child_id"]').val()==0){
 layer.open({content:'请选择分类！',skin:'msg',time:2});

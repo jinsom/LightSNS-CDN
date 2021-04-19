@@ -9477,14 +9477,14 @@ span.aplayer-thumb {
 .jinsom-credit-recharge-number li.on n,.jinsom-send-gift-form li.on n {
     display: inline-block;
 }
-.jinsom-credit-recharge-number li n,.jinsom-send-gift-form li n {
+.jinsom-credit-recharge-number li n, .jinsom-send-gift-form li n {
     position: absolute;
-    right: 0;
+    right: -1px;
     width: 0;
     height: 0;
     border-top: 25px solid var(--jinsom-color);
     border-left: 25px solid transparent;
-    top: 0;
+    top: -1px;
     display: none;
 }
 .jinsom-credit-recharge-number li n i,.jinsom-send-gift-form li n i {

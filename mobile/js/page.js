@@ -1642,6 +1642,7 @@ var point=location.lastIndexOf(".");
 type=location.substr(point+1);
 if(jinsom.upload_video_type.indexOf(type)== -1 ){
 layer.open({content:'不支持该文件类型！'+type,skin:'msg',time:2});
+$('#jinsom-upload-video').val('');
 return false;
 }
 

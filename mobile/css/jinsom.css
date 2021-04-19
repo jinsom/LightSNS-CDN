@@ -2235,7 +2235,7 @@ display: none !important;
 [data-page=member-mine] .navbar .center,[data-page=member-other] .navbar .center,[data-page=bbs] .navbar .center{
     display: none;
 }
-[data-page=member-mine] .navbar.color .center,[data-page=member-other] .navbar.color .center,[data-page=bbs] .navbar.color .center{
+[data-page=member-mine] .navbar-inner.color .center,[data-page=member-other] .navbar-inner.color .center,[data-page=bbs] .navbar-inner.color .center{
     display: block;
 }
 .jinsom-member-header {
@@ -4493,7 +4493,7 @@ display: none !important;
 .jinsom-chat-user-list a{
     padding: 0;
 }
-.jinsom-topic-page-header .follow,.jinsom-topic-rank-list li .follow,.jinsom-chat-user-list li .follow,.jinsom-search-user-list li .follow{
+.jinsom-topic-show-form .right li .follow, .jinsom-topic-page-header .follow, .jinsom-topic-rank-list li .follow, .jinsom-chat-user-list li .follow, .jinsom-search-user-list li .follow{
     color: #ffffff;
     border-radius: 1vw;
     font-size: 3vw;
@@ -4504,12 +4504,12 @@ display: none !important;
     right: 4vw;
     top: 6.3vw;
 }
-.jinsom-topic-page-header .follow.had, .jinsom-topic-rank-list li .follow.had, .jinsom-chat-user-list li .follow.had, .jinsom-search-user-list li .follow.had{
-    background-color: #bbb;
-}
-.jinsom-topic-page-header .follow i,.jinsom-topic-rank-list li .follow i,.jinsom-chat-user-list li .follow i,.jinsom-search-user-list li .follow i{
+.jinsom-topic-show-form .right li .follow i, .jinsom-topic-page-header .follow i, .jinsom-topic-rank-list li .follow i, .jinsom-chat-user-list li .follow i, .jinsom-search-user-list li .follow i{
     vertical-align: -0.6vw;
     font-size: 5.5vw;
+}
+.jinsom-topic-show-form .right li .follow.had, .jinsom-topic-page-header .follow.had, .jinsom-topic-rank-list li .follow.had, .jinsom-chat-user-list li .follow.had, .jinsom-search-user-list li .follow.had{
+    background-color: #bbb;
 }
 .jinsom-chat-user-list.visitor .no-vip-tips {
     text-align: center;
@@ -5742,6 +5742,7 @@ h1 .commend:before{
 .jinsom-topic-show-form .right li {
     padding: 5vw 0;
     border-bottom: 1px solid #f5f5f5;
+    position: relative;
 }
 .jinsom-topic-show-form .right li>a {
     display: flex;
@@ -5772,8 +5773,17 @@ h1 .commend:before{
     width: 100%;
     position: relative;
 }
+.jinsom-topic-show-form .right li .info .name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: calc(100% - 30vw);
+}
 .jinsom-topic-show-form .right li:last-child .info {
     border: none;
+}
+.jinsom-topic-show-form .right li .follow {
+    right: 0;
 }
 .jinsom-chat-user-list.nearby-people li {
     margin: 2vw 0;
@@ -9520,6 +9530,12 @@ h1 .commend:before{
     box-sizing: border-box;
     margin: 2vw;
     border-radius: 2vw;
+}
+.jinsom-post-follow-user-list.visit .content {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
 }
 .jinsom-post-follow-user-list .title {
     padding: 0 2vw 0;

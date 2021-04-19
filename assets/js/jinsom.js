@@ -467,7 +467,7 @@ layer.msg(msg.msg);
 if(msg.code==1){
 function d(){
 layer.closeAll();
-if(msg.post_url){
+if(msg.post_url&&!$('body').hasClass('home')){
 window.open(msg.post_url,'_self');
 }
 }setTimeout(d,2000);
