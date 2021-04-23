@@ -5347,7 +5347,7 @@ h1 .commend:before{
 }
 
 /*搜索页面*/
-#jinsom-search-form,#jinsom-select-search-form {
+#jinsom-search-form,#jinsom-select-search-form,#jinsom-shop-select-search-form {
     margin-top: 1.5vw;
 }
 #jinsom-search-form>i,.jinsom-select-navbar-center i {
@@ -10805,6 +10805,7 @@ h1 .commend:before{
     border-radius: 1vw;
     height: 20vw;
     font-size: 4vw;
+    -webkit-appearance: none;
 }
 .jinsom-shop-select-content .select-box.pass-info {
     border-top: 1px solid #f1f1f1;
@@ -10923,4 +10924,97 @@ h1 .commend:before{
     color: #f00;
     text-align: center;
     margin-top: 8vw;
+}
+
+.jinsom-shop-select-content {
+    padding: 21vw 2vw 4vw !important;
+    height: inherit !important;
+    background-color: var(--jinsom-content-bg-color);
+}
+.jinsom-shop-select-post-list li {
+    width: calc((100% - 2vw)/2);
+    float: left;
+    margin-right: 2vw;
+    margin-bottom: 7.8px;
+    position: relative;
+    border-radius: 1vw;
+    background-color: #fff;
+}
+[list_style='waterfall'].jinsom-shop-select-post-list li {
+    margin-right: 0;
+}
+[list_style='waterfall'].jinsom-shop-select-post-list li .bg img {
+    height: auto;
+    min-height: 120px;
+}
+[list_style='cell'].jinsom-shop-select-post-list li .bg {
+    height: 50vw;
+    background-color: #f1f1f1;
+    border-radius: 1vw;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+[list_style='cell'].jinsom-shop-select-post-list li:nth-child(2n){
+    margin-right:0; 
+}
+.jinsom-shop-select-post-list li .bg img {
+    width: 100%;
+    border-radius: 1vw;
+    display: block;
+    min-height: 50vw;
+    height: 70vw;
+    object-fit: cover;
+    background-color: #f1f1f1;
+}
+.jinsom-shop-select-post-list li h2 {
+    font-size: 4vw;
+    font-weight: normal;
+    padding: 2vw;
+}
+.jinsom-shop-select-post-list li .mark {
+    position: absolute;
+    left: 2vw;
+    top: 1vw;
+}
+.jinsom-shop-select-post-list li .mark span {
+    background-color: #2196f3;
+    color: #fff;
+    padding: 0 1vw;
+    border-radius: 1vw;
+    font-size: 3vw;
+    display: inline-block;
+}
+.jinsom-shop-select-post-list li .info {
+    padding: 0 2vw 1vw;
+    display: flex;
+    align-items: center;
+}
+.jinsom-shop-select-post-list li .info span {
+    flex: 1;
+}
+.jinsom-shop-select-post-list li .info span:first-child {
+    color: #c00000;
+    font-size: 5vw;
+}
+.jinsom-shop-select-post-list li .info span:first-child t {
+    font-size: 3vw;
+}
+.jinsom-shop-select-post-list li .info span:first-child n {
+    display:none;
+}
+.jinsom-shop-select-post-list li .info span:last-child {
+    text-align: right;
+    color: #999;
+}
+.jinsom-shop-select-post-list li .info span i {
+    font-size: 4vw;
+}
+.jinsom-shop-select-post-list li .info m {
+    margin-right: 1vw;
+    font-size: 4.5vw;
+}
+.jinsom-select-navbar-center {
+    left: 0 !important;
+    transform: none !important;
 }

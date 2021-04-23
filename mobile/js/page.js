@@ -3025,3 +3025,142 @@ $('#jinsom-goods-recharge-form').attr('action',jinsom.home_url+'/Extend/pay/epay
 }
 });
 });
+
+
+//商品筛选页面
+myApp.onPageBeforeInit('shop-select',function(page){
+$('.jinsom-select-subnavbar-list .bbs,.jinsom-select-subnavbar-list .sort').click(function(){
+$(this).siblings().removeClass('on').children('.list').hide().siblings('i').removeClass('jinsom-triangle').addClass('jinsom-lower-triangle');
+$(this).addClass('on').children('.list').show().siblings('i').removeClass('jinsom-lower-triangle').addClass('jinsom-triangle');
+});
+
+$('.jinsom-select-subnavbar-list>div .list li').click(function(e){
+window.event.stopPropagation();
+$(this).addClass('on').siblings().removeClass('on');
+$(this).parents('.list').hide().siblings('span').text($(this).text());
+$(this).parents('.list').siblings('i').removeClass('jinsom-triangle').addClass('jinsom-lower-triangle');
+$(this).parents('.on').removeClass('on');
+
+select_loading=false;
+$('.jinsom-shop-select-post-list').attr('page',1);
+$('.jinsom-shop-select-content').animate({scrollTop:0},0);
+jinsom_shop_select_submit_form();//筛选数据
+});
+
+
+$('.jinsom-select-subnavbar-list .more').click(function(){
+$(this).siblings().removeClass('on').children('.list').hide().siblings('i').removeClass('jinsom-triangle').addClass('jinsom-lower-triangle');
+layer.open({
+type: 1,
+className:'jinsom-select-left-more-form',
+content: $('.jinsom-select-more-content').html(),
+anim: 'left',
+});	
+
+
+$('.jinsom-select-left-more-content .topic-list li').click(function(){
+$(this).addClass('on').siblings().removeClass('on');
+$('.jinsom-select-more-content').html($(this).parents('.layui-m-layercont').html());
+layer.closeAll();
+
+select_loading=false;
+$('.jinsom-shop-select-content').animate({scrollTop:0},0);
+$('.jinsom-shop-select-post-list').attr('page',1);
+jinsom_shop_select_submit_form();//筛选数据
+});	
+
+});
+jinsom_shop_select_submit_form();
+
+//提交搜索
+$('#jinsom-shop-select-search-form').submit(function (event) {
+event.preventDefault();//动作：阻止表单的默认行为
+select_loading=false;
+$('.jinsom-shop-select-content').animate({scrollTop:0},0);
+$('.jinsom-shop-select-post-list').attr('page',1);
+jinsom_shop_select_submit_form();//筛选数据
+});
+
+$('#jinsom-shop-select-input').focus(function(){
+$(this).parents('.center').siblings('.subnavbar').find('.jinsom-select-subnavbar-list').children().removeClass('on').find('.list').hide();
+$(this).parents('.center').siblings('.subnavbar').find('.jinsom-select-subnavbar-list').children().removeClass('on').find('.jinsom-triangle').addClass('jinsom-lower-triangle').removeClass('jinsom-triangle');
+});
+
+
+//加载更多
+select_loading=false;
+select_list=$('.jinsom-shop-select-post-list');
+$('.jinsom-shop-select-content.infinite-scroll').on('infinite',function(){
+page=parseInt(select_list.attr('page'));
+// select_list.attr('page',page+1);
+if(select_loading) return;
+select_loading=true;
+jinsom_shop_select_submit_form();
+}); 
+
+
+//提交筛选表单
+function jinsom_shop_select_submit_form(){
+page=parseInt($('.jinsom-shop-select-post-list').attr('page'));
+url='';
+//论坛
+if($('.jinsom-select-subnavbar-list>.bbs .list li.on').length>0){
+url+='cat_id='+$('.jinsom-select-subnavbar-list>.bbs .list li.on').attr('data');	
+}
+//排序
+if($('.jinsom-select-subnavbar-list>.sort .list li.on').length>0){
+url+='&sort='+$('.jinsom-select-subnavbar-list>.sort .list li.on').attr('data');	
+}
+//页数
+url+='&page='+page;
+//列表布局
+list_style=$('.jinsom-shop-select-post-list').attr('list_style');
+url+='&list_style='+list_style;
+//价格类型
+url+='&price_type='+$('.jinsom-select-left-more-content .price_type li.on').attr('data');
+//价格范围
+url+='&price='+$('.jinsom-select-left-more-content .price li.on').attr('data');
+//关键词
+url+='&search='+$('#jinsom-shop-select-input').val();
+console.log(url);
+waterfull_margin=$('#jinsom-waterfull-margin').height();
+
+if(page==1){
+$('.jinsom-shop-select-post-list').before(jinsom.loading_post);
+}else{
+$('.jinsom-shop-select-post-list').after(jinsom.loading_post);	
+}
+$.ajax({
+type:"POST",
+url:jinsom.mobile_ajax_url+"/post/goods-select.php",
+data:url,
+success: function(msg){
+$('.jinsom-load-post').remove();
+$('.jinsom-shop-select-post-list').attr('page',page+1);
+if(page==1){
+$('.jinsom-shop-select-post-list').html(msg);
+}else{
+if(msg!=0){
+$('.jinsom-shop-select-post-list').append(msg);
+select_loading=false;
+}else{
+select_loading=true;	
+}	
+}
+
+if(list_style=='waterfall'){//渲染瀑布流
+var grid=$('.jinsom-shop-select-post-list').masonry({
+itemSelector:'li',
+gutter:waterfull_margin,
+});
+grid.masonry('reloadItems'); 
+grid.imagesLoaded().progress( function() {
+grid.masonry('layout');
+});    
+}
+}//success
+});
+
+}//jinsom_shop_select_submit_form
+
+});
