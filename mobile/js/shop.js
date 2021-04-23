@@ -9,6 +9,11 @@ style: 'position:fixed;bottom:0;left:0;width:100%;border:none;border-radius: 2vw
 });	
 
 
+//属性套餐选择
+$('.jinsom-shop-select-content-'+post_id+' .select-box .list .content li').click(function(){
+$(this).addClass('on').siblings().removeClass('on');
+});
+
 //价格套餐选择
 $('.jinsom-shop-select-content-'+post_id+' .select-box.price .list .content li').click(function(){
 price=$(this).attr('price');

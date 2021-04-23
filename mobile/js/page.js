@@ -3004,10 +3004,6 @@ $(this).parent().next().children('ul').hide().eq($(this).index()).show();
 });
 
 
-//属性套餐选择
-$(document).on('click','.jinsom-shop-goods-select-content-'+post_id+' .select-box .list .content li',function(){
-$(this).addClass('on').siblings().removeClass('on');
-});
 
 });
 
