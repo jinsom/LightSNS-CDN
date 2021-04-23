@@ -2921,6 +2921,8 @@ myApp.onPageBeforeInit('order-mine',function(page){
 read_type=page.query['read_type'];
 if(read_type==2){
 $('[type="status-2"]').click();	
+}else if(read_type==1){
+$('[type="status-1"]').click();
 }else if(read_type=='collect'){
 $('[type="collect"]').click();	
 }
@@ -3003,7 +3005,7 @@ $(this).parent().next().children('ul').hide().eq($(this).index()).show();
 
 
 //属性套餐选择
-$(document).on('click','.jinsom-shop-select-content-'+post_id+' .select-box .list .content li',function(){
+$(document).on('click','.jinsom-shop-goods-select-content-'+post_id+' .select-box .list .content li',function(){
 $(this).addClass('on').siblings().removeClass('on');
 });
 
@@ -3043,7 +3045,7 @@ $(this).parents('.on').removeClass('on');
 
 select_loading=false;
 $('.jinsom-shop-select-post-list').attr('page',1);
-$('.jinsom-shop-select-content').animate({scrollTop:0},0);
+$('.jinsom-shop-goods-select-content').animate({scrollTop:0},0);
 jinsom_shop_select_submit_form();//筛选数据
 });
 
@@ -3064,7 +3066,7 @@ $('.jinsom-select-more-content').html($(this).parents('.layui-m-layercont').html
 layer.closeAll();
 
 select_loading=false;
-$('.jinsom-shop-select-content').animate({scrollTop:0},0);
+$('.jinsom-shop-goods-select-content').animate({scrollTop:0},0);
 $('.jinsom-shop-select-post-list').attr('page',1);
 jinsom_shop_select_submit_form();//筛选数据
 });	
@@ -3076,7 +3078,7 @@ jinsom_shop_select_submit_form();
 $('#jinsom-shop-select-search-form').submit(function (event) {
 event.preventDefault();//动作：阻止表单的默认行为
 select_loading=false;
-$('.jinsom-shop-select-content').animate({scrollTop:0},0);
+$('.jinsom-shop-goods-select-content').animate({scrollTop:0},0);
 $('.jinsom-shop-select-post-list').attr('page',1);
 jinsom_shop_select_submit_form();//筛选数据
 });
@@ -3090,7 +3092,7 @@ $(this).parents('.center').siblings('.subnavbar').find('.jinsom-select-subnavbar
 //加载更多
 select_loading=false;
 select_list=$('.jinsom-shop-select-post-list');
-$('.jinsom-shop-select-content.infinite-scroll').on('infinite',function(){
+$('.jinsom-shop-goods-select-content.infinite-scroll').on('infinite',function(){
 page=parseInt(select_list.attr('page'));
 // select_list.attr('page',page+1);
 if(select_loading) return;
@@ -3152,6 +3154,7 @@ if(list_style=='waterfall'){//渲染瀑布流
 var grid=$('.jinsom-shop-select-post-list').masonry({
 itemSelector:'li',
 gutter:waterfull_margin,
+transitionDuration:0
 });
 grid.masonry('reloadItems'); 
 grid.imagesLoaded().progress( function() {

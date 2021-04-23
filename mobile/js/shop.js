@@ -115,7 +115,7 @@ success: function(msg){
 myApp.hideIndicator();
 if(msg.code==1){
 layer.open({content:msg.msg,skin:'msg',time:2});
-function c(){layer.closeAll();myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/shop/order-mine.php?read_type=2'});}setTimeout(c,1500);
+function c(){layer.closeAll();myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/shop/order-mine.php?read_type='+msg.status});}setTimeout(c,1500);
 }else if(msg.code==2){//充值页面
 layer.closeAll();
 layer.open({content:msg.msg,skin:'msg',time:2});

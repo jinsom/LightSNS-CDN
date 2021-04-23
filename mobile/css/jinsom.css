@@ -3831,12 +3831,22 @@ display: none !important;
     width: 25%;
     text-align: center;
     margin-bottom: 4vw;
+    position:relative;
 }
 .jinsom-sns-cell-menu li p, .jinsom-find-menu li p {
     font-size: 3.5vw;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+.jinsom-sns-cell-menu li p>i, .jinsom-find-menu li p>i {
+    width: 6px;
+    height: 6px;
+    background-color: #f44336;
+    display: inline-block;
+    position: absolute;
+    border-radius: 100%;
+    margin-left: 1vw;
 }
 .jinsom-sns-cell-menu li img {
     width: 12vw;
@@ -10872,6 +10882,7 @@ h1 .commend:before{
 }
 .jinsom-goods-order-confirmation-content .box>div>span:last-child, .jinsom-goods-order-confirmation-content .box>.select li>span:last-child {
     text-align: right;
+    word-break: break-all;
 }
 .jinsom-goods-order-confirmation-content .box>.number{
     margin-bottom: 0;
@@ -10926,7 +10937,7 @@ h1 .commend:before{
     margin-top: 8vw;
 }
 
-.jinsom-shop-select-content {
+.jinsom-shop-goods-select-content {
     padding: 21vw 2vw 4vw !important;
     height: inherit !important;
     background-color: var(--jinsom-content-bg-color);
@@ -11017,4 +11028,36 @@ h1 .commend:before{
 .jinsom-select-navbar-center {
     left: 0 !important;
     transform: none !important;
+}
+.jinsom-goods-order-confirmation-content .address-list {
+    display: block !important;
+    padding-bottom: 1vw !important;
+}
+.jinsom-goods-order-confirmation-content .address-list li {
+    position: relative;
+}
+.jinsom-goods-order-confirmation-content .address-list li i {
+    position: absolute;
+    right: 0;
+    top: 8vw;
+    font-size: 5vw;
+}
+.jinsom-goods-order-confirmation-content .address-list li p {
+    margin: 1vw 0 2vw;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #333;
+}
+.jinsom-goods-order-confirmation-content .address-list li p span {
+    color: var(--jinsom-color);
+    width: 16vw;
+    display: inline-block;
+}
+.jinsom-goods-order-confirmation-content .add-address {
+    text-align: center;
+    padding: 2.5vw;
+    background-color: var(--jinsom-color);
+    color: #fff;
+    border-radius: 1vw;
 }
