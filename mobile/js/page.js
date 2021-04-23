@@ -2918,6 +2918,13 @@ $(this).addClass('on').siblings().removeClass('on');
 //我的订单页面
 myApp.onPageBeforeInit('order-mine',function(page){
 
+read_type=page.query['read_type'];
+if(read_type==2){
+$('[type="status-2"]').click();	
+}else if(read_type=='collect'){
+$('[type="collect"]').click();	
+}
+
 //加载更多
 order_loading=false;
 order_page=2;
@@ -2952,6 +2959,7 @@ order_loading=false;
 //商品详情页面
 myApp.onPageBeforeInit('post-goods',function(page){
 $('.navbar-inner').removeClass('color');
+post_id=page.query['post_id'];
 rand=page.query['rand'];
 jinsom_lightbox();
 var owlCar=$('#jinsom-goods-slider-'+rand).owlCarousel({
@@ -2969,11 +2977,11 @@ owlCar.trigger('refresh.owl.carousel', [100]);
 }, 300);
 
 function counter(event) {
-  if (!event.namespace) {
-    return;
-  }
-  var slides = event.relatedTarget;
-  $('.slider-counter').text(slides.relative(slides.current()) + 1 + '/' + slides.items().length);
+if (!event.namespace) {
+return;
+}
+var slides = event.relatedTarget;
+$('.slider-counter').text(slides.relative(slides.current()) + 1 + '/' + slides.items().length);
 }
 
 
@@ -2993,4 +3001,27 @@ $(this).addClass('on').siblings().removeClass('on');
 $(this).parent().next().children('ul').hide().eq($(this).index()).show();
 });
 
+
+//属性套餐选择
+$(document).on('click','.jinsom-shop-select-content-'+post_id+' .select-box .list .content li',function(){
+$(this).addClass('on').siblings().removeClass('on');
+});
+
+});
+
+//---------------------------//订单界面-----------------
+myApp.onPageAfterAnimation('order-details',function(page){
+$('.jinsom-recharge-type li').click(function() {
+$(this).addClass('on').siblings().removeClass('on');
+type=$(this).attr('data');
+$('#jinsom-recharge-type').val(type);
+if(type=='alipay_mobile'){
+$('#jinsom-goods-recharge-form').attr('action',jinsom.home_url+'/Extend/pay/alipay/alipay-h5.php');	
+}else if(type=='wechatpay_mp'){
+$('#jinsom-goods-recharge-form').attr('action',jinsom.home_url+'/Extend/pay/wechatpay/wechat-mp.php');	
+}else if(type=='epay_alipay'||type=='epay_wechatpay'){
+$('#jinsom-goods-recharge-form').append('<input type="hidden" name="pay_type" value="'+type+'">');
+$('#jinsom-goods-recharge-form').attr('action',jinsom.home_url+'/Extend/pay/epay/index.php');	
+}
+});
 });

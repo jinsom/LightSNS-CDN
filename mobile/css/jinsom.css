@@ -734,6 +734,7 @@ h1, h2, h3, h4, h5, h6 {
 .jinsom-mine-page .list-block li .item-media {
     padding: 3vw 0;
     margin-right: 4vw;
+    min-width: inherit;
 }
 .jinsom-mine-page .list-block li.jinsom-mine-user-info .item-media {
     padding: 5vw 0;
@@ -4377,8 +4378,8 @@ display: none !important;
 .jinsom-recharge-btn {
     margin: 0 4vw 0vw;
     text-align: center;
-    padding: 3vw;
-    background-color: #46c47c;
+    padding: 2.5vw;
+    background-color: var(--jinsom-color);
     color: #fff;
     border-radius: 1vw;
 }
@@ -4986,7 +4987,7 @@ display: none !important;
     background-color: #1E9FFF;
     color: #fff;
     margin-left: 2vw;
-    font-size: 3.5vw;
+    font-size: 3vw;
     vertical-align: 0.3vw;
 }
 .jinsom-post-words .header .info .name .commend, .jinsom-post-words .content h1 .commend, .jinsom-post-single h1 .commend {
@@ -7598,7 +7599,7 @@ h1 .commend:before{
 }
 
 
-.navbar-inner,.jinsom-reward-bg,.jinsom-mobile-login-form-btn .jinsom-login-btn,.jinsom-login-input-form p.code .jinsom-get-code,.jinsom-login-input-form p.code a,.jinsom-recharge-btn,.jinsom-cash-btn,li.jinsom-mine-no-login{background:var(--jinsom-color);}
+.navbar-inner,.jinsom-reward-bg,.jinsom-mobile-login-form-btn .jinsom-login-btn,.jinsom-login-input-form p.code .jinsom-get-code,.jinsom-login-input-form p.code a,.jinsom-cash-btn,li.jinsom-mine-no-login{background:var(--jinsom-color);}
 .jinsom-home-menu li.on,.jinsom-video-special-menu li.on,.jinsom-member-menu li.on,.jinsom-topic-menu li.on,.jinsom-chat-tab a.active,.tabbar a.active,.jinsom-footer-toolbar .publish i,.jinsom-bbs-publish-icon i,.jinsom-refresh-success,.toolbar-inner .right a,.jinsom-publish-power-form li .select,.jinsom-bbs-menu li.on,.jinsom-bbs-tab-post-header>li.on,.jinsom-single-comment>.header li.on{color:var(--jinsom-color);}
 .jinsom-home-menu li.on:after,.jinsom-video-special-menu li.on:after,.jinsom-member-menu li.on:after,.jinsom-chat-tab a.active:after,.jinsom-topic-menu li.on:after,.jinsom-find-box .header>span,.jinsom-single-comment>.header li.on:after{border-color:var(--jinsom-color);}
 
@@ -10303,17 +10304,17 @@ h1 .commend:before{
     width: 65%;
     margin-left: 5vw;
 }
-.jinsom-goods-toolbar .btn span {
+.jinsom-goods-toolbar .btn span,.jinsom-shop-select-form-main .btn span {
     flex: 1;
     text-align: center;
     height: 10vw;
     line-height: 10vw;
 }
-.jinsom-goods-toolbar .btn span.car {
+.jinsom-goods-toolbar .btn span.car,.jinsom-shop-select-content .select-box .list .content li.on {
     color: #fe2a54;
     background-color: rgb(254 42 84 / 10%);
 }
-.jinsom-goods-toolbar .btn span.buy {
+.jinsom-goods-toolbar .btn span.buy,.jinsom-shop-select-form-main .btn span.buy {
     background-color: #fe2a54;
     color: #fff;
 }
@@ -10335,19 +10336,19 @@ h1 .commend:before{
     padding: 3vw;
     background-color: #fff;
 }
-.jinsom-goods-single-content .price {
+.jinsom-goods-single-content .price ,.jinsom-shop-select-header .info .price {
     color: #fe2a54;
 }
-.jinsom-goods-single-content .price c {
+.jinsom-goods-single-content .price c ,.jinsom-shop-select-header .info .price c {
     font-size: 7vw;
 }
-.jinsom-goods-single-content .price n {
+.jinsom-goods-single-content .price n ,.jinsom-shop-select-header .info .price n {
     font-size: 3.5vw;
     color: #999;
     text-decoration: line-through;
     margin-left: 2vw;
 }
-.jinsom-goods-single-content .price m {
+.jinsom-goods-single-content .price m ,.jinsom-shop-select-header .info .price m {
     font-size: 4.5vw;
     margin-right: 1vw;
     vertical-align: 0.5vw;
@@ -10686,4 +10687,240 @@ h1 .commend:before{
 .modal .modal-inner .preloader {
     width: 6vw;
     height: 6vw;
+}
+
+
+.jinsom-shop-select-form-main {
+    padding: 4vw;
+    position: relative;
+    overflow-y: auto;
+    max-height: 90vh;
+}
+.jinsom-shop-select-form-main .close {
+    position: absolute;
+    width: 12vw;
+    height: 12vw;
+    text-align: center;
+    line-height: 12vw;
+    top: 0;
+    right: 0;
+}
+.jinsom-shop-select-form-main .close i {
+    font-size: 5vw;
+    color: #999;
+}
+.jinsom-shop-select-header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 4vw;
+    margin-bottom: 5vw;
+    border-bottom: 1px solid #eee;
+}
+.jinsom-shop-select-header .cover {
+    margin-right: 4vw;
+    height: 20vw;
+}
+.jinsom-shop-select-header .cover img {
+    width: 20vw;
+    height: 20vw;
+    object-fit: cover;
+    border-radius: 1vw;
+}
+.jinsom-shop-select-header .info .count {
+    color: #999;
+    margin-top: 4vw;
+    font-size: 3.5vw;
+}
+.jinsom-shop-select-content .select-box {
+    margin-bottom: 4vw;
+}
+.jinsom-shop-select-content .select-box .list {
+    margin-bottom: 4vw;
+    padding-bottom: 2vw;
+    border-bottom: 1px solid #eee;
+}
+.jinsom-shop-select-content .select-box .title {
+    margin-bottom: 2vw;
+}
+.jinsom-shop-select-content .select-box .list .content li {
+    display: inline-block;
+    margin-right: 2vw;
+    padding: 1vw 3vw;
+    background-color: #f1f1f1;
+    margin-bottom: 2vw;
+    font-size: 3vw;
+    color: #555;
+    border-radius: 1vw;
+}
+.jinsom-shop-select-content .select-box.number {
+    display: flex;
+    margin-bottom: 10vw;
+    margin-top: 8vw;
+}
+.jinsom-shop-select-content .select-box.number .right {
+    flex: 1;
+    text-align: right;
+}
+.jinsom-shop-select-content .select-box.number .right i {
+    font-size: 3vw;
+    background-color: #f1f1f1;
+    padding: 1.5vw;
+    border-radius: 1vw;
+}
+.jinsom-shop-select-content .select-box.number .right i.on {
+    background-color: #f5f5f5;
+    color: #ccc;
+}
+.jinsom-shop-select-content .select-box.number input {
+    width: 10vw;
+    border: none;
+    text-align: center;
+    -webkit-appearance: none;
+}
+.jinsom-shop-select-content .select-box.price .list:last-child {
+    border-bottom: none;
+}
+.jinsom-shop-select-form-main .btn {
+    display: flex;
+}
+.jinsom-shop-select-form-main .btn span.car{
+    background-color: #fe2a54;
+    color: #fff;
+}
+
+.jinsom-shop-select-content .tips {
+    color: #fe2a54;
+    background-color: rgb(254 42 84 / 10%);
+    padding: 2vw;
+    margin-bottom: 4vw;
+    border-radius: 1vw;
+}
+.jinsom-shop-select-content .select-box.marks textarea {
+    width: 100%;
+    padding: 2vw;
+    border: 1px solid #ccc;
+    resize: none;
+    box-sizing: border-box;
+    margin-top: 2vw;
+    border-radius: 1vw;
+    height: 20vw;
+    font-size: 4vw;
+}
+.jinsom-shop-select-content .select-box.pass-info {
+    border-top: 1px solid #f1f1f1;
+    padding-top: 4vw;
+}
+.jinsom-shop-select-content .select-box .content .list>li {
+    margin-bottom: 2vw;
+    display: flex;
+    align-items: center;
+    padding-bottom: 2vw;
+    margin-top: 4vw;
+}
+.jinsom-shop-select-content .select-box .content .list>li>span {
+    display: inline-block;
+    width: 20vw;
+    color: #fd2953;
+}
+.jinsom-shop-select-content .select-box .content .list>li input {
+    border: none;
+    -webkit-appearance: none;
+    padding: 3vw;
+    flex: 1;
+    border-radius: 1vw;
+    background-color: #f5f5f5;
+}
+.jinsom-goods-toolbar .btn span.buy.no {
+    background-color: #ccc;
+}
+.jinsom-goods-order-confirmation-content {
+    padding: 4vw;
+}
+.jinsom-goods-order-confirmation-content .title {
+    font-size: 4.5vw;
+    margin-bottom: 3vw;
+}
+.jinsom-goods-order-confirmation-content .box {
+    padding: 1vw 3vw;
+    background-color: #f8f8f8;
+    border-radius: 2vw;
+    color: #666;
+    margin-bottom: 3vw;
+}
+.jinsom-goods-order-confirmation-content .box>div, .jinsom-goods-order-confirmation-content .box .select li {
+    margin: 3vw 0;
+    padding-bottom: 3vw;
+    border-bottom: 1px solid #ededed;
+}
+.jinsom-goods-order-confirmation-content .box>div, .jinsom-goods-order-confirmation-content .box>.select>li {
+    display: flex;
+}
+.jinsom-goods-order-confirmation-content .box>div>span, .jinsom-goods-order-confirmation-content .box>.select li>span {
+    flex: 1;
+}
+.jinsom-goods-order-confirmation-content .box>div>span:first-child, .jinsom-goods-order-confirmation-content .box>.select li>span:first-child {
+    color: var(--jinsom-color);
+}
+.jinsom-goods-order-confirmation-content .box>.select {
+    padding-bottom: 0;
+    display: inherit;
+}
+.jinsom-goods-order-confirmation-content .box>.select>li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.jinsom-goods-order-confirmation-content .box>div>span:last-child, .jinsom-goods-order-confirmation-content .box>.select li>span:last-child {
+    text-align: right;
+}
+.jinsom-goods-order-confirmation-content .box>.number{
+    margin-bottom: 0;
+}
+.jinsom-goods-order-confirmation-content .box .pass-info {
+    display: inherit;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+.jinsom-goods-order-confirmation-content .box .pass-info>span:first-child {
+    display: block;
+}
+.jinsom-goods-order-confirmation-content .box .pass-info>span:last-child {
+    background-color: #fff;
+    display: block;
+    padding: 1vw 3vw;
+    margin-top: 2vw;
+    border-radius: 2vw;
+}
+.jinsom-goods-order-confirmation-content .box .pass-info span>li {
+    text-align: left;
+    margin: 3vw 0;
+}
+.jinsom-goods-order-confirmation-content .box>.price span:last-child {
+    color: #c00000;
+}
+.jinsom-goods-order-confirmation-content .box>.price span:last-child m {
+    font-size: 5vw;
+    margin-right: 1vw;
+}
+.jinsom-goods-order-confirmation-content .box>div:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.jinsom-goods-order-confirmation-content .jinsom-recharge-tips {
+    margin: 8vw 0 4vw;
+}
+.jinsom-goods-order-confirmation-content .jinsom-recharge-type {
+    padding: 0;
+}
+.jinsom-goods-order-confirmation-content .btn {
+    margin: 4vw 0;
+    text-align: center;
+    padding: 2.5vw;
+    background-color: var(--jinsom-color);
+    color: #fff;
+    border-radius: 1vw;
+}
+.jinsom-order-details-tips {
+    color: #f00;
+    text-align: center;
+    margin-top: 8vw;
 }

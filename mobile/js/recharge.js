@@ -1,7 +1,7 @@
 
 
 //充值金币
-function jinsom_recharge_credit(){
+function jinsom_recharge(recharge_type){
 number=$('#jinsom-credit-recharge-number').val();	
 WIDout_trade_no=$('input[name="WIDout_trade_no"]').val();
 WIDsubject=$('input[name="WIDsubject"]').val();

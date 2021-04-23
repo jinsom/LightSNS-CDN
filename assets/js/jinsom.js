@@ -3734,7 +3734,7 @@ select_price=$('.jinsom-goods-single-header .right .select-price li n.on').index
 }
 
 select_arr=JSON.stringify(select_arr);
-trade_no=$('#jinsom-goods-trade-no').val();
+trade_no=new Date().getTime();
 layer.load(1);
 $.ajax({
 type: "POST",

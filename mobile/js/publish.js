@@ -632,3 +632,8 @@ anim: 'up',
 style: 'position:fixed;bottom:0;left:0;width:100%;border:none;border-radius: 2vw 2vw 0 0;'
 });	
 }
+
+//发表添加话题
+function jinsom_publish_add_topic_form(){
+myApp.popup('.jinsom-publish-topic-popup');	
+}
