@@ -75,12 +75,14 @@ type:'POST',
 data:data,
 success:function(msg){   
 myApp.hideIndicator();
-layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
+layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.type=='credit'){
 $('.jinsom-mywallet-header .number span,.jinsom-mine-list-credit').text(msg.credit);
 }
 function c(){history.back(-1);}setTimeout(c,2000);
+}else{
+layer.open({content:'充值失败，系统未查询到充值订单！',skin:'msg',time:2});
 }
 }   
 }); 

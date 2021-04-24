@@ -10761,6 +10761,8 @@ h1 .commend:before{
     font-size: 3vw;
     color: #555;
     border-radius: 1vw;
+    min-width: 6vw;
+    text-align: center;
 }
 .jinsom-shop-select-content .select-box.number {
     display: flex;
