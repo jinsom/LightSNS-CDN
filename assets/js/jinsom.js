@@ -69,6 +69,10 @@ $('.jinsom-sign-page-all-days span').html(msg.sign_c);
 month_day=parseInt($('.jinsom-sign-page-month-days span').text());
 $('.jinsom-sign-page-month-days span').html(month_day+1);
 $('.jinsom-sign-page-content tbody td.today').removeClass('no-sign').addClass('had-sign').children('span').append('<i class="jinsom-icon jinsom-dagou"></i>');
+}else if(msg.code==9){//绑定邮箱
+function e(){jinsom_update_mail_form(jinsom.user_id,2);}setTimeout(e,1500);
+}else if(msg.code==8){//弹出绑定手机号
+function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,2000);
 }
 }
 });
@@ -471,7 +475,11 @@ if(msg.post_url&&!$('body').hasClass('home')){
 window.open(msg.post_url,'_self');
 }
 }setTimeout(d,2000);
-}   
+}else if(msg.code==4){//绑定邮箱
+function e(){jinsom_update_mail_form(jinsom.user_id,2);}setTimeout(e,1500);
+}else if(msg.code==2){//弹出绑定手机号
+function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,2000);
+} 
 }
 });
 }
@@ -911,6 +919,10 @@ setTimeout(d,1500);
 }else if(msg.code==3){//弹出金币充值窗口
 function c(){jinsom_recharge_credit_form();}
 setTimeout(c,1500);
+}else if(msg.code==4){//绑定邮箱
+function e(){jinsom_update_mail_form(jinsom.user_id,2);}setTimeout(e,1500);
+}else if(msg.code==2){//弹出绑定手机号
+function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,2000);
 }
 }
 });    

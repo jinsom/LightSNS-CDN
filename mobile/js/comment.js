@@ -72,6 +72,9 @@ myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page
 }else if(msg.code==3){//打开开通会员页面
 layer.open({content:msg.msg,skin:'msg',time:2});
 function c(){myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/mywallet/recharge-vip.php'});}setTimeout(c,1500);
+}else if(msg.code==4){//绑定邮箱
+layer.open({content:msg.msg,skin:'msg',time:2});
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-email.php'});
 }else{
 layer.open({content:msg.msg,skin:'msg',time:2});
 }
@@ -164,6 +167,9 @@ myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page
 }else if(msg.code==3){//打开开通会员页面
 layer.open({content:msg.msg,skin:'msg',time:2});
 function c(){myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/mywallet/recharge-vip.php'});}setTimeout(c,1500);
+}else if(msg.code==4){//绑定邮箱
+layer.open({content:msg.msg,skin:'msg',time:2});
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-email.php'});
 }else{
 layer.open({content:msg.msg,skin:'msg',time:2});
 }
@@ -233,6 +239,9 @@ myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page
 }else if(msg.code==3){//打开开通会员页面
 layer.open({content:msg.msg,skin:'msg',time:2});
 function c(){myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/mywallet/recharge-vip.php'});}setTimeout(c,1500);
+}else if(msg.code==4){//绑定邮箱
+layer.open({content:msg.msg,skin:'msg',time:2});
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-email.php'});
 }else{
 layer.open({content:msg.msg,skin:'msg',time:2});
 }

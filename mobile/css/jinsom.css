@@ -4196,10 +4196,6 @@ display: none !important;
 }
 
 
-.jinsom-mywallet-form {
-    background-color: #fff;
-    height: 100%;
-}
 .jinsom-mywallet-header {
     padding: 8vw 10vw;
     color: #fff;
@@ -4222,6 +4218,9 @@ display: none !important;
     font-size: 4vw;
     padding-top: 2vw;
 }
+.jinsom-mywallet-page-content {
+    background-color: var(--jinsom-content-bg-color);
+}
 .jinsom-mywallet-box {
     background-color: #fff;
     padding: 4vw;
@@ -4236,12 +4235,8 @@ display: none !important;
 .jinsom-mywallet-box .content li {
     padding-top: 3vw;
     float: left;
-    width: 32%;
-    margin-right: 2%;
+    width: 25%;
     text-align: center;
-}
-.jinsom-mywallet-box .content li:nth-child(3n) {
-    margin-right: 0;
 }
 .jinsom-mywallet-box .content li i {
     font-size: 8vw;
@@ -4276,10 +4271,6 @@ display: none !important;
 .jinsom-mywallet-box .content li.luck-draw i {
     color: #313131;
 }
-.jinsom-mywallet-box:last-child {
-    margin-bottom: 0;
-    padding-bottom: 6vw;
-}
 
 .jinsom-mywallet-box .content li.income i {
     color: #4CAF50;
@@ -4294,16 +4285,12 @@ display: none !important;
     color: #009688;
 }
 .jinsom-mywallet-box .content li.withdrawals-note i {
-    font-size: 9vw;
+    font-size: 9.5vw;
     color: #56abe4;
 }
 .jinsom-mywallet-box .content li.exp-note i {
     color: #aa7fff;
     font-size: 9vw;
-}
-.jinsom-mywallet-form .hr {
-    height: 2vw;
-    background-color: #eeeeee;
 }
 .jinsom-recharge-number,.jinsom-recharge-type {
     padding: 4vw;

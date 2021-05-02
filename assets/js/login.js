@@ -76,7 +76,7 @@ email=$('#jinsom-profile-mail').val();
 layer.load(1);
 $.ajax({
 type: "POST",
-url:jinsom.jinsom_ajax_url+"/stencil/update-mail.php",
+url:jinsom.jinsom_ajax_url+"/stencil/update-email.php",
 data: {author_id:author_id,email:email},
 success: function(msg){
 layer.closeAll('loading');
@@ -428,14 +428,14 @@ layer.msg(msg.msg); //失败
 }
 }); 
 }else if(type=='email'){
-mail=$('#jinsom-pop-mail').val();
-if(mail==''){layer.msg('邮箱号不能为空！');return false;}
+email=$('#jinsom-pop-mail').val();
+if(email==''){layer.msg('邮箱号不能为空！');return false;}
 layer.load(1);
 $.ajax({
 type: "POST",
 dataType:'json',
 url:jinsom.jinsom_ajax_url+"/action/get-code.php",
-data: {mail:mail,type:'reg-email',ticket:ticket,randstr:randstr},
+data: {mail:email,type:'reg-email',ticket:ticket,randstr:randstr},
 success: function(msg){
 layer.closeAll('loading');
 if(msg.code==1){//成功

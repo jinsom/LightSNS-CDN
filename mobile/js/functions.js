@@ -329,8 +329,10 @@ month_day=parseInt($('.jinsom-sign-page-month-days span').text());
 $('.jinsom-sign-page-month-days span').html(month_day+1);
 $('.jinsom-mine-page .list-block li.sign .item-after').html('累计'+msg.sign_c+'天');
 $('.jinsom-sign-page-content tbody td.today').removeClass('no-sign').addClass('had-sign').children('span').append('<i class="jinsom-icon jinsom-dagou"></i>');
-
-
+}else if(msg.code==8){
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-phone.php'});
+}else if(msg.code==9){
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-email.php'});
 }
 }
 });
@@ -677,6 +679,10 @@ function c(){window.location.href="/?p="+post_id;}setTimeout(c,1500);
 
 }else if(msg.code==3){//弹出金币充值窗口
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/mywallet/recharge-credit.php'});
+}else if(msg.code==2){
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-phone.php'});
+}else if(msg.code==4){
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-email.php'});
 }
 }
 });    
@@ -787,7 +793,11 @@ comment_list.prepend('\
 
 
 
-}   
+}else if(msg.code==2){
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-phone.php'});
+}else if(msg.code==4){
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-email.php'});
+}
 }
 });
 }

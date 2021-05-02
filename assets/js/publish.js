@@ -530,6 +530,8 @@ function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,2000);//弹出�
 function c(){jinsom_publish_topic_form();}setTimeout(c,1500);
 }else if(msg.code==3){//弹窗开通会员
 function c(){jinsom_recharge_vip_form();}setTimeout(c,1500);
+}else if(msg.code==4){//绑定邮箱
+function e(){jinsom_update_mail_form(jinsom.user_id,2);}setTimeout(e,1500);
 }
 
 }
@@ -629,6 +631,8 @@ function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,2000);//弹出�
 function c(){jinsom_publish_topic_form();}setTimeout(c,1500);
 }else if(msg.code==3){//弹窗开通会员
 function c(){jinsom_recharge_vip_form();}setTimeout(c,1500);
+}else if(msg.code==4){//绑定邮箱
+function e(){jinsom_update_mail_form(jinsom.user_id,2);}setTimeout(e,1500);
 }
 
 }
@@ -700,6 +704,8 @@ function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,2000);//弹出�
 function c(){jinsom_publish_topic_form();}setTimeout(c,1500);
 }else if(msg.code==3){//弹窗开通会员
 function c(){jinsom_recharge_vip_form();}setTimeout(c,1500);
+}else if(msg.code==4){//绑定邮箱
+function e(){jinsom_update_mail_form(jinsom.user_id,2);}setTimeout(e,1500);
 }
 
 }
@@ -779,6 +785,8 @@ function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,2000);//弹出�
 function c(){jinsom_publish_topic_form();}setTimeout(c,1500);
 }else if(msg.code==3){//弹窗开通会员
 function c(){jinsom_recharge_vip_form();}setTimeout(c,1500);
+}else if(msg.code==4){//绑定邮箱
+function e(){jinsom_update_mail_form(jinsom.user_id,2);}setTimeout(e,1500);
 }
 
 }
@@ -941,6 +949,8 @@ function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,2000);
 function c(){jinsom_publish_topic_form();}setTimeout(c,1500);
 }else if(msg.code==3){//弹窗开通会员
 function c(){jinsom_recharge_vip_form();}setTimeout(c,1500);
+}else if(msg.code==4){//绑定邮箱
+function e(){jinsom_update_mail_form(jinsom.user_id,2);}setTimeout(e,1500);
 }
 
 }
@@ -967,6 +977,10 @@ layer.closeAll('loading');
 layer.msg(msg.msg);
 if(msg.code==1){
 function d(){window.location.href=msg.url;}setTimeout(d,2000);
+}else if(msg.code==4){//绑定邮箱
+function e(){jinsom_update_mail_form(jinsom.user_id,2);}setTimeout(e,1500);
+}else if(msg.code==2){//弹出绑定手机号
+function d(){jinsom_update_phone_form(msg.user_id);}setTimeout(d,2000);
 }
 }
 }); 
