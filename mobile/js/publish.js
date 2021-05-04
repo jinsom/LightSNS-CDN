@@ -365,9 +365,9 @@ return false;
 video_url=$("#jinsom-video-url").val();
 if(video_url==''){
 if(publish_type=='video'){
-layer.msg('请上传视频！');	
+layer.open({content:'请上传视频！',skin:'msg',time:2});
 }else{
-layer.msg('请上传音频或填写音频地址！');
+layer.open({content:'请上传音频或填写音频地址！',skin:'msg',time:2});
 }
 return false;	
 }

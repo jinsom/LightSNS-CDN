@@ -662,21 +662,38 @@ myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
 $(obj).removeAttr('onclick');
-function c(){window.location.href="/?p="+post_id;}setTimeout(c,1500);
+function a(){history.back(-1);}setTimeout(a,1000);
 
 
-// $('.jinsom-video-img-'+post_id+' .tips').remove();//如果是视频则移除视频的提示。
-// function c(){myApp.getCurrentView().router.back();}setTimeout(c,1500);
-//将列表也同步状态
-// $.ajax({
-// type: "POST",
-// url:jinsom.mobile_ajax_url+"/post/hide-content.php",
-// data: {post_id:post_id,type:'pay'},
-// success: function(msg){
-// $('.jinsom-tips-'+post_id).removeClass('jinsom-tips').addClass('jinsom-hide-content').html(msg.content);
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+url:  jinsom.mobile_ajax_url+"/post/hidden-content.php",
+dataType:'json',
+data: {post_id:post_id,type:'pay'},
+success: function(msg){
+myApp.hideIndicator();
+if(msg.code==1){
+if(msg.video_url){//视频
+$('.jinsom-post-'+post_id+' .jinsom-video-tips').after('<div onclick=\'jinsom_play_video("'+post_id+'-single","'+msg.video_url+'",this)\' class="jinsom-video-img" style="background-image: url('+msg.video_cover+');"><i class="jinsom-icon jinsom-bofang-"></i></div>');
+$('.jinsom-post-'+post_id+' .jinsom-video-tips').remove();
+}else{//动态、文章、帖子
+$('.jinsom-tips-'+post_id).after('<div class="jinsom-hide-content"><p>'+msg.hidden+'</p></div>');
+$('.jinsom-tips-'+post_id).remove();
+if(msg.img){
+$('.jinsom-post-'+post_id+' .jinsom-post-images-list').html(msg.img);
+}
+}
+
+}
+}
+});
+
+// if($('.jinsom-page-single-content-'+post_id).length>0){
+// function c(){myApp.getCurrentView().router.refreshPage();}setTimeout(c,1800);
+// }else{
+// function c(){window.location.href="/?p="+post_id;}setTimeout(c,1500);
 // }
-// });
-
 }else if(msg.code==3){//弹出金币充值窗口
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/mywallet/recharge-credit.php'});
 }else if(msg.code==2){
@@ -765,31 +782,37 @@ success:function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
-myApp.getCurrentView().router.back();
 
-comment_num=$('.jinsom-post-'+post_id+' .footer .comment_number');
-comment_num.html(parseInt(comment_num.html())+1); 
-$('.jinsom-post-'+post_id).next('.jinsom-single-comment').children('.header').find('span').html(parseInt(comment_num.html()));
-$('.jinsom-post-'+post_id).parent().prev().find('.number').html(parseInt(comment_num.html())+'条评论');
-comment_list=$('.jinsom-single-comment-list-'+post_id);
-comment_list.prepend('\
-<div class="jinsom-comment-'+msg.id+'">\
-<div class="up" onclick="jinsom_comment_up('+msg.id+',this)"><i class="fa fa-thumbs-o-up"></i><m>0</m></div>\
-<div class="header clear">\
-<div class="avatarimg">'+jinsom.avatar+jinsom.verify+'</div>\
-<div class="info">\
-<div class="name">'+jinsom.nickname+jinsom.lv+jinsom.vip+'</div>\
-<div class="from"><span class="time">刚刚</span><span>手机端</span></div>\
-</div>\
-</div>\
-<div class="content"><m class="reward"><span class="jinsom-redbag-icon"></span>打赏了'+number+jinsom.credit_name+'。</m></div>\
-<div class="footer clear">\
-<span class="comment">\
-<a href="'+jinsom.theme_url+'/mobile/templates/page/comment.php?post_id='+post_id+'&name='+jinsom.nickname_base+'" class="link">回复</a>\
-</span>\
-</div>\
-</div>\
-');
+function d(){history.back(-1);}setTimeout(d,1000);	
+function e(){myApp.getCurrentView().router.refreshPage();}setTimeout(e,1600);
+
+
+
+// myApp.getCurrentView().router.back();
+
+// comment_num=$('.jinsom-post-'+post_id+' .footer .comment_number');
+// comment_num.html(parseInt(comment_num.html())+1); 
+// $('.jinsom-post-'+post_id).next('.jinsom-single-comment').children('.header').find('span').html(parseInt(comment_num.html()));
+// $('.jinsom-post-'+post_id).parent().prev().find('.number').html(parseInt(comment_num.html())+'条评论');
+// comment_list=$('.jinsom-single-comment-list-'+post_id);
+// comment_list.prepend('\
+// <div class="jinsom-comment-'+msg.id+'">\
+// <div class="up" onclick="jinsom_comment_up('+msg.id+',this)"><i class="fa fa-thumbs-o-up"></i><m>0</m></div>\
+// <div class="header clear">\
+// <div class="avatarimg">'+jinsom.avatar+jinsom.verify+'</div>\
+// <div class="info">\
+// <div class="name">'+jinsom.nickname+jinsom.lv+jinsom.vip+'</div>\
+// <div class="from"><span class="time">刚刚</span><span>手机端</span></div>\
+// </div>\
+// </div>\
+// <div class="content"><m class="reward"><span class="jinsom-redbag-icon"></span>打赏了'+number+jinsom.credit_name+'。</m></div>\
+// <div class="footer clear">\
+// <span class="comment">\
+// <a href="'+jinsom.theme_url+'/mobile/templates/page/comment.php?post_id='+post_id+'&name='+jinsom.nickname_base+'" class="link">回复</a>\
+// </span>\
+// </div>\
+// </div>\
+// ');
 
 
 
@@ -1152,7 +1175,12 @@ success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
+if(post_id){
+function d(){history.back(-1);}setTimeout(d,1000);	
+function e(){myApp.getCurrentView().router.refreshPage();}setTimeout(e,1600);
+}else{
 function c(){history.back(-1);}setTimeout(c,2000);
+}
 }
 }
 });
