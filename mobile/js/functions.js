@@ -2006,11 +2006,14 @@ myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 
 if(msg.code==1){
-$(obj).after('<div class="jinsom-pet-nest-btn" onclick="jinsom_pet_store('+number+')">'+msg.text+'</div>').remove();
+//$(obj).after('<div class="jinsom-pet-nest-btn" onclick="jinsom_pet_store('+number+')">'+msg.text+'</div>').remove();
+$(obj).remove();
+$('.jinsom-pet-content.mine .jinsom-pet-nest-list li').eq(number).find('a').attr('href','javascript:jinsom_pet_store('+number+')');
 $('.jinsom-pet-content.mine .jinsom-pet-nest-list li').eq(number).find('.pet_img').remove();
 $('.jinsom-pet-content.mine .jinsom-pet-nest-list li').eq(number).find('.green').text(msg.text);
 $('.jinsom-pet-nest-list.single .pet_img').remove();
 $('.navbar-on-center .center').text('');
+function d(){history.back(-1);}setTimeout(d,1200);
 }
 
 }
@@ -2084,13 +2087,15 @@ success:function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
-$('.jinsom-pet-nest-btn').remove();
-$('.jinsom-pet-nest-list.single li .animal').html('<img class="egg_img" src="'+msg.img_egg+'">');
+// $('.jinsom-pet-nest-btn').remove();
+// $('.jinsom-pet-nest-list.single li .animal').html('<img class="egg_img" src="'+msg.img_egg+'">');
 $('.jinsom-pet-content.mine .jinsom-pet-nest-list li').eq(number).find('.animal').html('<img class="egg_img" src="'+msg.img_egg+'">');
-$('.jinsom-pet-nest-list.single li .nest').append('<p>'+msg.text+' '+msg.hatch_time+'</p>');
+// $('.jinsom-pet-nest-list.single li .nest').append('<p>'+msg.text+' '+msg.hatch_time+'</p>');
 $('.jinsom-pet-content.mine .jinsom-pet-nest-list li').eq(number).find('.green').text(msg.text+' '+msg.hatch_time).removeClass('green');
-$('.navbar-on-center').prev().children('.center').text(msg.pet_name);
-function d(){history.back(-1);}setTimeout(d,1500);
+$('.jinsom-pet-content.mine .jinsom-pet-nest-list li').eq(number).find('a').attr('href','');
+// $('.navbar-on-center').prev().children('.center').text(msg.pet_name);
+history.back(-1);
+// function d(){myApp.getCurrentView().router.refreshPage();}setTimeout(d,700);
 }
 
 }

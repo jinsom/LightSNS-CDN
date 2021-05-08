@@ -67,4 +67,43 @@ scrollLeft:menu_width-$(window).width()/2+$(this).outerWidth()
 });
 
 
+
+
+//ajax全局配置
+$.ajaxSetup({
+timeout: 20000,
+error: function(XHR, Status, Error){
+myApp.hideIndicator();
+$('.jinsom-load-post').remove();
+if(Status=="error"){//发生错误
+layer.open({
+content: '你当前网络连接不可用，请重新尝试！',
+btn: '确定',
+shadeClose: false,
+yes: function(){
+layer.closeAll();
+}
+});
+}else if(Status=="timeout"){//超时处理
+layer.open({
+content: '页面请求超时，请重新尝试！',
+btn: '确定',
+shadeClose: false,
+yes: function(){
+layer.closeAll();
+}
+});
+}else{//其他情况
+layer.open({
+content: '页面请求发生未知错误，请重新尝试！',
+btn: '确定',
+shadeClose: false,
+yes: function(){
+layer.closeAll();
+}
+});
+}
+}
+});
+
 });

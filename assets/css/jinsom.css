@@ -15303,15 +15303,13 @@ span.aplayer-thumb {
     margin-right: 2px;
     font-size: 18px;
 }
-.jinsom-posts-list.single .jinsom-post-application-show {
-    margin: 10px 0 0;
-}
 .single .jinsom-posts-list.single .jinsom-post-application-show {
     margin-left:20px;
 }
 
-.jinsom-posts-list.single .jinsom-post-application-show {
+.jinsom-posts-list.single .jinsom-post-application-show,.jinsom-posts-list.power- .jinsom-post-application-show {
     width: calc(50% + 20px );
+    margin: 10px 0 0;
 }
 .jinsom-post-application-show>a.pet {
     padding: 4px;
