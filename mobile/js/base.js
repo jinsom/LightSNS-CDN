@@ -69,7 +69,7 @@ scrollLeft:menu_width-$(window).width()/2+$(this).outerWidth()
 
 
 
-//ajax全局配置
+//ajax错误/超时
 $.ajaxSetup({
 timeout: 20000,
 error: function(XHR, Status, Error){

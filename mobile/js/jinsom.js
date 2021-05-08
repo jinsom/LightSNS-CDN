@@ -11,37 +11,18 @@ modalButtonOk:'确定',
 modalButtonCancel:'取消',
 onAjaxStart: function (xhr) {
 myApp.showIndicator();
-console.log('状态码：'+xhr.status);
-// if(xhr.status!=200){
-// layer.open({
-// content: '网络异常，请重新尝试！',
-// btn: '确定',
-// shadeClose: false,
-// yes: function(){
-// layer.closeAll();
-// }
-// });	
-// }
-// console.log(xhr.readyState);
-console.log(xhr);
-
-
-// if (xhr.readyState == 0) { console.log("未初始化"); }
-// if (xhr.readyState == 1) {console.log("读取中"); }
-// if (xhr.readyState == 2) { console.log("以读取"); }
-// if (xhr.readyState == 3) { console.log("交互中"); }
-// if (xhr.readyState == 4) { //请求状态为4表示成功
-// console.log("状态成功");
-// if (xhr.status == 200)   {//http状态200表示OK
-// console.log("回传成功");
-// }else {//http返回状态失败
-// console.log("服务端返回状态" + xhr.statusText);
-// }
-// }
-
-
 },
 onAjaxComplete: function (xhr) {
+if(xhr.status!=200){
+layer.open({
+content: '网络异常，请重新尝试！',
+btn: '确定',
+shadeClose: false,
+yes: function(){
+layer.closeAll();
+}
+});	
+}
 myApp.hideIndicator();
 }
 });
