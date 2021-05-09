@@ -10158,9 +10158,9 @@ h1 .commend:before{
     border-radius: 1vw;
 }
 .jinsom-post-application-show>a {
-    padding: 2vw;
+    padding: 1.5vw;
     display: inherit;
-    font-size: 4vw;
+    font-size: 3.5vw;
 }
 .jinsom-post-application-show .url {
     color: #777;
@@ -10181,8 +10181,8 @@ h1 .commend:before{
     align-items: center;
 }
 .jinsom-post-application-show .shop img {
-    width: 12vw;
-    height: 12vw;
+    width: 10vw;
+    height: 10vw;
     border-radius: 1vw;
     margin-right: 2vw;
 }
@@ -10191,7 +10191,6 @@ h1 .commend:before{
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    font-size: 4vw;
 }
 .jinsom-post-application-show .shop .price {
     flex: 1;
@@ -10241,8 +10240,8 @@ h1 .commend:before{
     margin-right: 0;
 }
 .jinsom-post-application-show .pet img {
-    width: 12vw;
-    height: 12vw;
+    width: 10vw;
+    height: 10vw;
     object-fit: contain;
     margin-right: 2vw;
     background-color: #fff;
@@ -11037,7 +11036,7 @@ h1 .commend:before{
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    color: #333;
+    color: #999;
 }
 .jinsom-goods-order-confirmation-content .address-list li p span {
     color: var(--jinsom-color);

@@ -263,3 +263,12 @@ window.open(msg);
 
 
 }
+
+
+
+
+
+//打开我的地址管理页面
+function jinsom_my_address_page(author_id,type){
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-address.php?type='+type+'&author_id='+author_id});
+}

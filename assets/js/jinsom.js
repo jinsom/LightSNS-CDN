@@ -2831,11 +2831,6 @@ poster:cover,
 playbackRate: [0.5,1,1.5,2,6],
 fitVideoSize:'fixWidth',
 autoplay:autoplay,
-enterLogo:{
-url: 'https://img.jinsom.cn/user_files/11786/publish/post/97736801_1574039930.jpg?222=222',
-width: 120,
-height: 50
-},
 });
 window['video_'+post_id].on('play',function(){
 if($('.jinsom-video-playing').length>0){

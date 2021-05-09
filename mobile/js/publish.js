@@ -58,6 +58,7 @@ return false;
 // $('.jinsom-publish-aite-form .list.aite').html(jinsom.loading);
 aite_user_search=$.ajax({
 type: "POST",
+async: false,
 url: jinsom.mobile_ajax_url+"/search/user.php",
 data:{key:key},
 success: function(msg){

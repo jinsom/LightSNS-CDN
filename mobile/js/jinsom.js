@@ -15,7 +15,7 @@ myApp.showIndicator();
 onAjaxComplete: function (xhr) {
 if(xhr.status!=200){
 layer.open({
-content: '网络异常，请重新尝试！',
+content: '请求失败，请重新尝试！',
 btn: '确定',
 shadeClose: false,
 yes: function(){

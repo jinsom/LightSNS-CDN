@@ -71,7 +71,7 @@ scrollLeft:menu_width-$(window).width()/2+$(this).outerWidth()
 
 //ajax错误/超时
 $.ajaxSetup({
-timeout: 20000,
+timeout: 15000,//15秒
 error: function(XHR, Status, Error){
 myApp.hideIndicator();
 $('.jinsom-load-post').remove();
