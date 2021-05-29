@@ -259,7 +259,7 @@ $('[data-page="publish"] .right a').removeAttr('onclick');
 $('.jinsom-home-menu li.on').click();//重新加载内容
 function d(){myApp.getCurrentView().router.back();}setTimeout(d,2500);
 }else if(msg.code==5){
-function a(){myApp.popup('.jinsom-publish-topic-popup');}setTimeout(a,1500);
+function a(){jinsom_publish_add_topic_form();}setTimeout(a,1500);
 }else if(msg.code==2){
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-phone.php'});
 }else if(msg.code==4){
@@ -330,7 +330,7 @@ $('.jinsom-home-menu li.on').click();//重新加载内容
 function d(){myApp.getCurrentView().router.back();}
 setTimeout(d,2500);
 }else if(msg.code==5){
-function a(){myApp.popup('.jinsom-publish-topic-popup');}setTimeout(a,1500);
+function a(){jinsom_publish_add_topic_form();}setTimeout(a,1500);
 }else if(msg.code==2){
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-phone.php'});
 }else if(msg.code==4){
@@ -395,7 +395,7 @@ if(msg.code==1){
 $('.jinsom-home-menu li.on').click();//重新加载内容
 function d(){myApp.getCurrentView().router.back();}setTimeout(d,2500);
 }else if(msg.code==5){
-function a(){myApp.popup('.jinsom-publish-topic-popup');}setTimeout(a,1500);
+function a(){jinsom_publish_add_topic_form();}setTimeout(a,1500);
 }else if(msg.code==2){
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-phone.php'});
 }else if(msg.code==4){
@@ -507,7 +507,7 @@ function d(){myApp.getCurrentView().router.back();}setTimeout(d,2000);
 $('.jinsom-home-menu li.on').click();//重新加载内容
 }
 }else if(msg.code==5){
-function a(){myApp.popup('.jinsom-publish-topic-popup');}setTimeout(a,1500);
+function a(){jinsom_publish_add_topic_form();}setTimeout(a,1500);
 }else if(msg.code==2){
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-phone.php'});
 }else if(msg.code==4){

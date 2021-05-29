@@ -369,7 +369,17 @@ $('.jinsom-chat-message-group-list').append(msg.msg);
 // audio = document.getElementById('audio');
 // audio.play();
 $('.jinsom-chat-group-window .jinsom-chat-windows-user-header').attr('count',msg.count);
+// $('.jinsom-chat-group-window .jinsom-msg-tips').show().html('新消息');
+
+// $('.jinsom-chat-message-group-list').scroll(function(){
+contentH =$('.jinsom-chat-message-group-list').get(0).scrollHeight;//内容高度
+scrollTop =$('.jinsom-chat-message-group-list').scrollTop();//滚动高度
+console.log(contentH-scrollTop);
+if(contentH-scrollTop>300){
 $('.jinsom-chat-group-window .jinsom-msg-tips').show().html('新消息');
+}
+// });
+
 jinsom_ajax_get_messages_group();
 }else if(msg.code==3){//不存在参数
 }else{

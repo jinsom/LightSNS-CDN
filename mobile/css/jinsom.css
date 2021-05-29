@@ -10354,6 +10354,10 @@ h1 .commend:before{
     font-size: 4.5vw;
     margin-top: 2vw;
 }
+.jinsom-goods-single-content>.subtitle {
+    color: #666;
+    margin-top: 2vw;
+}
 .jinsom-goods-single-content .buy-number {
     padding: 3vw 0;
     color: #999;
@@ -10426,6 +10430,7 @@ h1 .commend:before{
 }
 .jinsom-goods-single-box .content img {
     max-width: 100%;
+    height: auto;
 }
 .jinsom-goods-single-box .content figure {
     margin: 0;
@@ -11049,4 +11054,44 @@ h1 .commend:before{
     background-color: var(--jinsom-color);
     color: #fff;
     border-radius: 1vw;
+}
+.jinsom-setting-content.address,.jinsom-setting-content.address-add {
+    background-color: #fff;
+}
+.jinsom-setting-content.address .address-list {
+    padding: 4vw 0;
+}
+.jinsom-setting-content.address .address-list li {
+    margin-bottom: 2vw;
+    padding-bottom: 2vw;
+    border-bottom: 1px solid #f1f1f1;
+    position: relative;
+    padding: 0 4vw 2vw;
+}
+.jinsom-setting-content.address .address-list li:last-child {
+    margin-bottom: 0;
+}
+.jinsom-setting-content.address .address-list li i {
+    position: absolute;
+    right: 4vw;
+    font-size: 5vw;
+    top: 3vw;
+    color: #555;
+}
+.jinsom-setting-content.address .address-list li .a {
+    margin-bottom: 2vw;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 90%;
+    color: #333;
+}
+.jinsom-setting-content.address .address-list li .b {
+    display: flex;
+    color: #999;
+    font-size: 3.5vw;
+    width: 95%;
+}
+.jinsom-setting-content.address .address-list li .b>span {
+    flex: 1;
 }

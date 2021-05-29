@@ -2311,7 +2311,7 @@ SetCookie(type,val);
 
 //追加悬赏
 function jinsom_add_bbs_answer_number(post_id){
-layer.prompt({title:'请输入要追加的金额',btnAlign: 'c'},function(value, index, elem){
+layer.prompt({title:'请输入要追加的'+jinsom.credit_name+'数量',btnAlign: 'c'},function(value, index, elem){
 layer.load(1);
 $.ajax({
 type: "POST",
@@ -3796,7 +3796,7 @@ type:ajax_type,
 data:{trade_no:trade_no},
 success:function(msg){   
 layer.closeAll('loading');
-if(pay_type=='xunhu-wechat'){
+if(pay_type=='xunhupay_wechat_pc'){
 pay_code='<img style="width:200px;height:200px;" src="'+msg+'">';
 }else{
 pay_code='<div id="jinsom-qrcode"></div>';

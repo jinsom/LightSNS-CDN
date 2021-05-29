@@ -272,3 +272,19 @@ window.open(msg);
 function jinsom_my_address_page(author_id,type){
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-address.php?type='+type+'&author_id='+author_id});
 }
+
+//插入地址||编辑地址
+function jinsom_my_address_do(author_id,number,type,obj){
+if(type=='add'){//选择地址
+address=$(obj).children('.a').text();
+name=$(obj).find('.name').text();
+phone=$(obj).find('.phone').text();
+history.back(-1);
+$('.address-list.order .address m').text(address);
+$('.address-list.order .name m').text(name);
+$('.address-list.order .phone m').text(phone);
+$('#jinsom-shop-address').val(number);
+}else{//编辑地址
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-address-add.php?type=edit&number='+number+'&author_id='+author_id});
+}
+}

@@ -294,7 +294,11 @@ data:{topic_name:topic_name},
 success: function(msg){
 layer.closeAll('loading');
 if(msg.code==1){
+if(msg.type=='one'){
+jinsom_publish_power(msg.publish_type,msg.publish_bbs_id,topic_name)
+}else{
 jinsom_publish_type_form(topic_name);
+}
 }else{
 layer.msg(msg.msg);
 }
@@ -358,7 +362,7 @@ type:1,
 title:false,
 btn: false,
 resize:false,
-closeBtn: 0,
+closeBtn: 1,
 shade:0.4,
 area: ['500px'],
 skin: 'jinsom-publish-power-form',

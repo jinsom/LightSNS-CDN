@@ -447,6 +447,7 @@ navbar_height=parseInt($('.navbar').height());
 w_height=parseInt($(window).height());
 $('.jinsom-topic-show-form').height(w_height-navbar_height);
 $('.jinsom-topic-show-form .left>li').click(function(event){
+$('.jinsom-topic-show-form .right').animate({scrollTop: 0 },0);
 $(this).addClass('on').siblings().removeClass('on').parent().next().children().eq($(this).index()).show().siblings().hide();
 });
 });
