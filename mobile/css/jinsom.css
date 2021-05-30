@@ -3756,6 +3756,15 @@ display: none !important;
     border-top: 1px solid #f5f5f5;
     padding-top: 2vw;
 }
+.jinsom-publish-words-form .power-content .answer-price {
+    width: 100%;
+    margin: 2vw 0px;
+    background-color: #f9f9f9;
+    padding: 3vw;
+    box-sizing: border-box;
+    border-radius: 1vw;
+    border: none;
+}
 .jinsom-publish-words-form .power-content input,.jinsom-publish-words-form .download-box input,.jinsom-publish-words-form .field-box input {
     border: none;
     width: 35vw;
@@ -4304,20 +4313,21 @@ display: none !important;
     background-color: #fff;
     margin-bottom: 3%;
     text-align: center;
-    border: 1px solid #f5f5f5;
+    border: 1px solid #eee;
     box-sizing: border-box;
+    border-radius: 1vw;
 }
 .jinsom-recharge-number li.on,.jinsom-recharge-type li.on,.jinsom-send-gift-form li.on {
     border-color: #5FB878;
 }
-.jinsom-recharge-number li n,.jinsom-recharge-type li n,.jinsom-send-gift-form li n {
+.jinsom-recharge-number li n, .jinsom-recharge-type li n, .jinsom-send-gift-form li n {
     position: absolute;
-    right: 0;
+    right: -1px;
     width: 0;
     height: 0;
     border-top: 9vw solid #5FB878;
     border-left: 9vw solid transparent;
-    top: 0;
+    top: -1px;
     display: none;
 }
 .jinsom-recharge-number li.on n,.jinsom-recharge-type li.on n,.jinsom-send-gift-form li.on n {
@@ -4329,17 +4339,41 @@ display: none !important;
     right: 0;
     color: #fff;
 }
+.jinsom-recharge-number li.on {
+    background-color: #f9fffa;
+}
 .jinsom-recharge-number li .top {
     padding: 8vw 0;
     border-bottom: 1px solid #f2f2f2;
+    height: 7vw;
 }
 .jinsom-recharge-number li .top .jinsom-vip2 {
     color: #F44336;
-    font-size: 7vw;
+    font-size: 6vw;
     vertical-align: -1vw;
+}
+.jinsom-recharge-number li .top .jinsom-jinbi {
+    font-size: 5vw;
+    vertical-align: -0.5vw;
 }
 .jinsom-recharge-number li .bottom {
     padding: 2vw 0;
+}
+.jinsom-recharge-number li .bottom i {
+    font-size: 3vw;
+    color: #666;
+}
+.jinsom-recharge-number li .bottom m {
+    font-size: 4.5vw;
+    color: #ff5722;
+}
+.jinsom-recharge-number li .commend-icon {
+    position: absolute;
+    top: -3.5vw;
+    left: -1.3vw;
+}
+.jinsom-recharge-number li .commend-icon i {
+    font-size: 12vw;
 }
 .jinsom-recharge-number li:nth-child(3n) {
     margin-right: 0;
@@ -6282,7 +6316,7 @@ h1 .commend:before{
 .jinsom-vip-page-header-card .icon {
     position: absolute;
     right: 6vw;
-    top: -7vw;
+    top: -6vw;
 }
 .jinsom-vip-page-header-card .info a {
     width: 18vw;
@@ -6310,9 +6344,7 @@ h1 .commend:before{
 }
 .jinsom-vip-page-info li p {
     font-size: 3vw;
-}
-.jinsom-vip-page-info li i {
-    font-size: 7vw;
+    color: #666;
 }
 .jinsom-vip-toolbar {
     border-top: 1px solid #f1f1f1;
@@ -6332,15 +6364,17 @@ h1 .commend:before{
     line-height: 12vw;
     background-color: var(--jinsom-color);
     color: #fff;
+    font-size: 3.5vw;
 }
 .jinsom-vip-page-get-number {
     margin: 10vw 4vw;
     text-align: center;
     border: 1px solid #ffe294;
     color: #f8b90d;
-    padding: 2.5vw 0;
     border-radius: 10vw;
     background-color: #fffad0;
+    font-size: 3.5vw;
+    line-height: 10vw;
 }
 .jinsom-vip-page-get-number span {
     margin-left: 5vw;
@@ -6846,10 +6880,11 @@ h1 .commend:before{
 .jinsom-cash-form-content {
     padding: 8vw 4vw;
 }
-.jinsom-cash-form-content .tips {
+.jinsom-cash-form-content .wechat-phone .tips {
     font-size: 3.5vw;
     text-align: center;
     color: #f00;
+    margin-top: 4vw;
 }
 .jinsom-cash-form-content>div span:first-child {
     margin-right: 2vw;
@@ -6897,12 +6932,12 @@ h1 .commend:before{
 }
 .jinsom-cash-form-content .type>m.on n {
     position: absolute;
-    right: 0;
+    right: -1px;
     width: 0;
     height: 0;
     border-top: 6vw solid #5FB878;
     border-left: 6vw solid transparent;
-    top: 0;
+    top: -1px;
     display: block;
 }
 .jinsom-cash-form-content .type>m n i {

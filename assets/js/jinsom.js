@@ -1060,7 +1060,7 @@ success: function(msg){
 layer.closeAll('loading');
 window.recharge_vip_form=layer.open({
 type:1,
-title:'开通会员',
+title:false,
 fixed:false,
 btn: false,
 resize:false,
@@ -3080,6 +3080,7 @@ success: function(msg){
 layer.closeAll('loading');
 layer.open({
 title:'提现',
+fixed: false,
 skin:'jinsom-cash-form',
 type: 1,
 area: ['380px', 'auto'], 

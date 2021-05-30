@@ -9441,7 +9441,7 @@ span.aplayer-thumb {
     float: left;
     text-align: center;
     padding: 10px;
-    border: 1px solid #f2f2f2;
+    border: 1px solid #eee;
     margin-right: 1.3333%;
     box-sizing: border-box;
     cursor: pointer;
@@ -9452,22 +9452,41 @@ span.aplayer-thumb {
 .jinsom-credit-recharge-number li .top {
     padding: 30px 0;
     border-bottom: 1px solid #f2f2f2;
+    height: 30px;
 }
 .jinsom-credit-recharge-number li .top span {
-    vertical-align: -5px;
-    margin-right: 5px;
-}
-.jinsom-credit-recharge-number li .top i {
-    font-style: normal;
     font-size: 16px;
 }
 .jinsom-credit-recharge-number li .bottom {
     padding-top: 10px;
     font-size: 16px;
 }
+.jinsom-credit-recharge-number li .bottom m {
+    font-size: 18px;
+    color: #ff5722;
+}
 .jinsom-credit-recharge-number li .bottom i {
     font-style: normal;
+    color: #666;
+    font-size: 12px;
 }
+.jinsom-credit-recharge-number li .commend-icon {
+    position: absolute;
+    top: -6px;
+    left: -5px;
+}
+.jinsom-credit-recharge-number li .commend-icon i {
+    font-size: 47px;
+    color: #ff5722;
+}
+.jinsom-credit-recharge-number li.on{
+    background-color: #f9fffa;  
+}
+/*.jinsom-credit-recharge-number li{
+    border-color:#cac7c7; 
+}*/
+
+
 .jinsom-credit-recharge-number li:nth-child(4n),.jinsom-send-gift-form li:nth-child(4n) {
     margin-right: 0;
 }
@@ -9508,17 +9527,14 @@ span.aplayer-thumb {
     width: 24%;
     float: left;
     text-align: center;
-    padding: 8px;
+    padding: 8px 0;
     border: 1px solid #f2f2f2;
     margin-right: 1.3333%;
     box-sizing: border-box;
     cursor: pointer;
     margin-top: 10px;
     border-radius: 2px;
-    height: 45px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+    line-height: 24px;
 }
 .jinsom-credit-recharge-type li.on {
     border-color: var(--jinsom-color);
@@ -9528,12 +9544,12 @@ span.aplayer-thumb {
 }
 .jinsom-credit-recharge-type li n {
     position: absolute;
-    right: 0;
+    right: -1px;
     width: 0;
     height: 0;
     border-top: 25px solid var(--jinsom-color);
     border-left: 25px solid transparent;
-    top: 0;
+    top: -1px;
     display: none;
 }
 .jinsom-credit-recharge-type li.on n{
@@ -9541,12 +9557,12 @@ span.aplayer-thumb {
 }
 .jinsom-credit-recharge-type li n i {
     position: absolute;
-    top: -25px;
+    top: -28px;
     right: 0;
     color: #ffffff;
 }
 .jinsom-credit-recharge-type li>i {
-    font-size: 24px;
+    font-size: 18px;
     vertical-align: -2px;
     margin-right: 5px;
     color: #00a7ff;
@@ -9609,16 +9625,15 @@ span.aplayer-thumb {
     font-size: 20px;
     vertical-align: -1px;
 }
-.jinsom-credit-recharge-number.vip li .top span.jinsom-icon {
+.jinsom-credit-recharge-number.vip li .top .jinsom-icon {
     color: #f44336;
     font-size: 25px;
     vertical-align: -5px;
 }
 .jinsom-credit-recharge-type li.credit>i {
     color: #fe7f3e;
-}.jinsom-send-gift-content .credit>div
-.jinsom-credit-recharge-type li.credit>i {
-    vertical-align: -4px;
+    vertical-align: 0px;
+    font-size: 16px;
 }
 .jinsom-keypay-tips{
     margin-bottom: 10px;
@@ -9947,8 +9962,14 @@ span.aplayer-thumb {
 }
 .jinsom-send-gift-form li .bottom {
     padding-top: 10px;
-    font-size: 16px;
     word-break: keep-all;
+    font-size: 18px;
+    color: #ff5722;
+}
+.jinsom-send-gift-form li .bottom>span {
+    font-size: 12px;
+    color: #666;
+    margin-left: 5px;
 }
 .jinsom-send-gift-form li .top .name {
     color: #666;
@@ -9977,9 +9998,9 @@ span.aplayer-thumb {
     display: flex;
 }
 .jinsom-send-gift-content .credit i {
-    margin: 0 10px 0 2px;
-    vertical-align: -3px;
-    font-size: 20px;
+    margin: 0 4px 0 10px;
+    vertical-align: -1px;
+    font-size: 16px;
 }
 .jinsom-send-gift-content .credit span {
     color: #F44336;
@@ -11661,6 +11682,7 @@ span.aplayer-thumb {
 /*提现*/
 .jinsom-cash-form .layui-layer-content {
     padding: 20px;
+    height: inherit !important;
 }
 .jinsom-cash-form-content>div span:first-child {
     margin-right: 15px;
@@ -11674,6 +11696,12 @@ span.aplayer-thumb {
     padding: 8px 6px;
     border-radius: 4px;
     width: 245px;
+}
+.jinsom-cash-form-content>div .tips {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #f00;
+    text-align: center;
 }
 .jinsom-cash-form-content .number input {
     width: 110px;
