@@ -34,6 +34,11 @@ return false;
 }
 layer.closeAll(); 
 
+if(type=='custom'){
+jinsom_publish_type_form('');
+return false;	
+}
+
 if(type=='follow-bbs'||type=='commend-bbs'){//推荐/关注的论坛列表
 jinsom_follow_commend_bbs_form(type,topic_name);
 return false;

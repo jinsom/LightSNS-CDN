@@ -459,7 +459,10 @@ $('.jinsom-header').removeClass('fixed');
 
 if(height>500){$(".totop").show()}else{$(".totop").hide();};
 if((all_height-$(window).height()-height)<500&&jinsom.sns_home_load_type=='scroll'){
+if($('.jinsom-main-content').hasClass('sns')){
 $('.sns .jinsom-more-posts').click();
+history.pushState(window.location.href,'',"?page="+$('.sns .jinsom-more-posts').attr('page'));
+}
 }
 if((all_height-$(window).height()-height)<300){$(".tobottom").hide();}else{$(".tobottom").show();}
 });

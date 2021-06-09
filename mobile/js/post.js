@@ -68,7 +68,7 @@ layer.open({content:'刷新成功',skin:'msg',time:2});
 }
 if($(obj).attr('waterfall')!=0&&!author_id){//瀑布流渲染
 var grid=$('.jinsom-post-list-sns').masonry({
-itemSelector:'li',
+itemSelector:'.waterfall',
 gutter:0,
 // transitionDuration:0
 });
@@ -77,6 +77,13 @@ grid.imagesLoaded().progress( function() {
 grid.masonry('layout');
 }); 
 }
+
+if($(obj).attr('waterfall')!=0&&!author_id&&type=='follow-user'){
+$('.jinsom-mobile-home-sns-top').after($('.jinsom-post-list-sns .jinsom-post-follow-user-list'));
+}else{
+$('.jinsom-post-follow-user-list').remove()	
+}
+
 }
 });
 

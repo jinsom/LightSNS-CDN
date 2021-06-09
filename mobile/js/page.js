@@ -1942,8 +1942,11 @@ $('#jinsom-credit-recharge-form').append('<input type="hidden" name="pay_type" v
 $('#jinsom-credit-recharge-form').attr('action',jinsom.home_url+'/Extend/pay/epay/index.php');	
 }	
 }
-
 });
+
+
+$('.jinsom-recharge-type li.on').click();
+
 });
 
 //---------------------------//发送礼物页面-----------------

@@ -112,7 +112,7 @@ $('.jinsom-chat-message-list').scroll(function(){
 contentH =$(this).get(0).scrollHeight;//内容高度
 scrollTop =$(this).scrollTop();//滚动高度
 // console.log(contentH-scrollTop);
-if(contentH-scrollTop>500){
+if(contentH-scrollTop>700){
 $('.jinsom-msg-tips').show();
 }else{
 $('.jinsom-msg-tips').hide();	
@@ -314,8 +314,8 @@ $('.jinsom-chat-message-group-list').scrollTop($('.jinsom-chat-message-group-lis
 $('.jinsom-chat-message-group-list').scroll(function(){
 contentH =$(this).get(0).scrollHeight;//内容高度
 scrollTop =$(this).scrollTop();//滚动高度
-// console.log(contentH-scrollTop);
-if(contentH-scrollTop>500){
+console.log(contentH-scrollTop);
+if(contentH-scrollTop>700){
 $('.jinsom-msg-tips').show();
 }else{
 $('.jinsom-msg-tips').hide();	

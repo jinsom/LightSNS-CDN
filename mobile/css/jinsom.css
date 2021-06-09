@@ -70,7 +70,7 @@ h1, h2, h3, h4, h5, h6 {
 .toolbar {
     height: 12vw;
 }
-.toolbar a span {
+.toolbar a span.tabbar-label {
     top: -0.5vw !important;
 }
 .toolbar a i {
@@ -719,6 +719,9 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /*----------------------------我的-------------------------------*/
+.jinsom-mine-page {
+    padding-top: 0 !important;
+}
 .jinsom-mine-page li i {
     font-size: 5.5vw;
 }
@@ -823,7 +826,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /*-----------------------底部工具栏---------------------*/
 /*小圆点通知*/
-.jinsom-icon .badge {
+.toolbar .badge.tips {
     position: absolute;
     top: 0vw !important;
     font-size: 3vw;
@@ -833,9 +836,9 @@ h1, h2, h3, h4, h5, h6 {
     min-width: 4.5vw;
     font-family: -apple-system,SF UI Text,Helvetica Neue,Helvetica,Arial,sans-serif;
     line-height: 4.8vw;
-}
-.jinsom-icon .badge {
     background-color: #f65a5b;
+    left: 50%;
+    margin-left: 2vw;
 }
 /*首页*/
 .jinsom-footer-toolbar .active.sns i:before {
@@ -2129,6 +2132,7 @@ display: none !important;
     top: 0vw;
     color: #5fb878;
     font-size: 15vw;
+    z-index: 99;
 }
 .jinsom-single-comment-list>div .content .jinsom-tips {
     margin: 0;
@@ -8766,7 +8770,9 @@ h1 .commend:before{
     font-size: 3.2vw;
     margin-top: 1vw;
 }
-
+.jinsom-mine-box.cell li .tips {
+    position: absolute;
+}
 
 .jinsom-mine-user-info-cell .header {
     align-items: center;
@@ -11129,4 +11135,27 @@ h1 .commend:before{
 }
 .jinsom-setting-content.address .address-list li .b>span {
     flex: 1;
+}
+
+
+/*转移版块*/
+.jinsom-change-bbs-content {
+    padding: 14vw 4vw 4vw !important;
+}
+.jinsom-change-bbs-content li {
+    margin-bottom: 2vw;
+}
+.jinsom-change-bbs-content li input {
+    -webkit-appearance: radio;
+    width: 5vw;
+    height: 5vw;
+    vertical-align: -1vw;
+    margin-right: 1vw;
+}
+.jinsom-change-bbs-content li input.level-1 {
+    margin-left: 8vw;
+}
+.jinsom-change-bbs-content .tips {
+    color: #f00;
+    margin-bottom: 4vw;
 }

@@ -12617,6 +12617,8 @@ span.aplayer-thumb {
 .jinsom-system-notice-content li .content img {
     max-width: 100%;
     margin-bottom: 10px;
+    border-radius: 4px;
+    margin-top: 5px;
 }
 .jinsom-system-notice-content li>i {
     width: 10px;

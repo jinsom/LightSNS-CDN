@@ -6,6 +6,11 @@ myApp.loginScreen();
 return false;
 }
 
+if(type=='custom'){
+myApp.popup('.jinsom-publish-type-form');
+return false;	
+}
+
 if(type=='follow-bbs'||type=='commend-bbs'){//推荐/关注的论坛列表
 myApp.closeModal();
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/bbs-like.php?type='+type});

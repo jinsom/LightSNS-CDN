@@ -750,7 +750,7 @@ html='<li id="jinsom-bbs-like-'+bbs_id+'">\
 if($('.jinsom-bbs-like-content.publish .jinsom-empty-page').length>0){
 $('.jinsom-bbs-like-content.publish').html('<div class="jinsom-chat-user-list bbs-commend list-block">'+html+'</div>');
 }else{
-$('.jinsom-bbs-like-content.publish .jinsom-bbs-like').prepend(html);
+$('.jinsom-bbs-like-content.publish .jinsom-chat-user-list').prepend(html);
 }
 
 
@@ -1858,7 +1858,9 @@ url:jinsom.jinsom_ajax_url+"/action/notice-all.php",
 type:'POST',    
 success:function(msg){
 if($.trim(msg)){
-$('.jinsom-mine-box li.notice .item-after,.jinsom-mine-box li.notice i,.toolbar .mine i,.navbar i.tips').html('<span class="badge bg-red tips">'+msg+'</span>');	
+$('.jinsom-mine-box li.notice .item-after,.jinsom-mine-box li.notice i,.navbar i.tips').html('<span class="badge bg-red tips">'+msg+'</span>');
+$('.toolbar .mine m').remove();
+$('.toolbar .mine').prepend('<m class="badge bg-red tips">'+msg+'</m>');	
 $('.navbar .notice-tips').html(msg);
 }
 }
@@ -1916,7 +1918,7 @@ grid.masonry('layout');
 }); 
 }
 
-//首页消息模块
+//消息页面js加载
 function jinsom_index_notice_js_load(){
 $.ajax({   
 url:jinsom.mobile_ajax_url+"/stencil/notice-page.php",
@@ -1931,7 +1933,8 @@ notice+=parseInt($(this).text());
 }
 });
 if(notice){
-$('.toolbar .notice i').html('<span class="badge bg-red tips">'+notice+'</span>');
+$('.toolbar .notice m').remove();
+$('.toolbar .notice').prepend('<m class="badge bg-red tips">'+notice+'</m>');
 }
 
 $('.jinsom-chat-notice li').click(function(event){//消除红点
@@ -1951,6 +1954,33 @@ $(this).children('.tips').remove();
 }
 });
 }
+
+//我的页面js加载
+function jinsom_index_mine_js_load(){
+$.ajax({   
+url:jinsom.mobile_ajax_url+"/stencil/mine-page.php",
+type:'POST',    
+success:function(msg){
+$('.jinsom-mine-page').html(msg);
+
+if($('.jinsom-mine-box li.notice').length>0){
+$.ajax({   
+url:jinsom.jinsom_ajax_url+"/action/notice-all.php",
+type:'POST',    
+success:function(msg){
+if($.trim(msg)){
+$('.jinsom-mine-box li.notice .item-after,.jinsom-mine-box.cell li.notice i').html('<span class="badge bg-red tips">'+msg+'</span>');	
+$('.toolbar .mine m').remove();
+$('.toolbar .mine').prepend('<m class="badge bg-red tips">'+msg+'</m>');	
+}
+}
+});	
+}
+
+}
+});
+}
+
 
 //视频专题后加载js
 function jinsom_index_video_special_js_load(obj){
@@ -2760,6 +2790,32 @@ $('.jinsom-publish-words-form .add-application .left span').text('我的宠物-[
 $('.jinsom-publish-words-form .add-application .left i').removeAttr('class').addClass('jinsom-icon jinsom-chongwu');
 $('#jinsom-publish-application-type').val('pet');
 $('#jinsom-publish-application-value').val(name+','+img);
+}
+
+
+//打开移动版块页面
+function jinsom_open_change_bbs_form(post_id,bbs_id){
+layer.closeAll();
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/change-bbs.php?post_id='+post_id+'&bbs_id='+bbs_id});	
+}
+//提交移动版块
+function jinsom_change_bbs(post_id,bbs_id){
+new_bbs_id='';
+$('.jinsom-change-bbs-content li input:checkbox:checked').each(function (index, item) {
+new_bbs_id+=$(this).val()+',';
+});
+
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/action/change-bbs.php",
+data:{post_id:post_id,bbs_id:bbs_id,new_bbs_id:new_bbs_id},
+success: function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+function c(){window.open(msg.url,'_self');}setTimeout(c,2000);
+}
+});
 }
 
 
