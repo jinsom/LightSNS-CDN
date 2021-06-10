@@ -71,13 +71,13 @@ scrollLeft:menu_width-$(window).width()/2+$(this).outerWidth()
 
 //ajax错误/超时
 $.ajaxSetup({
-timeout: 15000,//15秒
+timeout: 18000,//18秒
 error: function(XHR, Status, Error){
 myApp.hideIndicator();
 $('.jinsom-load-post').remove();
 if(Status=="error"){//发生错误
 layer.open({
-content: '你当前网络连接不可用，请重新尝试！',
+content: '页面请求失败，请重新尝试！',
 btn: '确定',
 shadeClose: false,
 yes: function(){
