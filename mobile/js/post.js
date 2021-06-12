@@ -81,7 +81,9 @@ grid.masonry('layout');
 if($(obj).attr('waterfall')!=0&&!author_id&&type=='follow-user'){
 $('.jinsom-mobile-home-sns-top').after($('.jinsom-post-list-sns .jinsom-post-follow-user-list'));
 }else{
-$('.jinsom-post-follow-user-list').remove()	
+if($(obj).attr('waterfall')!=0){
+$('.jinsom-post-follow-user-list').remove();
+}
 }
 
 }

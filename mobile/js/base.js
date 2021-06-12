@@ -73,6 +73,7 @@ scrollLeft:menu_width-$(window).width()/2+$(this).outerWidth()
 $.ajaxSetup({
 timeout: 18000,//18秒
 error: function(XHR, Status, Error){
+console.log(Status)
 myApp.hideIndicator();
 $('.jinsom-load-post').remove();
 if(Status=="error"){//发生错误
@@ -93,6 +94,8 @@ yes: function(){
 layer.closeAll();
 }
 });
+}else if(Status=="abort"){//中断
+console.log('操作中断！');
 }else{//其他情况
 layer.open({
 content: '页面请求发生未知错误，请重新尝试！',

@@ -305,7 +305,9 @@ h1, h2, h3, h4, h5, h6 {
 .jinsom-honor {
     background-color: #009688;
 }
-
+.jinsom-distance {
+    background-color: #bbb;
+}
 
 
 /*头部*/
@@ -1509,6 +1511,7 @@ display: none !important;
     padding: 0;
     margin-bottom: -2vw;
     margin-top: 2vw;
+    width: 100%;
 }
 .jinsom-city-topic-bar .topic-list {
     float: right;
