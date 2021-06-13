@@ -1896,6 +1896,7 @@ $('#jinsom-credit-recharge-form').append('<input type="hidden" name="pay_type" v
 $('#jinsom-credit-recharge-form').attr('action',jinsom.home_url+'/Extend/pay/epay/index.php');	
 }
 });
+$('.jinsom-recharge-type li.on').click();
 });
 
 //---------------------------//开通会员页面-----------------
@@ -3016,7 +3017,6 @@ myApp.onPageAfterAnimation('order-details',function(page){
 $('.jinsom-recharge-type li').click(function() {
 $(this).addClass('on').siblings().removeClass('on');
 type=$(this).attr('data');
-$('#jinsom-recharge-type').val(type);
 if(type=='alipay_mobile'){
 $('#jinsom-goods-recharge-form').attr('action',jinsom.home_url+'/Extend/pay/alipay/alipay-h5.php');	
 }else if(type=='wechatpay_mp'){
@@ -3026,6 +3026,7 @@ $('#jinsom-goods-recharge-form').append('<input type="hidden" name="pay_type" va
 $('#jinsom-goods-recharge-form').attr('action',jinsom.home_url+'/Extend/pay/epay/index.php');	
 }
 });
+$('.jinsom-recharge-type li.on').click();
 });
 
 
@@ -3166,4 +3167,58 @@ grid.masonry('layout');
 
 }//jinsom_shop_select_submit_form
 
+});
+
+
+
+//新增地址
+myApp.onPageBeforeInit('setting-address-add',function(page){
+
+if($('#jinsom-address-province').length>0){
+$.ajax({
+type: "POST",
+dataType:"json",
+url:jinsom.jinsom_ajax_url+"/action/address-get.php",
+data: {type:'province'},
+success: function(msg){
+$('#jinsom-address-province').append(msg.html);
+}
+});
+
+
+$("#jinsom-address-province").change(function(){
+selected=$(this).children('option:selected').val();
+if(selected=='香港特别行政区'||selected=='澳门特别行政区'){
+$('.jinsom-setting-content-address-add-box li.district').hide();
+}else{
+$('.jinsom-setting-content-address-add-box li.district').show();	
+}
+$("#jinsom-address-city,#jinsom-address-district").empty();
+$.ajax({
+type: "POST",
+dataType:"json",
+url:jinsom.jinsom_ajax_url+"/action/address-get.php",
+data: {type:'city',keywords:selected},
+success: function(msg){
+html='<option selected hidden disabled value="">请选择</option>';
+$('#jinsom-address-city').append(html+msg.html);
+}
+});
+});
+
+$("#jinsom-address-city").change(function(){
+selected=$(this).children('option:selected').val();
+$("#jinsom-address-district").empty();
+$.ajax({
+type: "POST",
+dataType:"json",
+url:jinsom.jinsom_ajax_url+"/action/address-get.php",
+data: {type:'districts',keywords:selected},
+success: function(msg){
+html='<option selected hidden disabled value="">请选择</option>';
+$('#jinsom-address-district').append(html+msg.html);
+}
+});
+});
+}
 });

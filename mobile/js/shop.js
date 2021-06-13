@@ -179,14 +179,32 @@ function d(){history.back(-1);}setTimeout(d,1500);
 
 //提交订单
 function jinsom_recharge_goods(){
+if($('#jinsom-shop-address').length>0){
+address_number=$('#jinsom-shop-address').val();
+if(address_number==''){
+layer.open({content:'请添加收货地址！',skin:'msg',time:2});
+return false;
+}
+}
+
+
 trade_no=$('input[name="trade_no"]').val();
 openid=$('input[name="openid"]').val();
-pay_type=$('#jinsom-recharge-type').val();
+pay_type=$('.jinsom-recharge-type li.on').attr('data');
 
 if(pay_type==''){
 layer.open({content:'请选择支付方式！',skin:'msg',time:2});
 return false;	
 }
+
+
+// address_number=parseInt(address_number)-1;
+//ajax后端插入地址
+$.ajax({   
+url:jinsom.jinsom_ajax_url+"/action/address-order-add.php",
+type:'POST',   
+data:{trade_no:trade_no,address_number:address_number},
+});
 
 if(pay_type=='alipay_code'){//当面付
 data=$('#jinsom-goods-recharge-form').serialize();
@@ -275,16 +293,127 @@ myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page
 
 //插入地址||编辑地址
 function jinsom_my_address_do(author_id,number,type,obj){
-if(type=='add'){//选择地址
+if(type=='insert'){//选择地址
 address=$(obj).children('.a').text();
 name=$(obj).find('.name').text();
 phone=$(obj).find('.phone').text();
 history.back(-1);
+
+if($('.jinsom-goods-order-confirmation-content .add-address').length>0){
+$('.jinsom-goods-order-confirmation-content .address-list').html('<li onclick=jinsom_my_address_page('+jinsom.user_id+',"insert")><i class="jinsom-icon jinsom-arrow-right"></i>\
+<p class="address"><span>地址</span><m>'+address+'</m></p>\
+<p class="name"><span>收货人</span><m>'+name+'</m></p>\
+<p class="phone"><span>手机号</span><m>'+phone+'</m></p>\
+</li>\
+<input type="hidden" id="jinsom-shop-address" value="'+number+'">');
+}else{
 $('.address-list.order .address m').text(address);
 $('.address-list.order .name m').text(name);
 $('.address-list.order .phone m').text(phone);
 $('#jinsom-shop-address').val(number);
+}
+
 }else{//编辑地址
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-address-add.php?type=edit&number='+number+'&author_id='+author_id});
 }
+}
+
+//打开我新建地址页面
+function jinsom_add_address_page(author_id,type){
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/setting/setting-address-add.php?type=add&author_id='+author_id});
+}
+
+
+//提交添加地址
+function jinsom_address_add(type,number){
+province=$('#jinsom-address-province').val();
+city=$('#jinsom-address-city').val();
+district=$('#jinsom-address-district').val();
+address=$('#jinsom-address-detailed').val();
+name=$('#jinsom-address-name').val();
+phone=$('#jinsom-address-phone').val();
+
+
+if(!province||!city||!district){
+layer.open({content:'请选择省份/城市/区县！',skin:'msg',time:2});
+return false;
+}
+console.log(province,city,district)
+
+if(province=='海外地区'){
+province='';	
+}else if(province=='香港特别行政区'||province=='澳门特别行政区'){
+province=province+city;
+}else if(province=='台湾省'){
+}else if(province){
+province=province+city+district;	
+}
+
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/action/address-add.php",
+data:{city:province,address:address,name:name,phone:phone,type:type,number:number},
+success: function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+if(msg.code==1){
+if(msg.type=='add'){//新增地址
+history.back(-1);
+number=$('.jinsom-setting-content.address .address-list li').length;
+type='edit';
+if($('.jinsom-goods-order-confirmation-content').length>0){
+type='insert';
+}
+
+html="\
+<li id='jinsom-address-"+number+"' onclick=jinsom_my_address_do("+jinsom.user_id+","+(number)+",'"+type+"',this)><i class='jinsom-icon jinsom-fabiao1'></i>\
+<p class='a'>"+province+address+"</p>\
+<p class='b'><span class='name'>"+name+"</span><span class='phone'>"+phone+"</span></p>\
+</li>\
+";
+if($('.jinsom-setting-content.address .address-list .jinsom-empty-page').length>0){
+number=0;
+$('.jinsom-setting-content.address .address-list').html(html);
+}else{
+$('.jinsom-setting-content.address .address-list').append(html);	
+}
+}else{
+number=parseInt(msg.number);
+$('.jinsom-setting-content.address .address-list li').eq(number).children('.a').html(province+address);
+$('.jinsom-setting-content.address .address-list li').eq(number).find('.name').html(name);
+$('.jinsom-setting-content.address .address-list li').eq(number).find('.phone').html(phone);
+}
+
+
+}
+
+}
+});
+}
+
+
+//删除地址
+function jinsom_address_del(number){
+layer.open({
+content: '你确定要删除吗？'
+,btn: ['确定', '取消']
+,yes: function(index){
+layer.close(index);
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+url:  jinsom.jinsom_ajax_url+"/action/address-add.php",
+data: {number:number,type:'del'},
+success: function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+if(msg.code==1){
+history.back(-1);
+$('#jinsom-address-'+number).remove();
+}
+}
+});
+}
+});
 }

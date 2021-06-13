@@ -89,3 +89,40 @@ input.button.button-small.wp-picker-clear {
     display: inline-block;
     vertical-align: -2.5px;
 }
+
+
+
+.jinsom-admin-report-read-form {
+    padding: 20px;
+}
+.jinsom-admin-report-read-form .content li {
+    margin-bottom: 15px;
+    color: #999;
+}
+.jinsom-admin-report-read-form .content li span {
+    color: #000;
+    margin-right: 10px;
+}
+.jinsom-admin-report-read-form .content li a {
+    text-decoration: underline;
+}
+.jinsom-admin-report-read-form .btn {
+    display: flex;
+    margin-top: 20px;
+    text-align: center;
+    color: #fff;
+}
+.jinsom-admin-report-read-form .btn>span {
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.jinsom-admin-report-read-form .btn .agree {
+    flex: 2;
+    background-color: #4caf50;
+    margin-right: 20px;
+}
+.jinsom-admin-report-read-form .btn .del {
+    flex: 1;
+    background-color: #f44336;
+}

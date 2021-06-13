@@ -11144,6 +11144,41 @@ h1 .commend:before{
 .jinsom-setting-content.address .address-list li .b>span {
     flex: 1;
 }
+.jinsom-setting-content-address-add-box {
+    padding: 5vw 4vw;
+}
+.jinsom-setting-content-address-add-box li {
+    margin-bottom: 4vw;
+    padding-bottom: 4vw;
+    border-bottom: 1px solid #f1f1f1;
+    display: flex;
+}
+.jinsom-setting-content-address-add-box li span:nth-child(2) {
+    flex: 1;
+}
+.jinsom-setting-content-address-add-box li input {
+    border: none;
+    width: 100%;
+}
+.jinsom-setting-content-address-add-box li textarea {
+    width: 100%;
+    resize: none;
+    height: 15vw;
+    border: none;
+}
+.jinsom-setting-content-address-add-box .btn {
+    text-align: center;
+    background-color: var(--jinsom-color);
+    padding: 2.5vw;
+    color: #fff;
+    border-radius: 8vw;
+}
+.jinsom-setting-content-address-add-box li select {
+    border: none;
+    background: none;
+    width: 100%;
+    color: #888;
+}
 
 
 /*转移版块*/
@@ -11166,4 +11201,49 @@ h1 .commend:before{
 .jinsom-change-bbs-content .tips {
     color: #f00;
     margin-bottom: 4vw;
+}
+
+
+
+.jinsom-report-content {
+    padding: 6vw 4vw;
+}
+.jinsom-report-content li {
+    margin-bottom: 6vw;
+    display: flex;
+}
+.jinsom-report-content .title span:last-child {
+    color: #0c61a5;
+}
+.jinsom-report-content li span:last-child {
+    flex: 1;
+}
+.jinsom-report-content .type select {
+    width: 100%;
+    height: 8vw;
+    border-radius: 2vw;
+    border: 1px solid #aaa;
+    background-color: #fff;
+}
+.jinsom-report-content li textarea {
+    width: 100%;
+    padding: 2vw;
+    box-sizing: border-box;
+    border: 1px solid #aaa;
+    border-radius: 2vw;
+    height: 30vw;
+}
+.jinsom-report-content .btn {
+    text-align: center;
+    background-color: var(--jinsom-color);
+    color: #fff;
+    padding: 2.2vw;
+    border-radius: 8vw;
+}
+.jinsom-report-content .tips {
+    margin-top: 6vw;
+    padding: 2vw;
+    border: 1px solid #eee;
+    color: #aaa;
+    border-radius: 2vw;
 }

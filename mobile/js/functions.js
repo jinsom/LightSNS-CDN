@@ -2798,6 +2798,7 @@ function jinsom_open_change_bbs_form(post_id,bbs_id){
 layer.closeAll();
 myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/change-bbs.php?post_id='+post_id+'&bbs_id='+bbs_id});	
 }
+
 //提交移动版块
 function jinsom_change_bbs(post_id,bbs_id){
 new_bbs_id='';
@@ -2814,6 +2815,32 @@ success: function(msg){
 myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 function c(){window.open(msg.url,'_self');}setTimeout(c,2000);
+}
+});
+}
+
+
+//打开举报页面
+function jinsom_report_page(type,report_id){
+layer.closeAll();
+myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/templates/page/report.php?type='+type+'&report_id='+report_id});
+}
+
+//提交举报
+function jinsom_report(report_id,from){
+reason=$('#jinsom-report-reason').val();
+type=$('#jinsom-report-type').val();
+myApp.showIndicator();
+$.ajax({
+type: "POST",
+url:jinsom.jinsom_ajax_url+"/action/report.php",
+data:{report_id:report_id,reason:reason,type:type,from:from},
+success: function(msg){
+myApp.hideIndicator();
+layer.open({content:msg.msg,skin:'msg',time:2});
+if(msg.code==1){
+function c(){history.back(-1);}setTimeout(c,1500);	
+}
 }
 });
 }
