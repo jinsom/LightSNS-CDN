@@ -7040,6 +7040,7 @@ h1 .commend:before{
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    text-shadow: 0 0 4px rgb(233 70 88);
 }
 .jinsom-post-redbag-content .open {
     width: 9vw;
