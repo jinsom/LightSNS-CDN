@@ -1876,6 +1876,7 @@ display: none !important;
 }
 .jinsom-reprint-author a, .jinsom-reprint-author a font {
     color: #1e73be !important;
+    font-size: 4vw;
 }
 .jinsom-reprint-title {
     font-size: 4.2vw;

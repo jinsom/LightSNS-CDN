@@ -731,18 +731,30 @@ if(msg.code==1){//关注成功
 $(obj).removeClass('no').addClass('had');
 $(obj).html('<i class="jinsom-icon jinsom-yiguanzhu"></i> 已关');  
 
+if($('.jinsom-bbs-like-content.publish').length>0){//如果在发表界面
+
+if($('.jinsom-bbs-header').length>0){//论坛界面关注
+bbs_avatar=$(obj).parent().prev().children('.avatarimg').html();
+bbs_name=$(obj).prev().text();
+bbs_desc=$(obj).parent().next().text();
+}else{//推荐论坛列表里面关注
+bbs_avatar=$(obj).siblings('.item-media').children('a').html();
+bbs_name=$(obj).siblings('.item-inner').find('.name').text();
+bbs_desc=$(obj).siblings('.item-inner').find('.desc').text();
+}
+
 html='<li id="jinsom-bbs-like-'+bbs_id+'">\
 <div class="item-content">\
 <div class="item-media">\
 <a href=\'javascript:jinsom_publish_power("bbs",'+bbs_id+',"")\' class="link">\
-'+$(obj).siblings('.item-media').children('a').html()+'\
+'+bbs_avatar+'\
 </a>\
 </div>\
 <div class="item-inner">\
 <div class="item-title">\
 <a href=\'javascript:jinsom_publish_power("bbs",'+bbs_id+',"")\' class="link">\
-<div class="name">'+$(obj).siblings('.item-inner').find('.name').text()+'</div>\
-<div class="desc">'+$(obj).siblings('.item-inner').find('.desc').text()+'</div>\
+<div class="name">'+bbs_name+'</div>\
+<div class="desc">'+bbs_desc+'</div>\
 </a>\
 </div></div></div>\
 </li>';
@@ -752,7 +764,7 @@ $('.jinsom-bbs-like-content.publish').html('<div class="jinsom-chat-user-list bb
 }else{
 $('.jinsom-bbs-like-content.publish .jinsom-chat-user-list').prepend(html);
 }
-
+}//如果在发表界面
 
 }else{//取消关注
 $(obj).removeClass('had').addClass('no');  
