@@ -200,11 +200,13 @@ return false;
 
 // address_number=parseInt(address_number)-1;
 //ajax后端插入地址
+if($('#jinsom-shop-address').length>0){
 $.ajax({   
 url:jinsom.jinsom_ajax_url+"/action/address-order-add.php",
 type:'POST',   
 data:{trade_no:trade_no,address_number:address_number},
 });
+}
 
 if(pay_type=='alipay_code'){//当面付
 data=$('#jinsom-goods-recharge-form').serialize();
