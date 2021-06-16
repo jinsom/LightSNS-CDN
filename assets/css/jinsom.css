@@ -3550,7 +3550,7 @@ img.wp-smiley {
     object-fit: cover;
     border-radius: 4px;
 }
-.jinsom-post-images-list a i.gif {
+.jinsom-post-images-list a i.gif, .jinsom-comment-image-list.number-1 a .gif {
     width: 35px;
     display: inline-block;
     position: absolute;
@@ -14106,6 +14106,7 @@ span.aplayer-thumb {
 /*评论图片*/
 .jinsom-comment-image-list {
     padding-top: 10px;
+    width: 56%;
 }
 .jinsom-comment-image-list>a {
     float: left;
@@ -14125,7 +14126,14 @@ span.aplayer-thumb {
     width: 150px;
     height: 150px;
 }
-
+.jinsom-comment-image-list.number-1 a {
+    height: auto;
+    max-height: 400px;
+    width: auto;
+    max-width: 40%;
+    overflow: hidden;
+    position: relative;
+}
 
 .jinsom-post-vote-list .title {
     text-align: center;
