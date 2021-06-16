@@ -1322,7 +1322,7 @@ display: none !important;
     height: 30vw;
     border-radius: 1vw;
 }
-.jinsom-post-images-list a i.gif {
+.jinsom-post-images-list a i.gif, .jinsom-comment-image-list a .gif {
     width: 10vw;
     position: absolute;
     background: rgb(0 0 0 / 0.6);
@@ -8014,7 +8014,14 @@ h1 .commend:before{
     height: 100%;
     object-fit: cover;
 }
-
+.jinsom-comment-image-list.number-1 a {
+    height: auto;
+    max-width: 60%;
+    max-height: 50vh;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
 
 /*海报*/
 .jinsom-content-playbill-main{

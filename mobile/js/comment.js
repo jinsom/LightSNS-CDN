@@ -4,13 +4,14 @@ function jinsom_comment(post_id,reload,ticket,randstr){
 content=$('#jinsom-comment-content-'+post_id).val();
 img='';
 img_html='';
-if($('#jinsom-publish-images-list li').length>0){
+img_count=$('#jinsom-publish-images-list li').length;
+if(img_count>0){
 $('#jinsom-publish-images-list li').each(function(){
 img+=$(this).children('a').attr('href')+',';
 img_html+='<a data-fancybox="gallery-new" href="'+$(this).children('a').attr('href')+'">'+$(this).children('a').html()+'</a>';
 });
 img=img.substr(0,img.length-1);
-img_html='<div class="jinsom-comment-image-list clear">'+img_html+'</div>';
+img_html='<div class="jinsom-comment-image-list number-'+img_count+' clear">'+img_html+'</div>';
 }
 
 myApp.showIndicator();
@@ -88,13 +89,14 @@ function jinsom_bbs_comment(post_id,bbs_id,ticket,randstr){
 content=$('#jinsom-comment-content-'+post_id).val();
 img='';
 img_html='';
-if($('#jinsom-publish-images-list li').length>0){
+img_count=$('#jinsom-publish-images-list li').length;
+if(img_count>0){
 $('#jinsom-publish-images-list li').each(function(){
 img+=$(this).children('a').attr('href')+',';
 img_html+='<a data-fancybox="gallery-new" href="'+$(this).children('a').attr('href')+'">'+$(this).children('a').html()+'</a>';
 });
 img=img.substr(0,img.length-1);
-img_html='<div class="jinsom-comment-image-list clear">'+img_html+'</div>';
+img_html='<div class="jinsom-comment-image-list number-'+img_count+' clear">'+img_html+'</div>';
 }
 
 
