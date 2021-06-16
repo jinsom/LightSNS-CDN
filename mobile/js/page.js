@@ -132,7 +132,21 @@ for(i = 0; i< number; i ++) {
 $('.jinsom-publish-words-form .add i').hide();//显示加载loading
 $('.jinsom-publish-words-form .add span').css('display','inline-block');//显示加载loading
 info=that.files[i];
-if(info.type!='image/gif'){
+
+//获取长宽
+var bi;
+var reader = new FileReader();
+reader.readAsDataURL(info);
+reader.onload = function(theFile) {
+var image = new Image();
+image.src = theFile.target.result;
+image.onload = function() {
+bi=this.height/this.width;
+console.log(bi);
+};
+};
+
+if(info.type!='image/gif'&&bi<3){
 lrz(info,{quality:parseFloat(jinsom.comment_img_quality)})
 .then(function (rst) {
 $.ajax({
@@ -273,7 +287,21 @@ for(i = 0; i< number; i ++) {
 $('.jinsom-publish-words-form .add i').hide();//显示加载loading
 $('.jinsom-publish-words-form .add span').css('display','inline-block');//显示加载loading
 info=that.files[i];
-if(info.type!='image/gif'){
+
+//获取长宽
+var bi;
+var reader = new FileReader();
+reader.readAsDataURL(info);
+reader.onload = function(theFile) {
+var image = new Image();
+image.src = theFile.target.result;
+image.onload = function() {
+bi=this.height/this.width;
+console.log(bi);
+};
+};
+
+if(info.type!='image/gif'&&bi<3){
 lrz(info,{quality:parseFloat(jinsom.comment_img_quality)})
 .then(function (rst) {
 $.ajax({
@@ -1523,7 +1551,21 @@ for(i = 0; i< number; i ++) {
 $('.jinsom-publish-words-form .add i').hide();//显示加载loading
 $('.jinsom-publish-words-form .add span').css('display','inline-block');//显示加载loading
 info=that.files[i];
-if(info.type!='image/gif'){
+
+//获取长宽
+var bi;
+var reader = new FileReader();
+reader.readAsDataURL(info);
+reader.onload = function(theFile) {
+var image = new Image();
+image.src = theFile.target.result;
+image.onload = function() {
+bi=this.height/this.width;
+console.log(bi);
+};
+};
+
+if(info.type!='image/gif'&&bi<3){
 lrz(info,{quality:parseFloat(jinsom.publish_img_quality)})
 .then(function (rst) {
 $.ajax({
