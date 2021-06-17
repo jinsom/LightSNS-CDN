@@ -11217,12 +11217,12 @@ span.aplayer-thumb {
 
 /*内容样式1==全屏*/
 .full .jinsom-single-special-box-content.one li,.full .jinsom-single-special-box-content.two li {
-    width: calc((100% - 30px)/4);
+    width: calc((100% - 40px)/5);
 }
 .full .jinsom-single-special-box-content.one li:nth-child(3n),.full .jinsom-single-special-box-content.two li:nth-child(3n),.full .jinsom-single-special-box-content.user li:nth-child(4n) {
     margin-right: 10px;
 }
-.full .jinsom-single-special-box-content.one li:nth-child(4n),.full .jinsom-single-special-box-content.two li:nth-child(4n),.full .jinsom-single-special-box-content.user li:nth-child(5n) {
+.full .jinsom-single-special-box-content.one li:nth-child(5n),.full .jinsom-single-special-box-content.two li:nth-child(4n),.full .jinsom-single-special-box-content.user li:nth-child(5n) {
     margin-right: 0;
 }
 .full .jinsom-single-special-box-content.three li.b .cover a {
@@ -14128,7 +14128,7 @@ span.aplayer-thumb {
 }
 .jinsom-comment-image-list.number-1 a {
     height: auto;
-    max-height: 400px;
+    max-height: 200px;
     width: auto;
     max-width: 40%;
     overflow: hidden;

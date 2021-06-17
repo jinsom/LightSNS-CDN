@@ -121,6 +121,7 @@ $(this).children('.jinsom-user-info-card').hide();
 });
 
 
+jinsom_lightbox();
 }
 
 
@@ -264,4 +265,13 @@ $(obj).attr('page',paged);
 }
 });
 
+}
+
+
+
+//图片灯箱
+function jinsom_lightbox(){
+$("[data-fancybox]").fancybox({
+hash:false,
+});	
 }
