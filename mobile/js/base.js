@@ -77,14 +77,15 @@ console.log(Status)
 myApp.hideIndicator();
 $('.jinsom-load-post').remove();
 if(Status=="error"){//发生错误
-layer.open({
-content: '页面请求失败，请重新尝试！',
-btn: '确定',
-shadeClose: false,
-yes: function(){
-layer.closeAll();
-}
-});
+console.log('页面请求失败，请重新尝试！');
+// layer.open({
+// content: '页面请求失败，请重新尝试！',
+// btn: '确定',
+// shadeClose: false,
+// yes: function(){
+// layer.closeAll();
+// }
+// });
 }else if(Status=="timeout"){//超时处理
 layer.open({
 content: '页面请求超时，请重新尝试！',
@@ -97,14 +98,15 @@ layer.closeAll();
 }else if(Status=="abort"){//中断
 console.log('操作中断！');
 }else{//其他情况
-layer.open({
-content: '页面请求发生未知错误，请重新尝试！',
-btn: '确定',
-shadeClose: false,
-yes: function(){
-layer.closeAll();
-}
-});
+console.log('页面请求发生未知错误，请重新尝试！');
+// layer.open({
+// content: '页面请求发生未知错误，请重新尝试！',
+// btn: '确定',
+// shadeClose: false,
+// yes: function(){
+// layer.closeAll();
+// }
+// });
 }
 }
 });
