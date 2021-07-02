@@ -133,3 +133,7 @@ input.button.button-small.wp-picker-clear {
     overflow: hidden;
     white-space: nowrap;
 }
+
+.jinsom-panel-cloneable-value i {
+    font-size: 16px !important;
+}

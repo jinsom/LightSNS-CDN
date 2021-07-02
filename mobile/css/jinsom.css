@@ -4264,54 +4264,6 @@ display: none !important;
 .jinsom-mywallet-box .content li p {
     font-size: 3.5vw;
 }
-.jinsom-mywallet-box .content li.recharge-credit i {
-    color: #56abe4;
-}
-.jinsom-mywallet-box .content li.recharge-vip i {
-    color: #f44336;
-}
-.jinsom-mywallet-box .content li.transfer i {
-    color: #009688;
-}
-.jinsom-mywallet-box .content li.withdrawals i {
-    color: #fa9e3b;
-}
-.jinsom-mywallet-box .content li.shop i {
-    color: #f7584d;
-}
-.jinsom-mywallet-box .content li.gift i {
-    color: #ff69a0;
-}
-.jinsom-mywallet-box .content li.key i {
-    color: #607D8B;
-}
-.jinsom-mywallet-box .content li.lottery i {
-    color: #FF5722;
-}
-.jinsom-mywallet-box .content li.luck-draw i {
-    color: #313131;
-}
-
-.jinsom-mywallet-box .content li.income i {
-    color: #4CAF50;
-    font-size: 9.5vw;
-}
-.jinsom-mywallet-box .content li.outlay i {
-    color: #f98966;
-    font-size: 9.5vw;
-}
-.jinsom-mywallet-box .content li.recharge-note i {
-    font-size: 9.5vw;
-    color: #009688;
-}
-.jinsom-mywallet-box .content li.withdrawals-note i {
-    font-size: 9.5vw;
-    color: #56abe4;
-}
-.jinsom-mywallet-box .content li.exp-note i {
-    color: #aa7fff;
-    font-size: 9vw;
-}
 .jinsom-recharge-number,.jinsom-recharge-type {
     padding: 4vw;
 }
@@ -5119,9 +5071,6 @@ h1 .commend:before{
 
 
 /*大转盘*/
-.jinsom-lottery-content {
-    background-color: #0a7b5c;
-}
 .jinsom-lottery-container {
     position: relative;
     margin: auto;
@@ -5139,10 +5088,13 @@ h1 .commend:before{
     transform-origin: 0px 50%;
 }
 .jinsom-lottery-container .item:nth-child(odd) {
-    border-right-color: #d2cea2;
+    border-right-color: #e0e0e0;
+}
+.jinsom-lottery-container .item:nth-child(odd)>div {
+    color: #3c3c3c;
 }
 .jinsom-lottery-container .item:nth-child(even) {
-    border-right-color: #ff6501;
+    border-right-color: var(--jinsom-color);
 }
 .jinsom-lottery-container .item-content {
     position: absolute;
@@ -5154,7 +5106,7 @@ h1 .commend:before{
     position: absolute;
     width: 20vw;
     height: 20vw;
-    background-color: #e2553e;
+    background-color: var(--jinsom-color);
     border-radius: 100%;
     line-height: 20vw;
     text-align: center;
@@ -5174,7 +5126,7 @@ h1 .commend:before{
     height: 0;
     border-left: 2.5vw solid transparent;
     border-right: 2.5vw solid transparent;
-    border-bottom: 18vw solid #e2553e;
+    border-bottom: 18vw solid var(--jinsom-color);
     position: absolute;
     top: -15vw;
     left: 7vw;
@@ -5187,17 +5139,16 @@ h1 .commend:before{
 .jinsom-lottery-info>div {
     flex: 1;
     text-align: center;
-    color: #31c09b;
 }
 .jinsom-lottery-info>div span {
-    color: #CDDC39;
+    color: var(--jinsom-color);
     font-size: 4vw;
     margin-left: 2vw;
 }
 .jinsom-lottery-money {
     margin: auto;
     width: 80%;
-    background-color: rgba(22, 79, 63, 0.3);
+    background-color: rgb(210 210 210 / 30%);
     padding: 3vw 2vw;
     border-radius: 1vw;
     display: flex;
@@ -5205,14 +5156,13 @@ h1 .commend:before{
 .jinsom-lottery-money span {
     display: flex;
     align-items: center;
-    color: #31c09b;
 }
 .jinsom-lottery-money span:first-child {
     margin-right: 4vw;
 }
 .jinsom-lottery-money input {
     width: 20vw;
-    background-color: #d2cea2;
+    background-color: #ffffff;
     border-radius: 20px;
     padding: 2vw 0;
     text-align: center;
@@ -5222,23 +5172,22 @@ h1 .commend:before{
     font-size: 4vw;
 }
 .jinsom-lottery-money span.add {
-    background-color: #8BC34A;
+    background-color: var(--jinsom-color);
     padding: 0 2vw;
     margin-left: 4vw;
     border-radius: 1vw;
     font-size: 4vw;
-    color: #0f362c;
+    color: #ffffff;
 }
 .jinsom-lottery-btn {
     width: 75%;
-    background-color: #e2553e;
+    background-color: var(--jinsom-color);
     color: #fff;
     margin: auto;
     text-align: center;
     padding: 3vw 4vw;
     border-radius: 20vw;
     margin-top: 6vw;
-    border: 1vw solid rgba(22, 79, 63, 0.3);
 }
 
 
@@ -6253,7 +6202,7 @@ h1 .commend:before{
 
 
 /*会员中心*/
-[data-page="vip"] .navbar {
+[data-page="vip"] .navbar-inner {
     background-color: #393f4d;
 }
 .jinsom-vip-page-header-bg {
@@ -8021,6 +7970,9 @@ h1 .commend:before{
     overflow: hidden;
     width: 100%;
     position: relative;
+}
+.jinsom-comment-image-list.number-1 a img {
+    display: block;
 }
 
 /*海报*/
@@ -10223,6 +10175,15 @@ h1 .commend:before{
     overflow: hidden;
     white-space: nowrap;
 }
+.jinsom-post-application-show .url span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 80vw;
+    display: inline-block;
+    vertical-align: -3vw;
+}
+
 .jinsom-post-application-show i {
     margin-right: 1vw;
     color: #666;
@@ -11255,4 +11216,11 @@ h1 .commend:before{
     border: 1px solid #eee;
     color: #aaa;
     border-radius: 2vw;
+}
+
+
+/*头部通知*/
+.notifications .close-notification {
+    margin-right: 2vw;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D'0%200%2044%2044'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Cg%20stroke%3D'none'%20stroke-width%3D'1'%20fill%3D'none'%20fill-rule%3D'evenodd'%3E%3Cpath%20d%3D'M22.5%2C20.3786797%20L14.7218254%2C12.6005051%20L12.6005051%2C14.7218254%20L20.3786797%2C22.5%20L12.6005051%2C30.2781746%20L14.7218254%2C32.3994949%20L22.5%2C24.6213203%20L30.2781746%2C32.3994949%20L32.3994949%2C30.2781746%20L24.6213203%2C22.5%20L32.3994949%2C14.7218254%20L30.2781746%2C12.6005051%20L22.5%2C20.3786797%20Z%20M22%2C44%20C34.1502645%2C44%2044%2C34.1502645%2044%2C22%20C44%2C9.8497355%2034.1502645%2C0%2022%2C0%20C9.8497355%2C0%200%2C9.8497355%200%2C22%20C0%2C34.1502645%209.8497355%2C44%2022%2C44%20Z'%20fill%3D'%23000000'%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E");
 }
