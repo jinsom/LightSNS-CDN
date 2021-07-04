@@ -368,6 +368,9 @@ return false;
 }
 }
 
+
+
+
 video_url=$("#jinsom-video-url").val();
 if(video_url==''){
 if(publish_type=='video'){
@@ -377,6 +380,9 @@ layer.open({content:'请上传音频或填写音频地址！',skin:'msg',time:2}
 }
 return false;	
 }
+
+
+
 
 data=$("#jinsom-publish-form").serialize();
 if($('.jinsom-publish-words-form .topic span').length>0){

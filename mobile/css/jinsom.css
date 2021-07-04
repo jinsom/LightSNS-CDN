@@ -4403,7 +4403,7 @@ display: none !important;
     color: #999;
 }
 .jinsom-post-buy-form .btn {
-    background-color: #5fb878;
+    background-color: var(--jinsom-color);
     color: #fff;
     padding: 2.5vw 2vw;
     margin: 10vw 0vw 0;
