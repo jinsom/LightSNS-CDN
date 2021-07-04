@@ -6178,7 +6178,7 @@ h1 .commend:before{
     max-width: 100%;
     height: auto;
 }
-#jinsom-music-url,#jinsom-video-url {
+#jinsom-music-url, #jinsom-video-url {
     padding: 3vw 2vw;
     width: 100%;
     box-sizing: border-box;
@@ -6187,7 +6187,6 @@ h1 .commend:before{
     background-color: #f6f6f6;
     border-radius: 1vw;
     margin-top: 2vw;
-    font-size: 4.5vw;
 }
 .jinsom-publish-video-demo,.jinsom-publish-music-demo {
     margin-bottom: 6vw;
@@ -11216,6 +11215,20 @@ h1 .commend:before{
     border: 1px solid #eee;
     color: #aaa;
     border-radius: 2vw;
+    font-size: 3.5vw;
+}
+.jinsom-chat-user-list li .desc .jinsom-distance {
+    background-color: #fff;
+    color: #0569b8;
+    padding: 0;
+    vertical-align: 0;
+}
+.jinsom-chat-user-list li .desc .jinsom-distance i {
+    font-size: 3vw;
+}
+.nearby-people .jinsom-chat-user-list li .desc .jinsom-distance {
+    margin-right: 2vw;
+    margin-left: 0;
 }
 
 
