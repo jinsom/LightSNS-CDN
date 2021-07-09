@@ -6,7 +6,7 @@ document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/mobile/js
 document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/mobile/js/recharge.js'></script>");//发布相关
 document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/mobile/js/shop.js'></script>");//商城相关
 document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/assets/js/jquery.fancybox.min.js'></script>");//图片灯箱
-
+document.write("<script type='text/javascript' src='"+jinsom.cdn_url+"/mobile/js/edit.js'></script>");//编辑
 
 //置顶内容：全局置顶==板块置顶==主页置顶==推荐==加精
 function jinsom_sticky(post_id,bbs_id,type,obj){
@@ -479,9 +479,8 @@ follow_dom.html('<i class="jinsom-icon jinsom-xianghuguanzhu"></i>互关');
 
 //动态播放视频
 function jinsom_play_video(post_id,video_url,obj){
-post_id_=post_id;
 post_id=parseInt(Math.random() * (999999 - 9999 + 1) + 9999);
-$(obj).before('<div id="jinsom-video-'+post_id+'" post_id="'+post_id+'" post_id_="'+post_id_+'"></div>');
+$(obj).before('<div id="jinsom-video-'+post_id+'" post_id="'+post_id+'"></div>');
 $(obj).remove();
 video_type=jinsom_video_type(video_url);
 window['video_'+post_id]=new window[video_type]({
@@ -500,41 +499,16 @@ innerRotate: true, //只旋转内部video
 clockwise: false // 旋转方向是否为顺时针
 }
 });
-window['video_'+post_id].on('play',function(obj){
-
-post_id_=$('#'+obj.root.id).attr('post_id_');
-console.log(post_id_);
-
+window['video_'+post_id].on('play',function(){
 if($('.jinsom-video-playing').length>0){
 current_post_id=$('.jinsom-video-playing').attr('post_id');
 window['video_'+current_post_id].pause();
 }
 
 $('#jinsom-video-'+post_id).addClass('jinsom-video-playing');
-
-//赏===计时
-function xxxx(post_id_){
-if($('#jinsom-video-'+post_id).hasClass('jinsom-video-playing')){
-$.ajax({
-type: "POST",
-url:jinsom.theme_url+"/custom/video-setTimeout.php",
-data: {post_id:post_id_},
-success: function(msg){
-if(msg.code==1){
-layer.open({content:msg.msg,skin:'msg',time:2});
-}
-}
-}); 
-}
-}
-yyyy=setTimeout(function(){xxxx(post_id_)},5000);
-
-
 })
 window['video_'+post_id].on('pause',function(){
-// console.log('视频('+post_id_+')暂停了!');
 $('#jinsom-video-'+post_id).removeClass('jinsom-video-playing');
-// clearTimeout(yyyy);
 })
 }
 

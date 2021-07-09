@@ -6061,6 +6061,7 @@ figure.effect-ming:hover figcaption::before, figure.effect-ming:hover p {
     border-radius: 4px;
     top: 2px;
     color: #fff;
+    z-index: 9999;
 }
 .jinsom-bbs-single-box .right .answer-icon {
     position: absolute;

@@ -1812,14 +1812,7 @@ return false;
 });
 
 });
-
-$('.jinsom-publish-video-type .select-type li').click(function(){
-$(this).addClass('on').siblings().removeClass('on');
-$(this).parent().next().children('ul').hide().eq($(this).index()).show();
-$('#jinsom-publish-video-custom-type').val($(this).attr('data'));
-});
-
-}//video
+}
 
 
 if(type=='music'){//上传音乐

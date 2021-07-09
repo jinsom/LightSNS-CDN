@@ -222,10 +222,6 @@ layer.open({content:'请输入密码！',skin:'msg',time:2});
 return false;	
 }
 }
-if($.trim($(".jinsom-publish-words-form .power-content textarea").val())==''){
-layer.open({content:'请输入隐藏内容！',skin:'msg',time:2});
-return false;		
-}
 }
 
 data=$("#jinsom-publish-form").serialize();
@@ -263,6 +259,7 @@ if(msg.code==1){
 $('[data-page="publish"] .right a').removeAttr('onclick');
 $('.jinsom-home-menu li.on').click();//重新加载内容
 function d(){myApp.getCurrentView().router.back();}setTimeout(d,2500);
+function e(){myApp.getCurrentView().router.refreshPage();}setTimeout(e,3000);
 }else if(msg.code==5){
 function a(){jinsom_publish_add_topic_form();}setTimeout(a,1500);
 }else if(msg.code==2){
@@ -333,6 +330,7 @@ layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
 $('.jinsom-home-menu li.on').click();//重新加载内容
 function d(){myApp.getCurrentView().router.back();}
+function e(){myApp.getCurrentView().router.refreshPage();}setTimeout(e,3000);
 setTimeout(d,2500);
 }else if(msg.code==5){
 function a(){jinsom_publish_add_topic_form();}setTimeout(a,1500);
@@ -352,16 +350,6 @@ function c(){myApp.getCurrentView().router.load({url:jinsom.theme_url+'/mobile/t
 //发布视频 | 音乐
 function jinsom_publish_music_video(publish_type,ticket,randstr){
 
-if($.trim($(".jinsom-publish-words-form .title input").val())==''){
-layer.open({content:'请输入标题！',skin:'msg',time:2});
-return false;	
-}
-
-if($.trim($(".jinsom-publish-words-form .content textarea").val())==''){
-layer.open({content:'请输入内容！',skin:'msg',time:2});
-return false;	
-}
-
 power=$('#jinsom-pop-power').val();
 if(power==1||power==2||power==4||power==5){
 if(power==1){
@@ -378,9 +366,6 @@ return false;
 }
 }
 
-
-
-
 video_url=$("#jinsom-video-url").val();
 if(video_url==''){
 if(publish_type=='video'){
@@ -390,9 +375,6 @@ layer.open({content:'请上传音频或填写音频地址！',skin:'msg',time:2}
 }
 return false;	
 }
-
-
-
 
 data=$("#jinsom-publish-form").serialize();
 if($('.jinsom-publish-words-form .topic span').length>0){
@@ -415,6 +397,7 @@ layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
 $('.jinsom-home-menu li.on').click();//重新加载内容
 function d(){myApp.getCurrentView().router.back();}setTimeout(d,2500);
+function e(){myApp.getCurrentView().router.refreshPage();}setTimeout(e,3000);
 }else if(msg.code==5){
 function a(){jinsom_publish_add_topic_form();}setTimeout(a,1500);
 }else if(msg.code==2){
@@ -520,13 +503,9 @@ myApp.hideIndicator();
 layer.open({content:msg.msg,skin:'msg',time:2});
 if(msg.code==1){
 $(".jinsom-publish-words-form .content textarea").val('');
-if($('.page-on-center').prev().attr('data-page')=='bbs'){//在论坛页面
-myApp.getCurrentView().router.back();
-function e(){myApp.getCurrentView().router.refreshPage();}setTimeout(e,800);
-}else{//在首页
-function d(){myApp.getCurrentView().router.back();}setTimeout(d,2000);
 $('.jinsom-home-menu li.on').click();//重新加载内容
-}
+function d(){myApp.getCurrentView().router.back();}setTimeout(d,2500);
+function e(){myApp.getCurrentView().router.refreshPage();}setTimeout(e,3000);
 }else if(msg.code==5){
 function a(){jinsom_publish_add_topic_form();}setTimeout(a,1500);
 }else if(msg.code==2){

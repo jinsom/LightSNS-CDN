@@ -1434,7 +1434,7 @@ display: none !important;
     border-radius: 1vw;
 }
 .jinsom-tips .jinsom-btn {
-    background-color: #5fb878;
+    background-color: var(--jinsom-color);
     color: #fff;
     padding: 2vw 2vw;
     margin: 2vw 8vw;
@@ -2540,7 +2540,7 @@ display: none !important;
     width: 50vw;
     padding: 2vw;
     color: #fff;
-    background-color: #3fa3f2;
+    background-color: var(--jinsom-color);
     position: relative;
     margin-left: 6vw;
     border-radius: 2vw;
@@ -2554,7 +2554,7 @@ display: none !important;
     width: 0;
     height: 0;
     border-style: solid dashed dashed;
-    border-color: #3fa3f2 transparent transparent;
+    border-color: var(--jinsom-color) transparent transparent;
     overflow: hidden;
     border-width: 4vw;
 }
@@ -6178,7 +6178,7 @@ h1 .commend:before{
     max-width: 100%;
     height: auto;
 }
-#jinsom-music-url, #jinsom-video-url {
+#jinsom-music-url,#jinsom-video-url {
     padding: 3vw 2vw;
     width: 100%;
     box-sizing: border-box;
@@ -6187,6 +6187,7 @@ h1 .commend:before{
     background-color: #f6f6f6;
     border-radius: 1vw;
     margin-top: 2vw;
+    font-size: 4.5vw;
 }
 .jinsom-publish-video-demo,.jinsom-publish-music-demo {
     margin-bottom: 6vw;
@@ -11215,20 +11216,9 @@ h1 .commend:before{
     border: 1px solid #eee;
     color: #aaa;
     border-radius: 2vw;
-    font-size: 3.5vw;
 }
-.jinsom-chat-user-list li .desc .jinsom-distance {
-    background-color: #fff;
-    color: #0569b8;
-    padding: 0;
-    vertical-align: 0;
-}
-.jinsom-chat-user-list li .desc .jinsom-distance i {
-    font-size: 3vw;
-}
-.nearby-people .jinsom-chat-user-list li .desc .jinsom-distance {
-    margin-right: 2vw;
-    margin-left: 0;
+.jinsom-reprint-had-delete {
+    color: #f00;
 }
 
 

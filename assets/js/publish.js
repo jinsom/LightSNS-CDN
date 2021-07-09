@@ -492,10 +492,6 @@ layer.msg('请输入密码！');
 return false;	
 }
 }
-if($.trim($(obj).parent().siblings('.jinsom-publish-words-power').find('textarea[name="hide-content"]').val())==''){
-layer.msg('请输入隐藏内容！');
-return false;		
-}
 }
 
 data=$(obj).parents('.jinsom-publish-words-form').serialize();
