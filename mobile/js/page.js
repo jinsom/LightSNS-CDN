@@ -134,19 +134,19 @@ $('.jinsom-publish-words-form .add span').css('display','inline-block');//显示
 info=that.files[i];
 
 //获取长宽
-var bi;
-var reader = new FileReader();
-reader.readAsDataURL(info);
-reader.onload = function(theFile) {
-var image = new Image();
-image.src = theFile.target.result;
-image.onload = function() {
-bi=this.height/this.width;
-console.log(bi);
-};
-};
-
-if(info.type!='image/gif'&&bi<3){
+// var bi;
+// var reader = new FileReader();
+// reader.readAsDataURL(info);
+// reader.onload = function(theFile) {
+// var image = new Image();
+// image.src = theFile.target.result;
+// image.onload = function() {
+// bi=this.height/this.width;
+// console.log(bi);
+// };
+// };
+// if(info.type!='image/gif'&&bi<3){
+if(info.type!='image/gif'){
 lrz(info,{quality:parseFloat(jinsom.comment_img_quality)})
 .then(function (rst) {
 $.ajax({
@@ -289,19 +289,19 @@ $('.jinsom-publish-words-form .add span').css('display','inline-block');//显示
 info=that.files[i];
 
 //获取长宽
-var bi;
-var reader = new FileReader();
-reader.readAsDataURL(info);
-reader.onload = function(theFile) {
-var image = new Image();
-image.src = theFile.target.result;
-image.onload = function() {
-bi=this.height/this.width;
-console.log(bi);
-};
-};
-
-if(info.type!='image/gif'&&bi<3){
+// var bi;
+// var reader = new FileReader();
+// reader.readAsDataURL(info);
+// reader.onload = function(theFile) {
+// var image = new Image();
+// image.src = theFile.target.result;
+// image.onload = function() {
+// bi=this.height/this.width;
+// console.log(bi);
+// };
+// };
+// if(info.type!='image/gif'&&bi<3){
+if(info.type!='image/gif'){
 lrz(info,{quality:parseFloat(jinsom.comment_img_quality)})
 .then(function (rst) {
 $.ajax({
@@ -1553,19 +1553,19 @@ $('.jinsom-publish-words-form .add span').css('display','inline-block');//显示
 info=that.files[i];
 
 //获取长宽
-var bi;
-var reader = new FileReader();
-reader.readAsDataURL(info);
-reader.onload = function(theFile) {
-var image = new Image();
-image.src = theFile.target.result;
-image.onload = function() {
-bi=this.height/this.width;
-console.log(bi);
-};
-};
-
-if(info.type!='image/gif'&&bi<3){
+// var bi;
+// var reader = new FileReader();
+// reader.readAsDataURL(info);
+// reader.onload = function(theFile) {
+// var image = new Image();
+// image.src = theFile.target.result;
+// image.onload = function() {
+// bi=this.height/this.width;
+// console.log(bi);
+// };
+// };
+// if(info.type!='image/gif'&&bi<3){
+if(info.type!='image/gif'){
 lrz(info,{quality:parseFloat(jinsom.publish_img_quality)})
 .then(function (rst) {
 $.ajax({
