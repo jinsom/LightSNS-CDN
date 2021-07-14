@@ -12855,10 +12855,6 @@ span.aplayer-thumb {
     font-size: 12px;
     color: #999;
 }
-.jinsom-shop-content {
-    min-height: 600px;
-}
-
 
 /*商品模块添加*/
 .box .jinsom-shop-header {
@@ -15407,7 +15403,7 @@ span.aplayer-thumb {
     margin-left:20px;
 }
 
-.jinsom-posts-list.single .jinsom-post-application-show,.jinsom-posts-list.power- .jinsom-post-application-show {
+.jinsom-posts-list.single .jinsom-post-application-show, .jinsom-posts-list.normal .jinsom-post-application-show {
     width: calc(50% + 20px );
     margin: 10px 0 0;
 }

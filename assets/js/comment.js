@@ -166,7 +166,9 @@ layer.msg('没有更多内容！');
 $('html,body').animate({scrollTop:$('.jinsom-single-topic-list').offset().top}, 800);
 $('.jinsom-bbs-comment-list').html(msg);
 $('.jinsom-post-comments').focus(function(){
+if(!$(this).next().hasClass('jinsom-stop-comment-tips')){
 $(this).css('height','85px');
+}
 });
 }
 

@@ -97,7 +97,9 @@ $(this).html("查看全文");
 
 //评论框点击变高
 $('.jinsom-post-comments').focus(function(){
+if(!$(this).next().hasClass('jinsom-stop-comment-tips')){
 $(this).css('height','85px');
+}
 });
 
 //资料小卡片

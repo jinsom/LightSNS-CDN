@@ -308,6 +308,19 @@ h1, h2, h3, h4, h5, h6 {
 .jinsom-distance {
     background-color: #bbb;
 }
+.jinsom-chat-user-list li .desc .jinsom-distance {
+    background-color: #fff;
+    color: #6db2e8;
+    padding: 0;
+    vertical-align: 0;
+}
+.jinsom-chat-user-list li .desc .jinsom-distance i {
+    font-size: 3vw;
+}
+.nearby-people .jinsom-chat-user-list li .desc .jinsom-distance{
+    margin-right: 2vw;
+    margin-left: 0;
+}
 
 
 /*头部*/
@@ -9235,7 +9248,7 @@ h1 .commend:before{
     flex: 1;
 }
 .jinsom-bbs-download-box .btn {
-    background-color: #5fb878;
+    background-color: var(--jinsom-color);
     color: #fff;
     padding: 2.5vw 2vw;
     border-radius: 1vw;

@@ -70,14 +70,14 @@ scrollLeft:menu_width-$(window).width()/2+$(this).outerWidth()
 
 
 //ajax错误/超时
-$.ajaxSetup({
-timeout: 18000,//18秒
-error: function(XHR, Status, Error){
-console.log(Status)
-myApp.hideIndicator();
-$('.jinsom-load-post').remove();
-if(Status=="error"){//发生错误
-console.log('页面请求失败，请重新尝试！');
+// $.ajaxSetup({
+// timeout: 18000,//18秒
+// error: function(XHR, Status, Error){
+// console.log(Status)
+// myApp.hideIndicator();
+// $('.jinsom-load-post').remove();
+// if(Status=="error"){//发生错误
+// console.log('页面请求失败，请重新尝试！');
 // layer.open({
 // content: '页面请求失败，请重新尝试！',
 // btn: '确定',
@@ -86,19 +86,19 @@ console.log('页面请求失败，请重新尝试！');
 // layer.closeAll();
 // }
 // });
-}else if(Status=="timeout"){//超时处理
-layer.open({
-content: '页面请求超时，请重新尝试！',
-btn: '确定',
-shadeClose: false,
-yes: function(){
-layer.closeAll();
-}
-});
-}else if(Status=="abort"){//中断
-console.log('操作中断！');
-}else{//其他情况
-console.log('页面请求发生未知错误，请重新尝试！');
+// }else if(Status=="timeout"){//超时处理
+// layer.open({
+// content: '页面请求超时，请重新尝试！',
+// btn: '确定',
+// shadeClose: false,
+// yes: function(){
+// layer.closeAll();
+// }
+// });
+// }else if(Status=="abort"){//中断
+// console.log('操作中断！');
+// }else{//其他情况
+// console.log('页面请求发生未知错误，请重新尝试！');
 // layer.open({
 // content: '页面请求发生未知错误，请重新尝试！',
 // btn: '确定',
@@ -107,8 +107,8 @@ console.log('页面请求发生未知错误，请重新尝试！');
 // layer.closeAll();
 // }
 // });
-}
-}
-});
+// }
+// }
+// });
 
-});
+// });
